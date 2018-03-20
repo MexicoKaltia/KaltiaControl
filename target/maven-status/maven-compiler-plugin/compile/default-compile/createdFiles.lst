@@ -1,0 +1,4 @@
+com/kaltia/kaltiaControl/service/UserManager.class
+com/kaltia/kaltiaControl/controller/ControllerInicial.class
+com/kaltia/kaltiaControl/service/impl/UserManagerImpl.class
+com/kaltia/kaltiaControl/bean/UserKaltiaControl.class
