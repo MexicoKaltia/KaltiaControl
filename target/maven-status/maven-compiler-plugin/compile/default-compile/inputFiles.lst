@@ -1,4 +1,9 @@
 /home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/service/UserManager.java
-/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/service/impl/UserManagerImpl.java
-/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/bean/UserKaltiaControl.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/bean/UserKaltiaControlEntity.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/aop/UserAOP.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/bean/RequestLoginVO.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/service/UserManagerImpl.java
 /home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/controller/ControllerInicial.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/repository/UserKaltiaControlDAO.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/repository/UserKaltiaControlDAOImpl.java
+/home/hgrc/Documentos/Programas/Spring/workspace/KaltiaControl/src/main/java/com/kaltia/kaltiaControl/bean/UserKaltiaControlVO.java

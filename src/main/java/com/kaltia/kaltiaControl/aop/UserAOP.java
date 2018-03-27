@@ -3,13 +3,13 @@ package com.kaltia.kaltiaControl.aop;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 
-import com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity;
-import com.kaltia.kaltiaControl.repository.UserKaltiaControlDAO;
-
-@Component
+//@Component
+//@Aspect
 public class UserAOP {
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -21,6 +21,11 @@ public class UserAOP {
 	 */
 	
 
+	//@Pointcut("execution(* com.kaltia.kaltiaControl.service.UserKaltiaControl.validaUserKaltiaControl(..))")
+	public void userKaltiaControlAOP() {
+		
+	}
+	//@Around("userKaltiaControlAOP()")
 	public void loginAOP(ProceedingJoinPoint joinpoint) {
 		try {
 			logger.info("Inicio UserKaltiaControl");

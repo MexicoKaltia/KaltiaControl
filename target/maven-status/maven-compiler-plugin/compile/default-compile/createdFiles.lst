@@ -1,4 +1,9 @@
+com/kaltia/kaltiaControl/bean/UserKaltiaControlEntity.class
+com/kaltia/kaltiaControl/bean/UserKaltiaControlVO.class
+com/kaltia/kaltiaControl/repository/UserKaltiaControlDAOImpl.class
+com/kaltia/kaltiaControl/aop/UserAOP.class
+com/kaltia/kaltiaControl/bean/RequestLoginVO.class
 com/kaltia/kaltiaControl/service/UserManager.class
 com/kaltia/kaltiaControl/controller/ControllerInicial.class
-com/kaltia/kaltiaControl/service/impl/UserManagerImpl.class
-com/kaltia/kaltiaControl/bean/UserKaltiaControl.class
+com/kaltia/kaltiaControl/service/UserManagerImpl.class
+com/kaltia/kaltiaControl/repository/UserKaltiaControlDAO.class

@@ -54,11 +54,12 @@ public class ControllerInicial {
          Map<String, Object> myModel = new HashMap<String, Object>();
          myModel.put("now", now);
          
-         this.userManager.readUser(userKaltiaControlFront);
+         requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
        
          myModel.put("userManager", requestLoginVO);         
 
-         return new ModelAndView(requestLoginVO.getUserPerfil().toString(), "model", myModel);
+         //return new ModelAndView(requestLoginVO.getUserPerfil().toString(), "model", myModel);
+         return new ModelAndView("prueba", "model", myModel);
      }
 	
 

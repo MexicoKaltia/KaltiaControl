@@ -1,6 +1,7 @@
 package com.kaltia.kaltiaControl.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -12,47 +13,37 @@ public class RequestLoginVO implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String userEstilo;
-	private String userIdEmpresa;
-	private String userIdAction;
-	private String userStatus;
-	private String userPerfil;
+	private UserKaltiaControlEntity userKaltiaControlEntity;
+	private EmpresaEntity empresaEntity;
+	private List<UserGeneralEntity> userGeneralEntity;
 	
-	public RequestLoginVO() {
-		
+	private StatusEmpresaEntity statusEmpresaEntity;
+	
+	public UserKaltiaControlEntity getUserKaltiaControlEntity() {
+		return userKaltiaControlEntity;
+	}
+	public void setUserKaltiaControlEntity(UserKaltiaControlEntity userKaltiaControlEntity) {
+		this.userKaltiaControlEntity = userKaltiaControlEntity;
+	}
+	public EmpresaEntity getEmpresaEntity() {
+		return empresaEntity;
+	}
+	public void setEmpresaEntity(EmpresaEntity empresaEntity) {
+		this.empresaEntity = empresaEntity;
+	}
+	public List<UserGeneralEntity> getUserGeneralEntity() {
+		return userGeneralEntity;
+	}
+	public void setUserGeneralEntity(List<UserGeneralEntity> userGeneralEntity) {
+		this.userGeneralEntity = userGeneralEntity;
+	}
+	public StatusEmpresaEntity getStatusEmpresaEntity() {
+		return statusEmpresaEntity;
+	}
+	public void setStatusEmpresaEntity(StatusEmpresaEntity statusEmpresaEntity) {
+		this.statusEmpresaEntity = statusEmpresaEntity;
 	}
 	
-	
-	public String getUserPerfil() {
-		return userPerfil;
-	}
-	public void setUserPerfil(String userPerfil) {
-		this.userPerfil = userPerfil;
-	}
-	public String getUserEstilo() {
-		return userEstilo;
-	}
-	public void setUserEstilo(String userEstilo) {
-		this.userEstilo = userEstilo;
-	}
-	public String getUserIdEmpresa() {
-		return userIdEmpresa;
-	}
-	public void setUserIdEmpresa(String userIdEmpresa) {
-		this.userIdEmpresa = userIdEmpresa;
-	}
-	public String getUserIdAction() {
-		return userIdAction;
-	}
-	public void setUserIdAction(String userIdAction) {
-		this.userIdAction = userIdAction;
-	}
-	public String getUserStatus() {
-		return userStatus;
-	}
-	public void setUserStatus(String userStatus) {
-		this.userStatus = userStatus;
-	}
 	
 	
 	
