@@ -58,8 +58,8 @@ public class ControllerInicial {
        
          myModel.put("userManager", requestLoginVO);         
 
-         //return new ModelAndView(requestLoginVO.getUserPerfil().toString(), "model", myModel);
-         return new ModelAndView("prueba", "model", myModel);
+         return new ModelAndView(requestLoginVO.getUserPerfil().toString(), "model", myModel);
+         //return new ModelAndView("prueba", "model", myModel);
      }
 	
 
