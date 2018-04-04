@@ -56,10 +56,10 @@ public class ControllerInicial {
          
          requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
        
-         myModel.put("userManager", requestLoginVO);         
+         myModel.put("requestLoginVO", requestLoginVO);         
 
-         //return new ModelAndView(requestLoginVO.getUserPerfil().toString(), "model", myModel);
-         return new ModelAndView("prueba", "model", myModel);
+         return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", myModel);
+//         return new ModelAndView("prueba", "model", myModel);
      }
 	
 
