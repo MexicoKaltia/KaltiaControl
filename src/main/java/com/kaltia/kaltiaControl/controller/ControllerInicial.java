@@ -48,8 +48,6 @@ public class ControllerInicial {
 
     	 String now = (new Date()).toString();
          logger.info("Returning hello view with " + now);
-         logger.info("user:"+userKaltiaControlFront.getUserUser());
-         logger.info("pass:"+userKaltiaControlFront.getPassUser());
 
          Map<String, Object> myModel = new HashMap<String, Object>();
          myModel.put("now", now);
@@ -58,13 +56,8 @@ public class ControllerInicial {
        
          myModel.put("requestLoginVO", requestLoginVO);         
 
-<<<<<<< HEAD
-         return new ModelAndView(requestLoginVO.getUserPerfil().toString(), "model", myModel);
-         //return new ModelAndView("prueba", "model", myModel);
-=======
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", myModel);
 //         return new ModelAndView("prueba", "model", myModel);
->>>>>>> 186a340552715313f93b2a20852daca3a42314b3
      }
 	
 

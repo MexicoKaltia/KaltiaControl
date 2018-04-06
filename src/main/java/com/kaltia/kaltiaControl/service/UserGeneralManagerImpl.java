@@ -31,9 +31,7 @@ public class UserGeneralManagerImpl implements UserGeneralManager{
 		List<UserGeneralEntity> userGeneralEntity = new ArrayList<UserGeneralEntity>();
 		
 		userGeneralEntity = (List<UserGeneralEntity>) userGeneralDAO.readUserGeneralDAO(idEmpresa);
-		
 
-		
 		return userGeneralEntity;
 	}
 

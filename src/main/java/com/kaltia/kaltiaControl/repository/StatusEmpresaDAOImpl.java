@@ -39,7 +39,7 @@ public class StatusEmpresaDAOImpl implements StatusEmpresaDAO{
 
 	@Override
 	public StatusEmpresaEntity readStatusEmpresaDAO(String idEmpresa) {
-		logger.info("readStatusEmpresaDAO:"+idEmpresa); 
+		
 		Query query = em.createNamedQuery("find statusEmpresa by idEmpresa");
 	      query.setParameter("id", idEmpresa);
 	      

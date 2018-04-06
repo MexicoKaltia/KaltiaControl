@@ -50,7 +50,7 @@ public class UserKaltiaControlDAOImpl implements UserKaltiaControlDAO{
 		String pass = userKaltiaControlVO.getPassUser();
 		String qry = "select p from tc_userkaltiacontrol p where p.userKaltiaControlUser='"+id+"' and p.userKaltiaControlPass='"+pass+"'";
 		logger.info(qry);
-		logger.info("readUserKaltiaControlDAO");
+		
 		try {
 			return (UserKaltiaControlEntity) em.createQuery(qry).getSingleResult();
 		}catch(Exception e){

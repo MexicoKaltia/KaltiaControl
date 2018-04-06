@@ -55,9 +55,6 @@ public class UserManagerImpl implements UserManager{
 	public RequestLoginVO readUser(UserKaltiaControlVO userKaltiaControlVO) {
 		HashMap<String,Object> userAtributo = new HashMap<String,Object>();
 		
-		logger.info("id:"+userKaltiaControlVO.getUserUser());
-		logger.info("pass:"+userKaltiaControlVO.getPassUser());
-		
 		/*
 		 * Validar UsuarioKaltiaControl
 		 */
@@ -85,10 +82,10 @@ public class UserManagerImpl implements UserManager{
 			requestLoginVO.setUserGeneralEntity(userGeneralEntity);
 			requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
 			
-			logger.info(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlNombre());
-			logger.info(requestLoginVO.getEmpresaEntity().getIdEmpresa());
-			logger.info(requestLoginVO.getUserGeneralEntity());
-			logger.info(requestLoginVO.getStatusEmpresaEntity().getStatusEmpresa());
+//			logger.info(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlNombre());
+//			logger.info(requestLoginVO.getEmpresaEntity().getIdEmpresa());
+//			logger.info(requestLoginVO.getUserGeneralEntity());
+//			logger.info(requestLoginVO.getStatusEmpresaEntity().getStatusEmpresa());
 			
 		}else {
 			//Exception

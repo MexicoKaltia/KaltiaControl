@@ -76,7 +76,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
 	     // EntityManager entitymanager = emfactory.createEntityManager();
 	      
-		logger.info("readEmpresaDAO:"+idEmpresa);
+		
 	      Query query = em.createNamedQuery("find empresa by idEmpresa");
 	      query.setParameter("id", idEmpresa);
 	      
