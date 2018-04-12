@@ -41,7 +41,7 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li  class="active"><a href="../index.html">Inicio</a></li>
-          <li><a class="drop" href="#general">Edicion</a>
+          <li><a class="drop" href="edicion">Edicion</a>
           <li><a class="drop" href="#usuarios">Estadistica</a></li>
         </ul>
       </nav>
@@ -66,14 +66,14 @@
       <form>
         <fieldset>
           <div class="btn-group">
-            <a href="#gereral" class="btn btn-default">General</a>
+            <a href="#general" class="btn btn-default">General</a>
             <a href="#usuarios" class="btn btn-default">Usuarios</a>
             <a href="#status" class="btn btn-default">Status</a>
           </div>
           <!-- Text input-->
           <div class="form-group">
 
-            <a class="" name="general">
+            <a  id="general2">
             <label class=" control-label" for="textinput">General</label>
               <input id="textinput" name="textinput" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text">
               <input id="textinput" name="Nombre Corto" placeholder="Nombre Corto" class="form-control input-md" type="text">
@@ -85,11 +85,11 @@
               <input id="textinput" name="representante" placeholder="representante" class="form-control input-md" type="text">
               <br>
              </a>
-             <a class="" name="usuarios">
+             <a id="usuarios">
              	<label class=" control-label" for="textinput">Usuarios</label>
               	<br>
               </a>
-              <a class="" name="status">
+              <a id="status">
 	             <label class=" control-label" for="textinput">Status</label>
 	              <input id="textinput" name="status" placeholder="status" class="form-control input-md" type="text">
 	              <input id="textinput" name="modo de pago" placeholder="modo de pago" class="form-control input-md" type="text">
@@ -117,7 +117,7 @@
     <div class="clearfix"></div>
   </div>
   
-  <a name="general">GENERAL</a>
+  <a id="general">GENERAL</a>
 
 </div>
 
