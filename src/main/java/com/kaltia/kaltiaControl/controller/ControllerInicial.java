@@ -41,7 +41,7 @@ public class ControllerInicial {
      
     
 
-	@RequestMapping(value="/login.htm" , method = RequestMethod.POST)
+	@RequestMapping(value="/login.html" , method = RequestMethod.POST)
     public ModelAndView handleRequest(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
     	      BindingResult result, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

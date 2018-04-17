@@ -19,7 +19,7 @@
   </head>
 
   <body class="text-center">
-    <form:form  class="form-signin" action="login.htm" method="post" modelAttribute="userKaltiaControlFront">
+    <form:form  class="form-signin" action="login.html" method="post" modelAttribute="userKaltiaControlFront">
       <img class="mb-4 " src="images/kaltiaLogo2.jpg" alt="" width="150px" height="150px">
       <h1 class="h3 mb-3 font-weight-normal">Ingresar Sistema de Control Kaltia</h1>
       <label for="inputEmail" class="sr-only">Email address</label>

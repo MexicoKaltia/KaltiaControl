@@ -66,9 +66,9 @@
       <form>
         <fieldset>
           <div class="btn-group">
-            <a href="#general" class="btn btn-default">General</a>
-            <a href="#usuarios" class="btn btn-default">Usuarios</a>
-            <a href="#status" class="btn btn-default">Status</a>
+            <a href="general" class="btn btn-default">General</a>
+            <a href="usuarios" class="btn btn-default">Usuarios</a>
+            <a href="status" class="btn btn-default">Status</a>
           </div>
           <!-- Text input-->
           <div class="form-group">
