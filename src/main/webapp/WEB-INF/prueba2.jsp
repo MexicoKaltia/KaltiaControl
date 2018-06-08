@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ include file="/layout/head.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,6 +12,9 @@
 </head>
 </head>
 <body>
+
+Prueba 2
+<p><c:out value="${modelEdicion.requestLoginVO.empresaEntity.getEmpresaNombreCompleto()}"/></p>
 		<div class="embed-responsive embed-responsive-21by9">
 			<iframe class="embed-responsive-item" src="<%=request.getContextPath()%>/layout/frame/header.jsp"  frameborder="0" width="978" allowfullscreen></iframe>
 		</div>

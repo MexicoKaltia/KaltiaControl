@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,7 +42,7 @@ public class ControllerInicial {
      
     
 
-	@RequestMapping(value="/login.html" , method = RequestMethod.POST)
+	@RequestMapping(value="/login.htm" , method = RequestMethod.POST)
     public ModelAndView handleRequest(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
     	      BindingResult result, ModelMap model, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -60,10 +61,19 @@ public class ControllerInicial {
 //         return new ModelAndView("prueba", "model", myModel);
      }
 	
+	
+	@RequestMapping (value= "/edicion.htm" , method = RequestMethod.POST)
+	public ModelAndView edicion(HttpServletRequest request) {
+		logger.info("----Inicio metodo edicion----");
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		 myModel.put("model", request.getAttribute("model"));
+		 logger.info("modelEdicion:"+request.getAttribute("model"));
+		return new ModelAndView("prueba2","modelEdicion", myModel );
+		
+	}
 
-	/*public void setRequestLoginVO(RequestLoginVO requestLoginVO) {
-		this.requestLoginVO = requestLoginVO;
-	}*/
-     
+	
+	
+
      
 }

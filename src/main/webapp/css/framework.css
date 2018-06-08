@@ -14,7 +14,7 @@ html, body{margin:0; padding:0; font-size:14px; line-height:1.6em;}
 .right{text-align:right;}
 .uppercase{text-transform:uppercase;}
 .capitalise{text-transform:capitalize;}
-.hidden{display:none;}
+.hidden{display:block;}
 .nospace{margin:0; padding:0; list-style:none;}
 .block{display:block;}
 .justified{text-align:justify;}

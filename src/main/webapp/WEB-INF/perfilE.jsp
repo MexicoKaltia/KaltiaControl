@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
- <%@ include file="/layout/head.jsp" %>
+<%@ include file="/layout/head.jsp" %>
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
 <title>KaltiaControl</title>
 <meta charset="utf-8">
@@ -34,16 +32,16 @@
     </div>
   </div>
   <!-- ################################################################################################ -->
-  <div class="wrapper row1 fixed-top">
+  <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
       <div id="logo" class="fl_left">
-        <h1><a href="../index.html">K A L T I A Control</a></h1>
+        <h1><a href="#">K A L T I A Control</a></h1>
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li  class="active"><a href="../index.html">Inicio</a></li>
-          <li><a class="drop" href="edicion">Edicion</a>
-          <li><a class="drop" href="usuarios">Estadistica</a></li>
+          <li  class="active"><a href="<c:url value="/"/>">Inicio</a></li>
+          <li><a  href="<c:url value="edicion.htm"/>">Edicion</a>
+          <li><a  href="${pageContext.request.contextPath}/edicion.htm">Estadistica</a></li>
         </ul>
       </nav>
     </header>
@@ -116,11 +114,7 @@
           
         </fieldset>
       </form>
-    </div>
-    <div class="clearfix"></div>
-  </div>
-  
-
+	</div>
 </div>
 
 <!-- JAVASCRIPTS -->

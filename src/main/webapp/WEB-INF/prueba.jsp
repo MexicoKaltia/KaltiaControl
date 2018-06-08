@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ include file="/layout/head.jsp" %>
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -41,8 +42,8 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li  class="active"><a href="../index.html">Inicio</a></li>
-          <li><a class="drop" href="#">Edicion</a>
-          <li><a class="drop" href="#">Estadistica</a></li>
+          <li><a class="drop" href="<c:url value="edicion.html"/>">Edicion</a>
+          <li><a class="drop" href="${pageContext.request.contextPath}/edicion.htm">Estadistica</a></li>
         </ul>
       </nav>
     </header>
