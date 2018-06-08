@@ -62,13 +62,25 @@ public class ControllerInicial {
      }
 	
 	
-	@RequestMapping (value= "/edicion.htm" , method = RequestMethod.POST)
-	public ModelAndView edicion(HttpServletRequest request) {
-		logger.info("----Inicio metodo edicion----");
+	@RequestMapping (value= "/edicion.htm" ,
+//			params ={action},
+			method = RequestMethod.POST)
+	public ModelAndView edicion(String action, HttpServletRequest request) {
+		logger.info("----Inicio metodo edicion----"+action);
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		logger.info("modelEdicion:"+request.getRequestURI());
+		 myModel.put("action", action);
+		return new ModelAndView("edicion","modelEdicion", myModel );
+		
+	}
+	
+	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)
+	public ModelAndView estadistica(HttpServletRequest request) {
+		logger.info("----Inicio metodo estadistica----");
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		 myModel.put("model", request.getAttribute("model"));
 		 logger.info("modelEdicion:"+request.getAttribute("model"));
-		return new ModelAndView("prueba2","modelEdicion", myModel );
+		return new ModelAndView("estadistica","modelEdicion", myModel );
 		
 	}
 

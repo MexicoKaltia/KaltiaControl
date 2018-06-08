@@ -13,7 +13,7 @@
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
 <div class="bgded overlay light" style="background-image:url('<%=request.getContextPath()%>/images/imagen.jpg');"> 
-  <div class="wrapper row0 ">
+  <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
       <div class="fl_left"> 
         <ul class="nospace">
@@ -39,9 +39,9 @@
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li  class="active"><a href="<c:url value="/"/>">Inicio</a></li>
-          <li><a  href="<c:url value="edicion.htm"/>">Edicion</a>
-          <li><a  href="${pageContext.request.contextPath}/edicion.htm">Estadistica</a></li>
+          <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
+          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Edicion</a>
+          <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
         </ul>
       </nav>
     </header>
@@ -112,11 +112,12 @@
 <!--     section     -->
           
           
-        </fieldset>
-      </form>
-	</div>
-</div>
-
+     	   </fieldset>
+     	 </form>
+		</div>
+     <div class="clearfix"></div>
+   </div>
+   </div>
 <!-- JAVASCRIPTS -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.backtotop.js"></script>
