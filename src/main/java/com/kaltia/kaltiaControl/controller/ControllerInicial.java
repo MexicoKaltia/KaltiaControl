@@ -6,32 +6,37 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
-import com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
 import com.kaltia.kaltiaControl.service.UserManager;
 
 
 @Controller
-public class ControllerInicial {
-    protected final Log logger = LogFactory.getLog(getClass());
+@SessionAttributes ("model")
+public class ControllerInicial extends HttpServlet {
+    
+	private static final long serialVersionUID = -914904182640401317L;
+
+	protected final Log logger = LogFactory.getLog(getClass());
     
      @Autowired
      //@Qualifier("userManagerImpl")
@@ -52,10 +57,15 @@ public class ControllerInicial {
 
          Map<String, Object> myModel = new HashMap<String, Object>();
          myModel.put("now", now);
-         
          requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
-       
          myModel.put("requestLoginVO", requestLoginVO);         
+         
+         HttpSession session = request.getSession();
+       
+       session.setAttribute("requestLoginVO", requestLoginVO);
+       
+       String nombre = (String)session.getAttribute("nombre");
+         
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", myModel);
 //         return new ModelAndView("prueba", "model", myModel);
@@ -64,14 +74,15 @@ public class ControllerInicial {
 	
 	@RequestMapping (value= "/edicion.htm" ,
 //			params ={action},
-			method = RequestMethod.POST)
-	public ModelAndView edicion(String action, HttpServletRequest request) {
-		logger.info("----Inicio metodo edicion----"+action);
-		Map<String, Object> myModel = new HashMap<String, Object>();
+			method = RequestMethod.GET)
+	public ModelAndView edicion(@Valid @ModelAttribute("model") Map model, 
+								 HttpServletRequest request) {
+		logger.info("----Inicio metodo edicion----"+model.get(requestLoginVO.getEmpresaEntity().getIdAction()));
 		logger.info("modelEdicion:"+request.getRequestURI());
-		 myModel.put("action", action);
-		return new ModelAndView("edicion","modelEdicion", myModel );
 		
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		 
+		return new ModelAndView("edicion","modelEdicion", myModel );		
 	}
 	
 	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)

@@ -24,6 +24,7 @@ Prueba 2
 		<div class="embed-responsive embed-responsive-1by1">
 			<iframe class="embed-responsive-item" src="<%=request.getContextPath()%>/layout/frame/footer.jsp"  frameborder="0" allowfullscreen></iframe>
 		</div>
+		
 
 <!-- JAVASCRIPTS -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>

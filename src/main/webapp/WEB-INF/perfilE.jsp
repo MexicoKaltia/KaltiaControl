@@ -41,6 +41,7 @@
         <ul class="clear">
           <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Edicion</a>
+<%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
         </ul>
       </nav>

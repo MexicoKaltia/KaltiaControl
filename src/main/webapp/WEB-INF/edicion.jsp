@@ -1,17 +1,27 @@
-<%@ include file="/layout/head.jsp"%>
-<!DOCTYPE html>
+<%@ include file="/layout/head.jsp" %>
 <html>
 <head>
 <title>KaltiaControl</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="<%=request.getContextPath()%>/css/bootstrap.css"
-	rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/layout.css"
-	rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/complementoBody2.css"
-	rel="stylesheet" type="text/css" media="all">
+<meta name="viewport"	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="<%=request.getContextPath()%>/css/bootstrap.css"	rel="stylesheet" type="text/css" media="all">
+<link href="<%=request.getContextPath()%>/css/layout.css" rel="stylesheet" type="text/css" media="all">
+<link href="<%=request.getContextPath()%>/css/complementoBody2.css" rel="stylesheet" type="text/css" media="all">
+<style type="text/css">
+/*     html, body, div, iframe { margin:0; padding:0; height:100%; } */
+    iframe {  width:100%; border:none; margin:0; padding:0; height:100%;}
+</style>
+<script language="JavaScript">
+	//Ajusta el tamaño de un iframe al de su contenido interior para evitar scroll
+	function autofitIframe(id) {
+		if (!window.opera && document.all && document.getElementById) {
+			id.style.height = id.contentWindow.document.body.scrollHeight;
+		} else if (document.getElementById) {
+			id.style.height = id.contentDocument.body.scrollHeight + "px";
+		}
+	}
+</script>
+
 </head>
 <body id="top">
 	<!-- ################################################################################################ -->
@@ -49,9 +59,9 @@
 				</div>
 				<nav id="mainav" class="fl_right">
 					<ul class="clear">
-						<li class="active"><a href="<c:url value="/"/>">Inicio</a></li>
-						<li><a href="<c:url value="edicion.htm"/>">Edicion</a>
-						<li><a href="${pageContext.request.contextPath}/edicion.htm">Estadistica</a></li>
+						<li ><a href="<c:url value="/login.htm"/>">Inicio</a></li>
+						<li class="active"><a href="#">">Edicion</a>
+						<li><a href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -65,8 +75,13 @@
 				<li><a href="#">Inicio</a></li>
 			</ul>
 		</div>
-		HOLA EDICION
-		<p><c:out value="${modelEdicion.action}"/></p>
+		<!-- ################################################################################################ -->
+		<!-- ################################################################################################ -->
+		<!-- ################################################################################################ -->
+		<div>
+							<iframe src="http://www.kaltia.xyz/bronea"
+								onload="autofitIframe(this);"></iframe>
+		</div>
 		<!-- ################################################################################################ -->
 		<!-- ################################################################################################ -->
 		<!-- ################################################################################################ -->
@@ -75,10 +90,8 @@
 
 	<!-- JAVASCRIPTS -->
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/jquery.backtotop.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.mobilemenu.js"></script>
 	<script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-	<script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
-
+	
 </body>
 </html>
