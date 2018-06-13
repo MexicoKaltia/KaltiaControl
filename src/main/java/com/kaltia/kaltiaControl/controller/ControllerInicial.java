@@ -61,10 +61,8 @@ public class ControllerInicial extends HttpServlet {
          myModel.put("requestLoginVO", requestLoginVO);         
          
          HttpSession session = request.getSession();
-       
-       session.setAttribute("requestLoginVO", requestLoginVO);
-       
-       String nombre = (String)session.getAttribute("nombre");
+	       session.setAttribute("requestLoginVO", requestLoginVO);
+	       String nombre = (String)session.getAttribute("nombre");
          
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", myModel);

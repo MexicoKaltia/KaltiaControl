@@ -61,6 +61,8 @@ public class UserManagerImpl implements UserManager{
 		userKaltiaControlEntity = validaUserKaltiaControl(userKaltiaControlVO);
 		userAtributo.put("uKCE", userKaltiaControlEntity);
 		
+		requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
+		
 		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
 			/*
 			 * Informacion Empresa de usuarioKaltiaControl
@@ -77,7 +79,7 @@ public class UserManagerImpl implements UserManager{
 			userAtributo.put("sEE", statusEmpresaEntity);
 			
 			
-			requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
+			
 			requestLoginVO.setEmpresaEntity(empresaEntity);
 			requestLoginVO.setUserGeneralEntity(userGeneralEntity);
 			requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
@@ -90,9 +92,10 @@ public class UserManagerImpl implements UserManager{
 		}else {
 			//Exception
 			logger.info("EXCEPTION");
+			
 		}
 
-		resultDAOVO = empresaManager.createEmpresa(eE);
+		//resultDAOVO = empresaManager.createEmpresa(eE);
 		
 		return requestLoginVO ;
 	}

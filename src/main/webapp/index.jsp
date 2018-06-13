@@ -16,6 +16,11 @@
 
     <!-- Custom styles for this template -->
     <link href="signin.css" rel="stylesheet">
+    <style type="text/css">
+/*     html, body, div, iframe { margin:0; padding:0; height:100%; } */
+    span {color:red}
+	</style>
+    
   </head>
 
   <body class="text-center">
@@ -30,6 +35,12 @@
         <label>
           <input type="checkbox" value="remember-me"> Remember me
         </label>
+      </div>
+      <div>
+      	<span>
+      		<c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlDescr()}"/>
+			<c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlStatus()}"/>	
+      	</span>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
       <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltia.xyz">Kaltia Mexico&copy; 2018</a></p>

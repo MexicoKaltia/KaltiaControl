@@ -60,7 +60,7 @@
 				<nav id="mainav" class="fl_right">
 					<ul class="clear">
 						<li ><a href="<c:url value="/login.htm"/>">Inicio</a></li>
-						<li class="active"><a href="#">">Edicion</a>
+						<li class="active"><a href="#">Edicion</a>
 						<li><a href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
 					</ul>
 				</nav>

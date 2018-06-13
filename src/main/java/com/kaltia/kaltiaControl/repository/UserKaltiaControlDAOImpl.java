@@ -50,14 +50,16 @@ public class UserKaltiaControlDAOImpl implements UserKaltiaControlDAO{
 		String pass = userKaltiaControlVO.getPassUser();
 		String qry = "select p from tc_userkaltiacontrol p where p.userKaltiaControlUser='"+id+"' and p.userKaltiaControlPass='"+pass+"'";
 		logger.info(qry);
+		userKaltiaControlEntity = new UserKaltiaControlEntity();
 		
 		try {
 			return (UserKaltiaControlEntity) em.createQuery(qry).getSingleResult();
 		}catch(Exception e){
 			logger.info(e);
-			userKaltiaControlEntity.setUserKaltiaControlPerfil("vacio");
+			userKaltiaControlEntity.setUserKaltiaControlPerfil("#");
 			userKaltiaControlEntity.setIdUserKaltiaControlUser("vacio");
 			userKaltiaControlEntity.setUserKaltiaControlDescr("Usuario no existente");
+			userKaltiaControlEntity.setUserKaltiaControlStatus("NOK");
 			return userKaltiaControlEntity;
 		}
 	       
