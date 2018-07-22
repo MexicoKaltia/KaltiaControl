@@ -63,7 +63,7 @@ public class ControllerInicial extends HttpServlet {
          HttpSession session = request.getSession();
 	       session.setAttribute("requestLoginVO", requestLoginVO);
 	       String nombre = (String)session.getAttribute("nombre");
-         
+	       logger.info("nombre:"+nombre);
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", myModel);
 //         return new ModelAndView("prueba", "model", myModel);
@@ -93,6 +93,15 @@ public class ControllerInicial extends HttpServlet {
 		
 	}
 
+	@RequestMapping (value= "/alta.htm" , method = RequestMethod.GET)
+	public ModelAndView alta(HttpServletRequest request) {
+		logger.info("----Inicio metodo alta----");
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		 myModel.put("model", request.getAttribute("model"));
+		 logger.info("modelEdicion:"+request.getAttribute("model"));
+		return new ModelAndView("estadistica","modelEdicion", myModel );
+		
+	}
 	
 	
 

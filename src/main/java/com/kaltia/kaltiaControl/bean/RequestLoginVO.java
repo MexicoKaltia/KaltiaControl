@@ -16,8 +16,9 @@ public class RequestLoginVO implements Serializable{
 	private UserKaltiaControlEntity userKaltiaControlEntity;
 	private EmpresaEntity empresaEntity;
 	private List<UserGeneralEntity> userGeneralEntity;
-	
 	private StatusEmpresaEntity statusEmpresaEntity;
+	
+	
 	
 	public UserKaltiaControlEntity getUserKaltiaControlEntity() {
 		return userKaltiaControlEntity;
