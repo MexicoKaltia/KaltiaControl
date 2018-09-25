@@ -1,16 +1,18 @@
 package com.kaltia.kaltiaControl.bean;
 
 import java.io.Serializable;
-import java.lang.annotation.Repeatable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-@Repeatable(EmpresaEntity.class)
+
 @Entity(name="tc_empresa")
-@Repeatable(query ="Select a from tc_empresa a where a.empresaPerfilE = :id", name = "find empresa by idEmpresa")
-@NamedQuery(query ="Select a from tc_empresa a where a.empresaPerfilI = :id", name = "find empresa by idEmpresaArray")
+@NamedQueries({
+	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilE = :id", name = "find empresa by idEmpresa"),
+	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilI = :id", name = "find empresa by idEmpresaArray")
+})
 public class EmpresaEntity implements Serializable{
 
 	/**
@@ -33,11 +35,11 @@ public class EmpresaEntity implements Serializable{
 	@Column
 	private String empresaContacto;
 	@Column
-	private String empresaRepresentante;
+	private String empresaIdPerfilI;
 	@Column
 	private String empresaVarios;
 	@Column
-	private String empresaUserKaltia;
+	private String empresaIdPerfilE;
 	@Column
 	private String empresaModelo;
 	@Column
@@ -104,14 +106,11 @@ public class EmpresaEntity implements Serializable{
 		this.empresaFactura = empresaFactura;
 	}
 
-
-	
-	
-	public String getEmpresaUserKaltia() {
-		return empresaUserKaltia;
+	public String getEmpresaIdPerfilI() {
+		return empresaIdPerfilI;
 	}
-	public void setEmpresaUserKaltia(String empresaUserKaltia) {
-		this.empresaUserKaltia = empresaUserKaltia;
+	public void setEmpresaIdPerfilI(String empresaIdPerfilI) {
+		this.empresaIdPerfilI = empresaIdPerfilI;
 	}
 	public String getIdEmpresa() {
 		return idEmpresa;
@@ -155,11 +154,11 @@ public class EmpresaEntity implements Serializable{
 	public void setEmpresaContacto(String empresaContacto) {
 		this.empresaContacto = empresaContacto;
 	}
-	public String getEmpresaRepresentante() {
-		return empresaRepresentante;
+	public String getEmpresaIdPerfilE() {
+		return empresaIdPerfilE;
 	}
-	public void setEmpresaRepresentante(String empresaRepresentante) {
-		this.empresaRepresentante = empresaRepresentante;
+	public void setEmpresaIdPerfilE(String empresaIdPerfilE) {
+		this.empresaIdPerfilE = empresaIdPerfilE;
 	}
 	public String getEmpresaVarios() {
 		return empresaVarios;

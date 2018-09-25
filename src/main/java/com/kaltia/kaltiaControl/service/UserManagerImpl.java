@@ -57,24 +57,19 @@ public class UserManagerImpl implements UserManager{
 		HashMap<String,Object> userAtributo = new HashMap<String,Object>();
 		
 		/*
-		 * Validar UsuarioKaltiaControl
+		 * Informacion de perfil usuarioKaltiaControl
 		 */
 		userKaltiaControlEntity = userKaltiaControlDAO.readUserKaltiaControlDAO(userKaltiaControlVO);
-		userAtributo.put("uKCE", userKaltiaControlEntity);
-		
 		requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 		
-		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
-			
-			/*
-			 * Informacion de perfil usuarioKaltiaControl
-			 */
+		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {			
 			if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
-			ArrayList<EmpresaEntity> empresaEntityList = new ArrayList();
-			/*
-			 * lectura de array Empresas perfil I
-			 */
-			empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
+				logger.info("perfilI");
+				/*
+				 * lectura de array Empresas perfil I
+				 */
+				
+				requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString()));  
 //				for(EmpresaEntity idEmpresa: empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString())) {
 //					
 //					empresaEntityList.add(empresaEntity);
@@ -88,28 +83,21 @@ public class UserManagerImpl implements UserManager{
 				 */
 				empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
 				List<UserGeneralEntity> userGeneralEntity  = userGeneralManager.readUserGeneral(empresaEntity.getIdEmpresa());
-				userAtributo.put("uGE", userGeneralEntity);
+//				userAtributo.put("uGE", userGeneralEntity);
 				
 				statusEmpresaEntity = statusEmpresaManager.readStatusEmpresaManager(empresaEntity.getIdEmpresa());
-				userAtributo.put("sEE", statusEmpresaEntity);
+//				userAtributo.put("sEE", statusEmpresaEntity);
 				
 				requestLoginVO.setEmpresaEntity(empresaEntity);
 				requestLoginVO.setUserGeneralEntity(userGeneralEntity);
 				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
 				
 			
-				/*
-				 * Lectura de idEmpresas con atributos
-				 */
-				logger.info("perfilI");
-			
 		}else {
 			//Exception
 			logger.info("EXCEPTION");
 			
 		}
-
-		//resultDAOVO = empresaManager.createEmpresa(eE);
 		
 		return requestLoginVO ;
 	}

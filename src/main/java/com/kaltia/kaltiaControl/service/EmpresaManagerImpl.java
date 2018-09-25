@@ -38,7 +38,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	@Override
 	public EmpresaEntity readEmpresa(String idEmpresa) {
 		logger.info("readEmpresa:"+idEmpresa);
-		empresaEntity = validaEmpresa(idEmpresa);
+		empresaEntity = empresaDAO.readEmpresaDAO(idEmpresa);
 
 		return empresaEntity;
 	}
@@ -46,9 +46,9 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI) {
 		logger.info("readEmpresaArray:"+idUserPerfilI);
 		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI);
-		for(EmpresaEntity idEmpresa: empresaEntityArray) {
-			empresaEntity = validaEmpresa(idUserPerfilI);
-		}
+//		for(EmpresaEntity idEmpresa: empresaEntityArray) {
+//			empresaEntity = validaEmpresa(idUserPerfilI);
+//		}
 		return empresaEntityArray;
 	}
 	@Override
@@ -64,7 +64,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	
 	public EmpresaEntity validaEmpresa(String idEmpresa) {
 		
-		empresaEntity = empresaDAO.readEmpresaDAO(idEmpresa);
+		
 		
 		return empresaEntity;
 	}

@@ -49,9 +49,9 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		empresaEntity.setEmpresaDireccion("empresaDireccion");
 		empresaEntity.setEmpresaEmail("empresaEmail");
 		empresaEntity.setEmpresaContacto("empresaContacto");
-		empresaEntity.setEmpresaRepresentante("empresaRepresentante");
+		empresaEntity.setEmpresaIdPerfilE("empresaIdPerfilE");
 		empresaEntity.setEmpresaVarios("empresaVarios");
-		empresaEntity.setEmpresaUserKaltia("empresaUserKaltia");
+		empresaEntity.setEmpresaIdPerfilI("empresaIdPerfilI");
 		logger.info("-----------"+empresaEntity.getEmpresaNombreCompleto());
 		
 		try {
@@ -92,22 +92,22 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	      }
 	}
 	
-public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI) {
+	@Override
+	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI) {
 		
 		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
 	     // EntityManager entitymanager = emfactory.createEntityManager();
-	      
 		
 	      Query query = em.createNamedQuery("find empresa by idEmpresaArray");
 	      query.setParameter("id", idUserPerfilI);
 	      
-	      ArrayList<EmpresaEntity> empresaArrayDAO = new ArrayList<EmpresaEntity>();
+	      ArrayList<EmpresaEntity> empresaEntityArrayDAO = new ArrayList<EmpresaEntity>();
 	      try {
-	    	  empresaArrayDAO = (ArrayList<EmpresaEntity>) query.getResultList();
-	    	  return empresaArrayDAO; 
+	    	  empresaEntityArrayDAO = (ArrayList<EmpresaEntity>) query.getResultList();
+	    	  return empresaEntityArrayDAO; 
 	      }catch(Exception e){
 	    	  logger.info(e);
-	    	  return empresaArrayDAO;
+	    	  return empresaEntityArrayDAO;
 	      }
 	}
 

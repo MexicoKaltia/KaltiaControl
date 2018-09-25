@@ -1,6 +1,7 @@
 package com.kaltia.kaltiaControl.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -14,6 +15,7 @@ public class RequestLoginVO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private UserKaltiaControlEntity userKaltiaControlEntity;
+	private ArrayList<EmpresaEntity> empresaArrayEntity;
 	private EmpresaEntity empresaEntity;
 	private List<UserGeneralEntity> userGeneralEntity;
 	private StatusEmpresaEntity statusEmpresaEntity;
@@ -45,7 +47,12 @@ public class RequestLoginVO implements Serializable{
 		this.statusEmpresaEntity = statusEmpresaEntity;
 	}
 	
-	
+	public ArrayList<EmpresaEntity> getEmpresaArrayEntity() {
+		return empresaArrayEntity;
+	}
+	public void setEmpresaArrayEntity(ArrayList<EmpresaEntity> empresaArrayEntity) {
+		this.empresaArrayEntity = empresaArrayEntity;
+	}
 	
 	
 

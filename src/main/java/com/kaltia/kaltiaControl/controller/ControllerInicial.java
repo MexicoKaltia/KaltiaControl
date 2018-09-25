@@ -18,10 +18,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +31,7 @@ import com.kaltia.kaltiaControl.service.UserManager;
 
 
 @Controller
+@ControllerAdvice
 @SessionAttributes ("model")
 public class ControllerInicial extends HttpServlet {
     
@@ -45,27 +46,33 @@ public class ControllerInicial extends HttpServlet {
      //@Qualifier("requestLoginVO")
      private RequestLoginVO requestLoginVO;
      
+     
     
 
 	@RequestMapping(value="/login.htm" , method = RequestMethod.POST)
     public ModelAndView handleRequest(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
-    	      BindingResult result, ModelMap model, HttpServletRequest request, HttpServletResponse response)
+    									BindingResult result,
+    									ModelMap model,
+    									HttpServletRequest request,
+    									HttpServletResponse response)
             throws ServletException, IOException {
 
     	 String now = (new Date()).toString();
-         logger.info("Returning hello view with " + now);
+         logger.info("HELLO " + now);
 
          Map<String, Object> myModel = new HashMap<String, Object>();
          myModel.put("now", now);
          requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
          myModel.put("requestLoginVO", requestLoginVO);         
          
+         model.addAttribute("requestLoginVO", requestLoginVO);
+         
          HttpSession session = request.getSession();
 	       session.setAttribute("requestLoginVO", requestLoginVO);
-	       String nombre = (String)session.getAttribute("nombre");
-	       logger.info("nombre:"+nombre);
+//	       String nombre = (String)session.getAttribute("nombre");
+//	       logger.info("nombre:"+nombre);
 
-         return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", myModel);
+         return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 //         return new ModelAndView("prueba", "model", myModel);
      }
 	
@@ -73,8 +80,11 @@ public class ControllerInicial extends HttpServlet {
 	@RequestMapping (value= "/edicion.htm" ,
 //			params ={action},
 			method = RequestMethod.GET)
-	public ModelAndView edicion(@Valid @ModelAttribute("model") Map model, 
-								 HttpServletRequest request) {
+	public ModelAndView edicion(@Valid @ModelAttribute("model") RequestLoginVO requestLoginVO, 
+								BindingResult result,
+								ModelMap  model,
+								HttpServletRequest request,
+								HttpServletResponse response) {
 		logger.info("----Inicio metodo edicion----"+model.get(requestLoginVO.getEmpresaEntity().getIdAction()));
 		logger.info("modelEdicion:"+request.getRequestURI());
 		
@@ -94,12 +104,18 @@ public class ControllerInicial extends HttpServlet {
 	}
 
 	@RequestMapping (value= "/alta.htm" , method = RequestMethod.GET)
-	public ModelAndView alta(HttpServletRequest request) {
+	public ModelAndView alta(@Valid @ModelAttribute("model") RequestLoginVO requestLoginVO,
+							BindingResult result,
+							ModelMap  model,
+							HttpServletRequest request,
+							HttpServletResponse response) {
 		logger.info("----Inicio metodo alta----");
-		Map<String, Object> myModel = new HashMap<String, Object>();
-		 myModel.put("model", request.getAttribute("model"));
-		 logger.info("modelEdicion:"+request.getAttribute("model"));
-		return new ModelAndView("estadistica","modelEdicion", myModel );
+//		HttpSession session = request.getSession();
+		
+//		Map<String, Object> myModel = new HashMap<String, Object>();
+//		 myModel.put("model", request.getAttribute("model"));
+		 logger.info("altaEmpresa:"+model.get(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser()));
+		return new ModelAndView("estadistica","modelEdicion", model );
 		
 	}
 	

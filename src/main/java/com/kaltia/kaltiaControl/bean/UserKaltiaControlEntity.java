@@ -30,23 +30,50 @@ public class UserKaltiaControlEntity implements Serializable{
 	private String userKaltiaControlNombre;
 	@Column(name ="userKaltiaControlStatus")
 	private String userKaltiaControlStatus;
+	@Column(name ="userKaltiaControlDomicilio")
+	private String userKaltiaControlDomicilio;
+	@Column(name ="userKaltiaControlCorreo")
+	private String userKaltiaControlCorreo;
+	@Column(name ="userKaltiaControlContacto")
+	private String userKaltiaControlContacto;
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/*
-	 * getter y setter
-	 */
 
 	public UserKaltiaControlEntity() {
 		
 	}
+
+
+
+	
+	/*
+	 * getter y setter
+	 */
+	public String getUserKaltiaControlDomicilio() {
+		return userKaltiaControlDomicilio;
+	}
+
+	public void setUserKaltiaControlDomicilio(String userKaltiaControlDomicilio) {
+		this.userKaltiaControlDomicilio = userKaltiaControlDomicilio;
+	}
+
+	public String getUserKaltiaControlCorreo() {
+		return userKaltiaControlCorreo;
+	}
+
+	public void setUserKaltiaControlCorreo(String userKaltiaControlCorreo) {
+		this.userKaltiaControlCorreo = userKaltiaControlCorreo;
+	}
+
+	public String getUserKaltiaControlContacto() {
+		return userKaltiaControlContacto;
+	}
+
+	public void setUserKaltiaControlContacto(String userKaltiaControlContacto) {
+		this.userKaltiaControlContacto = userKaltiaControlContacto;
+	}
+
+
+
 
 	public String getIdUserKaltiaControlUser() {
 		return idUserKaltiaControlUser;
@@ -83,8 +110,7 @@ public class UserKaltiaControlEntity implements Serializable{
 	public String getUserKaltiaControlPerfil() {
 		return userKaltiaControlPerfil;
 	}
-
-	public void setUserKaltiaControlPerfil(String userKaltiaControlPerfil) {
+		public void setUserKaltiaControlPerfil(String userKaltiaControlPerfil) {
 		this.userKaltiaControlPerfil = userKaltiaControlPerfil;
 	}
 
