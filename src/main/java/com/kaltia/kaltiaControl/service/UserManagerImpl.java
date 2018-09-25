@@ -1,5 +1,6 @@
 package com.kaltia.kaltiaControl.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,35 +59,49 @@ public class UserManagerImpl implements UserManager{
 		/*
 		 * Validar UsuarioKaltiaControl
 		 */
-		userKaltiaControlEntity = validaUserKaltiaControl(userKaltiaControlVO);
+		userKaltiaControlEntity = userKaltiaControlDAO.readUserKaltiaControlDAO(userKaltiaControlVO);
 		userAtributo.put("uKCE", userKaltiaControlEntity);
 		
 		requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 		
-		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activoE")) {
+		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
+			
 			/*
-			 * Informacion Empresa de usuarioKaltiaControl
+			 * Informacion de perfil usuarioKaltiaControl
 			 */
-	//		logger.info("usuarioEmpresa:"+ userKaltiaControlEntity.getUserKaltiaControlIdEmpresa().toString() );
-			
-			empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getUserKaltiaControlIdEmpresa().toString() );
-			userAtributo.put("eE", empresaEntity);
-			
-			List<UserGeneralEntity> userGeneralEntity  = userGeneralManager.readUserGeneral(empresaEntity.getIdEmpresa());
-			userAtributo.put("uGE", userGeneralEntity);
-			
-			statusEmpresaEntity = statusEmpresaManager.readStatusEmpresaManager(empresaEntity.getIdEmpresa());
-			userAtributo.put("sEE", statusEmpresaEntity);
-			
-			requestLoginVO.setEmpresaEntity(empresaEntity);
-			requestLoginVO.setUserGeneralEntity(userGeneralEntity);
-			requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
-			
-		}else if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activoI")) {
+			if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
+			ArrayList<EmpresaEntity> empresaEntityList = new ArrayList();
 			/*
-			 * Lectura de idEmpresas con atributos
+			 * lectura de array Empresas perfil I
 			 */
-			logger.info("perfilI");
+			empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
+//				for(EmpresaEntity idEmpresa: empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString())) {
+//					
+//					empresaEntityList.add(empresaEntity);
+//				}
+//				userAtributo.put("eE", empresaEntity);
+			}
+			
+			}else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
+				/*
+				 * Informacion Empresa de usuarioKaltiaControl
+				 */
+				empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
+				List<UserGeneralEntity> userGeneralEntity  = userGeneralManager.readUserGeneral(empresaEntity.getIdEmpresa());
+				userAtributo.put("uGE", userGeneralEntity);
+				
+				statusEmpresaEntity = statusEmpresaManager.readStatusEmpresaManager(empresaEntity.getIdEmpresa());
+				userAtributo.put("sEE", statusEmpresaEntity);
+				
+				requestLoginVO.setEmpresaEntity(empresaEntity);
+				requestLoginVO.setUserGeneralEntity(userGeneralEntity);
+				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
+				
+			
+				/*
+				 * Lectura de idEmpresas con atributos
+				 */
+				logger.info("perfilI");
 			
 		}else {
 			//Exception
@@ -112,11 +127,12 @@ public class UserManagerImpl implements UserManager{
 	}
 	
 	
-	private UserKaltiaControlEntity validaUserKaltiaControl(UserKaltiaControlVO uKCVO) {
-		
-		userKaltiaControlEntity = userKaltiaControlDAO.readUserKaltiaControlDAO(uKCVO);
-		
-		return userKaltiaControlEntity;
-	}
+//	private ArrayList<EmpresaEntity> empresaPerfilI(String userPerfilI) {
+//		
+//		ArrayList<EmpresaEntity> empresaEntityArray = new ArrayList();
+//		
+//		
+//		return userKaltiaControlEntity;
+//	}
 
 }

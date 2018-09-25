@@ -1,11 +1,11 @@
 package com.kaltia.kaltiaControl.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity(name="tc_userkaltiacontrol")
 //@Table
@@ -28,14 +28,21 @@ public class UserKaltiaControlEntity implements Serializable{
 	private String userKaltiaControlPerfil;
 	@Column(name ="userKaltiaControlNombre")
 	private String userKaltiaControlNombre;
-	@Column(name ="userKaltiaControlEstilo")
-	private String userKaltiaControlEstilo;
-	@Column(name ="userKaltiaControlIdEmpresa")
-	private String userKaltiaControlIdEmpresa;
-	@Column(name ="userKaltiaControlIdAction")
-	private String userKaltiaControlIdAction;
 	@Column(name ="userKaltiaControlStatus")
 	private String userKaltiaControlStatus;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * getter y setter
+	 */
 
 	public UserKaltiaControlEntity() {
 		
@@ -89,29 +96,6 @@ public class UserKaltiaControlEntity implements Serializable{
 		this.userKaltiaControlNombre = userKaltiaControlNombre;
 	}
 
-	public String getUserKaltiaControlEstilo() {
-		return userKaltiaControlEstilo;
-	}
-
-	public void setUserKaltiaControlEstilo(String userKaltiaControlEstilo) {
-		this.userKaltiaControlEstilo = userKaltiaControlEstilo;
-	}
-
-	public String getUserKaltiaControlIdEmpresa() {
-		return userKaltiaControlIdEmpresa;
-	}
-
-	public void setUserKaltiaControlIdEmpresa(String userKaltiaControlIdEmpresa) {
-		this.userKaltiaControlIdEmpresa = userKaltiaControlIdEmpresa;
-	}
-
-	public String getUserKaltiaControlIdAction() {
-		return userKaltiaControlIdAction;
-	}
-
-	public void setUserKaltiaControlIdAction(String userKaltiaControlIdAction) {
-		this.userKaltiaControlIdAction = userKaltiaControlIdAction;
-	}
 
 	public String getUserKaltiaControlStatus() {
 		return userKaltiaControlStatus;
@@ -120,6 +104,8 @@ public class UserKaltiaControlEntity implements Serializable{
 	public void setUserKaltiaControlStatus(String userKaltiaControlStatus) {
 		this.userKaltiaControlStatus = userKaltiaControlStatus;
 	}
+	
+
 
 	
 	

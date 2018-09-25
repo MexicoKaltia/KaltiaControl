@@ -1,14 +1,16 @@
 package com.kaltia.kaltiaControl.bean;
 
 import java.io.Serializable;
+import java.lang.annotation.Repeatable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
-
+@Repeatable(EmpresaEntity.class)
 @Entity(name="tc_empresa")
-@NamedQuery(query ="Select a from tc_empresa a where a.idEmpresa = :id", name = "find empresa by idEmpresa")
+@Repeatable(query ="Select a from tc_empresa a where a.empresaPerfilE = :id", name = "find empresa by idEmpresa")
+@NamedQuery(query ="Select a from tc_empresa a where a.empresaPerfilI = :id", name = "find empresa by idEmpresaArray")
 public class EmpresaEntity implements Serializable{
 
 	/**
@@ -36,10 +38,73 @@ public class EmpresaEntity implements Serializable{
 	private String empresaVarios;
 	@Column
 	private String empresaUserKaltia;
+	@Column
+	private String empresaModelo;
+	@Column
+	private String empresaStatus;
+	@Column
+	private String empresaFechaCorte;
+	@Column
+	private String empresaModoPago;
+	@Column
+	private String empresaFactura;
 	
 	public EmpresaEntity() {
 		
 	}
+
+	
+	
+	public String getEmpresaModelo() {
+		return empresaModelo;
+	}
+
+
+	public void setEmpresaModelo(String empresaModelo) {
+		this.empresaModelo = empresaModelo;
+	}
+
+
+	public String getEmpresaStatus() {
+		return empresaStatus;
+	}
+
+
+	public void setEmpresaStatus(String empresaStatus) {
+		this.empresaStatus = empresaStatus;
+	}
+
+
+	public String getEmpresaFechaCorte() {
+		return empresaFechaCorte;
+	}
+
+
+	public void setEmpresaFechaCorte(String empresaFechaCorte) {
+		this.empresaFechaCorte = empresaFechaCorte;
+	}
+
+
+	public String getEmpresaModoPago() {
+		return empresaModoPago;
+	}
+
+
+	public void setEmpresaModoPago(String empresaModoPago) {
+		this.empresaModoPago = empresaModoPago;
+	}
+
+
+	public String getEmpresaFactura() {
+		return empresaFactura;
+	}
+
+
+	public void setEmpresaFactura(String empresaFactura) {
+		this.empresaFactura = empresaFactura;
+	}
+
+
 	
 	
 	public String getEmpresaUserKaltia() {

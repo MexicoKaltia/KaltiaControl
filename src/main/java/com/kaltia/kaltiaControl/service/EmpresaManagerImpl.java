@@ -1,5 +1,7 @@
 package com.kaltia.kaltiaControl.service;
 
+import java.util.ArrayList;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +41,15 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		empresaEntity = validaEmpresa(idEmpresa);
 
 		return empresaEntity;
+	}
+	@Override
+	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI) {
+		logger.info("readEmpresaArray:"+idUserPerfilI);
+		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI);
+		for(EmpresaEntity idEmpresa: empresaEntityArray) {
+			empresaEntity = validaEmpresa(idUserPerfilI);
+		}
+		return empresaEntityArray;
 	}
 	@Override
 	public void updateEmpresa() {

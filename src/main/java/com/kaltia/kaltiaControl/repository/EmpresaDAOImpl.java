@@ -1,5 +1,7 @@
 package com.kaltia.kaltiaControl.repository;
 
+import java.util.ArrayList;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -87,6 +89,25 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	    	  logger.info(e);
 	    	  empresaEntity.setIdEmpresa("Exception");
 	    	  return empresaEntity;
+	      }
+	}
+	
+public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI) {
+		
+		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
+	     // EntityManager entitymanager = emfactory.createEntityManager();
+	      
+		
+	      Query query = em.createNamedQuery("find empresa by idEmpresaArray");
+	      query.setParameter("id", idUserPerfilI);
+	      
+	      ArrayList<EmpresaEntity> empresaArrayDAO = new ArrayList<EmpresaEntity>();
+	      try {
+	    	  empresaArrayDAO = (ArrayList<EmpresaEntity>) query.getResultList();
+	    	  return empresaArrayDAO; 
+	      }catch(Exception e){
+	    	  logger.info(e);
+	    	  return empresaArrayDAO;
 	      }
 	}
 
