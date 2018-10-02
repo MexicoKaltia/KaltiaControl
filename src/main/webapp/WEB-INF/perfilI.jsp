@@ -51,9 +51,9 @@
   <!-- ################################################################################################ -->
   <div id="breadcrumb" class="hoc clear"> 
     <ul>
-      <li><a href="#">KaltiaControl</a></li>
-      <li><a href="#">Nombre</a></li>
-      <li><a href="#">Inicio</a></li>
+        <li><a href="#">KaltiaControl</a></li>
+    	<li><a href="#"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}"/></a></li>
+        <li><a href="#">Inicio</a></li>
     </ul>
   </div>
 

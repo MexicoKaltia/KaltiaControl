@@ -40,7 +40,7 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
-          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Edicion</a>
+          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.getEmpresaEntity().getIdAction()}"/>">Edicion</a>
 <%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
         </ul>
@@ -50,10 +50,10 @@
   <!-- ################################################################################################ -->
   <div id="breadcrumb" class="hoc clear"> 
     <ul>
-      <li><a href="#">KaltiaControl</a></li>
-      <li><a href="#">IdEmpresa</a></li>
-      <li><a href="#">User</a></li>
-      <li><a href="#">Inicio</a></li>
+    		    <li><a href="#">KaltiaControl</a></li>
+				<li><a href="#"><c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/></a></li>
+				<li><a href="#"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}"/></a></li>
+    		    <li><a href="#">Inicio</a></li>
     </ul>
   </div>
 
@@ -75,14 +75,21 @@
 
             <a  id="general"></a>
             <label class=" control-label" for="textinput">General</label>
-              <input id="textinput" name="nombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaNombreCompleto()}"/>">
+              <input id="textinput" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaNombreCompleto()}"/>">
               <input id="textinput" name="Nombre Corto" placeholder="Nombre Corto" class="form-control input-md" type="text"  readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/>">
               <input id="textinput" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getIdAction()}"/>">
               <input id="textinput" name="RFC" placeholder="RFC" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaRFC()}"/>">
               <input id="textinput" name="Direccion" placeholder="Direccion" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaDireccion()}"/>">
               <input id="textinput" name="email" placeholder="email" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaEmail()}"/>">
               <input id="textinput" name="contacto" placeholder="contacto" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaContacto()}"/>">
-              <input id="textinput" name="representante" placeholder="representante" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaRepresentante()}"/>">
+              <input id="textinput" name="representante" placeholder="representante" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaIdPerfilI()}"/>">
+              <input id="textinput" name="modelo" placeholder="Modelo" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaModelo()}"/>">
+              <input id="textinput" name="status" placeholder="Status" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaStatus()}"/>">
+              <input id="textinput" name="fechaCorte" placeholder="Fecha de Corte" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaFechaCorte()}"/>">
+              <input id="textinput" name="modoPago" placeholder="Modo de Pago" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaModoPago()}"/>">
+              <input id="textinput" name="factura" placeholder="Factura" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaFactura()}"/>">
+              
+              
               <br>
              
              <a id="usuarios"></a>

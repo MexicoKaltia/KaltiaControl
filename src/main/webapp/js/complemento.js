@@ -1,78 +1,40 @@
-/* body 
-**************************************************/
-
-(function ($) {
-    $.fn.floatLabels = function (options) {
-
-        // Settings
-        var self = this;
-        var settings = $.extend({}, options);
-
-
-        // Event Handlers
-        function registerEventHandlers() {
-            self.on('input keyup change', 'input, textarea', function () {
-                actions.swapLabels(this);
-            });
-        }
-
-
-        // Actions
-        var actions = {
-            initialize: function() {
-                self.each(function () {
-                    var $this = $(this);
-                    var $label = $this.children('label');
-                    var $field = $this.find('input,textarea').first();
-
-                    if ($this.children().first().is('label')) {
-                        $this.children().first().remove();
-                        $this.append($label);
-                    }
-
-                    var placeholderText = ($field.attr('placeholder') && $field.attr('placeholder') != $label.text()) ? $field.attr('placeholder') : $label.text();
-
-                    $label.data('placeholder-text', placeholderText);
-                    $label.data('original-text', $label.text());
-
-                    if ($field.val() == '') {
-                        $field.addClass('empty')
-                    }
-                });
-            },
-            swapLabels: function (field) {
-                var $field = $(field);
-                var $label = $(field).siblings('label').first();
-                var isEmpty = Boolean($field.val());
-
-                if (isEmpty) {
-                    $field.removeClass('empty');
-                    $label.text($label.data('original-text'));
-                }
-                else {
-                    $field.addClass('empty');
-                    $label.text($label.data('placeholder-text'));
-                }
-            }
-        }
-
-
-        // Initialization
-        function init() {
-            registerEventHandlers();
-
-            actions.initialize();
-            self.each(function () {
-                actions.swapLabels($(this).find('input,textarea').first());
-            });
-        }
-        init();
-
-
-        return this;
-    };
-
-    $(function () {
-        $('.float-label-control').floatLabels();
-    });
-})(jQuery);
+$(document).ready(function(){
+	
+	$('#empresaFechaCorte').ready(function(){
+		
+	var d = new Date();
+	var mesD = d.getMonth()+1;
+	var anio = d.getFullYear();
+	var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+	if(d.getMonth === 11){
+		 mesD = 0;
+		 anio = d.getFullYear() + 1;
+	}
+//		console.log("Periodo : " + d.getDate() + "/" + meses[d.getMonth()] + "/" + d.getFullYear() +"---"+  d.getDate() + "/" + meses[mesD] + "/" + anio);
+	$('#empresaFechaCorte').val("Periodo : " + d.getDate() + "/" + meses[d.getMonth()] + "/" + d.getFullYear() +" hasta "+  d.getDate() + "/" + meses[mesD] + "/" + anio);
+	
+	})
+	
+	$('#idEmpresa').change(function(){
+		var idEmpresa = $('#idEmpresa').val();
+		
+		$('#empresaPerfilE').val(idEmpresa + "@kaltiaControl.com");
+		$('#empresaFactura').val("www.kaltiaControl.xyz/factura/"+idEmpresa)
+		
+	});
+	
+	$('#userKaltiaControlPass1').change(function(){
+		var pass = $('#userKaltiaControlPass').val();
+		
+		if(pass !== $('#userKaltiaControlPass1').val())
+		alert("La contraseña no son iguales");
+		else{
+			$('#empresaPerfilE').val($('#empresaPerfilE').val()+$('#userKaltiaControlPass1').val())
+		
+		}
+		
+	});
+	
+	
+	
+});

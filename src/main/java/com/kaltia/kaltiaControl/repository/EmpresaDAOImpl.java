@@ -3,6 +3,8 @@ package com.kaltia.kaltiaControl.repository;
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -38,11 +40,11 @@ public class EmpresaDAOImpl implements EmpresaDAO{
     
     
 	@Override
-	@Transactional(readOnly = false)
+//	@Transactional(readOnly = false)
 	public ResultDAOVO createEmpresaDAO(EmpresaEntity eE) {
 		
 		empresaEntity = new EmpresaEntity();
-		empresaEntity.setIdEmpresa("idEmpresa");
+		empresaEntity.setIdEmpresa("idEmpresa2");
 		empresaEntity.setIdAction("idAction");
 		empresaEntity.setEmpresaNombreCompleto("empresaNombreCompleto");
 		empresaEntity.setEmpresaRFC("empresaRFC");
@@ -52,20 +54,31 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		empresaEntity.setEmpresaIdPerfilE("empresaIdPerfilE");
 		empresaEntity.setEmpresaVarios("empresaVarios");
 		empresaEntity.setEmpresaIdPerfilI("empresaIdPerfilI");
-		logger.info("-----------"+empresaEntity.getEmpresaNombreCompleto());
+		empresaEntity.setEmpresaModelo("empresaModelo");
+		empresaEntity.setEmpresaStatus("empresaStatus");
+		empresaEntity.setEmpresaFechaCorte("empresaFechaCorte");
+		empresaEntity.setEmpresaModoPago("empresaModoPago");
+		empresaEntity.setEmpresaFactura("empresaFactura");
 		
+		logger.info("-----------"+eE.getEmpresaNombreCompleto());
+		
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
+	    EntityManager entitymanager1 = emfactory.createEntityManager( );
+	      
 		try {
-	//	  em.getTransaction( ).begin( );
-		  em.merge(empresaEntity);//.persist( empresaEntity );
-	  //    em.getTransaction( ).commit( );
-	  //	  em.close( );
+			  entitymanager1.getTransaction( ).begin( );
+//		  entitymanager1.merge(eE);
+		      entitymanager1.persist( eE );
+		      entitymanager1.getTransaction( ).commit( );
+		      
 	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("Empresa con exito guardada");
 	      
 		}catch(Exception e) {
 			resultDAOVO.setCode("99");
 			resultDAOVO.setMessage(e.toString());
 		}finally {
-			em.close( );
+			entitymanager1.close( );
 		      //emfactory.close( );
 		}
 	      
@@ -73,14 +86,14 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	}
 
 	@Override
-	public EmpresaEntity readEmpresaDAO(String idEmpresa) {
+	public EmpresaEntity readEmpresaDAO(String idUserKaltiaControl) {
 		
 		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
 	     // EntityManager entitymanager = emfactory.createEntityManager();
 	      
 		
 	      Query query = em.createNamedQuery("find empresa by idEmpresa");
-	      query.setParameter("id", idEmpresa);
+	      query.setParameter("id", idUserKaltiaControl);
 	      
 	      //empresaEntity = (EmpresaEntity) query.getSingleResult();
 	      try {

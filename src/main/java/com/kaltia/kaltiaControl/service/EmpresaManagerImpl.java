@@ -36,9 +36,9 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		return resultDAOVO;
 	}
 	@Override
-	public EmpresaEntity readEmpresa(String idEmpresa) {
-		logger.info("readEmpresa:"+idEmpresa);
-		empresaEntity = empresaDAO.readEmpresaDAO(idEmpresa);
+	public EmpresaEntity readEmpresa(String idUserKaltiaControl) {
+		logger.info("readEmpresa:"+idUserKaltiaControl);
+		empresaEntity = empresaDAO.readEmpresaDAO(idUserKaltiaControl);
 
 		return empresaEntity;
 	}

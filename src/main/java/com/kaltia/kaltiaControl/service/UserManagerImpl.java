@@ -14,7 +14,7 @@ import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.StatusEmpresaEntity;
-import com.kaltia.kaltiaControl.bean.UserGeneralEntity;
+import com.kaltia.kaltiaControl.bean.UserEmpresaEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
 import com.kaltia.kaltiaControl.repository.UserKaltiaControlDAO;
@@ -32,20 +32,15 @@ public class UserManagerImpl implements UserManager{
 	@Autowired
 	private EmpresaManager empresaManager;
 	@Autowired
-	private UserGeneralManager userGeneralManager;
-	@Autowired
-	private StatusEmpresaManager statusEmpresaManager;
+	private UserEmpresaManager userEmpresaManager;
 	@Autowired
 	private RequestLoginVO requestLoginVO;
 	
 	private UserKaltiaControlEntity userKaltiaControlEntity;
 	private EmpresaEntity empresaEntity;
-	private UserGeneralEntity userGeneralEntity;
 	private StatusEmpresaEntity statusEmpresaEntity;
 	
-	private ResultDAOVO resultDAOVO;
-	private EmpresaEntity eE;
-
+	
 	@Override
 	public String createUser(UserKaltiaControlVO userKaltiaControl) {
 		// TODO Auto-generated method stub
@@ -62,9 +57,10 @@ public class UserManagerImpl implements UserManager{
 		userKaltiaControlEntity = userKaltiaControlDAO.readUserKaltiaControlDAO(userKaltiaControlVO);
 		requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 		
-		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {			
+		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
+			logger.info("----Perfil:"+userKaltiaControlEntity.getUserKaltiaControlPerfil());
 			if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
-				logger.info("perfilI");
+				
 				/*
 				 * lectura de array Empresas perfil I
 				 */
@@ -77,21 +73,18 @@ public class UserManagerImpl implements UserManager{
 //				userAtributo.put("eE", empresaEntity);
 			}
 			
-			}else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
+			else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
 				/*
 				 * Informacion Empresa de usuarioKaltiaControl
 				 */
 				empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
-				List<UserGeneralEntity> userGeneralEntity  = userGeneralManager.readUserGeneral(empresaEntity.getIdEmpresa());
+				List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdEmpresa());
 //				userAtributo.put("uGE", userGeneralEntity);
-				
-				statusEmpresaEntity = statusEmpresaManager.readStatusEmpresaManager(empresaEntity.getIdEmpresa());
-//				userAtributo.put("sEE", statusEmpresaEntity);
-				
+								
 				requestLoginVO.setEmpresaEntity(empresaEntity);
-				requestLoginVO.setUserGeneralEntity(userGeneralEntity);
+				requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
 				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
-				
+			}	
 			
 		}else {
 			//Exception

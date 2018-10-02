@@ -62,6 +62,7 @@
 						<li ><a href="<c:url value="/login.htm"/>">Inicio</a></li>
 						<li class="active"><a href="#">Edicion</a>
 						<li><a href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
+							
 					</ul>
 				</nav>
 			</header>
@@ -70,9 +71,9 @@
 		<div id="breadcrumb" class="hoc clear">
 			<ul>
 				<li><a href="#">KaltiaControl</a></li>
-				<li><a href="#">IdEmpresa</a></li>
-				<li><a href="#">User</a></li>
-				<li><a href="#">Inicio</a></li>
+				<li><a href="#"><c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/></a></li>
+				<li><a href="#"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}"/></a></li>
+				<li><a href="#">Edicion</a></li>
 			</ul>
 		</div>
 		<!-- ################################################################################################ -->

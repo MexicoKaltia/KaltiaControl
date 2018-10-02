@@ -17,7 +17,7 @@ public class RequestLoginVO implements Serializable{
 	private UserKaltiaControlEntity userKaltiaControlEntity;
 	private ArrayList<EmpresaEntity> empresaArrayEntity;
 	private EmpresaEntity empresaEntity;
-	private List<UserGeneralEntity> userGeneralEntity;
+	private List<UserEmpresaEntity> userEmpresaEntity;
 	private StatusEmpresaEntity statusEmpresaEntity;
 	
 	
@@ -34,11 +34,11 @@ public class RequestLoginVO implements Serializable{
 	public void setEmpresaEntity(EmpresaEntity empresaEntity) {
 		this.empresaEntity = empresaEntity;
 	}
-	public List<UserGeneralEntity> getUserGeneralEntity() {
-		return userGeneralEntity;
+	public List<UserEmpresaEntity> getUserEmpresaEntity() {
+		return userEmpresaEntity;
 	}
-	public void setUserGeneralEntity(List<UserGeneralEntity> userGeneralEntity) {
-		this.userGeneralEntity = userGeneralEntity;
+	public void setUserEmpresaEntity(List<UserEmpresaEntity> userEmpresaEntity) {
+		this.userEmpresaEntity = userEmpresaEntity;
 	}
 	public StatusEmpresaEntity getStatusEmpresaEntity() {
 		return statusEmpresaEntity;

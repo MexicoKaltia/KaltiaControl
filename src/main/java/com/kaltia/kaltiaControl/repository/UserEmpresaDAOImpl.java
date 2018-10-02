@@ -1,5 +1,7 @@
 package com.kaltia.kaltiaControl.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -8,17 +10,14 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Repository;
 
-import com.kaltia.kaltiaControl.bean.StatusEmpresaEntity;
+import com.kaltia.kaltiaControl.bean.UserEmpresaEntity;
 
 @Repository
-public class StatusEmpresaDAOImpl implements StatusEmpresaDAO{
+public class UserEmpresaDAOImpl implements UserEmpresaDAO{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	protected final Log logger = LogFactory.getLog(getClass());
-	//private StatusEmpresaEntity statusEmpresaEntity;
+	private UserEmpresaEntity userEmpresaEntity;
 	
     /*
      * Sets the entity manager.
@@ -30,35 +29,35 @@ public class StatusEmpresaDAOImpl implements StatusEmpresaDAO{
         this.em = em;
     }
 
-
 	@Override
-	public void createStatusEmpresaDAO() {
+	public void createUserEmpresaDAO() {
 		// TODO Auto-generated method stub
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public StatusEmpresaEntity readStatusEmpresaDAO(String idEmpresa) {
+	public List<UserEmpresaEntity> readUserEmpresaDAO(String idEmpresa) {
 		
-		Query query = em.createNamedQuery("find statusEmpresa by idEmpresa");
+		  Query query = em.createNamedQuery("find userEmpresa by idEmpresa");
 	      query.setParameter("id", idEmpresa);
-	      
 	      try {
-	      return (StatusEmpresaEntity) query.getSingleResult();
-	      }catch(Exception e){
-	      logger.info(e);
-	      return null;
+	      //List<UserEmpresaEntity> userEmpresaEntity = (List<UserEmpresaEntity>)query.getResultList( );
+	      return (List<UserEmpresaEntity>)query.getResultList( );
+	      }catch(Exception e) {
+	    	  logger.info(e);
+	    	  return null;
 	      }
 	}
 
 	@Override
-	public void updateStatusEmpresaDAO() {
+	public void updateUserEmpresaDAO() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteStatusEmpresaDAO() {
+	public void deleteUserEmpresaDAO() {
 		// TODO Auto-generated method stub
 		
 	}
