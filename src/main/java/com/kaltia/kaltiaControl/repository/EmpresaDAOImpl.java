@@ -1,10 +1,11 @@
 package com.kaltia.kaltiaControl.repository;
 
+
 import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+//import javax.persistence.EntityManagerFactory;
+//import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -31,7 +32,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
      */
 	private EntityManager em = null;
 	
-    @PersistenceContext
+    @PersistenceContext(unitName = "kaltiaControlPU")
     public void setEntityManager(EntityManager em) {
         this.em = em;
     }
@@ -40,7 +41,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
     
     
 	@Override
-//	@Transactional(readOnly = false)
+	@Transactional//(readOnly = false)
 	public ResultDAOVO createEmpresaDAO(EmpresaEntity eE) {
 		
 		empresaEntity = new EmpresaEntity();
@@ -62,14 +63,14 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		
 		logger.info("-----------"+eE.getEmpresaNombreCompleto());
 		
-		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
-	    EntityManager entitymanager1 = emfactory.createEntityManager( );
+//		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
+//	      EntityManager entitymanager = emfactory.createEntityManager( );
 	      
 		try {
-			  entitymanager1.getTransaction( ).begin( );
+//			em.getTransaction( ).begin( );
 //		  entitymanager1.merge(eE);
-		      entitymanager1.persist( eE );
-		      entitymanager1.getTransaction( ).commit( );
+			em.persist( eE );
+		    em.getTransaction( ).commit( );
 		      
 	      resultDAOVO.setCode("00");
 	      resultDAOVO.setMessage("Empresa con exito guardada");
@@ -78,8 +79,8 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 			resultDAOVO.setCode("99");
 			resultDAOVO.setMessage(e.toString());
 		}finally {
-			entitymanager1.close( );
-		      //emfactory.close( );
+			em.close( );
+		      
 		}
 	      
 		return resultDAOVO;

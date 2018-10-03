@@ -18,7 +18,7 @@ $(document).ready(function(){
 	$('#idEmpresa').change(function(){
 		var idEmpresa = $('#idEmpresa').val();
 		
-		$('#empresaPerfilE').val(idEmpresa + "@kaltiaControl.com");
+		$('#empresaIdPerfilE').val(idEmpresa + "@kaltiaControl.com");
 		$('#empresaFactura').val("www.kaltiaControl.xyz/factura/"+idEmpresa)
 		
 	});
@@ -29,7 +29,7 @@ $(document).ready(function(){
 		if(pass !== $('#userKaltiaControlPass1').val())
 		alert("La contraseña no son iguales");
 		else{
-			$('#empresaPerfilE').val($('#empresaPerfilE').val()+$('#userKaltiaControlPass1').val())
+			$('#empresaIdPerfilE').val($('#empresaIdPerfilE').val()+$('#userKaltiaControlPass1').val())
 		
 		}
 		

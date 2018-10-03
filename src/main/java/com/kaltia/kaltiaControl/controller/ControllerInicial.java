@@ -57,7 +57,6 @@ public class ControllerInicial extends HttpServlet {
      public void modeloComun(Model model) {
     	 model.addAttribute("requestLoginVO", requestLoginVO);
     	 
-    	 
      }
 
 	@RequestMapping(value="/login.htm" , method = RequestMethod.POST)
@@ -91,20 +90,14 @@ public class ControllerInicial extends HttpServlet {
 		return new ModelAndView("edicion");//,"modelEdicion", model );		
 	}
 	
-	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)
-	public ModelAndView estadistica(HttpServletRequest request,
-									HttpServletResponse response) throws ServletException, IOException  {
-		logger.info("----Inicio metodo estadistica----");
-		Map<String, Object> myModel = new HashMap<String, Object>();
-		return new ModelAndView("estadistica","modelEdicion", myModel );		
-	}
-
+	
 	@RequestMapping (value= "/alta.htm" , method = RequestMethod.GET)
-	public ModelAndView formularioAlta(HttpServletRequest request,
+	public ModelAndView formularioAlta(ModelMap model, HttpServletRequest request,
 							HttpServletResponse response) throws ServletException, IOException  {
-		
-		
-		return new ModelAndView("alta","modelAlta", requestLoginVO );
+		logger.info("----Inicio metodo alta----");
+		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+		return new ModelAndView("alta","modelAlta", model );
 	}
 	
 	@RequestMapping (value = "/empresaAlta.htm", method = RequestMethod.POST)
@@ -116,15 +109,24 @@ public class ControllerInicial extends HttpServlet {
 								throws ServletException, IOException {
 		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		String now = (new Date()).toString();
-		logger.info("----Inicio metodo alta----"+now);
+		logger.info("----Inicio metodo empresaAlta----"+now);
 		//requestLoginVO.getUserKaltiaControlEntity().getEmpresaEntity().setEmpresaFechaCorte(now);
 		request.getSession().setAttribute("requestLoginVO", requestLoginVO);
 		
 		resultDAOVO = empresaManager.createEmpresa(empresaEntity);
 		
 		
-		return new ModelAndView("prueba");//,"modelEdicion", model );
+		return new ModelAndView("edicion");//,"modelEdicion", model );
 	}
+	
+	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)
+	public ModelAndView estadistica(HttpServletRequest request,
+									HttpServletResponse response) throws ServletException, IOException  {
+		logger.info("----Inicio metodo estadistica----");
+		Map<String, Object> myModel = new HashMap<String, Object>();
+		return new ModelAndView("estadistica","modelEdicion", myModel );		
+	}
+
 									
 	
 

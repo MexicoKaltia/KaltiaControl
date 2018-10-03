@@ -85,8 +85,15 @@
               <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text"  >
               <input id="empresaEmail" name="empresaEmail" placeholder="Email" class="form-control input-md" type="text"  >
               <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text"  >
-              <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Representante" class="form-control input-md" type="text"  >
-              <input id="empresaModelo" name="empresaModelo" placeholder="Modelo" class="form-control input-md" type="text"  >
+              <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Representante Kaltia" class="form-control input-md" type="text" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>">
+<!--               <input id="empresaModelo" name="empresaModelo" placeholder="Modelo" class="form-control input-md" type="text"  > -->
+              <label class=" control-label" for="selectbasic">Modelo</label>
+	            <div class="">
+	              <select id="empresaModelo" name="empresaModelo" class="form-control">
+	                <option value="bronea">Bronea</option>
+	                <option value="pendiente">Pendiente</option>
+	              </select>
+	            </div>
               <br>
               
               <a id="status"></a>
@@ -95,14 +102,25 @@
               <input id="empresaStatus" name="empresaStatus" placeholder="Status" class="form-control input-md" type="text" readonly value="Inicio" >
               <input id="empresaFechaCorte" name="empresaFechaCorte" placeholder="Fecha de Corte" class="form-control input-md" type="text"  readonly> 
 <%--               readonly value="<c:out value="${modelAlta.requestLoginVO.empresaEntity.getEmpresaFechaCorte()}"/>"> --%>
-              <input id="empresaModoPago" name="empresaModoPago" placeholder="Modo de Pago" class="form-control input-md" type="text"  >
+<!--               <input id="empresaModoPago" name="empresaModoPago" placeholder="Modo de Pago" class="form-control input-md" type="text"  > -->
+              <label class=" control-label" for="selectbasic">Modo de Pago</label>
+	            <div class="">
+	              <select id="empresaModoPago" name="empresaModoPago" class="form-control">
+	                <option value="efectivo">Deposito a Cuenta / Efectivo</option>
+	                <option value="transaccion">Transaccion Interbancaria</option>
+	              </select>
+	            </div>
               <input id="empresaFactura" name="empresaFactura" placeholder="Factura" class="form-control input-md" type="text"  readonly>
-              <input id="empresaVarios" name="empresaVarios" placeholder="Varios" class="form-control input-md" type="text"  >
+<!--               <input id="empresaVarios" name="empresaVarios" placeholder="Varios" class="form-control input-md" type="text"  > -->
+               <label class=" control-label" for="textarea">Varios</label>
+	            <div class="">                     
+	              <textarea class="form-control" id="empresaVarios" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
+	            </div>
               <br>
               
               <a id="usuario"></a>
 	             <label class=" control-label" for="textinput">Usuario</label>
-	              <input id="empresaPerfilE" name="empresaPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text">
+	              <input id="empresaIdPerfilE" name="empresaIdPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text">
 	              <input id="userKaltiaControlPass" name="userKaltiaControlPass" placeholder="Password" class="form-control input-md" type="password">
 	              <input id="userKaltiaControlPass1" name="userKaltiaControlPass1" placeholder="Confirma Password" class="form-control input-md" type="password">
 	              <br>
