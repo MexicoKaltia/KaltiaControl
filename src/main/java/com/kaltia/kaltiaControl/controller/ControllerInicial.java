@@ -81,13 +81,14 @@ public class ControllerInicial extends HttpServlet {
 	@RequestMapping (value= "/edicion.htm" ,
 			params ={"action"},
 			method = RequestMethod.GET)
-	public ModelAndView edicion(HttpServletRequest request,
+	public ModelAndView edicion(ModelMap model,
+								HttpServletRequest request,
 								HttpServletResponse response) throws ServletException, IOException  {
 		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		logger.info("----Inicio metodo edicion----" + requestLoginVO.getEmpresaEntity().getIdAction());
 		logger.info("modelEdicion:"+request.getRequestURI());
 
-		return new ModelAndView("edicion");//,"modelEdicion", model );		
+		return new ModelAndView("edicion","modelEdicion", model );		
 	}
 	
 	
@@ -97,6 +98,8 @@ public class ControllerInicial extends HttpServlet {
 		logger.info("----Inicio metodo alta----");
 		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+		
+	    	
 		return new ModelAndView("alta","modelAlta", model );
 	}
 	
@@ -110,13 +113,15 @@ public class ControllerInicial extends HttpServlet {
 		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		String now = (new Date()).toString();
 		logger.info("----Inicio metodo empresaAlta----"+now);
-		//requestLoginVO.getUserKaltiaControlEntity().getEmpresaEntity().setEmpresaFechaCorte(now);
 		request.getSession().setAttribute("requestLoginVO", requestLoginVO);
+		requestLoginVO.setEmpresaEntity(empresaEntity);
 		
 		resultDAOVO = empresaManager.createEmpresa(empresaEntity);
+
+		model.addAttribute("empresaEntity", empresaEntity);
+		model.addAttribute("requestLoginVO", requestLoginVO);
 		
-		
-		return new ModelAndView("edicion");//,"modelEdicion", model );
+		return new ModelAndView("edicion","modelEdicion", model );
 	}
 	
 	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)

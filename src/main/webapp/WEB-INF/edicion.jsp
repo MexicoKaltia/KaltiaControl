@@ -71,8 +71,8 @@
 		<div id="breadcrumb" class="hoc clear">
 			<ul>
 				<li><a href="#">KaltiaControl</a></li>
-				<li><a href="#"><c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/></a></li>
-				<li><a href="#"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}"/></a></li>
+				<li><a href="#"><c:out value="${modelEdicion.requestLoginVO.getEmpresaEntity().getIdEmpresa()}"/></a></li>
+				<li><a href="#"><c:out value="${modelEdicion.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/></a></li>
 				<li><a href="#">Edicion</a></li>
 			</ul>
 		</div>
@@ -80,7 +80,7 @@
 		<!-- ################################################################################################ -->
 		<!-- ################################################################################################ -->
 		<div>
-							<iframe src="http://www.kaltia.xyz/bronea?tipo=AAA"
+							<iframe src="http://www.kaltia.xyz/<c:out value="${modelEdicion.requestLoginVO.getEmpresaEntity().getIdAction()}"/>?tipo=AAA"
 								onload="autofitIframe(this);"></iframe>
 		</div>
 		<!-- ################################################################################################ -->
