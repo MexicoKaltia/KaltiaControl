@@ -32,7 +32,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
      */
 	private EntityManager em = null;
 	
-    @PersistenceContext(unitName = "kaltiaControlPU")
+    @PersistenceContext
     public void setEntityManager(EntityManager em) {
         this.em = em;
     }
@@ -41,7 +41,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
     
     
 	@Override
-	@Transactional//(readOnly = false)
+	@Transactional(readOnly = false)
 	public ResultDAOVO createEmpresaDAO(EmpresaEntity eE) {
 		
 		empresaEntity = new EmpresaEntity();
@@ -68,9 +68,9 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	      
 		try {
 //			em.getTransaction( ).begin( );
-//		  entitymanager1.merge(eE);
-			em.persist( eE );
-		    em.getTransaction( ).commit( );
+		  em.merge(eE);
+//			em.persist( eE );
+//		    em.getTransaction( ).commit( );
 		      
 	      resultDAOVO.setCode("00");
 	      resultDAOVO.setMessage("Empresa con exito guardada");

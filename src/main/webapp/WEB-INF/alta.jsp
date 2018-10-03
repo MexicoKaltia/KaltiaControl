@@ -132,7 +132,7 @@
 	            <label class=" control-label" for="singlebutton">Datos Correctos</label>
 	            <div class="">
 	              <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
-<!-- 	          </form:form> -->
+
 	          </div>
             </div>
 <!--     section     -->
