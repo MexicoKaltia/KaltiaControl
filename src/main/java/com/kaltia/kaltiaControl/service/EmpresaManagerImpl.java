@@ -55,7 +55,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 				HeaderEntity headerEntity = new HeaderEntity();
 				headerEntity = (HeaderEntity) empresaDAO.readHeaderDAO(empresaEntity.getEmpresaModelo().toString());
 				logger.info("Lectura de Header:"+headerEntity.getIdEmpresa());
-				headerEntity.setIdHeader("header_"+empresaEntity.getIdEmpresa());
+				headerEntity.setIdHeader(empresaEntity.getIdEmpresa()+"-header");
 				headerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
 				logger.info("Actualizacion de Header:"+headerEntity.getIdEmpresa());
 				resultDAOVO = (ResultDAOVO) empresaDAO.createHeaderDAO(headerEntity);
@@ -64,7 +64,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 				if(resultDAOVO.getCode().equals("00")) {
 					BodyEntity bodyEntity = new BodyEntity();
 					bodyEntity = (BodyEntity) empresaDAO.readBodyDAO(empresaEntity.getEmpresaModelo().toString());
-					bodyEntity.setIdBody("body_"+empresaEntity.getIdEmpresa());
+					bodyEntity.setIdBody(empresaEntity.getIdEmpresa()+"-body");
 					bodyEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
 					resultDAOVO = (ResultDAOVO) empresaDAO.createBodyDAO(bodyEntity);	
 					logger.info(resultDAOVO.getCode());
@@ -72,7 +72,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 					if(resultDAOVO.getCode().equals("00")) {
 						FooterEntity footerEntity = new FooterEntity();
 						footerEntity = (FooterEntity) empresaDAO.readFooterDAO(empresaEntity.getEmpresaModelo().toString());
-						footerEntity.setIdFooter("footer_"+empresaEntity.getIdEmpresa());
+						footerEntity.setIdFooter(empresaEntity.getIdEmpresa()+"-footer");
 						footerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
 						resultDAOVO = (ResultDAOVO) empresaDAO.createFooterDAO(footerEntity);
 						logger.info(resultDAOVO.getCode());
