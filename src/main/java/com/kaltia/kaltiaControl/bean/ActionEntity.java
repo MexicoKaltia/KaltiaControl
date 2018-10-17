@@ -35,15 +35,16 @@ public class ActionEntity implements Serializable{
 	private String actionSeccion1;// text
 	@Column
 	private String actionSeccion2;// text
+	@Column
+	private String ambiente;// text
 
-	
-	public ActionEntity() {}
+		public ActionEntity() {}
 	
 	
 	
 	public ActionEntity(String idAction, String idEmpresa, String actionEstilo, Integer headerRequerido,
 			Integer bodyRequerido, Integer footerRequerido, Integer leftRequerido, Integer rigthRequerido,
-			Integer actionPrincipal, String actionSeccion1, String actionSeccion2) {
+			Integer actionPrincipal, String actionSeccion1, String actionSeccion2, String ambiente) {
 		super();
 		this.idAction = idAction;
 		this.idEmpresa = idEmpresa;
@@ -56,6 +57,7 @@ public class ActionEntity implements Serializable{
 		this.actionPrincipal = actionPrincipal;
 		this.actionSeccion1 = actionSeccion1;
 		this.actionSeccion2 = actionSeccion2;
+		this.ambiente = ambiente;
 	}
 	public String getIdAction() {
 		return idAction;
@@ -123,5 +125,16 @@ public class ActionEntity implements Serializable{
 	public void setActionSeccion2(String actionSeccion2) {
 		this.actionSeccion2 = actionSeccion2;
 	}
+
+	public String getAmbiente() {
+		return ambiente;
+	}
+	public void setAmbiente(String ambiente) {
+		this.ambiente = ambiente;
+	}
+
+
+
+
 	
 }

@@ -1,12 +1,14 @@
 package com.kaltia.kaltiaControl.service;
 
 import java.util.ArrayList;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kaltia.kaltiaControl.Util.BaseInfra;
 import com.kaltia.kaltiaControl.bean.ActionEntity;
 import com.kaltia.kaltiaControl.bean.BodyEntity;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
@@ -20,6 +22,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	
 	private static final long serialVersionUID = 1L;
 	protected final Log logger = LogFactory.getLog(getClass());
+	public static Properties PROPS = BaseInfra.PROPS;
 	private EmpresaEntity empresaEntity;
 	
 	@Autowired
@@ -48,6 +51,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			actionEntity.setBodyRequerido(1);
 			actionEntity.setFooterRequerido(1);
 			actionEntity.setActionPrincipal(2);
+			actionEntity.setAmbiente(PROPS.getProperty("ambiente"));
 			resultDAOVO = (ResultDAOVO) empresaDAO.createActionDAO(actionEntity);
 			logger.info(resultDAOVO.getCode());
 			logger.info("create action "+resultDAOVO.getMessage());
