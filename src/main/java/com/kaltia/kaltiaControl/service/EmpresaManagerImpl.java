@@ -109,6 +109,20 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			logger.info(resultDAOVO.getCode());
 			logger.info("Create Empresa "+resultDAOVO.getMessage());
 		}
+		
+		if(resultDAOVO.getCode().equals("00")) {
+			try {
+				String path = "/kaltia/shell";
+				Runtime.getRuntime().exec("/bin/sh " + path + "/.EmpresaNueva.sh "+empresaEntity.getIdEmpresa().toString());
+
+				resultDAOVO.setCode("00");
+				resultDAOVO.setMessage("EmpresaNueva.sh -- EXITO");	
+			}catch(Exception e) {
+				resultDAOVO.setCode("98");
+				resultDAOVO.setMessage("EmpresaNueva.sh -- FALLO:"+e);
+			}
+		}
+		
 		return resultDAOVO;
 	}
 	@Override
