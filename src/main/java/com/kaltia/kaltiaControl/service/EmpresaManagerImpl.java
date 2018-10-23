@@ -1,5 +1,8 @@
 package com.kaltia.kaltiaControl.service;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -83,44 +86,56 @@ public class EmpresaManagerImpl implements EmpresaManager{
 						logger.info("create footer "+resultDAOVO.getMessage());
 						if(resultDAOVO.getCode().equals("00")) {
 							resultDAOVO.setMessage("Alta Exitosa, Action, Header, Body , Footer");
+							logger.info(resultDAOVO.getMessage());
 						}else {
 							//Create Footer
 							logger.info(resultDAOVO.getCode());
-							logger.info("Create footer "+resultDAOVO.getMessage());
+							logger.info("Fail create footer "+resultDAOVO.getMessage());
 							
 						}
 					}else {
 						//Create Body
 						logger.info(resultDAOVO.getCode());
-						logger.info("Create Body "+resultDAOVO.getMessage());
+						logger.info("Fail create Body "+resultDAOVO.getMessage());
 					}				
 				}else {
 					//Create Header
 					logger.info(resultDAOVO.getCode());
-					logger.info("Create Header "+resultDAOVO.getMessage());
+					logger.info("Fail create Header "+resultDAOVO.getMessage());
 				}				
 			}else {
 				//Create Action
 				logger.info(resultDAOVO.getCode());
-				logger.info("Create Action "+resultDAOVO.getMessage());
+				logger.info("Fail create Action "+resultDAOVO.getMessage());
 			}
 		}else {
 			//Create Empresa
 			logger.info(resultDAOVO.getCode());
-			logger.info("Create Empresa "+resultDAOVO.getMessage());
+			logger.info("Fail create Empresa "+resultDAOVO.getMessage());
 		}
 		
 		if(resultDAOVO.getCode().equals("00")) {
 			try {
-				String path = "/kaltia/shell";
-				Runtime.getRuntime().exec("/bin/sh " + path + "/.EmpresaNueva.sh "+empresaEntity.getIdEmpresa().toString());
+				
+				Runtime rt = Runtime.getRuntime();
+			    String commands = ("/kaltia/shell/EmpresaNueva.sh "+empresaEntity.getIdEmpresa().toString());
+			    Process proc = rt.exec(commands);
+			    BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
+			    BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
+			    logger.info("Salida EmpresaNueva:\n");
+			    String s = null;
+			    while ((s = stdInput.readLine()) != null) {
+			    	logger.info(s);
+			    }
 
-				resultDAOVO.setCode("00");
-				resultDAOVO.setMessage("EmpresaNueva.sh -- EXITO");	
-			}catch(Exception e) {
-				resultDAOVO.setCode("98");
-				resultDAOVO.setMessage("EmpresaNueva.sh -- FALLO:"+e);
-			}
+			    while ((s = stdError.readLine()) != null) {
+			    	logger.info(s);
+			                }
+			    } catch (IOException ioe) {
+			    	logger.info("ERROR Ejecutando script EmpresaNueva.sh");
+			    	logger.info(ioe);
+
+			    }
 		}
 		
 		return resultDAOVO;
