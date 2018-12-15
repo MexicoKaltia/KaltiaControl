@@ -392,6 +392,9 @@ table a, #comments a{background-color:inherit;}
 	#mainav ul{display:none;}
 	#mainav form{display:block;}
 
+	#menuBoton{display:inline-block;}
+
+
 	#breadcrumb{}
 
 	.container{}

@@ -12,13 +12,14 @@
 <body id="top">
 <!-- ################################################################################################ -->
 <!-- Top Background Image Wrapper -->
-<div class="bgded overlay light" style="background-image:url('<%=request.getContextPath()%>/images/imagen.jpg');"> 
+<div class="bgded overlay light" style="background-image:url('<%=request.getContextPath()%>/images/imagen.jpg');">
+ 
   <div class="wrapper row0">
     <div id="topbar" class="hoc clear"> 
       <div class="fl_left"> 
         <ul class="nospace">
-          <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-          <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
+          <li><i class="fa fa-phone"></i>+521 557879 4446</li>
+          <li><i class="fa fa-envelope-o"></i>kaltia@gmail.com</li>
         </ul>
       </div>
       <div class="fl_right"> 
@@ -33,21 +34,43 @@
   </div>
   <!-- ################################################################################################ -->
   <div class="wrapper row1">
-    <header id="header" class="hoc clear"> 
-      <div id="logo" class="fl_left">
+    <header id="header1" class="hoc clear"> 
+      <div id="logo1" class="fl_left">
         <h1><a href="#">K A L T I A Control</a></h1>
       </div>
-            <nav id="mainav" class="fl_right">
+            <nav id="mainav1" class="fl_right">
         <ul class="clear">
           <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
-          <li  class="active"><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
+          <li><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a>
           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
         </ul>
       </nav>
+    </header>
+    </div>
+    <hr>
+    <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <div id="logo" class="fl_left">
+        <h1><a href="#">K A L T I A Control</a></h1>
+      </div>
+      <button id="menuBoton" class="navbar-toggler fl_left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+  	  </button>
+     <div class="collapse navbar-collapse fl_right" id="navbarNav" style="background-color:none">
+     <nav id="mainav1" class="fl_right">
+        <ul class="clear">
+          <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
+          <li><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
+          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a>
+          <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
+        </ul>
+        </nav>
+       </div>
       
     </header>
-  </div>
+    </div>
+  
   <!-- ################################################################################################ -->
   <div id="breadcrumb" class="hoc clear"> 
     <ul>
@@ -101,8 +124,17 @@
           <div class="form-group">
              <a id="infoEmpresa"></a>
              	<label class=" control-label" for="textinput">Relacion de Empresas</label>
-              	<hr><br>
+             </div>
+     	   </fieldset>
+     	 </form>
+		</div>
+             <hr>
               	<c:forEach items="${model.requestLoginVO.empresaArrayEntity}" var="empresaArrayEntity">
+			   <div id="big-form" class="well auth-box">
+			      <form>
+			        <fieldset>
+			          <div class="form-group">
+              	
         	      <input id="textinput" name="nombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaNombreCompleto()}"/>">
 	              <input id="textinput" name="Nombre Corto" placeholder="Nombre Corto" class="form-control input-md" type="text"  readonly value="<c:out value="${empresaArrayEntity.getIdEmpresa()}"/>">
 	              <input id="textinput" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getIdAction()}"/>">
@@ -112,14 +144,12 @@
 	              <input id="textinput" name="contacto" placeholder="contacto" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaContacto()}"/>">
 	              <input id="textinput" name="representante" placeholder="representante" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaIdPerfilE()}"/>">
 	      			<hr><br>
+	            	</div>
+		     	   </fieldset>
+		     	 </form>
+				</div>
               	</c:forEach>
-              
-            </div>
-<!--     section     -->
-          
-     	   </fieldset>
-     	 </form>
-		</div>
+
      <div class="clearfix"></div>
    </div>
  </div>

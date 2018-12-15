@@ -10,7 +10,6 @@
 	<persistence-unit name="kaltiaControlPU" transaction-type="RESOURCE_LOCAL">
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	<class> name="com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity" table ="tc_userprimario"</class>
-<!-- 	<class> name="com.kaltia.kaltiaControl.bean.EmpresaEntity" table ="tc_empresa"</class> -->
 	
 	</persistence-unit>
 	
