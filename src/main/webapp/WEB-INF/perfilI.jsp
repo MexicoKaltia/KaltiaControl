@@ -24,7 +24,7 @@
       </div>
       <div class="fl_right"> 
         <ul class="nospace">
-          <li><a href="../index.html"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
           <li><a href="#" title="Help Centre"><i class="fa fa-life-bouy"></i></a></li>
           <li><a href="#" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
           <li><a href="#" title="Sign Up"><i class="fa fa-lg fa-edit"></i></a></li>
@@ -33,44 +33,22 @@
     </div>
   </div>
   <!-- ################################################################################################ -->
-  <div class="wrapper row1">
-    <header id="header1" class="hoc clear"> 
-      <div id="logo1" class="fl_left">
+    <div class="wrapper row1">
+    <header id="header" class="hoc clear"> 
+      <div id="logo" class="fl_left">
         <h1><a href="#">K A L T I A Control</a></h1>
       </div>
-            <nav id="mainav1" class="fl_right">
+      <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
+          <li  class="active"><a href="#">Inicio</a></li>  
           <li><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a>
           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
         </ul>
       </nav>
     </header>
-    </div>
-    <hr>
-    <div class="wrapper row1">
-    <header id="header" class="hoc clear"> 
-      <div id="logo" class="fl_left">
-        <h1><a href="#">K A L T I A Control</a></h1>
-      </div>
-      <button id="menuBoton" class="navbar-toggler fl_left" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    	<span class="navbar-toggler-icon"></span>
-  	  </button>
-     <div class="collapse navbar-collapse fl_right" id="navbarNav" style="background-color:none">
-     <nav id="mainav1" class="fl_right">
-        <ul class="clear">
-          <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
-          <li><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
-          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a>
-          <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
-        </ul>
-        </nav>
-       </div>
-      
-    </header>
-    </div>
-  
+  </div>
+  <!-- ################################################################################################ -->
   <!-- ################################################################################################ -->
   <div id="breadcrumb" class="hoc clear"> 
     <ul>
