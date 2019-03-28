@@ -6,9 +6,11 @@ import javax.persistence.PersistenceContext;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+//import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
 
@@ -20,6 +22,8 @@ public class UserKaltiaControlDAOImpl implements UserKaltiaControlDAO{
 	 * @Qualifier("userKaltiaControlEntity")
 	 */
 	private UserKaltiaControlEntity userKaltiaControlEntity;
+	@Autowired
+	private ResultDAOVO resultDAOVO;
 	
 	private static final long serialVersionUID = 1L;
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -36,9 +40,26 @@ public class UserKaltiaControlDAOImpl implements UserKaltiaControlDAO{
     }
 
 	@Override
-	public void createUserKaltiaControlDAO(UserKaltiaControlVO userKaltiaControl) {
-		// TODO Auto-generated method stub
-		
+	@Transactional(readOnly = false)
+	public ResultDAOVO createUserKaltiaControlDAO(UserKaltiaControlEntity uKCE) {
+		try {
+//			em.getTransaction( ).begin( );
+		  em.merge(uKCE);
+//			em.persist( eE );
+//		    em.getTransaction( ).commit( );
+		      
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("UserKaltiaControl con exito guardado");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+		}finally {
+			em.close( );
+		      
+		}
+	      
+		return resultDAOVO;
 	}
 	
 	
@@ -66,9 +87,30 @@ public class UserKaltiaControlDAOImpl implements UserKaltiaControlDAO{
 	}
 
 	@Override
-	public void updateUserKaltiaControlDAO(UserKaltiaControlVO userKaltiaControl) {
-		// TODO Auto-generated method stub
+	@Transactional(readOnly = false)
+	public UserKaltiaControlEntity updateUserKaltiaControlDAO(UserKaltiaControlEntity userKaltiaControlEntity) {
+//		String id = userKaltiaControlVO.getUserUser();
+//		String pass = userKaltiaControlVO.getPassUser();
+		String qry = "update tc_userkaltiacontrol p set p.userKaltiaControlPass='"+userKaltiaControlEntity.getUserKaltiaControlPass()
+		+"',  p.userKaltiaControlStatus='"+userKaltiaControlEntity.getUserKaltiaControlStatus()+"'"
+		+ " where p.idUserKaltiaControlUser = '"+userKaltiaControlEntity.getIdUserKaltiaControlUser()+"'";
+		logger.info(qry);
+//		userKaltiaControlEntity = new UserKaltiaControlEntity();
 		
+		try {
+			 em.createQuery(qry).executeUpdate();
+			 userKaltiaControlEntity.setUserKaltiaControlPerfil("activo");
+			return userKaltiaControlEntity;
+		}catch(Exception e){
+			logger.info(e);
+			userKaltiaControlEntity.setUserKaltiaControlPerfil("#");
+			userKaltiaControlEntity.setIdUserKaltiaControlUser("vacio");
+			userKaltiaControlEntity.setUserKaltiaControlDescr("Usuario no existente");
+			userKaltiaControlEntity.setUserKaltiaControlStatus("NOK");
+			return userKaltiaControlEntity;
+		}
+
+	
 	}
 
 	@Override

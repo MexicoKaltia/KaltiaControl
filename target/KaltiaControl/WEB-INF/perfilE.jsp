@@ -23,7 +23,7 @@
       </div>
       <div class="fl_right"> 
         <ul class="nospace">
-          <li><a href="../index.html"><i class="fa fa-lg fa-home"></i></a></li>
+          <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
           <li><a href="#" title="Help Centre"><i class="fa fa-life-bouy"></i></a></li>
           <li><a href="#" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
           <li><a href="#" title="Sign Up"><i class="fa fa-lg fa-edit"></i></a></li>
@@ -39,9 +39,8 @@
       </div>
       <nav id="mainav" class="fl_right">
         <ul class="clear">
-          <li  class="active"><a href="<c:url value="login.htm"/>">Inicio</a></li>
+          <li  class="active"><a href="#">Inicio</a></li>
           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.getEmpresaEntity().getIdAction()}"/>">Edicion</a>
-<%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
         </ul>
       </nav>
@@ -106,20 +105,12 @@
               <label class=" control-label" for="textinput">Factura</label> 
               <input id="textinput" name="link Factura" placeholder="link Factura" class="form-control input-md" type="text">
               
-<!--               <span class="help-block">help</span>   -->
 			  <br>
 			  <br>
 			  <br>
 			  
-	            <label class=" control-label" for="singlebutton">Datos Correctos</label>
-	            <div class="">
-	              <button id="singlebutton" name="singlebutton" class="btn btn-primary">Guardar</button>
-	          
 	          </div>
-            </div>
 <!--     section     -->
-          
-          
      	   </fieldset>
      	 </form>
 		</div>

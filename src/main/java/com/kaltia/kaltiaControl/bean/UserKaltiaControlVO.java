@@ -8,6 +8,8 @@ public class UserKaltiaControlVO {
 	private String nombreUser;
 	private String empresaUser;
 	private String perfilUser;
+	
+	
 	public String getIdUser() {
 		return idUser;
 	}

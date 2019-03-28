@@ -2,6 +2,7 @@ package com.kaltia.kaltiaControl.repository;
 
 import java.io.Serializable;
 
+import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
 
@@ -10,12 +11,12 @@ public interface UserKaltiaControlDAO extends Serializable{
 	/*
 	 *  CRUD Data Object UserControlKaltia
 	 */
-	public void createUserKaltiaControlDAO(UserKaltiaControlVO userKaltiaControlVO);
+	public ResultDAOVO createUserKaltiaControlDAO(UserKaltiaControlEntity uKCE);
 	
-	public UserKaltiaControlEntity readUserKaltiaControlDAO(UserKaltiaControlVO userKaltiaControlVO);
+	public UserKaltiaControlEntity readUserKaltiaControlDAO(UserKaltiaControlVO uKCVO);
 	
-	public void updateUserKaltiaControlDAO(UserKaltiaControlVO userKaltiaControlVO);
+	public UserKaltiaControlEntity updateUserKaltiaControlDAO(UserKaltiaControlEntity uKCE);
 	
-	public void deleteUserKaltiaControlDAO(UserKaltiaControlVO userKaltiaControlVO);
+	public void deleteUserKaltiaControlDAO(UserKaltiaControlVO uKCVO);
 
 }

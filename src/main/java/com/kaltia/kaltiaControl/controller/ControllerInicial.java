@@ -68,14 +68,37 @@ public class ControllerInicial extends HttpServlet {
             throws ServletException, IOException {
 
     	 String now = (new Date()).toString();
+    	 
          logger.info("HELLO " + now);
          requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
+         
          request.getSession().setAttribute("requestLoginVO", requestLoginVO);
 
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 //         return new ModelAndView("prueba", "model", myModel);
      }
+	
+	@RequestMapping(value="/inicioEmpresa.htm" , method = RequestMethod.POST)
+    public ModelAndView inicioEmpresa(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
+    									BindingResult result,
+    									ModelMap model,
+    									HttpServletRequest request,
+    									HttpServletResponse response)
+            throws ServletException, IOException {
+
+    	 String now = (new Date()).toString();
+    	 
+         logger.info("HELLO " + now);
+         requestLoginVO = this.userManager.updateUser(userKaltiaControlFront);
+         
+         request.getSession().setAttribute("requestLoginVO", requestLoginVO);
+
+
+         return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
+//         return new ModelAndView("prueba", "model", myModel);
+     }
+
 	
 	
 	@RequestMapping (value= "/edicion.htm" ,

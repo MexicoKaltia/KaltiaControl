@@ -3,6 +3,9 @@ package com.kaltia.kaltiaControl.service;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -31,17 +34,13 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	@Autowired
 	private EmpresaDAO empresaDAO;
 	@Autowired
-	private ResultDAOVO resultDAOVO; 
-	
-//	private ActionEntity actionEntity;
-//	private HeaderEntity headerEntity;
-//	private BodyEntity bodyEntity;
-//	private FooterEntity footerEntity;
-	
-	
+	private ResultDAOVO resultDAOVO;
+	@Autowired
+	private UserManagerImpl userManagerImpl;
 	
 	@Override
 	public ResultDAOVO createEmpresa(EmpresaEntity empresaEntity) {
+		empresaEntity.setEmpresaIdPerfilE(empresaEntity.getIdAction());
 		resultDAOVO = (ResultDAOVO) empresaDAO.createEmpresaDAO(empresaEntity);
 		logger.info(resultDAOVO.getCode());
 		logger.info("create empresa "+resultDAOVO.getMessage());
@@ -85,8 +84,17 @@ public class EmpresaManagerImpl implements EmpresaManager{
 						logger.info(resultDAOVO.getCode());
 						logger.info("create footer "+resultDAOVO.getMessage());
 						if(resultDAOVO.getCode().equals("00")) {
-							resultDAOVO.setMessage("Alta Exitosa, Action, Header, Body , Footer");
+							resultDAOVO = userManagerImpl.createUser(empresaEntity);
+							logger.info(resultDAOVO.getCode());
+							logger.info("create UserKaltiaControl "+resultDAOVO.getMessage());
+							if(resultDAOVO.getCode().equals("00")) {
+							resultDAOVO.setMessage("Alta Exitosa, Action, Header, Body , Footer, UserKaltiaControl");
 							logger.info(resultDAOVO.getMessage());
+							}else {
+								//Create UserKaltiaControl
+								logger.info(resultDAOVO.getCode());
+								logger.info("Fail create UserKaltiaControl "+resultDAOVO.getMessage());
+							}
 						}else {
 							//Create Footer
 							logger.info(resultDAOVO.getCode());
@@ -133,7 +141,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			                }
 			    } catch (IOException ioe) {
 			    	logger.info("ERROR Ejecutando script EmpresaNueva.sh");
-			    	logger.info(ioe);
+			    	//logger.info(ioe);
 
 			    }
 		}

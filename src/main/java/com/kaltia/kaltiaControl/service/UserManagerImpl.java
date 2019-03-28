@@ -1,7 +1,6 @@
 package com.kaltia.kaltiaControl.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.HashMap;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -42,14 +41,27 @@ public class UserManagerImpl implements UserManager{
 	
 	
 	@Override
-	public String createUser(UserKaltiaControlVO userKaltiaControl) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultDAOVO createUser(EmpresaEntity empresaEntity) {
+		
+		userKaltiaControlEntity.setIdUserKaltiaControlUser(empresaEntity.getIdAction());
+		userKaltiaControlEntity.setUserKaltiaControlUser(empresaEntity.getEmpresaIdPerfilE()+"@kaltia.xyz");
+		userKaltiaControlEntity.setUserKaltiaControlPass(empresaEntity.getIdAction());
+		userKaltiaControlEntity.setUserKaltiaControlDescr("perfilE"+empresaEntity.getIdAction());
+		userKaltiaControlEntity.setUserKaltiaControlPerfil("perfilE");
+		userKaltiaControlEntity.setUserKaltiaControlNombre(empresaEntity.getIdEmpresa());
+		userKaltiaControlEntity.setUserKaltiaControlStatus("inicio");
+		userKaltiaControlEntity.setUserKaltiaControlDomicilio(empresaEntity.getEmpresaDireccion());
+		userKaltiaControlEntity.setUserKaltiaControlCorreo(empresaEntity.getEmpresaEmail());
+		userKaltiaControlEntity.setUserKaltiaControlContacto(empresaEntity.getEmpresaContacto());
+		
+		ResultDAOVO resultDAOVO = userKaltiaControlDAO.createUserKaltiaControlDAO(userKaltiaControlEntity);
+		
+		return resultDAOVO;
 	}
 
 	@Override
 	public RequestLoginVO readUser(UserKaltiaControlVO userKaltiaControlVO) {
-		HashMap<String,Object> userAtributo = new HashMap<String,Object>();
+		//HashMap<String,Object> userAtributo = new HashMap<String,Object>();
 		
 		/*
 		 * Informacion de perfil usuarioKaltiaControl
@@ -86,6 +98,9 @@ public class UserManagerImpl implements UserManager{
 				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
 			}	
 			
+		}else if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("inicio")){
+			userKaltiaControlEntity.setUserKaltiaControlPerfil("inicio");
+			requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);		
 		}else {
 			//Exception
 			logger.info("EXCEPTION");
@@ -96,9 +111,29 @@ public class UserManagerImpl implements UserManager{
 	}
 
 	@Override
-	public String updateteUser(UserKaltiaControlVO userKaltiaControl) {
-		// TODO Auto-generated method stub
-		return null;
+	public RequestLoginVO updateUser(UserKaltiaControlVO userKaltiaControl) {
+			
+		logger.info(userKaltiaControl.getUserUser());
+		
+		try {
+			String[] user = userKaltiaControl.getUserUser().toString().split("@");
+			userKaltiaControlEntity.setIdUserKaltiaControlUser(user[0].toString());
+			userKaltiaControlEntity.setUserKaltiaControlPass(userKaltiaControl.getPassUser());
+			userKaltiaControlEntity.setUserKaltiaControlStatus("activo");
+			
+			userKaltiaControlEntity = userKaltiaControlDAO.updateUserKaltiaControlDAO(userKaltiaControlEntity);
+			
+			requestLoginVO = readUser(userKaltiaControl);
+			
+			return  requestLoginVO;
+			
+		}catch(Exception e) {
+			e.printStackTrace(); 
+			userKaltiaControlEntity.setUserKaltiaControlPerfil("error");			 
+			return  requestLoginVO;
+		}
+		
+		
 	}
 
 	@Override

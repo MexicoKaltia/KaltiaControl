@@ -15,11 +15,11 @@ $(document).ready(function(){
 	
 	})
 	
-	$('#idEmpresa').change(function(){
-		var idEmpresa = $('#idEmpresa').val();
+	$('#IdAction').change(function(){
+		var IdAction = $('#IdAction').val();
 		
-		$('#empresaIdPerfilE').val(idEmpresa + "@kaltiaControl.com");
-		$('#empresaFactura').val("www.kaltiaControl.xyz/factura/"+idEmpresa)
+		$('#empresaIdPerfilE').val(IdAction + "@kaltia.xyz");
+		$('#empresaFactura').val("www.kaltiaControl.xyz/factura/"+IdAction)
 		
 	});
 	
