@@ -1,5 +1,6 @@
 package com.kaltia.kaltiaControl.service;
 
+import java.util.Date;
 //import java.util.HashMap;
 import java.util.List;
 
@@ -70,7 +71,6 @@ public class UserManagerImpl implements UserManager{
 		requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 		
 		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
-			logger.info("----Perfil:"+userKaltiaControlEntity.getUserKaltiaControlPerfil());
 			if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
 				
 				/*
@@ -97,6 +97,9 @@ public class UserManagerImpl implements UserManager{
 				requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
 				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
 			}	
+			 String now = (new Date()).toString();   
+			userKaltiaControlEntity.setUserKaltiaControlActividad(now);
+			userKaltiaControlDAO.actividadUserKaltiaControlDAO(userKaltiaControlEntity);
 			
 		}else if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("inicio")){
 			userKaltiaControlEntity.setUserKaltiaControlPerfil("inicio");

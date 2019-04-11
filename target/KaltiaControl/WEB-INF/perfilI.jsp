@@ -1,37 +1,5 @@
 <%@ include file="/layout/head.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<title>KaltiaControl</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/complementoBody2.css" rel="stylesheet" type="text/css" media="all">
-</head>
-<body id="top">
-<!-- ################################################################################################ -->
-<!-- Top Background Image Wrapper -->
-<div class="bgded overlay light" style="background-image:url('<%=request.getContextPath()%>/images/imagen.jpg');">
- 
-  <div class="wrapper row0">
-    <div id="topbar" class="hoc clear"> 
-      <div class="fl_left"> 
-        <ul class="nospace">
-          <li><i class="fa fa-phone"></i>+521 557879 4446</li>
-          <li><i class="fa fa-envelope-o"></i>kaltia@gmail.com</li>
-        </ul>
-      </div>
-      <div class="fl_right"> 
-        <ul class="nospace">
-          <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="#" title="Help Centre"><i class="fa fa-life-bouy"></i></a></li>
-          <li><a href="#" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
-          <li><a href="#" title="Sign Up"><i class="fa fa-lg fa-edit"></i></a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
+
   <!-- ################################################################################################ -->
     <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
@@ -42,8 +10,8 @@
         <ul class="clear">
           <li  class="active"><a href="#">Inicio</a></li>  
           <li><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
-          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a>
-          <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li>
+<%--           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a> --%>
+<%--           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li> --%>
         </ul>
       </nav>
     </header>
@@ -69,7 +37,6 @@
           <div class="btn-group">
             <a href="#usuario" class="btn btn-default">Usuario</a>
             <a href="#infoEmpresa" class="btn btn-default">Informacion Empresa</a>
-            
           </div>
            </fieldset>
      	 </form>
@@ -80,7 +47,6 @@
         <fieldset>
           <!-- Text input-->
           <div class="form-group">
-
             <a  id="usuario"></a>
             <label class=" control-label" for="textinput"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}"/></label>
             <hr><br>
@@ -130,7 +96,7 @@
 
      <div class="clearfix"></div>
    </div>
- </div>
+<!--  </div> -->
 <!-- JAVASCRIPTS -->
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.backtotop.js"></script>

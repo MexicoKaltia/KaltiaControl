@@ -36,8 +36,10 @@ public class UserKaltiaControlEntity implements Serializable{
 	private String userKaltiaControlCorreo;
 	@Column(name ="userKaltiaControlContacto")
 	private String userKaltiaControlContacto;
-	
+	@Column(name ="userKaltiaControlActividad")
+	private String userKaltiaControlActividad;
 
+	
 	public UserKaltiaControlEntity() {
 		
 	}
@@ -129,7 +131,16 @@ public class UserKaltiaControlEntity implements Serializable{
 
 	public void setUserKaltiaControlStatus(String userKaltiaControlStatus) {
 		this.userKaltiaControlStatus = userKaltiaControlStatus;
+	}	
+
+	public String getUserKaltiaControlActividad() {
+		return userKaltiaControlActividad;
 	}
+
+	public void setUserKaltiaControlActividad(String userKaltiaControlActividad) {
+		this.userKaltiaControlActividad = userKaltiaControlActividad;
+	}
+
 	
 
 

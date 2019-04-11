@@ -21,6 +21,7 @@ import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.FooterEntity;
 import com.kaltia.kaltiaControl.bean.HeaderEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
+import com.kaltia.kaltiaControl.bean.ResultVO;
 import com.kaltia.kaltiaControl.repository.EmpresaDAO;
 
 @Service
@@ -36,14 +37,19 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	@Autowired
 	private ResultDAOVO resultDAOVO;
 	@Autowired
-	private UserManagerImpl userManagerImpl;
+	private UserManager userManager;
+	@Autowired
+	private ClienteRest clienteRest;
+	@Autowired
+	ResultVO resultVO;
 	
 	@Override
 	public ResultDAOVO createEmpresa(EmpresaEntity empresaEntity) {
 		empresaEntity.setEmpresaIdPerfilE(empresaEntity.getIdAction());
+		//createEmpresaDAO
 		resultDAOVO = (ResultDAOVO) empresaDAO.createEmpresaDAO(empresaEntity);
-		logger.info(resultDAOVO.getCode());
-		logger.info("create empresa "+resultDAOVO.getMessage());
+//		logger.info(resultDAOVO.getCode());
+//		logger.info("create empresa "+resultDAOVO.getMessage());
 		if(resultDAOVO.getCode().equals("00")) {
 			ActionEntity actionEntity =new ActionEntity();
 			actionEntity.setIdAction(empresaEntity.getIdAction());
@@ -54,6 +60,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			actionEntity.setFooterRequerido(1);
 			actionEntity.setActionPrincipal(2);
 			actionEntity.setAmbiente(PROPS.getProperty("ambiente"));
+			//createActionDAO
 			resultDAOVO = (ResultDAOVO) empresaDAO.createActionDAO(actionEntity);
 			logger.info(resultDAOVO.getCode());
 			logger.info("create action "+resultDAOVO.getMessage());
@@ -61,30 +68,34 @@ public class EmpresaManagerImpl implements EmpresaManager{
 				HeaderEntity headerEntity = new HeaderEntity();
 				headerEntity = (HeaderEntity) empresaDAO.readHeaderDAO(empresaEntity.getEmpresaModelo().toString());
 				logger.info("Lectura de Header:"+headerEntity.getIdEmpresa());
-				headerEntity.setIdHeader(empresaEntity.getIdEmpresa()+"-header");
+				headerEntity.setIdHeader(empresaEntity.getIdAction()+"-header");
 				headerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
 				logger.info("Actualizacion de Header:"+headerEntity.getIdEmpresa());
+				//createHeaderDAO
 				resultDAOVO = (ResultDAOVO) empresaDAO.createHeaderDAO(headerEntity);
 				logger.info(resultDAOVO.getCode());
 				logger.info("create header : "+resultDAOVO.getMessage());
 				if(resultDAOVO.getCode().equals("00")) {
 					BodyEntity bodyEntity = new BodyEntity();
 					bodyEntity = (BodyEntity) empresaDAO.readBodyDAO(empresaEntity.getEmpresaModelo().toString());
-					bodyEntity.setIdBody(empresaEntity.getIdEmpresa()+"-body");
+					bodyEntity.setIdBody(empresaEntity.getIdAction()+"-body");
 					bodyEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+					//createBodyDAO
 					resultDAOVO = (ResultDAOVO) empresaDAO.createBodyDAO(bodyEntity);	
 					logger.info(resultDAOVO.getCode());
 					logger.info("create body "+resultDAOVO.getMessage());
 					if(resultDAOVO.getCode().equals("00")) {
 						FooterEntity footerEntity = new FooterEntity();
 						footerEntity = (FooterEntity) empresaDAO.readFooterDAO(empresaEntity.getEmpresaModelo().toString());
-						footerEntity.setIdFooter(empresaEntity.getIdEmpresa()+"-footer");
+						footerEntity.setIdFooter(empresaEntity.getIdAction()+"-footer");
 						footerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+						//createFooterDAO
 						resultDAOVO = (ResultDAOVO) empresaDAO.createFooterDAO(footerEntity);
 						logger.info(resultDAOVO.getCode());
 						logger.info("create footer "+resultDAOVO.getMessage());
 						if(resultDAOVO.getCode().equals("00")) {
-							resultDAOVO = userManagerImpl.createUser(empresaEntity);
+							//createUserKaltiaControl perfil E
+							resultDAOVO = userManager.createUser(empresaEntity);
 							logger.info(resultDAOVO.getCode());
 							logger.info("create UserKaltiaControl "+resultDAOVO.getMessage());
 							if(resultDAOVO.getCode().equals("00")) {
@@ -99,7 +110,6 @@ public class EmpresaManagerImpl implements EmpresaManager{
 							//Create Footer
 							logger.info(resultDAOVO.getCode());
 							logger.info("Fail create footer "+resultDAOVO.getMessage());
-							
 						}
 					}else {
 						//Create Body
@@ -124,40 +134,32 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		
 		if(resultDAOVO.getCode().equals("00")) {
 			try {
-				
-				Runtime rt = Runtime.getRuntime();
-			    String commands = ("/kaltia/shell/EmpresaNueva.sh "+empresaEntity.getIdEmpresa().toString());
-			    Process proc = rt.exec(commands);
-			    BufferedReader stdInput = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-			    BufferedReader stdError = new BufferedReader(new InputStreamReader(proc.getErrorStream()));
-			    logger.info("Salida EmpresaNueva:\n");
-			    String s = null;
-			    while ((s = stdInput.readLine()) != null) {
-			    	logger.info(s);
-			    }
-
-			    while ((s = stdError.readLine()) != null) {
-			    	logger.info(s);
-			                }
-			    } catch (IOException ioe) {
-			    	logger.info("ERROR Ejecutando script EmpresaNueva.sh");
-			    	//logger.info(ioe);
-
-			    }
+			resultVO = clienteRest.createServiceEmpresaNueva(empresaEntity.getIdAction().toString());
+			if(resultVO.getCodigo()==0) {
+				resultDAOVO.setCode("00");
+			}else {
+				resultDAOVO.setCode("99");
+				resultDAOVO.setMessage("Error Creacion Carpeta");
+			}
+			}catch(Exception e) {
+				resultDAOVO.setCode("99");
+				resultDAOVO.setMessage("Error en Conexion Creacion Carpeta");
+				e.printStackTrace();
+			}
 		}
 		
 		return resultDAOVO;
 	}
 	@Override
 	public EmpresaEntity readEmpresa(String idUserKaltiaControl) {
-		logger.info("readEmpresa:"+idUserKaltiaControl);
+//		logger.info("readEmpresa:"+idUserKaltiaControl);
 		empresaEntity = empresaDAO.readEmpresaDAO(idUserKaltiaControl);
 
 		return empresaEntity;
 	}
 	@Override
 	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI) {
-		logger.info("readEmpresaArray:"+idUserPerfilI);
+//		logger.info("readEmpresaArray:"+idUserPerfilI);
 		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI);
 //		for(EmpresaEntity idEmpresa: empresaEntityArray) {
 //			empresaEntity = validaEmpresa(idUserPerfilI);

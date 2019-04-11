@@ -121,3 +121,9 @@ target/classes/com/kaltia/kaltiaControl/service/UserManager.class
 target/classes/com/kaltia/kaltiaControl/service/UserManagerImpl.class
 target/classes/com/kaltia/kaltiaControl/Util/BaseInfra.class
 target/classes/META-INF/persistence.xml
+*.class
+*.class
+*.class
+*.class
+target/classes/com/kaltia/kaltiaControl/aop/EmpresaAOP.class
+*.class

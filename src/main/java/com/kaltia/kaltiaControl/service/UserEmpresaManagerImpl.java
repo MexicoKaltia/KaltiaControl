@@ -27,7 +27,7 @@ public class UserEmpresaManagerImpl implements UserEmpresaManager{
 
 	@Override
 	public List<UserEmpresaEntity> readUserEmpresa(String idEmpresa) {
-		logger.info("readUserEmpresa:"+idEmpresa);
+//		logger.info("readUserEmpresa:"+idEmpresa);
 		List<UserEmpresaEntity> userEmpresaEntity = new ArrayList<UserEmpresaEntity>();
 		
 		userEmpresaEntity = (List<UserEmpresaEntity>) userEmpresaDAO.readUserEmpresaDAO(idEmpresa);

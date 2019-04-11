@@ -1,4 +1,8 @@
-<%@ include file="/layout/head.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
+<%@ page session="true" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix ="fn" uri = "http://java.sun.com/jsp/jstl/functions"  %>
 <html>
 <head>
 <title>KaltiaControl</title>
@@ -12,7 +16,7 @@
     iframe {  width:100%; border:none; margin:0; padding:0; height:100%;}
 </style>
 <script language="JavaScript">
-	//Ajusta el tamaño de un iframe al de su contenido interior para evitar scroll
+	//Ajusta el tamaÃ±o de un iframe al de su contenido interior para evitar scroll
 	function autofitIframe(id) {
 		if (!window.opera && document.all && document.getElementById) {
 			id.style.height = id.contentWindow.document.body.scrollHeight;

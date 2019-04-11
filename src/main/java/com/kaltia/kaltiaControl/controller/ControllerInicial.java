@@ -67,17 +67,29 @@ public class ControllerInicial extends HttpServlet {
     									HttpServletResponse response)
             throws ServletException, IOException {
 
-    	 String now = (new Date()).toString();
-    	 
-         logger.info("HELLO " + now);
+//    	 String now = (new Date()).toString();       
          requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
          
+         model.addAttribute("requestLoginVO", requestLoginVO);
          request.getSession().setAttribute("requestLoginVO", requestLoginVO);
-
+//         logger.info("Login:" + now+ "-- User:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
+         logger.info("____________________________________________________________________");
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 //         return new ModelAndView("prueba", "model", myModel);
      }
+	
+	@RequestMapping (value= "/inicio.htm" , method = RequestMethod.GET)
+	public ModelAndView inicio(ModelMap model, HttpServletRequest request,
+							HttpServletResponse response) throws ServletException, IOException  {
+		logger.info("----De nuevo Inicio----");
+		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+//		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+	    	
+		return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
+	}
 	
 	@RequestMapping(value="/inicioEmpresa.htm" , method = RequestMethod.POST)
     public ModelAndView inicioEmpresa(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
@@ -86,14 +98,11 @@ public class ControllerInicial extends HttpServlet {
     									HttpServletRequest request,
     									HttpServletResponse response)
             throws ServletException, IOException {
-
-    	 String now = (new Date()).toString();
-    	 
-         logger.info("HELLO " + now);
+         
          requestLoginVO = this.userManager.updateUser(userKaltiaControlFront);
          
          request.getSession().setAttribute("requestLoginVO", requestLoginVO);
-
+         logger.info("inicioEmpresa:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 //         return new ModelAndView("prueba", "model", myModel);
@@ -110,6 +119,7 @@ public class ControllerInicial extends HttpServlet {
 		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		logger.info("----Inicio metodo edicion----" + requestLoginVO.getEmpresaEntity().getIdAction());
 		logger.info("modelEdicion:"+request.getRequestURI());
+		logger.info("isUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
 
 		return new ModelAndView("edicion","modelEdicion", model );		
 	}
@@ -121,8 +131,7 @@ public class ControllerInicial extends HttpServlet {
 		logger.info("----Inicio metodo alta----");
 		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
-		
-	    	
+			
 		return new ModelAndView("alta","modelAlta", model );
 	}
 	
@@ -140,8 +149,7 @@ public class ControllerInicial extends HttpServlet {
 		requestLoginVO.setEmpresaEntity(empresaEntity);
 		
 		resultDAOVO = empresaManager.createEmpresa(empresaEntity);
-		logger.info(resultDAOVO.getCode());
-		logger.info(resultDAOVO.getMessage());
+		logger.info("idUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
 
 		model.addAttribute("empresaEntity", empresaEntity);
 		model.addAttribute("requestLoginVO", requestLoginVO);

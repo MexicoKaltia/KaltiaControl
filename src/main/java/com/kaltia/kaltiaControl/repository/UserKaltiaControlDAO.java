@@ -17,6 +17,8 @@ public interface UserKaltiaControlDAO extends Serializable{
 	
 	public UserKaltiaControlEntity updateUserKaltiaControlDAO(UserKaltiaControlEntity uKCE);
 	
+	public void actividadUserKaltiaControlDAO(UserKaltiaControlEntity uKCE);
+	
 	public void deleteUserKaltiaControlDAO(UserKaltiaControlVO uKCVO);
 
 }

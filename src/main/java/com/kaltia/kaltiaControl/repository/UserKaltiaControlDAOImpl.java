@@ -102,15 +102,28 @@ public class UserKaltiaControlDAOImpl implements UserKaltiaControlDAO{
 			 userKaltiaControlEntity.setUserKaltiaControlPerfil("activo");
 			return userKaltiaControlEntity;
 		}catch(Exception e){
-			logger.info(e);
+			e.printStackTrace();
 			userKaltiaControlEntity.setUserKaltiaControlPerfil("#");
 			userKaltiaControlEntity.setIdUserKaltiaControlUser("vacio");
 			userKaltiaControlEntity.setUserKaltiaControlDescr("Usuario no existente");
 			userKaltiaControlEntity.setUserKaltiaControlStatus("NOK");
 			return userKaltiaControlEntity;
 		}
-
+	}
 	
+	@Override
+	@Transactional(readOnly = false)
+	public void actividadUserKaltiaControlDAO(UserKaltiaControlEntity userKaltiaControlEntity) {
+//		String id = userKaltiaControlVO.getUserUser();
+//		String pass = userKaltiaControlVO.getPassUser();
+		String qry = "update tc_userkaltiacontrol p set p.userKaltiaControlActividad='"+userKaltiaControlEntity.getUserKaltiaControlActividad()+"'"
+		+ " where p.idUserKaltiaControlUser = '"+userKaltiaControlEntity.getIdUserKaltiaControlUser()+"'";
+		
+		try {
+			 em.createQuery(qry).executeUpdate();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 	@Override
