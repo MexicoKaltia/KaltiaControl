@@ -127,3 +127,6 @@ target/classes/META-INF/persistence.xml
 *.class
 target/classes/com/kaltia/kaltiaControl/aop/EmpresaAOP.class
 *.class
+*.class
+*.class
+target/*

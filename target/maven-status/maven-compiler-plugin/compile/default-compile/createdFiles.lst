@@ -7,9 +7,12 @@ com\kaltia\kaltiaControl\aop\EmpresaAOP.class
 com\kaltia\kaltiaControl\repository\UserKaltiaControlDAO.class
 com\kaltia\kaltiaControl\aop\UserAOP.class
 com\kaltia\kaltiaControl\repository\UserEmpresaDAO.class
+com\kaltia\kaltiaControl\bean\ResultVO.class
 com\kaltia\kaltiaControl\service\UserManagerImpl.class
 com\kaltia\kaltiaControl\repository\UserEmpresaDAOImpl.class
 com\kaltia\kaltiaControl\bean\UserKaltiaControlEntity.class
+com\kaltia\kaltiaControl\service\ClienteRest.class
+com\kaltia\kaltiaControl\service\ClienteRestImpl.class
 com\kaltia\kaltiaControl\bean\RequestLoginVO.class
 com\kaltia\kaltiaControl\service\UserManager.class
 com\kaltia\kaltiaControl\repository\EmpresaDAO.class
@@ -25,3 +28,4 @@ com\kaltia\kaltiaControl\bean\UserKaltiaControlVO.class
 com\kaltia\kaltiaControl\service\EmpresaManagerImpl.class
 com\kaltia\kaltiaControl\bean\FooterEntity.class
 com\kaltia\kaltiaControl\bean\HeaderEntity.class
+com\kaltia\kaltiaControl\bean\ValoresJsonVO.class

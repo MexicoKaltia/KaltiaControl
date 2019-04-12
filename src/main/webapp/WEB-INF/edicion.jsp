@@ -33,7 +33,11 @@
 								onload="autofitIframe(this);"></iframe>
 		</div>
 		<!-- ################################################################################################ -->
-
+	<div class="nospace inline pushright">
+            <a href="inicio.htm" class="btn btn-default">Salir de Edicion</a>
+            <a href="" class=""> </a>
+            <a href="inicio.htm" class="btn btn-default">Salir de Sesion</a>
+            </div>
 	<!-- JAVASCRIPTS -->
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 	<script src="<%=request.getContextPath()%>/js/jquery.mobilemenu.js"></script>

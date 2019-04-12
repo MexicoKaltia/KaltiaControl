@@ -29,6 +29,7 @@ $(document).ready(function(){
 		if(pass !== $('#userKaltiaControlPass1').val())
 		alert("La contraseña no son iguales");
 		else{
+			$('#savePass').prop('disabled', false);
 			$('#empresaIdPerfilE').val($('#empresaIdPerfilE').val()+$('#userKaltiaControlPass1').val())
 		
 		}

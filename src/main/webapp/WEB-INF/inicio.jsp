@@ -1,28 +1,4 @@
 <%@ include file="/layout/head.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<title>KaltiaControl</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/complementoBody2.css" rel="stylesheet" type="text/css" media="all">
-</head>
-<body id="top">
-<!-- ################################################################################################ -->
-<!-- Top Background Image Wrapper -->
-<div class="bgded overlay light" style="background-image:url('<%=request.getContextPath()%>/images/imagen.jpg');"> 
-  <div class="wrapper row0">
-    <div id="topbar" class="hoc clear"> 
-      <div class="fl_left"> 
-        <ul class="nospace">
-          <li><i class="fa fa-phone"></i> +00 (123) 456 7890</li>
-          <li><i class="fa fa-envelope-o"></i> info@domain.com</li>
-        </ul>
-      </div>
-    </div>
-  </div>
   <!-- ################################################################################################ -->
   <div class="wrapper row1">
     <header id="header" class="hoc clear"> 
@@ -45,7 +21,7 @@
           <div class="form-group">
 			
             <a  id="general"></a>
-            <label class=" control-label" for="textinput">Usuarios</label>
+<!--             <label class=" control-label" for="textinput">Usuarios</label> -->
                             
               <a id="usuario"></a>
 	             <label class=" control-label" for="textinput">Usuario</label>
@@ -61,7 +37,7 @@
 			  
 	            <label class=" control-label" for="singlebutton">Datos Correctos</label>
 	            <div class="">
-	              <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+	              <button class="btn btn-lg btn-primary btn-block" type="submit" disabled="true" id="savePass">Guardar</button>
 
 	          </div>
             </div>

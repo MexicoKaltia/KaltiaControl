@@ -28,9 +28,9 @@
       <div class="fl_right"> 
         <ul class="nospace">
           <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
-          <li><a href="#" title="Help Centre"><i class="fa fa-life-bouy"></i></a></li>
-          <li><a href="#" title="Login"><i class="fa fa-lg fa-sign-in"></i></a></li>
-          <li><a href="#" title="Sign Up"><i class="fa fa-lg fa-edit"></i></a></li>
+          <li><a href="#" title="Centro de Ayuda"><i class="fa fa-life-bouy"></i></a></li>
+          <li><a href="#" title="Escribir Comentario"><i class="fa fa-lg fa-sign-in"></i></a></li>
+          <li><a href="#" title="Cerrar Sesion"><i class="fa fa-lg fa-edit"></i></a></li>
         </ul>
       </div>
     </div>
