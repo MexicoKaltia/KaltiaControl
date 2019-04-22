@@ -130,3 +130,4 @@ target/classes/com/kaltia/kaltiaControl/aop/EmpresaAOP.class
 *.class
 *.class
 target/*
+*.class

@@ -39,6 +39,7 @@
         <fieldset>
           <div class="btn-group">
             <a href="#general" class="btn btn-default">General</a>
+            <a href="#modulo" class="btn btn-default">Modulos</a>
             <a href="#status" class="btn btn-default">Status</a>
             <a href="#usuario" class="btn btn-default">Usuarios</a>
           </div>
@@ -71,9 +72,54 @@
 	              </select>
 	            </div>
               <br>
-              </fieldset>
+              </fieldset></div>
               
-              </div>
+            <div id="big-form" class="well auth-box"><fieldset>
+	            <a  id="modulo"></a>
+	            <label class=" control-label" for="textinput">Modulos</label>
+	            </fieldset></div>
+	            <div id="big-form" class="well auth-box"><fieldset>
+	            <div class="form-check">
+	            		<input class="form-check-input" type="checkbox" name="moduloEdicion" id ="moduloEdicionCheck" checked disabled>
+	                	<label class="form-check-label" for="moduloEdicion">Edición de Pagina</label>
+					  	<div id="moduloEdicion" class="collapse.show">
+							<div id='limpiaAlerta' class='alert alert-success' role='alert'>moduloEdicion Activado</div>
+					  	</div>
+       	        </div>
+       	        <div class="form-check">
+						<input type="checkbox" class="form-check-input" id="moduloClienteCheck">
+	         	   		<label class="form-check-label" for="moduloClientes">Gestión Clientes</label>
+	         	   		<div id="moduloCliente" class="collapse">
+							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Cliente Activado</div>
+					  	</div>
+				</div>
+				<div class="form-check">
+	         	   <input class="form-check-input" type="checkbox" name="moduloCita" id="moduloCitaCheck">
+<!-- 				   <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#moduloCita">Activar Modulo Citas</button> -->
+	         	   <label class="form-check-label" for="moduloCita">Gestión Citas</label>
+	         	   	  	<div id="moduloCita" class="collapse">
+<!-- 							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Citas Activado</div> -->
+							<div class="row">
+							    <div class="col">
+							      <input type="text" class="form-control" placeholder="Horario L-V (9:00-13:00,14:00-18:00)" id="horCitaLV">
+							    </div>
+							    <div class="col">
+							      <input type="text" class="form-control" placeholder="Horario S (10:00-14:00)" id="horCitaS">
+							    </div>
+							 </div>
+							 <label  id="saveCita" class="btn">Guardar Horario</label>
+					  	</div>
+	         	   
+				</div>
+				<div class="form-check">
+	         	   <input class="form-check-input" type="checkbox" name="moduloCarpeta" id="moduloCarpetaCheck">
+	         	   <label class="form-check-label" for="moduloCarpeta" >Carpeta Clientes</label>
+	         	   	<div id="moduloCarpeta" class="collapse">
+							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Carpeta Cliente Activado</div>
+					</div>
+	         	</div>
+            </fieldset></div>
+              
               <div id="big-form" class="well auth-box"><fieldset>
               <a id="status"></a>
              	<label class=" control-label" for="textinput">Status</label>

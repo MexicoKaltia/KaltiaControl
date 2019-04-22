@@ -149,8 +149,8 @@ public class ControllerInicial extends HttpServlet {
 		requestLoginVO.setEmpresaEntity(empresaEntity);
 		
 		resultDAOVO = empresaManager.createEmpresa(empresaEntity);
+		
 		logger.info("idUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
-
 		model.addAttribute("empresaEntity", empresaEntity);
 		model.addAttribute("requestLoginVO", requestLoginVO);
 		
