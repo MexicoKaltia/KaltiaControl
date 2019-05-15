@@ -19,9 +19,16 @@ public class RequestLoginVO implements Serializable{
 	private EmpresaEntity empresaEntity;
 	private List<UserEmpresaEntity> userEmpresaEntity;
 	private StatusEmpresaEntity statusEmpresaEntity;
+	private DatosCitasVO datosCitasVO;
 	
 	
 	
+	public DatosCitasVO getDatosCitasVO() {
+		return datosCitasVO;
+	}
+	public void setDatosCitasVO(DatosCitasVO datosCitasVO) {
+		this.datosCitasVO = datosCitasVO;
+	}
 	public UserKaltiaControlEntity getUserKaltiaControlEntity() {
 		return userKaltiaControlEntity;
 	}

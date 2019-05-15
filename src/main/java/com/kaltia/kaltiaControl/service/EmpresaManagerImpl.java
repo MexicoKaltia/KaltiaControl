@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,9 +48,14 @@ public class EmpresaManagerImpl implements EmpresaManager{
 	public ResultDAOVO createEmpresa(EmpresaEntity empresaEntity) {
 		empresaEntity.setEmpresaIdPerfilE(empresaEntity.getIdAction());
 		//createEmpresaDAO
+		/*
+		 * hacer la validacion de un idAction ó un idEmpresa not null... y dublicado !!
+		 */
 		resultDAOVO = (ResultDAOVO) empresaDAO.createEmpresaDAO(empresaEntity);
-//		logger.info(resultDAOVO.getCode());
-//		logger.info("create empresa "+resultDAOVO.getMessage());
+		logger.info(empresaEntity.getEmpresaClientes());
+		logger.info(empresaEntity.getEmpresaCarpetas());
+		logger.info(empresaEntity.getEmpresaCitas());
+		
 		if(resultDAOVO.getCode().equals("00")) {
 			ActionEntity actionEntity =new ActionEntity();
 			actionEntity.setIdAction(empresaEntity.getIdAction());
@@ -64,6 +70,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			resultDAOVO = (ResultDAOVO) empresaDAO.createActionDAO(actionEntity);
 			logger.info(resultDAOVO.getCode());
 			logger.info("create action "+resultDAOVO.getMessage());
+			
 			if(resultDAOVO.getCode().equals("00")) {
 				HeaderEntity headerEntity = new HeaderEntity();
 				headerEntity = (HeaderEntity) empresaDAO.readHeaderDAO(empresaEntity.getEmpresaModelo().toString());
@@ -131,10 +138,13 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			logger.info(resultDAOVO.getCode());
 			logger.info("Fail create Empresa "+resultDAOVO.getMessage());
 		}
-		
+//		Inicio Alta Modulos y carpeta Bash		
 		if(resultDAOVO.getCode().equals("00")) {
 			try {
-			resultVO = clienteRest.createServiceEmpresaNueva(empresaEntity.getIdAction().toString());
+			resultVO = clienteRest.createServiceEmpresaNueva(empresaEntity.getIdAction().toString(),
+					empresaEntity.getEmpresaClientes(),
+					empresaEntity.getEmpresaCitas(),
+					empresaEntity.getEmpresaCarpetas());
 			if(resultVO.getCodigo()==0) {
 				resultDAOVO.setCode("00");
 			}else {
@@ -147,9 +157,11 @@ public class EmpresaManagerImpl implements EmpresaManager{
 				e.printStackTrace();
 			}
 		}
-		
-		return resultDAOVO;
+
+		return resultDAOVO;	
 	}
+		
+		
 	@Override
 	public EmpresaEntity readEmpresa(String idUserKaltiaControl) {
 //		logger.info("readEmpresa:"+idUserKaltiaControl);

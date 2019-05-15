@@ -26,13 +26,16 @@ public class UserEmpresaManagerImpl implements UserEmpresaManager{
 	}
 
 	@Override
-	public List<UserEmpresaEntity> readUserEmpresa(String idEmpresa) {
+	public List<UserEmpresaEntity> readUserEmpresa(String userEmpresaAction) {
 //		logger.info("readUserEmpresa:"+idEmpresa);
-		List<UserEmpresaEntity> userEmpresaEntity = new ArrayList<UserEmpresaEntity>();
+		List<UserEmpresaEntity> userEmpresaEntityList = new ArrayList<UserEmpresaEntity>();
 		
-		userEmpresaEntity = (List<UserEmpresaEntity>) userEmpresaDAO.readUserEmpresaDAO(idEmpresa);
+		userEmpresaEntityList = (List<UserEmpresaEntity>) userEmpresaDAO.readUserEmpresaDAO(userEmpresaAction);
+//		for(int a = 0; a<userEmpresaEntityList.size(); a++) {
+//			logger.info(userEmpresaEntityList.get(a).getIdUserEmpresa());
+//		}
 
-		return userEmpresaEntity;
+		return userEmpresaEntityList;
 	}
 
 	@Override

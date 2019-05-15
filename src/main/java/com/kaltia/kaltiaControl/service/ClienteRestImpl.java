@@ -1,16 +1,11 @@
 package com.kaltia.kaltiaControl.service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -23,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.kaltia.kaltiaControl.bean.CitasVO;
 import com.kaltia.kaltiaControl.bean.ResultVO;
 import com.kaltia.kaltiaControl.bean.ValoresJsonVO;
 
@@ -35,6 +31,9 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 	private ResultVO resultVO;
 	@Autowired
 	private ValoresJsonVO valoresJsonVO;
+	@Autowired
+	private CitasVO citasVO;
+	
 
 	public ClienteRestImpl() {
 		// TODO Auto-generated constructor stub
@@ -50,6 +49,8 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 	static final String URL_GET_EMPRESA = 	        "http://31.220.63.183:8010/empresaRead";
 	
 	static final String URL_POST_EMPRESACREATE    = "http://31.220.63.183:8010/empresaCreate";
+	static final String URL_POST_EMPRESACITA      = "http://31.220.63.183:8010/empresaCitaActivar";
+	static final String URL_POST_READCITA         = "http://31.220.63.183:8010/readCita";
 	
 	static final String POST = "HttpMethod.POST";
 	static final String GET  = "HttpMethod.GET";
@@ -64,15 +65,19 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 	}
 	
 	@Override
-	public ResultVO createServiceEmpresaNueva(String idAction) {
+	public ResultVO createServiceEmpresaNueva(String idAction,String clientes, String horario, String carpetas) {
 				
+		if(clientes.equals("") || clientes == null)
+		{	clientes = "No Activo";}
+		if(horario.equals("") || horario == null)
+		{	horario = "No Activo";}
+		if(carpetas.equals("") || carpetas == null)
+		{	carpetas = "No Activo";}
+		
+		
 		 JSONObject jsonRequest = new JSONObject();
 			 jsonRequest.put("action", idAction);	 
-//			 jsonRequest.put("valoresFinales", userEmpresaEntity.getIdUserEmpresa()+"++"
-//											 + userEmpresaEntity.getNombreRegistro()+"++"
-//											 + userEmpresaEntity.getApellidoRegistro()+"++"
-//											 + userEmpresaEntity.getEmailRegistro()+"++"
-//											 + tituloMail);
+			 jsonRequest.put("valoresFinales", clientes+"++"+ horario+"++"+ carpetas);
 //			 
 //			 Map<String,String> req_content = new HashMap();
 //			 req_content.put("idAction", idAction);
@@ -84,6 +89,24 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 			 return  getTemplate(URL_POST_EMPRESACREATE, POST, jsonRequest.toString());
 	
 	}
+	
+//	@Override
+//	public ResultVO createEmpresaModulos(String clientes, String horario, String carpetas) {
+////			JSONObject jsonRequest = new JSONObject();
+////			jsonRequest.put("valoresFinales", horario);
+//			 return  getTemplate(URL_POST_EMPRESACREATE, POST, jsonRequest.toString());
+//	}
+
+	@Override
+	public ResultVO readCitas(String idAction) {
+	
+		 JSONObject jsonRequest = new JSONObject();
+		 jsonRequest.put("action", idAction);
+		 resultVO = getTemplate(URL_POST_READCITA, POST, jsonRequest.toString());
+
+		 return resultVO;  
+	}
+	
 
 	@Override
 	public ResultVO readService(Object object) {
@@ -126,6 +149,10 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 
 	    resultVO.setMensaje(response.getBody() .getMensaje());
 	    resultVO.setCodigo(response.getBody() .getCodigo());
+	    resultVO.setResponse(response.getBody() .getResponse());
+	    resultVO.setMensajeArray(response.getBody() .getMensajeArray());
+	    resultVO.setJsonResponse(response.getBody() .getJsonResponse());
+	    
 //	    logger.info(resultVO.getCodigo());
 //	    logger.info(resultVO.getMensaje());
 	    
@@ -148,6 +175,6 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
         return mappingJackson2HttpMessageConverter;
     }
 
-	
+
 
 }

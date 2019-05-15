@@ -8,13 +8,13 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li class="active"><a href="inicio.htm">Inicio</a></li>
+          <li><a  href="<c:url value="modulo.htm"/>">Modulos</a>
           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.getEmpresaEntity().getIdAction()}"/>">Edicion</a>
 <%--           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li> --%>
            <%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
 <!--           <li  class="active"><a href="../index.html">Inicio</a></li> -->
 <%--           <li><a class="drop" href="<c:url value="edicion.htm"/>">Edicion</a> --%>
 <%--           <li><a class="drop" href="${pageContext.request.contextPath}/edicion.htm">Estadistica</a></li> --%>
-        </ul>
         </ul>
       </nav>
     </header>

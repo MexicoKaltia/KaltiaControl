@@ -50,9 +50,15 @@ public class EmpresaEntity implements Serializable{
 	private String empresaModoPago;
 	@Column
 	private String empresaFactura;
+	@Column
+	private String empresaClientes;
+	@Column
+	private String empresaCitas;
+	@Column
+	private String empresaCarpetas;
+
 	
 	public EmpresaEntity() {
-		
 	}
 
 	
@@ -60,52 +66,33 @@ public class EmpresaEntity implements Serializable{
 	public String getEmpresaModelo() {
 		return empresaModelo;
 	}
-
-
 	public void setEmpresaModelo(String empresaModelo) {
 		this.empresaModelo = empresaModelo;
 	}
-
-
 	public String getEmpresaStatus() {
 		return empresaStatus;
 	}
-
-
 	public void setEmpresaStatus(String empresaStatus) {
 		this.empresaStatus = empresaStatus;
 	}
-
-
 	public String getEmpresaFechaCorte() {
 		return empresaFechaCorte;
 	}
-
-
 	public void setEmpresaFechaCorte(String empresaFechaCorte) {
 		this.empresaFechaCorte = empresaFechaCorte;
 	}
-
-
 	public String getEmpresaModoPago() {
 		return empresaModoPago;
 	}
-
-
 	public void setEmpresaModoPago(String empresaModoPago) {
 		this.empresaModoPago = empresaModoPago;
 	}
-
-
 	public String getEmpresaFactura() {
 		return empresaFactura;
 	}
-
-
 	public void setEmpresaFactura(String empresaFactura) {
 		this.empresaFactura = empresaFactura;
 	}
-
 	public String getEmpresaIdPerfilI() {
 		return empresaIdPerfilI;
 	}
@@ -165,6 +152,24 @@ public class EmpresaEntity implements Serializable{
 	}
 	public void setEmpresaVarios(String empresaVarios) {
 		this.empresaVarios = empresaVarios;
+	}
+	public String getEmpresaClientes() {
+		return empresaClientes;
+	}
+	public void setEmpresaClientes(String empresaClientes) {
+		this.empresaClientes = empresaClientes;
+	}
+	public String getEmpresaCitas() {
+		return empresaCitas;
+	}
+	public void setEmpresaCitas(String empresaCitas) {
+		this.empresaCitas = empresaCitas;
+	}
+	public String getEmpresaCarpetas() {
+		return empresaCarpetas;
+	}
+	public void setEmpresaCarpetas(String empresaCarpetas) {
+		this.empresaCarpetas = empresaCarpetas;
 	}
 	
 	

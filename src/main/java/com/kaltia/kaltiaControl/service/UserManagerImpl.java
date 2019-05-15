@@ -6,14 +6,17 @@ import java.util.List;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.kaltia.kaltiaControl.bean.DatosCitasVO;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
-import com.kaltia.kaltiaControl.bean.StatusEmpresaEntity;
+import com.kaltia.kaltiaControl.bean.ResultVO;
 import com.kaltia.kaltiaControl.bean.UserEmpresaEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
@@ -35,10 +38,16 @@ public class UserManagerImpl implements UserManager{
 	private UserEmpresaManager userEmpresaManager;
 	@Autowired
 	private RequestLoginVO requestLoginVO;
+	@Autowired
+	private ResultVO resultVO;
+	@Autowired
+	private ClienteRest clienteRest;
+	@Autowired
+	private DatosCitasVO datosCitasVO;
 	
 	private UserKaltiaControlEntity userKaltiaControlEntity;
 	private EmpresaEntity empresaEntity;
-	private StatusEmpresaEntity statusEmpresaEntity;
+//	private StatusEmpresaEntity statusEmpresaEntity;
 	
 	
 	@Override
@@ -90,12 +99,26 @@ public class UserManagerImpl implements UserManager{
 				 * Informacion Empresa de usuarioKaltiaControl
 				 */
 				empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
-				List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdEmpresa());
-//				userAtributo.put("uGE", userGeneralEntity);
-								
+				
+				/*
+				 * Informacion Empresa de userEmpresa -- MODULOS
+				 */		
+				if(!empresaEntity.getEmpresaCitas().equals("No Activo") || !empresaEntity.getEmpresaCarpetas().equals("No Activo")) {
+					List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
+					requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
+					if(!empresaEntity.getEmpresaCitas().equals("No Activo")) {
+						resultVO = clienteRest.readCitas(empresaEntity.getIdAction());
+//						logger.info(resultVO.getMensajeArray());
+						datosCitasVO.setCondiciones((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(0)));
+						datosCitasVO.setMesActual((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(1)));
+						datosCitasVO.setMesPost((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(2)));
+						requestLoginVO.setDatosCitasVO(datosCitasVO);
+					}
+					
+				}
+		
 				requestLoginVO.setEmpresaEntity(empresaEntity);
-				requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
-				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
+//				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
 			}	
 			 String now = (new Date()).toString();   
 			userKaltiaControlEntity.setUserKaltiaControlActividad(now);

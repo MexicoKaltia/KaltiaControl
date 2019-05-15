@@ -107,12 +107,22 @@ public class ControllerInicial extends HttpServlet {
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 //         return new ModelAndView("prueba", "model", myModel);
      }
+	
+	@RequestMapping (value= "/modulo.htm" , method = RequestMethod.GET)
+	public ModelAndView modulo(ModelMap model, HttpServletRequest request,
+							HttpServletResponse response) throws ServletException, IOException  {
+		logger.info("----Inicio metodo modulo----");
+//		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+			
+		return new ModelAndView("modulo","model", model );
+	}
+
 
 	
 	
-	@RequestMapping (value= "/edicion.htm" ,
-			params ={"action"},
-			method = RequestMethod.GET)
+	@RequestMapping (value= "/edicion.htm" , params ={"action"}, method = RequestMethod.GET)
 	public ModelAndView edicion(ModelMap model,
 								HttpServletRequest request,
 								HttpServletResponse response) throws ServletException, IOException  {

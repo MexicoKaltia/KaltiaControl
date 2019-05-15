@@ -17,7 +17,7 @@ public class UserEmpresaDAOImpl implements UserEmpresaDAO{
 	
 	private static final long serialVersionUID = 1L;
 	protected final Log logger = LogFactory.getLog(getClass());
-	private UserEmpresaEntity userEmpresaEntity;
+//	private UserEmpresaEntity userEmpresaEntity;
 	
     /*
      * Sets the entity manager.
@@ -37,10 +37,10 @@ public class UserEmpresaDAOImpl implements UserEmpresaDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<UserEmpresaEntity> readUserEmpresaDAO(String idEmpresa) {
+	public List<UserEmpresaEntity> readUserEmpresaDAO(String userEmpresaAction) {
 		
-		  Query query = em.createNamedQuery("find userEmpresa by idEmpresa");
-	      query.setParameter("id", idEmpresa);
+		  Query query = em.createNamedQuery("find userEmpresa by actionRegistro");
+	      query.setParameter("id", userEmpresaAction);
 	      try {
 	      //List<UserEmpresaEntity> userEmpresaEntity = (List<UserEmpresaEntity>)query.getResultList( );
 	      return (List<UserEmpresaEntity>)query.getResultList( );
