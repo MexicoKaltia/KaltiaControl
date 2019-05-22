@@ -142,9 +142,9 @@ $(document).ready(function(){
 					horario12in: $('#cita21').val(),
 					horario12out: $('#cita22').val(),
 					horario21in: $('#citaS21').val(),
-					horario22out: $('#citaS22').val(),
-						};
-		console.log(citaJson);
+					horario22out: $('#citaS22').val()
+					};
+		//console.log(citaJson);
 		$('#empresaCitas').val(JSON.stringify(citaJson))
 		  alerta="<div id='limpiaAlertaCita' class='alert alert-success' role='alert'>Modulo Citas Activado</div>";
 		  $(alerta).insertAfter($('#moduloCitalabel'));

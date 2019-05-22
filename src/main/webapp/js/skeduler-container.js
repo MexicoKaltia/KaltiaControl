@@ -3,13 +3,13 @@ function generate() {
 	var condiciones = JSON.parse($('#condiciones').val());
 	var mesActual = JSON.parse($('#mesActual').val());
 	var mesPost = JSON.parse($('#mesPost').val());
-	console.log(condiciones);
-	console.log(mesActual);
-	console.log(mesPost);
+//	console.log(condiciones);
+//	console.log(mesActual);
+//	console.log(mesPost);
 	var d = new Date();
 
 //	console.log("MES:"+(d.getMonth()+1));
-	console.log("Date:"+d.getDate());
+//	console.log("Date:"+d.getDate());
 	var headers = [];
 	headers = diaSemana(d.getDay());
 
@@ -26,7 +26,14 @@ function generate() {
 	    var duration = 0.5; //citasDia.lenght
 	    var comida = 0;
 	    elementosDia = elemenDia(mesActual, d, i);
-	    var cantElementos = elementosDia.length;
+	    var cantElementos = 0;//elementosDia.length;
+	    var diaArray = [];
+	    for(e in elementosDia){
+//	    	console.log(e);
+	    	cantElementos++;
+	    	diaArray.push(e);
+	    }
+//	    console.log(diaArray);
 //	    console.log("i:"+i+" "+cantElementos)
 	    if(cantElementos === 0){
 	    	cantElementos = 1;
@@ -34,23 +41,26 @@ function generate() {
 	    	duration = 1
 	    }
 	    for (var j = 0; j < cantElementos; j++) {  // <--Elementos por dia
-//	    	console.log(elementosDia[j])
-	    	var inicio = (elementosDia[j] - condiciones.horario11in) % 100
-//	    	console.log(inicio)
+	    	var inicio = (diaArray[j] - condiciones.horario11in) % 100
 	    	if(inicio > 10){
 //	    		console.log("hora:"+elementosDia[j])
-	    		startTime2 = ((elementosDia[j] - condiciones.horario11in) /100) + 0.2;
+	    		startTime2 = ((diaArray[j] - condiciones.horario11in) /100) + 0.2;
+	    	}else{
+	    		startTime2 = ((diaArray[j] - condiciones.horario11in) /100) 
 	    	}
 	    	if(comida===1){
 	    		startTime2 = 5;
+	    	}else{
+	    		var elementoCita = elementosDia[diaArray[j]];
+//		    	console.log(elementoCita.userEmpresa);
 	    	}
 //	    	console.log(startTime2);
 	      var task = {
 	        startTime: startTime2,
 	        duration: duration,
 	        column: i,
-	        id: Math.ceil(Math.random() * 100000),
-	        title: 'Service ' + i + ' ' + j
+	        id: (j+1) + ":"+elementoCita.userEmpresa,//Math.ceil(Math.random() * 100000),
+	        title: 'Service ' + (i+1) + ' ' + (j+1) + ':' +elementoCita.descripcionCita
 	      };
 	      tasks.push(task);
 	    }
@@ -72,7 +82,7 @@ function generate() {
 	function diaSemana(getDay){
 		var diaHoy = getDay;
 		var days = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
-		console.log(days[getDay]);
+//		console.log(days[getDay]);
 		var header = [];
 		for(getDay; getDay < days.length; getDay++){
 			header.push(days[getDay]);
@@ -87,7 +97,7 @@ function generate() {
 		var dia = (d.getDate()+i)
 		var tmp = [];
 		if(mesActual[dia]){
-			console.log(mesActual[dia])
+//			console.log(dia+":");console.log(mesActual[dia]);
 			return mesActual[dia]
 		}else{
 			return tmp;
