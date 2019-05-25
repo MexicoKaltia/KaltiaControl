@@ -52,9 +52,8 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		 * hacer la validacion de un idAction ó un idEmpresa not null... y dublicado !!
 		 */
 		resultDAOVO = (ResultDAOVO) empresaDAO.createEmpresaDAO(empresaEntity);
-		logger.info(empresaEntity.getEmpresaClientes());
-		logger.info(empresaEntity.getEmpresaCarpetas());
-		logger.info(empresaEntity.getEmpresaCitas());
+//		logger.info(empresaEntity.getEmpresaModulos());
+//		logger.info(empresaEntity.getEmpresaCitas());
 		
 		if(resultDAOVO.getCode().equals("00")) {
 			ActionEntity actionEntity =new ActionEntity();
@@ -66,6 +65,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			actionEntity.setFooterRequerido(1);
 			actionEntity.setActionPrincipal(2);
 			actionEntity.setAmbiente(PROPS.getProperty("ambiente"));
+			actionEntity.setActionModulos(empresaEntity.getEmpresaModulos());
 			//createActionDAO
 			resultDAOVO = (ResultDAOVO) empresaDAO.createActionDAO(actionEntity);
 			logger.info(resultDAOVO.getCode());
@@ -141,10 +141,9 @@ public class EmpresaManagerImpl implements EmpresaManager{
 //		Inicio Alta Modulos y carpeta Bash		
 		if(resultDAOVO.getCode().equals("00")) {
 			try {
-			resultVO = clienteRest.createServiceEmpresaNueva(empresaEntity.getIdAction().toString(),
-					empresaEntity.getEmpresaClientes(),
+			resultVO = clienteRest.createServiceModulosEmpresaNueva(empresaEntity.getIdAction().toString(),
 					empresaEntity.getEmpresaCitas(),
-					empresaEntity.getEmpresaCarpetas());
+					empresaEntity.getEmpresaModulos());
 			if(resultVO.getCodigo()==0) {
 				resultDAOVO.setCode("00");
 			}else {

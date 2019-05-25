@@ -51,11 +51,9 @@ public class EmpresaEntity implements Serializable{
 	@Column
 	private String empresaFactura;
 	@Column
-	private String empresaClientes;
-	@Column
 	private String empresaCitas;
 	@Column
-	private String empresaCarpetas;
+	private String empresaModulos;
 
 	
 	public EmpresaEntity() {
@@ -153,23 +151,17 @@ public class EmpresaEntity implements Serializable{
 	public void setEmpresaVarios(String empresaVarios) {
 		this.empresaVarios = empresaVarios;
 	}
-	public String getEmpresaClientes() {
-		return empresaClientes;
-	}
-	public void setEmpresaClientes(String empresaClientes) {
-		this.empresaClientes = empresaClientes;
-	}
 	public String getEmpresaCitas() {
 		return empresaCitas;
 	}
 	public void setEmpresaCitas(String empresaCitas) {
 		this.empresaCitas = empresaCitas;
 	}
-	public String getEmpresaCarpetas() {
-		return empresaCarpetas;
+	public String getEmpresaModulos() {
+		return empresaModulos;
 	}
-	public void setEmpresaCarpetas(String empresaCarpetas) {
-		this.empresaCarpetas = empresaCarpetas;
+	public void setEmpresaModulos(String empresaModulos) {
+		this.empresaModulos = empresaModulos;
 	}
 	
 	

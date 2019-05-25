@@ -103,7 +103,7 @@ public class UserManagerImpl implements UserManager{
 				/*
 				 * Informacion Empresa de userEmpresa -- MODULOS
 				 */		
-				if(!empresaEntity.getEmpresaCitas().equals("No Activo") || !empresaEntity.getEmpresaCarpetas().equals("No Activo")) {
+				if(!empresaEntity.getEmpresaCitas().equals("No Activo") || !empresaEntity.getEmpresaModulos().equals("No Activo")) {
 					List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
 					requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
 					if(!empresaEntity.getEmpresaCitas().equals("No Activo")) {

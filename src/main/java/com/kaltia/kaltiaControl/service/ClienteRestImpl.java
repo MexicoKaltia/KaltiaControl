@@ -48,7 +48,7 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 	//static final String URL_GET_USER_EMPRESA =      "http://31.220.63.183:8010/userEmpresaRead";
 	//static final String URL_GET_EMPRESA = 	        "http://31.220.63.183:8010/empresaRead";
 	
-	static final String URL_POST_EMPRESACREATE    = "http://31.220.63.183:8010/empresaCreate";
+	static final String URL_POST_EMPRESAMODULOSCREATE    = "http://31.220.63.183:8010/empresaModulosCreate";
 	static final String URL_POST_EMPRESACITA      = "http://31.220.63.183:8010/empresaCitaActivar";
 	static final String URL_POST_READCITA         = "http://31.220.63.183:8010/readCita";
 	
@@ -65,19 +65,17 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 	}
 	
 	@Override
-	public ResultVO createServiceEmpresaNueva(String idAction,String clientes, String horario, String carpetas) {
+	public ResultVO createServiceModulosEmpresaNueva(String idAction, String horario, String modulos) {
 				
-		if(clientes.equals("") || clientes == null)
-		{	clientes = "No Activo";}
 		if(horario.equals("") || horario == null)
 		{	horario = "No Activo";}
-		if(carpetas.equals("") || carpetas == null)
-		{	carpetas = "No Activo";}
+		if(modulos.equals("") || modulos == null)
+		{	modulos = "No Activo";}
 		
 		
 		 JSONObject jsonRequest = new JSONObject();
 			 jsonRequest.put("action", idAction);	 
-			 jsonRequest.put("valoresFinales", clientes+"++"+ horario+"++"+ carpetas);
+			 jsonRequest.put("valoresFinales", horario+"++"+ modulos);
 //			 
 //			 Map<String,String> req_content = new HashMap();
 //			 req_content.put("idAction", idAction);
@@ -86,7 +84,7 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 //			    
 //			 valoresJsonVO.setAction(idAction);
 
-			 return  getTemplate(URL_POST_EMPRESACREATE, POST, jsonRequest.toString());
+			 return  getTemplate(URL_POST_EMPRESAMODULOSCREATE, POST, jsonRequest.toString());
 	
 	}
 	

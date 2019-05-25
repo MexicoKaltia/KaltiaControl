@@ -48,14 +48,16 @@ $(document).ready(function(){
 
 
 	$('#moduloClienteCheck').change(function(){
-		if($('#moduloClienteCheck').prop('checked'))
-        {
+		if($('#moduloClienteCheck').prop('checked')){
             $('#moduloCliente').collapse('show');
             $('#empresaClientes').val("activo");
+            $('#empresaModulos').val("11,21,22");
         }else{
-        	$('#moduloCliente').collapse('hide')
+        	$('#moduloCliente').collapse('hide');
+        	$('#empresaModulos').val("11");
         	}
-        })
+//		console.log($('#empresaModulos').val())
+        });
       
 	$('#moduloCitaCheck').change(function(){
 		if($('#moduloCitaCheck').prop('checked')){	
@@ -64,48 +66,58 @@ $(document).ready(function(){
 			$('#moduloClienteCheck').prop("disabled", true);
             $('#moduloCita').collapse('show');
             $('#empresaClientes').val("activo");
+            if($('#moduloCarpetaCheck').prop('checked')){
+            	$('#empresaModulos').val("11,21,22,31,41");
+            }else{
+            	$('#empresaModulos').val("11,21,22,31");
+            }
         }else{
         	$( "div" ).remove( "#limpiaAlertaCita" );
         	$('#moduloCita').collapse('hide')
+        	$('#empresaModulos').val("11");
         	if($('#moduloCarpetaCheck').prop('checked')){
 				$('#moduloClienteCheck').prop("checked", true);
 				$('#moduloCliente').collapse('show');
 				$('#moduloClienteCheck').prop("disabled", true);
-				}else{
+				$('#empresaModulos').val("11,21,22,41");
+			}else{
 	        	$('#moduloCliente').collapse('hide');
 	        	$('#moduloClienteCheck').prop("checked", false);
 				$('#moduloClienteCheck').prop("disabled", false);
+				$('#empresaModulos').val("11");
 				}
         	}
-
-//		$("#moduloCita").on("hide.bs.collapse", function(){
-//		    $(".btn").html('<span class="glyphicon glyphicon-collapse-down"></span> Activar moduloCita');
-//		  });
-//		  $("#moduloCita").on("show.bs.collapse", function(){
-//		    $(".btn").html('<span class="glyphicon glyphicon-collapse-up"></span> NO activar Cita');
-//		  });
-	})
+//		console.log($('#empresaModulos').val());
+	});
 	$('#moduloCarpetaCheck').change(function(){
-		if($('#moduloCarpetaCheck').prop('checked'))
-        {
+		if($('#moduloCarpetaCheck').prop('checked')){
 			$('#moduloClienteCheck').prop("checked", true);
 			$('#moduloCliente').collapse('show');
 			$('#moduloClienteCheck').prop("disabled", true);
             $('#moduloCarpeta').collapse('show');
             $('#empresaCarpetas').val("activo");
             $('#empresaClientes').val("activo");
+            if($('#moduloCitaCheck').prop('checked')){
+            	$('#empresaModulos').val("11,21,22,31,41");
+            }else{
+            	$('#empresaModulos').val("11,21,22,41");
+            }
         }else{
         	$('#moduloCarpeta').collapse('hide');
+        	$('#empresaModulos').val("11");
         	if($('#moduloCitaCheck').prop('checked')){
 				$('#moduloClienteCheck').prop("checked", true);
 				$('#moduloCliente').collapse('show');
 				$('#moduloClienteCheck').prop("disabled", true);
-				}else{
+				$('#empresaModulos').val("11,21,22,31");
+			}else{
 	        	$('#moduloCliente').collapse('hide');
 	        	$('#moduloClienteCheck').prop("checked", false);
 				$('#moduloClienteCheck').prop("disabled", false);
+				$('#empresaModulos').val("11");
 				}
         }
+//		console.log($('#empresaModulos').val())
 	});
 	
 	

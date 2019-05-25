@@ -55,13 +55,13 @@
             
             <form  class="" action="empresaAlta.htm" method="post" modelAttribute="empresaEntity">
             <div id="big-form" class="well auth-box"><fieldset>
-              <input id="empresaNombreCompleto" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" required>
-              <input id="idEmpresa" name="idEmpresa" placeholder="Nombre Corto" class="form-control input-md" type="text"   required>
-              <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text"  required>
-              <input id="empresaRFC" name="empresaRFC" placeholder="RFC" class="form-control input-md" type="text"  required>
-              <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text"  required>
-              <input id="empresaEmail" name="empresaEmail" placeholder="Email" class="form-control input-md" type="email"  required>
-              <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text"  required>
+              <input id="empresaNombreCompleto" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" required maxlength="200">
+              <input id="idEmpresa" name="idEmpresa" placeholder="Nombre Corto" class="form-control input-md" type="text"   required maxlength="50">
+              <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text"  required maxlength="20">
+              <input id="empresaRFC" name="empresaRFC" placeholder="RFC" class="form-control input-md" type="text"  required maxlength="13">
+              <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text"  required maxlength="900">
+              <input id="empresaEmail" name="empresaEmail" placeholder="Email" class="form-control input-md" type="email"  required maxlength="50">
+              <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text"  required maxlength="200">
               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="text" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlDescr().toString()}"/>">
 <%--               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="hidden" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>"> --%>
 <!--               <input id="empresaModelo" name="empresaModelo" placeholder="Modelo" class="form-control input-md" type="text"  > -->
@@ -78,9 +78,17 @@
             <div id="big-form" class="well auth-box"><fieldset>
 	            <a  id="modulo"></a>
 	            <label class=" control-label" for="textinput">Modulos</label>
+	            <input id="moduloContactoValue" name="moduloContactoValue" type="hidden" value="11"/>
+	            <input id="moduloIngresaValue" name="moduloIngresaValue" type="hidden" value="21,22" />
+	            <input id="moduloRegistroValue" name="moduloRegistroValue" type="hidden" value="22"/>
+	            <input id="moduloCitaValue" name="moduloCitaValue" type="hidden" value="31"/>
+	            <input id="moduloCarpetaValue" name="moduloCarpetaValue" type="hidden" value="41"/>
+	            
+	            <input id="empresaModulos" name="empresaModulos" type="hidden" />
 	            <input id="empresaClientes" name="empresaClientes" type="hidden" />
 	            <input id="empresaCitas" name="empresaCitas" type="hidden" />
 	            <input id="empresaCarpetas" name="empresaCarpetas" type="hidden" />
+	            
 	            </fieldset></div>
 	            <div id="big-form" class="well auth-box"><fieldset>
 	            <div class="form-check">
@@ -220,7 +228,7 @@
 <!--               <input id="empresaVarios" name="empresaVarios" placeholder="Varios" class="form-control input-md" type="text"  > -->
                <label class=" control-label" for="textarea">Varios</label>
 	            <div class="">                     
-	              <textarea class="form-control" id="empresaVarios" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
+	              <textarea class="form-control" id="empresaVarios" rows="4" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
 	            </div>
               <br>
               <a id="usuario"></a>

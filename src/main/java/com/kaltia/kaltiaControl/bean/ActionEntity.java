@@ -37,10 +37,12 @@ public class ActionEntity implements Serializable{
 	private String actionSeccion2;// text
 	@Column
 	private String ambiente;// text
-
+	@Column
+	private String actionModulos;// text
+	
+	
 		public ActionEntity() {}
-	
-	
+
 	
 	public ActionEntity(String idAction, String idEmpresa, String actionEstilo, Integer headerRequerido,
 			Integer bodyRequerido, Integer footerRequerido, Integer leftRequerido, Integer rigthRequerido,
@@ -132,9 +134,14 @@ public class ActionEntity implements Serializable{
 	public void setAmbiente(String ambiente) {
 		this.ambiente = ambiente;
 	}
+	
+	public String getActionModulos() {
+		return actionModulos;
+	}
 
-
-
+	public void setActionModulos(String actionModulos) {
+		this.actionModulos = actionModulos;
+	}
 
 	
-}
+}//fin de clase
