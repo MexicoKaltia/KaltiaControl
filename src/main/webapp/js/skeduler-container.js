@@ -3,8 +3,9 @@ function generate() {
 	var condiciones = JSON.parse($('#condiciones').val());
 	var mesActual = JSON.parse($('#mesActual').val());
 	var mesPost = JSON.parse($('#mesPost').val());
+	var idEmpresa = $('#idEmpresa').val();
 //	console.log(condiciones);
-//	console.log(mesActual);
+	console.log(mesActual);
 //	console.log(mesPost);
 	var d = new Date();
 
@@ -19,7 +20,6 @@ function generate() {
 	  var elementosSemana = [];
 	  var elementosDia = [];
 	  
-//	  elementosSemana = elementosSem(mesActual, d);
 	  for (var i = 0; i < headers.length ; i++) {  // <-- Elementos por semana
 	    var startTime = -1
 	    var startTime2 = 1
@@ -48,10 +48,12 @@ function generate() {
 	    	}else{
 	    		startTime2 = ((diaArray[j] - condiciones.horario11in) /100) 
 	    	}
+	    	var elementoCita
 	    	if(comida===1){
 	    		startTime2 = 5;
+	    		elementoCita = {"userEmpresa":idEmpresa,"descripcionCita":"Horario Abierto","status":"indefinido"}
 	    	}else{
-	    		var elementoCita = elementosDia[diaArray[j]];
+	    		elementoCita = elementosDia[diaArray[j]];
 //		    	console.log(elementoCita.userEmpresa);
 	    	}
 //	    	console.log(startTime2);
@@ -60,7 +62,7 @@ function generate() {
 	        duration: duration,
 	        column: i,
 	        id: (j+1) + ":"+elementoCita.userEmpresa,//Math.ceil(Math.random() * 100000),
-	        title: 'Service ' + (i+1) + ' ' + (j+1) + ':' +elementoCita.descripcionCita
+	        title: 'Service ' + (i+1) + ' ' + (j+1) + ':' +elementoCita.descripcionCita + '\nStatus:' + elementoCita.status
 	      };
 	      tasks.push(task);
 	    }
@@ -90,14 +92,16 @@ function generate() {
 		for(a=0; a < diaHoy; a++){
 			header.push(days[a]);
 		}
+//		console.log(header);
 		return header;		
 	}
 	
 	function elemenDia(mesActual, d, i){
 		var dia = (d.getDate()+i)
+//console.log(dia);
 		var tmp = [];
+//		console.log(dia+":");console.log(mesActual[dia]);
 		if(mesActual[dia]){
-//			console.log(dia+":");console.log(mesActual[dia]);
 			return mesActual[dia]
 		}else{
 			return tmp;

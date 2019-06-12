@@ -87,6 +87,7 @@
             		<input id="condiciones" name="condiciones" class="form-control input-md" type="hidden" readonly value="<c:out value="${model.requestLoginVO.datosCitasVO.getCondiciones()}"/>">
             		<input id="mesActual" name="mesActual" class="form-control input-md" type="hidden" readonly value="<c:out value="${model.requestLoginVO.datosCitasVO.getMesActual()}"/>">
             		<input id="mesPost" name="mesPost" class="form-control input-md" type="hidden" readonly value="<c:out value="${model.requestLoginVO.datosCitasVO.getMesPost()}"/>">
+            		<input id="idEmpresa" name="mesPost" class="form-control input-md" type="hidden" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/>">
             	</div>
             
         </div><!-- fin de animated -->
