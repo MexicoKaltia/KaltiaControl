@@ -19,6 +19,8 @@ public class HeaderEntity implements Serializable{
 	@Id
 	private String idHeader;
 	@Column
+	private String idAction;
+	@Column
 	private String idEmpresa; 
 	@Column
 	private String headerSeccionArray1; 
@@ -60,6 +62,13 @@ public class HeaderEntity implements Serializable{
 	}
 	public void setIdHeader(String idHeader) {
 		this.idHeader = idHeader;
+	}
+
+	public String getIdAction() {
+		return idAction;
+	}
+	public void setIdAction(String idAction) {
+		this.idAction = idAction;
 	}
 	public String getIdEmpresa() {
 		return idEmpresa;

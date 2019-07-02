@@ -21,6 +21,8 @@ public class BodyEntity implements Serializable{
 	@Column
 	private String idEmpresa; 
 	@Column
+	private String idAction;
+	@Column
 	private String bodyFondo; 
 	@Column
 	private String bodySeccion1; 
@@ -81,6 +83,15 @@ public class BodyEntity implements Serializable{
 	public void setIdEmpresa(String idEmpresa) {
 		this.idEmpresa = idEmpresa;
 	}
+	
+	public String getIdAction() {
+		return idAction;
+	}
+
+	public void setIdAction(String idAction) {
+		this.idAction = idAction;
+	}
+
 
 
 	public String getBodyFondo() {

@@ -69,6 +69,7 @@
 	            <div class="">
 	              <select id="empresaModelo" name="empresaModelo" class="form-control">
 	                <option value="bronea">Bronea</option>
+	                <option value="aerogem">Aerogem</option>
 	                <option value="pendiente">Pendiente</option>
 	              </select>
 	            </div>

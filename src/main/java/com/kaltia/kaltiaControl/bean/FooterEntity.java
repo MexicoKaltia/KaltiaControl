@@ -21,6 +21,8 @@ public class FooterEntity implements Serializable{
 	@Column
 	private String idEmpresa;
 	@Column
+	private String idAction;
+	@Column
 	private String footerSeccion1; 
 	@Column
 	private String footerSeccion2; 
@@ -52,6 +54,15 @@ public class FooterEntity implements Serializable{
 	public void setIdFooter(String idFooter) {
 		this.idFooter = idFooter;
 	}
+
+	public String getIdAction() {
+		return idAction;
+	}
+
+	public void setIdAction(String idAction) {
+		this.idAction = idAction;
+	}
+
 
 	public String getIdEmpresa() {
 		return idEmpresa;

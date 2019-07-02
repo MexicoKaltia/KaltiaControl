@@ -155,7 +155,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 //		    em.getTransaction( ).commit( );
 		      
 	      resultDAOVO.setCode("00");
-	      resultDAOVO.setMessage("Action con exito guardada");
+	      resultDAOVO.setMessage(actionEntity.getIdAction()+" con exito guardada");
 	      
 		}catch(Exception e) {
 			resultDAOVO.setCode("99");
