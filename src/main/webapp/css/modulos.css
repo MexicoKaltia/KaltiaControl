@@ -1,0 +1,56 @@
+
+.colorLabel {
+  color: white;
+}
+
+.center {
+  padding: 70px 0;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+.report{
+  padding: 25%;
+  margin-left: 2%;
+  margin-right: 2%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: stretch;
+}
+.report-head{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: stretch;
+  align-items: flex-start;
+  border: 1px solid
+ }
+.report-title{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-content: stretch;
+  align-items: flex-start;
+}
+.table-fixed{
+  display: block;
+   border-collapse: collapse;
+   overflow-y: auto;
+}
+
+.transparente{
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  filter: alpha(opacity=80);
+  -khtml-opacity: 0.8;
+  }
+
+h3{
+  background-color: rgb(252, 253, 250);
+}
