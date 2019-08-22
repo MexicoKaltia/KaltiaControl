@@ -140,21 +140,22 @@
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<div id="accordion" class="transparente">
-	<h3>Usuarios / Clientes</h3>
+<!--  -->	<h3>Usuarios / Clientes</h3>
 		<div class="report">
-			<div class="report-head">
-				<div>
+			<div class="report-head ">
+				<div class="marco">
 					<h3>Status Usuarios</h3>
 				</div>
-				<div class="input-group" >
-					<input type="text" name="table_search" class="form-control" placeholder="Busqueda">
-					<div class="input-group-append">
+				<div class="input-group marco elementRight" >
+					<input type="text" name="table_search" class="form-control elementRight" placeholder="Busqueda">
+					<div class="input-group-append elementRight">
 						<button type="submit" class="btn btn-default">
 							<i class="fa fa-search"></i>
 						</button>
 					</div>
 				</div>
 			</div>
+			
 			<!--report-head end-->
 			<div class="report-body" data-spy="scroll" data-target=".fijo" data-offset="50">
 				<table class="table table-striped table-hover table-fixed fijo" >
