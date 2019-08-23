@@ -27,8 +27,7 @@
   flex-wrap: nowrap;
   justify-content: space-between;
   align-content: center;
-  align-items: center;
-  border: 1px solid;
+  align-items: flex-start;
  }
 .report-title{
   text-align: center;
@@ -55,10 +54,7 @@
 h3{
   background-color: rgb(252, 253, 250);
 }
-.elementRight{
-	float:right
-}
 .marco{
-	border: 1px solid;
+	border: 0px solid;
 /* 	width:50%; */
 }
