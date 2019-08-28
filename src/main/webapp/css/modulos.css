@@ -19,7 +19,7 @@
   justify-content: center;
   align-content: center;
   align-items: stretch;
-  border: 1px solid;
+/*   border: 1px solid; */
 }
 .report-head{
   display: flex;
@@ -36,6 +36,14 @@
   flex-wrap: nowrap;
   justify-content: space-around;
   align-content: stretch;
+  align-items: flex-start;
+}
+report-footer{
+	display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: center;
   align-items: flex-start;
 }
 .table-fixed{
@@ -55,6 +63,6 @@ h3{
   background-color: rgb(252, 253, 250);
 }
 .marco{
-	border: 0px solid;
+/* 	border: 0px solid; */
 /* 	width:50%; */
 }
