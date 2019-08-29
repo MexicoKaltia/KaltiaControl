@@ -20,3 +20,13 @@ target/classes/jdbc.properties
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.wst.common.project.facet.core.xml
 *.class
+.classpath
+.settings/org.eclipse.jdt.apt.core.prefs
+.settings/org.eclipse.jdt.core.prefs
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.classpath
+.settings/org.eclipse.wst.common.project.facet.core.xml
+.settings/org.eclipse.wst.common.component
+.settings/org.eclipse.jdt.core.prefs
+.classpath

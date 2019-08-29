@@ -160,9 +160,11 @@ $(document).ready(function(){
 		$('#empresaCitas').val(JSON.stringify(citaJson))
 		  alerta="<div id='limpiaAlertaCita' class='alert alert-success' role='alert'>Modulo Citas Activado</div>";
 		  $(alerta).insertAfter($('#moduloCitalabel'));
-	})
+	});
+	
+	
 		
-});
+}); // Fin documento
 
 
 

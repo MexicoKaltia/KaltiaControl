@@ -59,53 +59,21 @@
 
 	<!-- UserEmpresa -->
 	<div class="animated rollIn slow">
-		<div id="big-form" class="well auth-box">
-			<form>
-				<fieldset>
-					<a id="userEmpresa"></a> <label class=" control-label"
-						for="textinput">Usuarios Activos</label>
-				</fieldset>
-			</form>
-		</div>
-		<c:set var="count" value="${0}" />
-		<c:forEach items="${model.requestLoginVO.userEmpresaEntity}"
-			var="userEmpresaEntity">
-			<div id="big-form" class="well auth-box">
-				<form>
-					<fieldset>
-						<div class="form-group">
-							<input id="textinput" name="nombreRegistro"
-								placeholder="Nombre Completo" class="form-control input-md"
-								type="text" readonly
-								value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/> <c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>">
-							<input id="usuarioRegistro<c:out value = "${count}"/>"
-								name="usuarioRegistro" placeholder="Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getUsuarioRegistro()}"/>">
-							<input id="nombreRegistro<c:out value = "${count}"/>"
-								name="nombreRegistro" placeholder="Nombre de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/>">
-							<input id="apellidoRegistro<c:out value = "${count}"/>"
-								name="apellidoRegistro" placeholder="Apelllido de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>">
-							<input id="emailRegistro<c:out value = "${count}"/>"
-								name="emailRegistro" placeholder="Email de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getEmailRegistro()}"/>">
-							<input id="telefonoRegistro<c:out value = "${count}"/>"
-								name="telefonoRegistro" placeholder="Numero telefono de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getTelefonoRegistro()}"/>">
-							<a id="${count}" data-toggle="modal" data-target="#modalUser"
-								class="btn btn-default userEmpresa">Ver Datos Completos</a>
-						</div>
-					</fieldset>
-				</form>
-			</div>
-			<c:set var="count" value="${count+1}" />
-		</c:forEach>
+		
+<%-- 		<c:set var="count" value="${0}" /> --%>
+<%-- 		<c:forEach items="${model.requestLoginVO.userEmpresaEntity}" --%>
+<%-- 			var="userEmpresaEntity"> --%>
+<!-- 			<div id="big-form" class="well auth-box"> -->
+<!-- 				<form> -->
+<!-- 					<fieldset> -->
+<!-- 						<div class="form-group"> -->
+							
+<!-- 						</div> -->
+<!-- 					</fieldset> -->
+<!-- 				</form> -->
+<!-- 			</div> -->
+<%-- 			<c:set var="count" value="${count+1}" /> --%>
+<%-- 		</c:forEach> --%>
 	</div>
 
 	<div class="animated slideInLeft slow">
@@ -171,12 +139,32 @@
 					<tbody>					
 					     <c:set var="count" value="${0}" />
 						   <c:forEach items="${model.requestLoginVO.userEmpresaEntity}" var="userEmpresaEntity">
+<!-- 						   <input id="textinput" name="nombreRegistro" -->
+<!-- 								placeholder="Nombre Completo" class="form-control input-md" -->
+<!-- 								type="text" readonly -->
+<%-- 								value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/> <c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>"> --%>
+							<input id="usuarioRegistro<c:out value = "${count}"/>" name="usuarioRegistro" placeholder="Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getUsuarioRegistro()}"/>">
+							<input id="nombreRegistro<c:out value = "${count}"/>" name="nombreRegistro" placeholder="Nombre de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/>">
+							<input id="apellidoRegistro<c:out value = "${count}"/>"
+								name="apellidoRegistro" placeholder="Apellido de Usuario"
+								class="form-control input-md" type="hidden" readonly
+								value="<c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>">
+							<input id="emailRegistro<c:out value = "${count}"/>"
+								name="emailRegistro" placeholder="Email de Usuario"
+								class="form-control input-md" type="hidden" readonly
+								value="<c:out value="${userEmpresaEntity.getEmailRegistro()}"/>">
+							<input id="telefonoRegistro<c:out value = "${count}"/>"
+								name="telefonoRegistro" placeholder="Numero telefono de Usuario"
+								class="form-control input-md" type="hidden" readonly
+								value="<c:out value="${userEmpresaEntity.getTelefonoRegistro()}"/>">
+<%-- 							<a id="${count}" data-toggle="modal" data-target="#modalUser" --%>
+<!-- 								class="btn btn-default userEmpresa">Ver Datos Completos</a> -->
 							<tr>
 								<td><c:out value="${userEmpresaEntity.getUsuarioRegistro()}"/></td>
 								<td><c:out value="${userEmpresaEntity.getNombreRegistro()}"/> <c:out value="${userEmpresaEntity.getApellidoRegistro()}"/></td>
-								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default userEmpresa"><i class="fa fa-cogs" aria-hidden="true"></i></a></td>
-								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default userEmpresa"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default userEmpresa"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
+								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default statusUserEmpresaBtn"><i class="fa fa-cogs" aria-hidden="true"></i></a></td>
+								<td><a id="${count}" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default edicionUserEmpresaBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default deleteUserEmpresaBtn"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
 							</tr>
 						   <c:set var="count" value="${count+1}" />
 						</c:forEach>
@@ -187,7 +175,7 @@
 			<div>  
 				  <div class="report-footer">
 				    <span >
-				    	<a id="" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+				    	<a id="" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default addUserEmpresaBtn"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
 				    </span>
 				  </div>
 			</div>
@@ -269,19 +257,11 @@
 					<div id="big-form" class="well auth-box">
 						<form>
 							<fieldset>
-								<input id="usuarioRegistro" name="usuarioRegistro"
-									placeholder="Nombre de Usuario" class="form-control input-md"
-									type="text" readonly> <input id="nombreRegistro"
-									name="nombreRegistro" placeholder="Nombre "
-									class="form-control input-md" type="text"> <input
-									id="apellidoRegistro" name="apellidoRegistro"
-									placeholder="Apellido " class="form-control input-md"
-									type="text"> <input id="emailRegistro"
-									name="emailRegistro" placeholder="email "
-									class="form-control input-md" type="email" value=""> <input
-									id="telefonoRegistro" name="telefonoRegistro"
-									placeholder="num telefono " class="form-control input-md"
-									type="text" value="">
+<!-- 								<input id="usuarioRegistro" name="usuarioRegistro" placeholder="Nombre de Usuario" class="form-control input-md" type="text" readonly>  -->
+<!-- 								<input id="nombreRegistro"name="nombreRegistro" placeholder="Nombre " class="form-control input-md" type="text"> -->
+<!-- 								<input id="apellidoRegistro" name="apellidoRegistro"	placeholder="Apellido " class="form-control input-md" type="text">  -->
+<!-- 								<input id="emailRegistro" name="emailRegistro" placeholder="email " class="form-control input-md" type="email" value="">  -->
+<!-- 								<input id="telefonoRegistro" name="telefonoRegistro" placeholder="num telefono " class="form-control input-md" type="text" value=""> -->
 							</fieldset>
 						</form>
 					</div>
@@ -303,21 +283,35 @@
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content"
 			style="background-image:url('http://kaltia-store.xyz/kaltia/modelo/modal/imagen.jpg?v=1');">
-			<div class="modal-header">
-				<label class="sizeEtiqueta colorLabel"><s:property value='identidadVO.empresa'/> - Registro Cliente</label>
+<!-- 			<div class="modal-header"> -->
+<!-- 				<label class="sizeEtiqueta colorLabel"><s:property value='identidadVO.empresa'/> - Registro Cliente</label> -->
 				
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose">
-					<span aria-hidden="true">&times;</span>
-				</button>
-					<div class="alerta">
-						<hiden class="alerta_in"></hiden>
-				</div>
-			</div>
+<!-- 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose"> -->
+<!-- 					<span aria-hidden="true">&times;</span> -->
+<!-- 				</button> -->
+<!-- 					<div class="alerta"> -->
+<!-- 						<hiden class="alerta_in"></hiden> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!--**********************************************************************************-->
 			<div class="modal-body">
+			<div class="container auth" class="clear">
+			<div id="big-form" class="well auth-box">
+			<form>
+			<fieldset>
+				<label class="sizeEtiqueta colorLabel"><s:property value='identidadVO.empresa'/> - Registro Cliente</label>
+			</fieldset>
+			</form>
+			</div>
+				<div id="big-form" class="well auth-box">
 		                <form class="form-horizontal" method="post">
 		                	<fieldset>
-<!-- 		                    <legend class="text-center header"><label><s:property value='identidadVO.empresa'/> - Registo Cliente</label></legend> -->
+							<div class="form-group row">
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user-plus bigicon"></i></span>
+		                      <div class="col-7">
+		                        <input id="idUserRegistro"  name="name" type="text" placeholder="idUserRegistro" class="form-control input-md" maxlength="40">
+		                      </div>
+		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
 		                      <div class="col-7">
@@ -330,18 +324,16 @@
 		                        <input id="apellidoRegistro" name="name" type="text" placeholder="Apellidos" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
-		
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-envelope-o bigicon"></i></span>
 		                      <div class="col-7">
 		                        <input id="emailRegistro" name="email" type="email" placeholder="Email" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
-		
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="telefonoRegistro" name="phone" type="tel" placeholder="Num Telefono" class="form-control" maxlength="20">
+		                        <input id="telefonoRegistro" name="phone" type="text" placeholder="Num Telefono" class="form-control" maxlength="20">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
@@ -362,7 +354,6 @@
 								<input type="password" id="passRegistro2" value="" placeholder="Confirma Password" class="form-control" maxlength="20">
 					          </div>
 					        </div>
-				
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-pencil-square-o bigicon"></i></span>
 		                      <div class="col-7">
@@ -370,9 +361,9 @@
 		                      </div>
 		                    </div>		
 		                </fieldset>
-		                
 		              </form>
-		            
+		            </div>
+		           </div>
 		      </div>
 		      <!--**********************************************************************************-->
 			<div class="modal-footer">
