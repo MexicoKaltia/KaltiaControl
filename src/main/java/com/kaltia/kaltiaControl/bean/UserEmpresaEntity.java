@@ -9,7 +9,8 @@ import javax.persistence.NamedQuery;
 
 
 @Entity(name="tc_userempresa")
-@NamedQuery(query ="Select a from tc_userempresa a where a.actionRegistro = :id and a.statusRegistro='activo'", name = "find userEmpresa by actionRegistro")
+//@NamedQuery(query ="Select a from tc_userempresa a where a.actionRegistro = :id and a.statusRegistro='activo'", name = "find userEmpresa by actionRegistro")
+@NamedQuery(query ="Select a from tc_userempresa a where a.actionRegistro = :id ", name = "find userEmpresa by actionRegistro")
 public class UserEmpresaEntity implements Serializable{
 	
 	/**

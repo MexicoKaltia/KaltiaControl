@@ -39,7 +39,7 @@ import com.kaltia.kaltiaControl.service.UserManager;
 public class ControllerInicial extends HttpServlet {
     
 	private static final long serialVersionUID = -914904182640401317L;
-
+ 
 	protected final Log logger = LogFactory.getLog(getClass());
     
      @Autowired

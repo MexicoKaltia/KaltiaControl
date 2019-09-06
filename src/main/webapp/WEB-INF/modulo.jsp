@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/modulos.css">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+
 
 <!-- ################################################################################################ -->
 <div class="wrapper row1">
@@ -112,57 +114,58 @@
 		<div class="report">
 			<div class="report-head ">
 				<div class="marco">
-					<h3>Status Usuarios</h3>
+					<h2>Status Usuarios</h2>
 				</div>
-				<div class="input-group marco report-head" style="width: 250px;">
-					<input type="text" name="table_search" class="form-control" placeholder="Busqueda">
-					<div class="input-group-append ">
-						<button type="submit" class="btn btn-default">
-							<i class="fa fa-search"></i>
-						</button>
-					</div>
-				</div>
+<!-- 				<div class="input-group marco report-head" style="width: 250px;"> -->
+<!-- 					<input type="text" name="table_search" class="form-control" placeholder="Busqueda"> -->
+<!-- 					<div class="input-group-append "> -->
+<!-- 						<button type="submit" class="btn btn-default"> -->
+<!-- 							<i class="fa fa-search"></i> -->
+<!-- 						</button> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 			</div>
 						<!--report-head end-->
-			<div class="report-body" data-spy="scroll" data-target="fijo" data-offset="50">
+			<div class="report-body" data-offset="50">
 			  <div class="table-responsive">
-				<table class="table table-striped table-hover table-fixed" >
+			  <div id="toolbar">
+				  <button id="button" class="btn btn-secondary">getSelections</button>
+				</div>
+				<table id="userEmpresaTable"
+				data-toggle="table" 
+						data-sortable="true" 
+						data-height="460" 
+						data-silent-sort="false" 
+						data-sort-name="status" 
+						data-sort-order="asc" 
+						data-pagination="true"
+						data-show-button-text="true"
+  						data-show-pagination-switch="true"
+  						data-page-list="[10, 25, 50, 100, 200, Todos]"
+  						data-search="true"
+  						data-click-to-select="true"
+  						data-toolbar="#toolbar">
 					<thead class="thead-dark" style="width: 100%">
-						<tr style="width: 100%">
-							<th style="width: 20%">Id Usuario</th>
-							<th style="width: 60%">Usuario</th>
-							<th style="width: 10%">Status</th>
-							<th style="width: 10%">Edicion</th>
-							<th style="width: 10%">Eliminar</th>
+						<tr>
+							<th style="width: 20%" data-field="idUsuario" data-sortable="true">Id Usuario</th>
+							<th style="width: 60%" data-field="usuario" data-sortable="true">Usuario</th>
+							<th style="width: 10%" data-field="status" data-sortable="true">Status</th>
+							<th style="width: 10%" >Edicion</th>
+							<th style="width: 10%"  >Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>					
 					     <c:set var="count" value="${0}" />
 						   <c:forEach items="${model.requestLoginVO.userEmpresaEntity}" var="userEmpresaEntity">
-<!-- 						   <input id="textinput" name="nombreRegistro" -->
-<!-- 								placeholder="Nombre Completo" class="form-control input-md" -->
-<!-- 								type="text" readonly -->
-<%-- 								value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/> <c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>"> --%>
-							<input id="usuarioRegistro<c:out value = "${count}"/>" name="usuarioRegistro" placeholder="Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getUsuarioRegistro()}"/>">
+							<input id="idUserEmpresa<c:out value = "${count}"/>" name="idUserEmpresa" placeholder="Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getIdUserEmpresa()}"/>">
 							<input id="nombreRegistro<c:out value = "${count}"/>" name="nombreRegistro" placeholder="Nombre de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/>">
-							<input id="apellidoRegistro<c:out value = "${count}"/>"
-								name="apellidoRegistro" placeholder="Apellido de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>">
-							<input id="emailRegistro<c:out value = "${count}"/>"
-								name="emailRegistro" placeholder="Email de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getEmailRegistro()}"/>">
-							<input id="telefonoRegistro<c:out value = "${count}"/>"
-								name="telefonoRegistro" placeholder="Numero telefono de Usuario"
-								class="form-control input-md" type="hidden" readonly
-								value="<c:out value="${userEmpresaEntity.getTelefonoRegistro()}"/>">
-<%-- 							<a id="${count}" data-toggle="modal" data-target="#modalUser" --%>
-<!-- 								class="btn btn-default userEmpresa">Ver Datos Completos</a> -->
+							<input id="apellidoRegistro<c:out value = "${count}"/>" name="apellidoRegistro" placeholder="Apellido de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>">
+							<input id="emailRegistro<c:out value = "${count}"/>" name="emailRegistro" placeholder="Email de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getEmailRegistro()}"/>">
+							<input id="telefonoRegistro<c:out value = "${count}"/>" name="telefonoRegistro" placeholder="Numero telefono de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getTelefonoRegistro()}"/>">
 							<tr>
-								<td><c:out value="${userEmpresaEntity.getUsuarioRegistro()}"/></td>
+								<td><c:out value="${userEmpresaEntity.getIdUserEmpresa()}"/></td>
 								<td><c:out value="${userEmpresaEntity.getNombreRegistro()}"/> <c:out value="${userEmpresaEntity.getApellidoRegistro()}"/></td>
-								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default statusUserEmpresaBtn"><i class="fa fa-cogs" aria-hidden="true"></i></a></td>
+								<td><c:out value="${userEmpresaEntity.getStatusRegistro()}"/></td>
 								<td><a id="${count}" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default edicionUserEmpresaBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
 								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default deleteUserEmpresaBtn"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
 							</tr>
@@ -235,49 +238,7 @@
 
 
 
-<!-- MODAL   modalUserEmpresa -->
-<div class="modal fade" id="modalUser" tabindex="-1" role="dialog"
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content"
-			style="background-image: url('http://kaltia-store.xyz/kaltia/modelo/modal/modalImagenFondo.jpg?v=1');">
-			<div class="modal-header">
-				<h5 class="modal-title" id="modalTitle">modalUser</h5>
-				
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				<div class="alerta">
-					<hiden class="alerta_in"></hiden>
-				</div>
-			</div>
-			<!--**********************************************************************************-->
-			<div class="modal-body">
-				<div class="container auth" class="clear">
-					<div id="big-form" class="well auth-box">
-						<form>
-							<fieldset>
-<!-- 								<input id="usuarioRegistro" name="usuarioRegistro" placeholder="Nombre de Usuario" class="form-control input-md" type="text" readonly>  -->
-<!-- 								<input id="nombreRegistro"name="nombreRegistro" placeholder="Nombre " class="form-control input-md" type="text"> -->
-<!-- 								<input id="apellidoRegistro" name="apellidoRegistro"	placeholder="Apellido " class="form-control input-md" type="text">  -->
-<!-- 								<input id="emailRegistro" name="emailRegistro" placeholder="email " class="form-control input-md" type="email" value="">  -->
-<!-- 								<input id="telefonoRegistro" name="telefonoRegistro" placeholder="num telefono " class="form-control input-md" type="text" value=""> -->
-							</fieldset>
-						</form>
-					</div>
-				</div>
-			</div>
-			<!--**********************************************************************************-->
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal"
-					id="modalEdicionBody_btnClose">Cerrar</button>
-				<button type="submit" class="btn btn-primary"
-					id="modalEdicionHeaderSeccion2_btnSave">Guardar Cambios</button>
-			</div>
-		</div>
-	</div>
-</div>
-<!-- fin modalUserEmpresa-->
+
 <!-- modalRegistro -->
 <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -299,7 +260,7 @@
 			<div id="big-form" class="well auth-box">
 			<form>
 			<fieldset>
-				<label class="sizeEtiqueta colorLabel"><s:property value='identidadVO.empresa'/> - Registro Cliente</label>
+				<label class="sizeEtiqueta colorLabel">Status Cliente</label>
 			</fieldset>
 			</form>
 			</div>
@@ -309,7 +270,7 @@
 							<div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user-plus bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="idUserRegistro"  name="name" type="text" placeholder="idUserRegistro" class="form-control input-md" maxlength="40">
+		                        <input id="idUserEmpresa"  name="name" type="text" placeholder="id User" class="form-control input-md" maxlength="40" readonly>
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
@@ -383,16 +344,28 @@
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
 <script src="<%=request.getContextPath()%>/js/modalPerfilE.js"></script>
-<!-- <script src="//code.jquery.com/jquery-3.1.0.slim.min.js"></script> -->
 <script src="<%=request.getContextPath()%>/js/jquery.skeduler.js"></script>
 <script src="<%=request.getContextPath()%>/js/skeduler-container.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+
 <script>
     $( function() {
       $( "#accordion" ).accordion({
         collapsible: true
       });
     } );
+    
+
+	var $table = $('#table')
+	var $button = $('#button')
+	
+	$(function() {
+	  $button.click(function () {
+	    alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')))
+	  })
+	})
+
     </script>
 
 
