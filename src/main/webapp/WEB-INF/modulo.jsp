@@ -35,10 +35,8 @@
 <div id="breadcrumb" class="hoc clear">
 	<ul>
 		<li><a href="#">KaltiaControl</a></li>
-		<li><a href="#"><c:out
-					value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}" /></a></li>
-		<li><a href="#"><c:out
-					value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}" /></a></li>
+		<li><a href="#"><c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}" /></a></li>
+		<li><a href="#"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}" /></a></li>
 		<li><a href="#">Modulos</a></li>
 	</ul>
 </div>
@@ -110,20 +108,12 @@
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<div id="accordion" class="transparente">
-<!--  -->	<h3>Usuarios / Clientes</h3>
+	<h3>Usuarios / Clientes</h3>
 		<div class="report">
 			<div class="report-head ">
 				<div class="marco">
 					<h2>Status Usuarios</h2>
 				</div>
-<!-- 				<div class="input-group marco report-head" style="width: 250px;"> -->
-<!-- 					<input type="text" name="table_search" class="form-control" placeholder="Busqueda"> -->
-<!-- 					<div class="input-group-append "> -->
-<!-- 						<button type="submit" class="btn btn-default"> -->
-<!-- 							<i class="fa fa-search"></i> -->
-<!-- 						</button> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
 			</div>
 						<!--report-head end-->
 			<div class="report-body" data-offset="50">
@@ -178,7 +168,7 @@
 			<div>  
 				  <div class="report-footer">
 				    <span >
-				    	<a id="" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default addUserEmpresaBtn"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+				    	<a id="addUser" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default addUserEmpresaBtn"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
 				    </span>
 				  </div>
 			</div>
@@ -213,128 +203,123 @@
 				consequat lectus. Class aptent taciti sociosqu ad litora torquent
 				per conubia nostra, per inceptos himenaeos.</p>
 		</div>
-	</div>
-</div>
-<!-- fin de div body -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+   	</div> <!-- fin de div accordion -->
+</div><!-- fin de div body -->
 
 
 <!-- modalRegistro -->
 <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content"
-			style="background-image:url('http://kaltia-store.xyz/kaltia/modelo/modal/imagen.jpg?v=1');">
-<!-- 			<div class="modal-header"> -->
-<!-- 				<label class="sizeEtiqueta colorLabel"><s:property value='identidadVO.empresa'/> - Registro Cliente</label> -->
-				
-<!-- 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose"> -->
-<!-- 					<span aria-hidden="true">&times;</span> -->
-<!-- 				</button> -->
-<!-- 					<div class="alerta"> -->
-<!-- 						<hiden class="alerta_in"></hiden> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
+		<div class="modal-content" style="background-image:url('http://kaltia-store.xyz/kaltia/modelo/modal/imagen.jpg?v=1');">
+			<div class="modal-header">
+				<label class="sizeEtiqueta colorLabel">- Registro Cliente -</label>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="alerta">
+						<hiden class="alerta_in"></hiden>
+				</div>
+			</div>
 			<!--**********************************************************************************-->
 			<div class="modal-body">
 			<div class="container auth" class="clear">
-			<div id="big-form" class="well auth-box">
-			<form>
-			<fieldset>
-				<label class="sizeEtiqueta colorLabel">Status Cliente</label>
-			</fieldset>
-			</form>
-			</div>
-				<div id="big-form" class="well auth-box">
+<!-- 				<div id="big-form" class="well auth-box"> -->
 		                <form class="form-horizontal" method="post">
 		                	<fieldset>
 							<div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user-plus bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="idUserEmpresa"  name="name" type="text" placeholder="id User" class="form-control input-md" maxlength="40" readonly>
+		                        <input id="altaidUserEmpresa"  name="name" type="text" placeholder="id User" class="form-control input-md" maxlength="40" readonly>
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="nombreRegistro"  name="name" type="text" placeholder="Nombre(s)" class="form-control" maxlength="40">
+		                        <input id="altanombreRegistro"  name="name" type="text" placeholder="Nombre(s)" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="apellidoRegistro" name="name" type="text" placeholder="Apellidos" class="form-control" maxlength="40">
+		                        <input id="altaapellidoRegistro" name="name" type="text" placeholder="Apellidos" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-envelope-o bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="emailRegistro" name="email" type="email" placeholder="Email" class="form-control" maxlength="40">
+		                        <input id="altaemailRegistro" name="email" type="email" placeholder="Email" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="telefonoRegistro" name="phone" type="text" placeholder="Num Telefono" class="form-control" maxlength="20">
+		                        <input id="altatelefonoRegistro" name="phone" type="text" placeholder="Num Telefono" class="form-control" maxlength="20">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 					          <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-address-book bigicon"></i></span>
 					          <div class="col-7">
-								<input type="text" id="usuarioRegistro" value="" placeholder="Digita Usuario" class="form-control" maxlength="11">
+								<input type="text" id="altausuarioRegistro" value="" placeholder="Digita Usuario" class="form-control" maxlength="11">
 					          </div>
 					        </div>
 					        <div class="form-group row">
 					          <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-circle bigicon"></i></span>
 					          <div class="col-7">
-								<input type="password" id="passRegistro1" value="" placeholder="Password" class="form-control" maxlength="20">
+								<input type="password" id="altapassRegistro1" value="" placeholder="Password" class="form-control" maxlength="20">
 					          </div>
 					        </div>
 					        <div class="form-group row">
 					          <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-circle bigicon"></i></span>
 					          <div class="col-7">
-								<input type="password" id="passRegistro2" value="" placeholder="Confirma Password" class="form-control" maxlength="20">
+								<input type="password" id="altapassRegistro2" value="" placeholder="Confirma Password" class="form-control" maxlength="20">
 					          </div>
 					        </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-pencil-square-o bigicon"></i></span>
 		                      <div class="col-7">
-		                        <textarea class="form-control" id="messageRegistro" name="message" placeholder="Captura tu mensaje, en breve un asesor se pondrá en contacto. Gracias" rows="4"></textarea>
+		                        <textarea class="form-control" id="altamessageRegistro" name="message" placeholder="Captura tu mensaje, en breve un asesor se pondrá en contacto. Gracias" rows="4"></textarea>
 		                      </div>
 		                    </div>		
 		                </fieldset>
 		              </form>
-		            </div>
+<!-- 		            </div> -->
 		           </div>
 		      </div>
 		      <!--**********************************************************************************-->
 			<div class="modal-footer">
 				<a href="#" data-dismiss="modal" class="btn" id="modal_btnClose">Cerrar</a>
-				<a href="#" class="btn btn-primary" id="btnSaveRegistro">Guardar</a>
+				<a href="#modalRegistro" class="btn btn-primary" id="altabtnSaveRegistro">Guardar</a>
 			</div>
 		</div>
 	</div>
 </div>
 <!-- FIN modalREGISTRO -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div>
+	<input type="hidden" id="idEmpresa" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}" />" />
+	<input type="hidden" id="idAction" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdAction()}" />" />
+</div>
+
+
+
+
+
 
 
 <!-- JAVASCRIPTS -->
@@ -346,6 +331,7 @@
 <script src="<%=request.getContextPath()%>/js/modalPerfilE.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.skeduler.js"></script>
 <script src="<%=request.getContextPath()%>/js/skeduler-container.js"></script>
+<script src="<%=request.getContextPath()%>/js/modulo.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
 

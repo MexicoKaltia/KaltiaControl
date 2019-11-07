@@ -41,10 +41,10 @@ $('.addUserEmpresaBtn').click(function(){
 	
 });
 
-$('#btnSaveRegistro').click(function(){
-	
-	alert('Alta Edicion UserEmpresa');
-});
+//$('#btnSaveRegistro').click(function(){
+//	
+//	alert('Alta Edicion UserEmpresa');
+//});
 
 
 
