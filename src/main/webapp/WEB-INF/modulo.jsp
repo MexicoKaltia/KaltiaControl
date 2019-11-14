@@ -59,21 +59,7 @@
 
 	<!-- UserEmpresa -->
 	<div class="animated rollIn slow">
-		
-<%-- 		<c:set var="count" value="${0}" /> --%>
-<%-- 		<c:forEach items="${model.requestLoginVO.userEmpresaEntity}" --%>
-<%-- 			var="userEmpresaEntity"> --%>
-<!-- 			<div id="big-form" class="well auth-box"> -->
-<!-- 				<form> -->
-<!-- 					<fieldset> -->
-<!-- 						<div class="form-group"> -->
-							
-<!-- 						</div> -->
-<!-- 					</fieldset> -->
-<!-- 				</form> -->
-<!-- 			</div> -->
-<%-- 			<c:set var="count" value="${count+1}" /> --%>
-<%-- 		</c:forEach> --%>
+div aparte		
 	</div>
 
 	<div class="animated slideInLeft slow">
@@ -108,67 +94,48 @@
 	<!-- ################################################################################################ -->
 	<!-- ################################################################################################ -->
 	<div id="accordion" class="transparente">
-	<h3>Usuarios / Clientes</h3>
+	<h3 class="modulo">Usuarios / Clientes</h3>
 		<div class="report">
 			<div class="report-head ">
 				<div class="marco">
-					<h2>Status Usuarios</h2>
+					<h2 class="modulo">Status Usuarios</h2>
 				</div>
 			</div>
 						<!--report-head end-->
 			<div class="report-body" data-offset="50">
 			  <div class="table-responsive">
-			  <div id="toolbar">
-				  <button id="button" class="btn btn-secondary">getSelections</button>
-				</div>
-				<table id="userEmpresaTable"
-				data-toggle="table" 
-						data-sortable="true" 
-						data-height="460" 
-						data-silent-sort="false" 
-						data-sort-name="status" 
-						data-sort-order="asc" 
-						data-pagination="true"
-						data-show-button-text="true"
-  						data-show-pagination-switch="true"
-  						data-page-list="[10, 25, 50, 100, 200, Todos]"
-  						data-search="true"
-  						data-click-to-select="true"
-  						data-toolbar="#toolbar">
-					<thead class="thead-dark" style="width: 100%">
+				<table id='userEmpresaTable'
+  						data-locale="es-MX"
+						data-toggle='table' 
+						data-height='460' 
+						data-sort-name='statusRegistro' 
+						data-sort-order='asc' 
+						data-pagination='true'
+  						data-page-list='[10, 25, 50, 100, 200, Todos]'
+  						data-search='true'
+  						data-click-to-select='true'
+  						data-checkbox-header="false"
+  						data-url='http://localhost:8010/readUserEmpresa/modelo/0'>
+					<thead class='thead-dark'>
 						<tr>
-							<th style="width: 20%" data-field="idUsuario" data-sortable="true">Id Usuario</th>
-							<th style="width: 60%" data-field="usuario" data-sortable="true">Usuario</th>
-							<th style="width: 10%" data-field="status" data-sortable="true">Status</th>
-							<th style="width: 10%" >Edicion</th>
-							<th style="width: 10%"  >Eliminar</th>
+<!-- 							<th data-width="10" data-width-unit="%" data-field="state" data-checkbox="true"></th> -->
+							<th data-width="30" data-width-unit="%" data-halign="center" data-align="left" data-field='nombreRegistro' data-sortable='true'>Nombre</th>
+							<th data-width="30" data-width-unit="%" data-halign="center" data-align="left" data-field='apellidoRegistro' data-sortable='true'>Apellidos</th>
+							<th data-width="20" data-width-unit="%" data-halign="center" data-align="left" data-field='statusRegistro' data-sortable='true'>Status</th>
+							<th data-width="10" data-width-unit="%" data-halign="center" data-align="left" data-field="operateUpdate" data-formatter="operateFormatterUpdate" data-events="window.operateEventsUpdate">Editar</th>
+							<th data-width="10" data-width-unit="%" data-halign="center" data-align="left" data-field="operateDelete" data-formatter="operateFormatterDelete" data-events="operateEventsDelete">Eliminar</th>
 						</tr>
 					</thead>
-					<tbody>					
-					     <c:set var="count" value="${0}" />
-						   <c:forEach items="${model.requestLoginVO.userEmpresaEntity}" var="userEmpresaEntity">
-							<input id="idUserEmpresa<c:out value = "${count}"/>" name="idUserEmpresa" placeholder="Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getIdUserEmpresa()}"/>">
-							<input id="nombreRegistro<c:out value = "${count}"/>" name="nombreRegistro" placeholder="Nombre de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getNombreRegistro()}"/>">
-							<input id="apellidoRegistro<c:out value = "${count}"/>" name="apellidoRegistro" placeholder="Apellido de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getApellidoRegistro()}"/>">
-							<input id="emailRegistro<c:out value = "${count}"/>" name="emailRegistro" placeholder="Email de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getEmailRegistro()}"/>">
-							<input id="telefonoRegistro<c:out value = "${count}"/>" name="telefonoRegistro" placeholder="Numero telefono de Usuario" class="form-control input-md" type="hidden" readonly value="<c:out value="${userEmpresaEntity.getTelefonoRegistro()}"/>">
-							<tr>
-								<td><c:out value="${userEmpresaEntity.getIdUserEmpresa()}"/></td>
-								<td><c:out value="${userEmpresaEntity.getNombreRegistro()}"/> <c:out value="${userEmpresaEntity.getApellidoRegistro()}"/></td>
-								<td><c:out value="${userEmpresaEntity.getStatusRegistro()}"/></td>
-								<td><a id="${count}" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default edicionUserEmpresaBtn"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
-								<td><a id="${count}" data-toggle="modal" data-target="#modalUser"class="btn btn-default deleteUserEmpresaBtn"><i class="fa fa-user-times" aria-hidden="true"></i></a></td>
-							</tr>
-						   <c:set var="count" value="${count+1}" />
-						</c:forEach>
-					</tbody>
+<!-- 					<tbody>					 -->
+					    
+<!-- 					</tbody> -->
 				</table>
 			</div>
 			</div>
 			<div>  
 				  <div class="report-footer">
 				    <span >
-				    	<a id="addUser" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default addUserEmpresaBtn"><i class="fa fa-user-plus" aria-hidden="true"></i></a>
+				    	<a id="addUser" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default addUserEmpresaBtn"><i class="fa fa-2x fa-user-plus" aria-hidden="true"></i></a>
 				    </span>
 				  </div>
 			</div>
@@ -230,55 +197,55 @@
 							<div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user-plus bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="altaidUserEmpresa"  name="name" type="text" placeholder="id User" class="form-control input-md" maxlength="40" readonly>
+		                        <input id="idUserEmpresa" name="name" type="text" placeholder="id User" class="form-control input-md" maxlength="40" readonly >
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="altanombreRegistro"  name="name" type="text" placeholder="Nombre(s)" class="form-control" maxlength="40">
+		                        <input id="nombreRegistro"  name="name" type="text" placeholder="Nombre(s)" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="altaapellidoRegistro" name="name" type="text" placeholder="Apellidos" class="form-control" maxlength="40">
+		                        <input id="apellidoRegistro" name="name" type="text" placeholder="Apellidos" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-envelope-o bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="altaemailRegistro" name="email" type="email" placeholder="Email" class="form-control" maxlength="40">
+		                        <input id="emailRegistro" name="email" type="email" placeholder="Email" class="form-control" maxlength="40">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
 		                      <div class="col-7">
-		                        <input id="altatelefonoRegistro" name="phone" type="text" placeholder="Num Telefono" class="form-control" maxlength="20">
+		                        <input id="telefonoRegistro" name="phone" type="text" placeholder="Num Telefono" class="form-control" maxlength="20">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
 					          <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-address-book bigicon"></i></span>
 					          <div class="col-7">
-								<input type="text" id="altausuarioRegistro" value="" placeholder="Digita Usuario" class="form-control" maxlength="11">
+								<input type="text" id="usuarioRegistro" value="" placeholder="Digita Usuario" class="form-control" maxlength="11">
 					          </div>
 					        </div>
 					        <div class="form-group row">
 					          <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-circle bigicon"></i></span>
 					          <div class="col-7">
-								<input type="password" id="altapassRegistro1" value="" placeholder="Password" class="form-control" maxlength="20">
+								<input type="password" id="passRegistro1" value="" placeholder="Password" class="form-control" maxlength="20">
 					          </div>
 					        </div>
 					        <div class="form-group row">
 					          <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-circle bigicon"></i></span>
 					          <div class="col-7">
-								<input type="password" id="altapassRegistro2" value="" placeholder="Confirma Password" class="form-control" maxlength="20">
+								<input type="password" id="passRegistro2" value="" placeholder="Confirma Password" class="form-control" maxlength="20">
 					          </div>
 					        </div>
 		                    <div class="form-group row">
 		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-pencil-square-o bigicon"></i></span>
 		                      <div class="col-7">
-		                        <textarea class="form-control" id="altamessageRegistro" name="message" placeholder="Captura tu mensaje, en breve un asesor se pondrá en contacto. Gracias" rows="4"></textarea>
+		                        <textarea class="form-control" id="messageRegistro" name="message" placeholder="Captura tu mensaje, en breve un asesor se pondrá en contacto. Gracias" rows="4"></textarea>
 		                      </div>
 		                    </div>		
 		                </fieldset>
@@ -289,7 +256,7 @@
 		      <!--**********************************************************************************-->
 			<div class="modal-footer">
 				<a href="#" data-dismiss="modal" class="btn" id="modal_btnClose">Cerrar</a>
-				<a href="#modalRegistro" class="btn btn-primary" id="altabtnSaveRegistro">Guardar</a>
+				<a href="#modalRegistro" class="btn btn-primary" id="btnSaveRegistro">Guardar</a>
 			</div>
 		</div>
 	</div>
@@ -334,6 +301,7 @@
 <script src="<%=request.getContextPath()%>/js/modulo.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
+<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table-locale-all.min.js"></script>
 
 <script>
     $( function() {
@@ -341,18 +309,7 @@
         collapsible: true
       });
     } );
-    
-
-	var $table = $('#table')
-	var $button = $('#button')
-	
-	$(function() {
-	  $button.click(function () {
-	    alert('getSelections: ' + JSON.stringify($table.bootstrapTable('getSelections')))
-	  })
-	})
-
-    </script>
+</script>
 
 
 </body>
