@@ -30,26 +30,34 @@ $(document).ready(function(){
 	/*
 	 * Variables Globales
 	 */
-	var url = "http://31.220.63.183:8010/";
-	var urlUpload= "http://31.220.63.183:8011/";
-	var urlCita = "http://31.220.63.183:8012/";
-//	var url = "http://localhost:8010/";
-//	var urlUpload= "http://localhost:8011/";
-//	var urlCita = "http://localhost:8012/";
+//	var url = "http://31.220.63.183:8010/";
+//	var urlUpload= "http://31.220.63.183:8011/";
+//	var urlCita = "http://31.220.63.183:8012/";
+	var url = "http://localhost:8010/";
+	var urlUpload= "http://localhost:8011/";
+	var urlCita = "http://localhost:8012/";
 	
 	$.idEmpresa = $("#idEmpresa").val();
 	$.action = $("#idAction").val();
 	$.idUserEmpresa ="";
+	$.url2 = url+"readUserEmpresa/"+$.action+"/"+$.idUserEmpresa
 	
-	$.userEmpresa = $(function(){
+	var $userEmpresa = $(function(){
 		readIdUserEmpresa("0");
 	});
+	
 
 	/*
 	 * Carga la Tabla inicial
 	 */
-	var $table = $('#userEmpresaTable')
-	
+	$( function() {
+		var $table = $('#userEmpresaTable');
+		//$('#userEmpresaTable').bootstrapTable('load', $.userEmpresa);
+		$table.bootstrapTable({data : $userEmpresa})
+	} );       
+
+	 
+	 
 	window.operateEventsUpdate = {
 		    'click .like': function (e, value, row, index) {
 //		      alert('You click like action, row: ' + row.idUserEmpresa);//JSON.stringify(row))

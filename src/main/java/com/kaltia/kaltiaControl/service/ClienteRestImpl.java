@@ -45,13 +45,15 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 //	static final String URL_GET_EMPRESA = 		"http://31.220.60.92:8010/empresaRead";
 	
 	////////////   URL LOCAL /////////////////
-	//static final String URL_GET_USER_EMPRESA =      "http://31.220.63.183:8010/userEmpresaRead";
-	//static final String URL_GET_EMPRESA = 	        "http://31.220.63.183:8010/empresaRead";
+	static final String URL_POST_EMPRESAMODULOSCREATE    = "http://localhost:8010/empresaModulosCreate";
+	static final String URL_POST_EMPRESACITA      = "http://localhost:8010/empresaCitaActivar";
+	static final String URL_POST_READCITA         = "http://localhost:8010/readCita";
 	
-	static final String URL_POST_EMPRESAMODULOSCREATE    = "http://31.220.63.183:8010/empresaModulosCreate";
+	
+//	static final String URL_POST_EMPRESAMODULOSCREATE    = "http://31.220.63.183:8010/empresaModulosCreate";
 //	static final String URL_POST_EMPRESACITA      = "http://31.220.63.183:8010/empresaCitaActivar";
-	static final String URL_POST_READCITA         = "http://31.220.63.183:8010/readCita";
-	
+//	static final String URL_POST_READCITA         = "http://31.220.63.183:8010/readCita";
+//	
 	static final String POST = "HttpMethod.POST";
 	static final String GET  = "HttpMethod.GET";
 	static final String PUT  = "HttpMethod.PUT";

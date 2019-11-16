@@ -1,11 +1,11 @@
 <%@ include file="/layout/head.jsp"%>
 <!-- ################################################################################################ -->
-<link href="<%=request.getContextPath()%>/css/jquery.skeduler.min.css"
-	rel="stylesheet" type="text/css" media="all">
+<link href="<%=request.getContextPath()%>/css/jquery.skeduler.min.css" rel="stylesheet" type="text/css" media="all">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/modulos.css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet">
+<link rel="stylesheet"	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-table.css">
+<!-- <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet"> -->
 
 
 <!-- ################################################################################################ -->
@@ -102,6 +102,7 @@ div aparte
 				</div>
 			</div>
 						<!--report-head end-->
+						<!-- data-url='http://localhost:8010/readUserEmpresa/modelo/0' -->
 			<div class="report-body" data-offset="50">
 			  <div class="table-responsive">
 				<table id='userEmpresaTable'
@@ -115,7 +116,7 @@ div aparte
   						data-search='true'
   						data-click-to-select='true'
   						data-checkbox-header="false"
-  						data-url='http://localhost:8010/readUserEmpresa/modelo/0'>
+  						>
 					<thead class='thead-dark'>
 						<tr>
 <!-- 							<th data-width="10" data-width-unit="%" data-field="state" data-checkbox="true"></th> -->
@@ -273,42 +274,42 @@ div aparte
 
 
 
-
-
-
-
-
 <div>
 	<input type="hidden" id="idEmpresa" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}" />" />
 	<input type="hidden" id="idAction" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdAction()}" />" />
 </div>
 
-
-
-
-
-
-
 <!-- JAVASCRIPTS -->
+
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.backtotop.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.mobilemenu.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
-<script src="<%=request.getContextPath()%>/js/modalPerfilE.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.skeduler.js"></script>
 <script src="<%=request.getContextPath()%>/js/skeduler-container.js"></script>
-<script src="<%=request.getContextPath()%>/js/modulo.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script>
-<script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table-locale-all.min.js"></script>
+
+<script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
+<script src="<%=request.getContextPath()%>/js/modalPerfilE.js"></script>
+<script src="<%=request.getContextPath()%>/js/modulo.js"></script>
+
+<script src="<%=request.getContextPath()%>/js/bootstrap-table.js"></script>
+<script src="<%=request.getContextPath()%>/js/bootstrap-table-locale-all.js"></script>
+<!-- <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.js"></script> -->
+<!-- <script src="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table-locale-all.min.js"></script> -->
+
+
+
+<script type="text/javascript">
+</script>
+
 
 <script>
     $( function() {
       $( "#accordion" ).accordion({
         collapsible: true
       });
-    } );
+    } );        	
 </script>
 
 
