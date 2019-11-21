@@ -30,12 +30,12 @@ $(document).ready(function(){
 	/*
 	 * Variables Globales
 	 */
-//	var url = "http://31.220.63.183:8010/";
-//	var urlUpload= "http://31.220.63.183:8011/";
-//	var urlCita = "http://31.220.63.183:8012/";
-	var url = "http://localhost:8010/";
-	var urlUpload= "http://localhost:8011/";
-	var urlCita = "http://localhost:8012/";
+	var url = "http://31.220.63.183:8010/";
+	var urlUpload= "http://31.220.63.183:8011/";
+	var urlCita = "http://31.220.63.183:8012/";
+//	var url = "http://localhost:8010/";
+//	var urlUpload= "http://localhost:8011/";
+//	var urlCita = "http://localhost:8012/";
 	
 	$.idEmpresa = $("#idEmpresa").val();
 	$.action = $("#idAction").val();
@@ -46,14 +46,19 @@ $(document).ready(function(){
 		readIdUserEmpresa("0");
 	});
 	
-
 	/*
 	 * Carga la Tabla inicial
 	 */
 	$( function() {
-		var $table = $('#userEmpresaTable');
-		//$('#userEmpresaTable').bootstrapTable('load', $.userEmpresa);
-		$table.bootstrapTable({data : $userEmpresa})
+//		var $table = $('#userEmpresaTable');
+//		//$('#userEmpresaTable').bootstrapTable('load', $.userEmpresa);
+//		$table.bootstrapTable({data : JSON.stringify(readIdUserEmpresa("0"))})
+//		console.log("function load data option");
+//		$('#userEmpresaTable').bootstrapTable('load', $userEmpresa);
+//		console.log("function load data metodo");
+//		$('#userEmpresaTable').bootstrapTable('refresh');
+//		console.log("function refresh data");
+		
 	} );       
 
 	 
@@ -77,7 +82,7 @@ $(document).ready(function(){
 	window.operateEventsDelete = {
 	    'click .remove': function (e, value, row, index) {
 	    	confirm("Estás seguro de Eliminar el Registro : "+row.nombreRegistro);
-	      $table.bootstrapTable('remove', {
+	    	$('#userEmpresaTable').bootstrapTable('remove', {
 	        field: 'idUserEmpresa',
 	        values: [row.idUserEmpresa]
 	      });
@@ -110,8 +115,8 @@ $(document).ready(function(){
 			  crossDomain: true,
 			  success: 	function(data){					  
 				  console.log(data);
-				  if(data.codigo===0){
-					  avisaAlerta(data);}
+				  avisaAlerta(data);
+				  readIdUserEmpresa(0);
 				},
 			  error: function(){
 				  errorAlerta();
@@ -138,14 +143,22 @@ $(document).ready(function(){
 //			  data: JSON.stringify(registroJson),
 			  headers: {  'Access-Control-Allow-Origin': url, 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS', 'Access-Control-Allow-Headers': 'X-PINGOTHER' },
 			  crossDomain: true,
-			  success: 	function(data){					  
-				  console.log(data);
+			  success: 	function(data){
 				  if(data.length > 0){
-					  
-					  }else{
-						  alert("Registros Usuarios: 0");
-						  console.log("No existen usuarios de empresa");
-					  }
+    				  console.log(data);
+//	    			  var $table = $('#userEmpresaTable');
+		   			//$('#userEmpresaTable').bootstrapTable('load', $.userEmpresa);
+//					$('#userEmpresaTable').bootstrapTable({data : data})
+//					console.log("function load data option");
+					$('#userEmpresaTable').bootstrapTable('load', data);
+//					console.log("function load data metodo");
+					$('#userEmpresaTable').bootstrapTable('refresh');
+//					console.log("function refresh data");
+//					  console.log(data.length);
+				  }else{
+					  alert("Registros Usuarios: 0");
+					  console.log("No existen usuarios de empresa");
+				  }
 				},
 			  error: function(){
 				  errorAlerta();
@@ -174,8 +187,12 @@ $(document).ready(function(){
 				  crossDomain: true,
 				  success: 	function(data){					  
 					  console.log(data);
+					  avisaAlerta(data);
 					  if(data.codigo === 0){
 						  console.log("Registro User Eliminado");
+							$('#userEmpresaTable').bootstrapTable('refresh');
+//						  location.reload();
+						  
 						  }else{
 							  alert("Registros Usuarios: 0");
 							  console.log("No existen usuarios de empresa");
@@ -197,28 +214,62 @@ $(document).ready(function(){
 	
 	
 	
-	
-	function limpiaAlerta(){
-		$( "div" ).remove( "#limpiaAlerta" );
-	}
-	function errorAlerta(){
-		alerta="<div id='limpiaAlerta' class='alert alert-danger' role='alert'>Error de Enlace</div>";
-		$(alerta).insertAfter($('.alerta_in'));
-	}
-	
-	function avisaAlerta(data){
-		limpiaAlerta();
-		 if(data.codigo===0){
-//			  validaUsuarioEmpresa(data.mensajeArray);
-			  alerta="<div id='limpiaAlerta' class='alert alert-success' role='alert'>"+data.codigo+" "+data.mensaje.toString()+"</div>";
-			  $(alerta).insertAfter($('.alerta_in'));//.delay(2000);
-			  
-			  location.reload();
-		  }else{
-			  alerta="<div id='limpiaAlerta' class='alert alert-warning' role='alert'>"+data.codigo+" "+data.mensaje.toString()+"</div>";
-				$(alerta).insertAfter($('.alerta_in'));
-		  }
-	}
+		/*
+		 * ********* ALERTAS  ***********
+		 */
+		function limpiaAlerta(){
+			$( "div" ).remove( "#limpiaAlerta" );
+		}
+		
+		function avisaAlertaEdicion(data){
+			limpiaAlerta();
+			 if(data.codigo===0){
+				  location.reload();
+			  }
+		}
+		
+		function avisaAlerta(data){
+			limpiaAlerta();
+			 if(data.codigo===0){
+				 modalClose();
+//				 $("#alerta").click();
+				 alerta="<div id='limpiaAlerta' class='alert alert-success' role='alert'>"+data.codigo+" "+data.mensaje.toString()+"</div>";
+				 alertaFade(alerta); 
+			 }else{
+				 modalClose();
+				  alerta="<div id='limpiaAlerta' class='alert alert-warning' role='alert'>"+data.codigo+" "+data.mensaje.toString()+"</div>";
+				  alertaFade(alerta); 
+			  }
+		}
+		
+		function errorAlerta(){
+			alerta="<div id='limpiaAlerta' class='alert alert-danger' role='alert'>Error de Enlace</div>";
+			$(alerta).insertAfter($('.alerta_in'));
+		}
+		
+		function modalClose(){
+			 $("#modalIngresa .close").click();
+			 $("#modalCita .close").click();
+			 $("#modalRegistro .close").click();
+			 $(".modal .close").click();
+		
+		}
+		function alertaFade(alerta){
+			$(alerta).insertAfter($('.alerta_in'));
+			  $('.alerta').fadeIn();
+			  $('.alerta').delay(2500).fadeOut();
+		}
+		
+		
+		function avisaAlertaImagen(data){
+			
+		}
+		function errorAlertaImagen(){
+			
+		}
+
+				
+
 		
 }); // Fin documento
 

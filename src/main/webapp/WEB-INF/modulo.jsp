@@ -10,6 +10,7 @@
 
 <!-- ################################################################################################ -->
 <div class="wrapper row1">
+<div class="alerta"><hiden class="alerta_in"></hiden></div>
 	<header id="header" class="hoc clear">
 		<div id="logo" class="fl_left">
 			<h1>
