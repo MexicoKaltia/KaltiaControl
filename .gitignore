@@ -1,6 +1,6 @@
 /.metadata/
 *.war
-target/*
+target/**
 *.class
 *.class
 .settings/org.eclipse.jdt.core.prefs
