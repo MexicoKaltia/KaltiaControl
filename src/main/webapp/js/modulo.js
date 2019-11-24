@@ -97,6 +97,8 @@ $(document).ready(function(){
  */	
 	$('#btnSaveRegistro').click(function(){
 		limpiaAlerta();
+		console.log($('#idUserEmpresa').val());
+		if($('#idUserEmpresa').val()==null){
 		valoresRegistro = $('#nombreRegistro').val()+"++"+$('#apellidoRegistro').val()+"++"+$('#emailRegistro').val()+"++"+$('#telefonoRegistro').val()+"++"+$('#usuarioRegistro').val()+"++"+$('#passRegistro1').val()+"++"+$('#messageRegistro').val();
 		 
 			registroJson = { action : $.action,
@@ -116,12 +118,46 @@ $(document).ready(function(){
 			  success: 	function(data){					  
 				  console.log(data);
 				  avisaAlerta(data);
-				  readIdUserEmpresa(0);
+				  setTimeout(function() {
+					  readIdUserEmpresa(0);
+					}, 8000);
 				},
 			  error: function(){
 				  errorAlerta();
 			  }
 			});
+		}else{
+			
+			valoresRegistro = $('#idUserEmpresa').val()+"++"+$('#nombreRegistro').val()+"++"+$('#apellidoRegistro').val()+"++"+$('#emailRegistro').val()+"++"+$('#telefonoRegistro').val()+"++"+$('#usuarioRegistro').val()+"++"+$('#passRegistro1').val()+"++"+$('#messageRegistro').val();
+			 
+			registroJson = { action : $.action,
+				 idEmpresa : $.idEmpresa,	
+//				 seccion : "bodySeccionArray1",
+				 valoresFinales : valoresRegistro}
+			console.log(registroJson);
+
+		$.ajax({
+		   	  url: url +"updateUserEmpresa/",//+ context,//+finalJson.action+"/"+finalJson[1],
+		      dataType: 'json',
+			  type: 'POST',
+			  contentType: "application/json",
+			  data: JSON.stringify(registroJson),
+			  headers: {  'Access-Control-Allow-Origin': url, 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS', 'Access-Control-Allow-Headers': 'X-PINGOTHER' },
+			  crossDomain: true,
+			  success: 	function(data){					  
+				  console.log(data);
+				  avisaAlerta(data);
+				  setTimeout(function() {
+					  readIdUserEmpresa(0);
+					}, 8000);
+				},
+			  error: function(){
+				  errorAlerta();
+			  }
+			});
+
+			
+		}
 	});
 	
 	
@@ -252,12 +288,17 @@ $(document).ready(function(){
 			 $("#modalCita .close").click();
 			 $("#modalRegistro .close").click();
 			 $(".modal .close").click();
+			 $("body,html").animate({
+			        scrollTop: 0
+			    }, 600);
 		
 		}
 		function alertaFade(alerta){
 			$(alerta).insertAfter($('.alerta_in'));
 			  $('.alerta').fadeIn();
-			  $('.alerta').delay(2500).fadeOut();
+//			  $('.alerta').delay(2500).fadeOut();
+			  $('.alerta').fadeOut( 4000);
+//				 $('.alerta').hide( "drop", { direction: "down" }, "slow" );
 		}
 		
 		
