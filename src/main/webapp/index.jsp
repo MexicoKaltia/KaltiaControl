@@ -43,7 +43,7 @@
       	</span>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-      <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltia.xyz">Kaltia Mexico&copy; 2019</a></p>
+      <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltia.site">Kaltia Mexico&copy; 2019</a></p>
     </form:form>
 
 

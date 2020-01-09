@@ -99,7 +99,7 @@
               <br>
               <a id="usuario"></a>
 	             <label class=" control-label" for="textinput">Usuario</label>
-	              <input id="empresaIdPerfilE" name="empresaIdPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaIdPerfilE()}"/>@kaltia.xyz" readonly>
+	              <input id="empresaIdPerfilE" name="empresaIdPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaIdPerfilE()}"/>@kaltia.site" readonly>
 <!-- 	              <input id="userKaltiaControlPass" name="userKaltiaControlPass" placeholder="Password" class="form-control input-md" type="password"> -->
 <!-- 	              <input id="userKaltiaControlPass1" name="userKaltiaControlPass1" placeholder="Confirma Password" class="form-control input-md" type="password"> -->
 	          </form></fieldset></div>	

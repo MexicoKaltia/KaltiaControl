@@ -54,7 +54,7 @@ public class UserManagerImpl implements UserManager{
 	public ResultDAOVO createUser(EmpresaEntity empresaEntity) {
 		
 		userKaltiaControlEntity.setIdUserKaltiaControlUser(empresaEntity.getIdAction());
-		userKaltiaControlEntity.setUserKaltiaControlUser(empresaEntity.getEmpresaIdPerfilE()+"@kaltia.xyz");
+		userKaltiaControlEntity.setUserKaltiaControlUser(empresaEntity.getEmpresaIdPerfilE()+"@kaltia.site");
 		userKaltiaControlEntity.setUserKaltiaControlPass(empresaEntity.getIdAction());
 		userKaltiaControlEntity.setUserKaltiaControlDescr("perfilE"+empresaEntity.getIdAction());
 		userKaltiaControlEntity.setUserKaltiaControlPerfil("perfilE");

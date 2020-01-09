@@ -144,23 +144,13 @@ div aparte
 		</div>
 		<h3>Section 2</h3>
 		<div>
-			<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum
-				sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris
-				turpis porttitor velit, faucibus interdum tellus libero ac justo.
-				Vivamus non quam. In suscipit faucibus urna.</p>
+			<p><iframe src="http://www.kaltia.site/seguros" onload="autofitIframe(this);"></iframe></p>
 		</div>
 		<h3>Section 3</h3>
 		<div>
-			<p>Nam enim risus, molestie et, porta ac, aliquam ac, risus.
-				Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in
-				pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac
-				felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam
-				nisi, eu iaculis leo purus venenatis dui.</p>
-			<ul>
-				<li>List item one</li>
-				<li>List item two</li>
-				<li>List item three</li>
-			</ul>
+			<div class="embed-responsive embed-responsive-16by9">
+			  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
+			</div>
 		</div>
 		<h3>Section 4</h3>
 		<div>
@@ -180,7 +170,7 @@ div aparte
 <!-- modalRegistro -->
 <div class="modal fade" id="modalRegistro" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content" style="background-image:url('http://kaltia-store.xyz/kaltia/modelo/modal/imagen.jpg?v=1');">
+		<div class="modal-content" style="background-image:url('http://kaltiastore.xyz/kaltia/modelo/modal/imagen.jpg?v=1');">
 			<div class="modal-header">
 				<label class="sizeEtiqueta colorLabel">- Registro Cliente -</label>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose">
@@ -291,7 +281,7 @@ div aparte
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
-<script src="<%=request.getContextPath()%>/js/modalPerfilE.js"></script>
+<%-- <script src="<%=request.getContextPath()%>/js/modalPerfilE.js"></script> --%>
 <script src="<%=request.getContextPath()%>/js/modulo.js"></script>
 
 <script src="<%=request.getContextPath()%>/js/bootstrap-table.js"></script>
