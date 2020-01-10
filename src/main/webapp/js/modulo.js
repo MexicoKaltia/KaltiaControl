@@ -98,7 +98,7 @@ $(document).ready(function(){
 	$('#btnSaveRegistro').click(function(){
 		limpiaAlerta();
 		console.log($('#idUserEmpresa').val());
-		if($('#idUserEmpresa').val()==null){
+		if($('#idUserEmpresa').val()==null || $('#idUserEmpresa').val()==''){
 		valoresRegistro = $('#nombreRegistro').val()+"++"+$('#apellidoRegistro').val()+"++"+$('#emailRegistro').val()+"++"+$('#telefonoRegistro').val()+"++"+$('#usuarioRegistro').val()+"++"+$('#passRegistro1').val()+"++"+$('#messageRegistro').val();
 		 
 			registroJson = { action : $.action,
