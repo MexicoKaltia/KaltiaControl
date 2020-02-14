@@ -60,33 +60,32 @@
 
 	<!-- UserEmpresa -->
 	<div class="animated rollIn slow">
-div aparte		
 	</div>
 
 	<div class="animated slideInLeft slow">
-		<div id="big-form" class="well auth-box">
-			<form>
-				<fieldset>
-					<a id="citas"></a> <label class=" control-label" for="textinput">Citas</label>
-				</fieldset>
-			</form>
-		</div>
-		<!--               <h1 style="margin:150px auto 30px auto; color:#fff;">jQuery Skeduler Plugin Example</h1> -->
-		<button onclick="generate()">Presente Semana</button>
-		<div id="skeduler-container">
-			<input id="condiciones" name="condiciones"
-				class="form-control input-md" type="hidden" readonly
-				value="<c:out value="${model.requestLoginVO.datosCitasVO.getCondiciones()}"/>">
-			<input id="mesActual" name="mesActual" class="form-control input-md"
-				type="hidden" readonly
-				value="<c:out value="${model.requestLoginVO.datosCitasVO.getMesActual()}"/>">
-			<input id="mesPost" name="mesPost" class="form-control input-md"
-				type="hidden" readonly
-				value="<c:out value="${model.requestLoginVO.datosCitasVO.getMesPost()}"/>">
-			<input id="idEmpresa" name="mesPost" class="form-control input-md"
-				type="hidden" readonly
-				value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/>">
-		</div>
+<!-- 		<div id="big-form" class="well auth-box"> -->
+<!-- 			<form> -->
+<!-- 				<fieldset> -->
+<!-- 					<a id="citas"></a> <label class=" control-label" for="textinput">Citas</label> -->
+<!-- 				</fieldset> -->
+<!-- 			</form> -->
+<!-- 		</div> -->
+<!-- 		<!--               <h1 style="margin:150px auto 30px auto; color:#fff;">jQuery Skeduler Plugin Example</h1> --> -->
+<!-- 		<button onclick="generate()">Presente Semana</button> -->
+<!-- 		<div id="skeduler-container"> -->
+<!-- 			<input id="condiciones" name="condiciones" -->
+<!-- 				class="form-control input-md" type="hidden" readonly -->
+<%-- 				value="<c:out value="${model.requestLoginVO.datosCitasVO.getCondiciones()}"/>"> --%>
+<!-- 			<input id="mesActual" name="mesActual" class="form-control input-md" -->
+<!-- 				type="hidden" readonly -->
+<%-- 				value="<c:out value="${model.requestLoginVO.datosCitasVO.getMesActual()}"/>"> --%>
+<!-- 			<input id="mesPost" name="mesPost" class="form-control input-md" -->
+<!-- 				type="hidden" readonly -->
+<%-- 				value="<c:out value="${model.requestLoginVO.datosCitasVO.getMesPost()}"/>"> --%>
+<!-- 			<input id="idEmpresa" name="mesPost" class="form-control input-md" -->
+<!-- 				type="hidden" readonly -->
+<%-- 				value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/>"> --%>
+<!-- 		</div> -->
 
 	</div>
 	<!-- fin de animated -->
@@ -152,15 +151,11 @@ div aparte
 			  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe>
 			</div>
 		</div>
-		<h3>Section 4</h3>
+		<h3>Calendario</h3>
 		<div>
-			<p>Cras dictum. Pellentesque habitant morbi tristique senectus et
-				netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum
-				primis in faucibus orci luctus et ultrices posuere cubilia Curae;
-				Aenean lacinia mauris vel est.</p>
-			<p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim
-				consequat lectus. Class aptent taciti sociosqu ad litora torquent
-				per conubia nostra, per inceptos himenaeos.</p>
+			<div class="embed-responsive embed-responsive-16by9">
+			  <iframe class="embed-responsive-item" src="<%=request.getContextPath()%>/layout/calendario.html" allowfullscreen></iframe>
+			</div>
 		</div>
 		
    	</div> <!-- fin de div accordion -->

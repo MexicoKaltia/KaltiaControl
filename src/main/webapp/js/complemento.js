@@ -19,7 +19,7 @@ $(document).ready(function(){
 		var IdAction = $('#IdAction').val();
 		
 		$('#empresaIdPerfilE').val(IdAction + "@kaltia.site");
-		$('#empresaFactura').val("www.kaltiaControl.xyz/factura/"+IdAction)
+		$('#empresaFactura').val("www.kaltiaControl.site/factura/"+IdAction)
 		
 	});
 	
