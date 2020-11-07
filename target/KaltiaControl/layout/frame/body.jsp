@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="<%=request.getContextPath()%>/css/layout.css" rel="stylesheet" type="text/css" media="all">
-<link href="<%=request.getContextPath()%>/css/complemento.css" rel="stylesheet" type="text/css" media="all">
+<link href="<%=request.getContextPath()%>/css/complementoBody2.css" rel="stylesheet" type="text/css" media="all">
 </head>
 <body id="top">
 <!------ Include the above in your HEAD tag ---------->
@@ -94,7 +94,7 @@
 <script src="<%=request.getContextPath()%>/js/jquery.backtotop.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.mobilemenu.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/complemento.js"></script>
+<script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
 
 </body>
 </html>

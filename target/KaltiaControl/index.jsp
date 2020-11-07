@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -43,7 +43,8 @@
       	</span>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-      <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltia.xyz">Kaltia Mexico&copy; 2019</a></p>
+      <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltia.site">Kaltia Mexico&copy; 2020</a></p>
+      <hiden class="version">23012020</hiden>
     </form:form>
 
 

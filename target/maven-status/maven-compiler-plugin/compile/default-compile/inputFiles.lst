@@ -5,9 +5,11 @@ c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\UserEmpr
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\Util\BaseInfra.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\UserKaltiaControlEntity.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\service\UserManager.java
+c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\DatosCitasVO.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\controller\ControllerInicial.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\aop\EmpresaAOP.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\service\ClienteRestImpl.java
+c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\CitasVO.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\repository\UserKaltiaControlDAOImpl.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\service\UserManagerImpl.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\HeaderEntity.java
@@ -21,6 +23,7 @@ c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\repository\Em
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\service\UserEmpresaManager.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\repository\EmpresaDAOImpl.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\StatusEmpresaEntity.java
+c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\UserEmpresaVO.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\BodyEntity.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\repository\UserEmpresaDAO.java
 c:\Kaltia-Git\KaltiaControl\src\main\java\com\kaltia\kaltiaControl\bean\ValoresJsonVO.java

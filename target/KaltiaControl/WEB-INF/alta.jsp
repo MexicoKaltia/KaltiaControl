@@ -39,6 +39,7 @@
         <fieldset>
           <div class="btn-group">
             <a href="#general" class="btn btn-default">General</a>
+            <a href="#modulo" class="btn btn-default">Modulos</a>
             <a href="#status" class="btn btn-default">Status</a>
             <a href="#usuario" class="btn btn-default">Usuarios</a>
           </div>
@@ -54,26 +55,160 @@
             
             <form  class="" action="empresaAlta.htm" method="post" modelAttribute="empresaEntity">
             <div id="big-form" class="well auth-box"><fieldset>
-              <input id="empresaNombreCompleto" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" >
-              <input id="idEmpresa" name="idEmpresa" placeholder="Nombre Corto" class="form-control input-md" type="text"   >
-              <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text"  >
-              <input id="empresaRFC" name="empresaRFC" placeholder="RFC" class="form-control input-md" type="text"  >
-              <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text"  >
-              <input id="empresaEmail" name="empresaEmail" placeholder="Email" class="form-control input-md" type="email"  >
-              <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text"  >
-              <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Representante Kaltia" class="form-control input-md" type="text" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>">
+              <input id="empresaNombreCompleto" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" required maxlength="200">
+              <input id="idEmpresa" name="idEmpresa" placeholder="Nombre Corto" class="form-control input-md" type="text"   required maxlength="50">
+              <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text"  required maxlength="20">
+              <input id="empresaRFC" name="empresaRFC" placeholder="RFC" class="form-control input-md" type="text"  required maxlength="13">
+              <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text"  required maxlength="900">
+              <input id="empresaEmail" name="empresaEmail" placeholder="Email" class="form-control input-md" type="email"  required maxlength="50">
+              <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text"  required maxlength="200">
+              <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="text" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlDescr().toString()}"/>">
+<%--               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="hidden" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>"> --%>
 <!--               <input id="empresaModelo" name="empresaModelo" placeholder="Modelo" class="form-control input-md" type="text"  > -->
               <label class=" control-label" for="selectbasic">Modelo</label>
 	            <div class="">
 	              <select id="empresaModelo" name="empresaModelo" class="form-control">
 	                <option value="bronea">Bronea</option>
+	                <option value="aerogem">Aerogem</option>
 	                <option value="pendiente">Pendiente</option>
 	              </select>
 	            </div>
               <br>
-              </fieldset>
+              </fieldset></div>
               
-              </div>
+            <div id="big-form" class="well auth-box"><fieldset>
+	            <a  id="modulo"></a>
+	            <label class=" control-label" for="textinput">Modulos</label>
+	            <input id="moduloContactoValue" name="moduloContactoValue" type="hidden" value="11"/>
+	            <input id="moduloIngresaValue" name="moduloIngresaValue" type="hidden" value="21,22" />
+	            <input id="moduloRegistroValue" name="moduloRegistroValue" type="hidden" value="22"/>
+	            <input id="moduloCitaValue" name="moduloCitaValue" type="hidden" value="31"/>
+	            <input id="moduloCarpetaValue" name="moduloCarpetaValue" type="hidden" value="41"/>
+	            
+	            <input id="empresaModulos" name="empresaModulos" type="hidden" />
+	            <input id="empresaClientes" name="empresaClientes" type="hidden" />
+	            <input id="empresaCitas" name="empresaCitas" type="hidden" />
+	            <input id="empresaCarpetas" name="empresaCarpetas" type="hidden" />
+	            
+	            </fieldset></div>
+	            <div id="big-form" class="well auth-box"><fieldset>
+	            <div class="form-check">
+	            		<input class="form-check-input" type="checkbox" name="moduloEdicion" id ="moduloEdicionCheck" checked disabled>
+	                	<label class="form-check-label" for="moduloEdicion">Edición de Pagina</label>
+					  	<div id="moduloEdicion" class="collapse.show">
+							<div id='limpiaAlerta' class='alert alert-success' role='alert'>moduloEdicion Activado</div>
+					  	</div>
+       	        </div>
+       	        <div class="form-check">
+						<input type="checkbox" class="form-check-input" id="moduloClienteCheck">
+	         	   		<label class="form-check-label" for="moduloClientes">Gestión Clientes</label>
+	         	   		<div id="moduloCliente" class="collapse">
+							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Cliente Activado</div>
+					  	</div>
+				</div>
+				<div class="form-check">
+	         	   <input class="form-check-input" type="checkbox" name="moduloCita" id="moduloCitaCheck">
+<!-- 				   <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#moduloCita">Activar Modulo Citas</button> -->
+	         	   <label class="form-check-label" for="moduloCita" id="moduloCitalabel">Gestión Citas</label>
+	         	   	  	<div id="moduloCita" class="collapse">
+<!-- 							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Citas Activado</div> -->
+							<div class="row">
+							    <div class="col">
+							    <label class="form-check-label" for="cita11">Horario Inicial</label>
+							      <select id="cita11" name="cita11" class="form-control">
+					                <option value="100">1:00</option>
+									<option value="200">2:00</option>
+									<option value="300">3:00</option>
+									<option value="400">4:00</option>
+									<option value="500">5:00</option>
+									<option value="600">6:00</option>
+									<option value="700">7:00</option>
+									<option value="800">8:00</option>
+									<option value="900">9:00</option>
+									<option value="1000">10:00</option>
+									<option value="1100">11:00</option>
+									<option value="1200">12:00</option>
+									<option value="1300">13:00</option>
+									<option value="1400">14:00</option>
+									<option value="1500">15:00</option>
+									<option value="1600">16:00</option>
+									<option value="1700">17:00</option>
+									<option value="1800">18:00</option>
+									<option value="1900">19:00</option>
+									<option value="2000">20:00</option>
+									<option value="2100">21:00</option>
+									<option value="2200">22:00</option>
+									<option value="2300">23:00</option>
+									<option value="2400">24:00</option>
+					              </select>
+							    </div>
+							    <div class="col" >
+<!-- 							      <input type="text" class="form-control" placeholder="Horario S (10:00-14:00)" id="horCitaS"> -->
+									<label class="form-check-label" for="cita12">Horario Matutino</label>
+									<select id="cita12" name="cita12" class="form-control"></select>
+							    </div>
+							    <div class="col">
+							    <label class="form-check-label" for="cita21">Horario Vespertino</label>
+							    <select id="cita21" name="cita21" class="form-control"></select>
+					              </div>
+					              <div class="col">
+					              <label class="form-check-label" for="cita12">Horario FinDia</label>
+							    <select id="cita22" name="cita22" class="form-control"></select>
+					              </div>
+							 </div>
+							 <div class="row">
+							    <div class="col">
+							    <label class="form-check-label" for="cita12">Horario Inicio Sabado</label>
+							    <select id="citaS21" name="citaS21" class="form-control">
+					                <option value="100">1:00</option>
+									<option value="200">2:00</option>
+									<option value="300">3:00</option>
+									<option value="400">4:00</option>
+									<option value="500">5:00</option>
+									<option value="600">6:00</option>
+									<option value="700">7:00</option>
+									<option value="800">8:00</option>
+									<option value="900">9:00</option>
+									<option value="1000">10:00</option>
+									<option value="1100">11:00</option>
+									<option value="1200">12:00</option>
+									<option value="1300">13:00</option>
+									<option value="1400">14:00</option>
+									<option value="1500">15:00</option>
+									<option value="1600">16:00</option>
+									<option value="1700">17:00</option>
+									<option value="1800">18:00</option>
+									<option value="1900">19:00</option>
+									<option value="2000">20:00</option>
+									<option value="2100">21:00</option>
+									<option value="2200">22:00</option>
+									<option value="2300">23:00</option>
+									<option value="2400">24:00</option>
+					              </select>
+					              </div>
+					              <div class="col">
+					              <label class="form-check-label" for="cita12">Horario Fin Sabado</label>
+							    <select id="citaS22" name="citaS22" class="form-control"></select>
+					              </div>
+					             <div class="col">
+							    </div>
+							    <div class="col">
+							    </div>
+					              
+							 </div>
+							 <label  id="saveCita" class="btn">Guardar Horario</label>
+					  	</div>
+	         	   
+				</div>
+				<div class="form-check">
+	         	   <input class="form-check-input" type="checkbox" name="moduloCarpeta" id="moduloCarpetaCheck">
+	         	   <label class="form-check-label" for="moduloCarpeta" >Carpeta Clientes</label>
+	         	   	<div id="moduloCarpeta" class="collapse">
+							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Carpeta Cliente Activado</div>
+					</div>
+	         	</div>
+            </fieldset></div>
+              
               <div id="big-form" class="well auth-box"><fieldset>
               <a id="status"></a>
              	<label class=" control-label" for="textinput">Status</label>
@@ -94,7 +229,7 @@
 <!--               <input id="empresaVarios" name="empresaVarios" placeholder="Varios" class="form-control input-md" type="text"  > -->
                <label class=" control-label" for="textarea">Varios</label>
 	            <div class="">                     
-	              <textarea class="form-control" id="empresaVarios" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
+	              <textarea class="form-control" id="empresaVarios" rows="4" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
 	            </div>
               <br>
               <a id="usuario"></a>

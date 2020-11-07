@@ -80,7 +80,7 @@
 		<!-- ################################################################################################ -->
 		<!-- ################################################################################################ -->
 		<div>
-							<iframe src="http://www.kaltia.xyz/<c:out value="${modelEdicion.requestLoginVO.getEmpresaEntity().getIdAction()}"/>?tipo=AAA"
+							<iframe src="http://www.kaltia.site/<c:out value="${modelEdicion.requestLoginVO.getEmpresaEntity().getIdAction()}"/>?tipo=AAA"
 								onload="autofitIframe(this);"></iframe>
 		</div>
 		<!-- ################################################################################################ -->

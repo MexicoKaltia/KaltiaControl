@@ -1,4 +1,5 @@
 com\kaltia\kaltiaControl\bean\EmpresaEntity.class
+com\kaltia\kaltiaControl\bean\UserEmpresaVO.class
 com\kaltia\kaltiaControl\bean\ActionEntity.class
 com\kaltia\kaltiaControl\controller\ControllerInicial.class
 com\kaltia\kaltiaControl\repository\EmpresaDAOImpl.class
@@ -28,4 +29,6 @@ com\kaltia\kaltiaControl\bean\UserKaltiaControlVO.class
 com\kaltia\kaltiaControl\service\EmpresaManagerImpl.class
 com\kaltia\kaltiaControl\bean\FooterEntity.class
 com\kaltia\kaltiaControl\bean\HeaderEntity.class
+com\kaltia\kaltiaControl\bean\DatosCitasVO.class
 com\kaltia\kaltiaControl\bean\ValoresJsonVO.class
+com\kaltia\kaltiaControl\bean\CitasVO.class
