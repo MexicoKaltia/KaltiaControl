@@ -30,9 +30,9 @@ $(document).ready(function(){
 	/*
 	 * Variables Globales
 	 */
-	var url = "http://31.220.63.183:8010/";
-	var urlUpload= "http://31.220.63.183:8011/";
-	var urlCita = "http://31.220.63.183:8012/";
+	var url = "http://http://158.101.6.33:8010/";
+	var urlUpload= "http://http://129.146.252.2:8011/";
+	var urlCita = "http://158.101.6.33:8012/";
 //	var url = "http://localhost:8010/";
 //	var urlUpload= "http://localhost:8011/";
 //	var urlCita = "http://localhost:8012/";

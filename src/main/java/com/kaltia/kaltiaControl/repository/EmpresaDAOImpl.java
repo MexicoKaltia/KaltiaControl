@@ -20,6 +20,7 @@ import com.kaltia.kaltiaControl.bean.BodyEntity;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.FooterEntity;
 import com.kaltia.kaltiaControl.bean.HeaderEntity;
+import com.kaltia.kaltiaControl.bean.PaginaEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 
 @Repository
@@ -89,26 +90,67 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	      
 		return resultDAOVO;
 	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public ResultDAOVO createPagina(PaginaEntity paginaEntity) {
+		logger.info("-----------"+paginaEntity.getIdActionPagina());
+	      
+		try {
+		  em.merge(paginaEntity);
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("Empresa con exito guardada");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+			logger.info(e);
+		}finally {
+			em.close( );
+		}
+		
+		return resultDAOVO;
+	}
+
 
 	@Override
 	public EmpresaEntity readEmpresaDAO(String idUserKaltiaControl) {
 		
 		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
 	     // EntityManager entitymanager = emfactory.createEntityManager();
-	      
+		 empresaEntity = new EmpresaEntity();
 		
-	      Query query = em.createNamedQuery("find empresa by idEmpresa");
+	      Query query = em.createNamedQuery("find idAction by idAction");
 	      query.setParameter("id", idUserKaltiaControl);
-	      
-	      //empresaEntity = (EmpresaEntity) query.getSingleResult();
 	      try {
-	    	  return (EmpresaEntity) query.getSingleResult();
+	    	  empresaEntity = (EmpresaEntity) query.getSingleResult();
+	    	  
 	      }catch(Exception e){
 	    	  logger.info(e);
 	    	  empresaEntity.setIdEmpresa("Exception");
-	    	  return empresaEntity;
 	      }
+	      return empresaEntity;
 	}
+	
+	@Override
+	public EmpresaEntity readIdEmpresaDAO(String idEmpresaPagina) {
+		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
+	     // EntityManager entitymanager = emfactory.createEntityManager();
+		 empresaEntity = new EmpresaEntity();
+		
+//	      Query query = em.createNamedQuery("find idAction by idAction");
+//	      query.setParameter("id", idUserKaltiaControl);
+	      try {
+	    	  empresaEntity =  em.find(EmpresaEntity.class, idEmpresaPagina);
+	    	  
+	      }catch(Exception e){
+	    	  logger.info(e);
+	    	  empresaEntity.setIdEmpresa("Exception");
+	      }
+	      return empresaEntity;
+	}
+	
+
 	
 	@Override
 	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI) {
@@ -295,8 +337,8 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	    	  //empresaEntity.setIdEmpresa("Exception");
 	    	  return null;
 	      }	}
-	
-	
-	
+
+
+
 
 }

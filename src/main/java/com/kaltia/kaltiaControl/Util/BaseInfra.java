@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.Properties;
 
 
@@ -36,5 +37,10 @@ public class BaseInfra {
         return props;
     }
  
+	public static String idLocalTime() {
+//		LocalTime now = LocalTime.now();
+		return	LocalDateTime.now().toString();	
+}
+
 
 }

@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
+import com.kaltia.kaltiaControl.bean.ProductosEntity;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
@@ -80,10 +82,12 @@ public class ControllerInicial extends HttpServlet {
      }
 	
 	@RequestMapping (value= "/inicio.htm" , method = RequestMethod.GET)
-	public ModelAndView inicio(ModelMap model, HttpServletRequest request,
-							HttpServletResponse response) throws ServletException, IOException  {
+	public ModelAndView inicio(ModelMap model 
+//							HttpServletRequest request,
+//							HttpServletResponse response
+							) throws ServletException, IOException  {
 		logger.info("----De nuevo Inicio----");
-		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+//		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 //		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
 		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
 		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
@@ -91,36 +95,77 @@ public class ControllerInicial extends HttpServlet {
 		return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 	}
 	
-	@RequestMapping(value="/inicioEmpresa.htm" , method = RequestMethod.POST)
-    public ModelAndView inicioEmpresa(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
-    									BindingResult result,
-    									ModelMap model,
-    									HttpServletRequest request,
-    									HttpServletResponse response)
-            throws ServletException, IOException {
-         
-         requestLoginVO = this.userManager.updateUser(userKaltiaControlFront);
-         
-         request.getSession().setAttribute("requestLoginVO", requestLoginVO);
-         logger.info("inicioEmpresa:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
-
-         return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
-//         return new ModelAndView("prueba", "model", myModel);
-     }
 	
-	@RequestMapping (value= "/modulo.htm" , method = RequestMethod.GET)
-	public ModelAndView modulo(ModelMap model, HttpServletRequest request,
+	@RequestMapping (value= "/alta.htm" , method = RequestMethod.GET)
+	public ModelAndView formularioAlta(ModelMap model, 
+							@RequestParam(name="error", required=false) boolean error,
+							HttpServletRequest request,
 							HttpServletResponse response) throws ServletException, IOException  {
-		logger.info("----Inicio metodo modulo----");
-//		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
-		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+		logger.info("----Inicio metodo alta----");
+		ModelAndView mav = new ModelAndView("alta","modelAlta", model );
+		mav.addObject("error", error);
+		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
 		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
 			
-		return new ModelAndView("modulo","model", model );
+		return mav; 
 	}
-
-
 	
+	@RequestMapping (value = "/altaGenerales.htm", method = RequestMethod.POST)
+	public ModelAndView empresaAlta (@Valid @ModelAttribute("empresaEntity") EmpresaEntity empresaEntity,		
+									BindingResult result,
+									ModelMap model)
+									throws ServletException, IOException {
+		logger.info(empresaEntity.toString());
+		
+		String now = (new Date()).toString();
+		logger.info("----Inicio metodo altaGenerales----"+now);
+		requestLoginVO.setEmpresaEntity(empresaEntity);
+		
+		resultDAOVO = empresaManager.createEmpresa(empresaEntity);
+		
+		logger.info("idUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
+		
+		ModelAndView mav = new ModelAndView();
+		
+		if(!resultDAOVO.getCode().equals("99")) {
+			mav.setViewName("altaProductos");
+			mav.addObject("empresaEntity", empresaEntity);
+		}else {
+			mav.setViewName("redirect:/alta.htm");
+			mav.addObject("error", true);
+		}
+		return mav;
+	}
+	
+	@RequestMapping (value = "/altaProductos.htm", method = RequestMethod.POST)
+	public ModelAndView altaProductos (@Valid @ModelAttribute("productosEntity") ProductosEntity productosEntity,		
+//										@RequestParam(name="empresaEntity", required=false) EmpresaEntity empresaEntity,
+									BindingResult result,
+									ModelMap model)
+								throws ServletException, IOException {
+		
+		String now = (new Date()).toString();
+		logger.info("----Inicio metodo altaProductos----"+now);
+		
+		resultDAOVO = empresaManager.createEmpresaProductos(productosEntity);
+//		model.addAttribute("productosEntity", productosEntity);
+//		model.addAttribute("requestLoginVO", requestLoginVO);
+		
+		ModelAndView mav = new ModelAndView();
+//		
+		if(!resultDAOVO.getCode().equals("99")) {
+			mav.setViewName("confirmacionEmpresa");
+//			mav.addObject("ejecucion", true);
+		}else {
+			mav.setViewName("redirect:/alta.htm");
+			mav.addObject("error", true);
+		}
+		return mav;
+	}
+	
+	/*
+	 *  Verificar los siguientes metodos, no estan en uso 19 nov 2020
+	 */
 	
 	@RequestMapping (value= "/edicion.htm" , params ={"action"}, method = RequestMethod.GET)
 	public ModelAndView edicion(ModelMap model,
@@ -134,37 +179,15 @@ public class ControllerInicial extends HttpServlet {
 		return new ModelAndView("edicion","modelEdicion", model );		
 	}
 	
-	
-	@RequestMapping (value= "/alta.htm" , method = RequestMethod.GET)
-	public ModelAndView formularioAlta(ModelMap model, HttpServletRequest request,
+	@RequestMapping (value= "/modulo.htm" , method = RequestMethod.GET)
+	public ModelAndView modulo(ModelMap model, HttpServletRequest request,
 							HttpServletResponse response) throws ServletException, IOException  {
-		logger.info("----Inicio metodo alta----");
-		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+		logger.info("----Inicio metodo modulo----");
+//		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
 		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
 			
-		return new ModelAndView("alta","modelAlta", model );
-	}
-	
-	@RequestMapping (value = "/empresaAlta.htm", method = RequestMethod.POST)
-	public ModelAndView empresaAlta (@Valid @ModelAttribute("empresaEntity") EmpresaEntity empresaEntity, 
-									BindingResult result,
-									ModelMap model,
-									HttpServletRequest request,
-									HttpServletResponse response)
-								throws ServletException, IOException {
-		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
-		String now = (new Date()).toString();
-		logger.info("----Inicio metodo empresaAlta----"+now);
-		request.getSession().setAttribute("requestLoginVO", requestLoginVO);
-		requestLoginVO.setEmpresaEntity(empresaEntity);
-		
-		resultDAOVO = empresaManager.createEmpresa(empresaEntity);
-		
-		logger.info("idUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
-		model.addAttribute("empresaEntity", empresaEntity);
-		model.addAttribute("requestLoginVO", requestLoginVO);
-		
-		return new ModelAndView("edicion","modelEdicion", model );
+		return new ModelAndView("modulo","model", model );
 	}
 	
 	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)
@@ -174,6 +197,20 @@ public class ControllerInicial extends HttpServlet {
 		Map<String, Object> myModel = new HashMap<String, Object>();
 		return new ModelAndView("estadistica","modelEdicion", myModel );		
 	}
+	
+	@RequestMapping(value="/inicioEmpresa.htm" , method = RequestMethod.POST)
+    public ModelAndView inicioEmpresa(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
+    									BindingResult result,
+    									ModelMap model)
+    	    throws ServletException, IOException {
+         
+         requestLoginVO = this.userManager.updateUser(userKaltiaControlFront);
+         logger.info("inicioEmpresa:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
+
+         return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
+//         return new ModelAndView("prueba", "model", myModel);
+     }
+
 
 									
 	

@@ -1,6 +1,7 @@
 package com.kaltia.kaltiaControl.service;
 
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import com.kaltia.kaltiaControl.Util.BaseInfra;
 import com.kaltia.kaltiaControl.bean.CitasVO;
 import com.kaltia.kaltiaControl.bean.ResultVO;
 import com.kaltia.kaltiaControl.bean.ValoresJsonVO;
@@ -25,8 +27,10 @@ import com.kaltia.kaltiaControl.bean.ValoresJsonVO;
 @Service
 public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteRest {
 	
+	
 	protected final Log logger = LogFactory.getLog(getClass());
 	private static final long serialVersionUID = -3393657707811218360L;
+	public static Properties PROPS = BaseInfra.PROPS;
 	@Autowired
 	private ResultVO resultVO;
 	@Autowired
@@ -50,9 +54,9 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 //	static final String URL_POST_READCITA         = "http://localhost:8010/readCita";
 	
 	
-	static final String URL_POST_EMPRESAMODULOSCREATE    = "http://31.220.63.183:8010/empresaModulosCreate";
-	static final String URL_POST_EMPRESACITA      = "http://31.220.63.183:8010/empresaCitaActivar";
-	static final String URL_POST_READCITA         = "http://31.220.63.183:8010/readCita";
+	static final String URL_POST_EMPRESAMODULOSCREATE    = PROPS.getProperty("URL_MICROSERVER")+":"+PROPS.getProperty("PUERTO_EDICION")+PROPS.getProperty("POST_EMPRESAMODULOSCREATE");//"http://158.101.6.33:8010/empresaModulosCreate";
+	static final String URL_POST_EMPRESACITA      = PROPS.getProperty("URL_MICROSERVER")+":"+PROPS.getProperty("PUERTO_EDICION")+PROPS.getProperty("POST_POST_EMPRESACITA");//"http://158.101.6.33:8010/empresaCitaActivar";
+	static final String URL_POST_READCITA         = PROPS.getProperty("URL_MICROSERVER")+":"+PROPS.getProperty("PUERTO_EDICION")+PROPS.getProperty("POST_POST_READCITA");//"http://158.101.6.33:8010/readCita";
 //	
 	static final String POST = "HttpMethod.POST";
 	static final String GET  = "HttpMethod.GET";
@@ -67,27 +71,12 @@ public class ClienteRestImpl extends WebMvcConfigurerAdapter implements ClienteR
 	}
 	
 	@Override
-	public ResultVO createServiceModulosEmpresaNueva(String idAction, String horario, String modulos) {
-				
-		if(horario.equals("") || horario == null)
-		{	horario = "No Activo";}
-		if(modulos.equals("") || modulos == null)
-		{	modulos = "No Activo";}
-		
-		
+	public ResultVO createServiceEmpresaNueva(String idAction) {
 		 JSONObject jsonRequest = new JSONObject();
 			 jsonRequest.put("action", idAction);	 
-			 jsonRequest.put("valoresFinales", horario+"++"+ modulos);
-//			 
-//			 Map<String,String> req_content = new HashMap();
-//			 req_content.put("idAction", idAction);
-//			 Map<String, String> map= new HashMap<>();
-//			    map.put("idAction", idAction);
-//			    
-//			 valoresJsonVO.setAction(idAction);
+//			 jsonRequest.put("valoresFinales", horario+"++"+ modulos);
 
 			 return  getTemplate(URL_POST_EMPRESAMODULOSCREATE, POST, jsonRequest.toString());
-	
 	}
 	
 //	@Override

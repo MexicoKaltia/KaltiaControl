@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.kaltia.kaltiaControl.Util.BaseInfra;
 import com.kaltia.kaltiaControl.bean.DatosCitasVO;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
@@ -45,7 +46,7 @@ public class UserManagerImpl implements UserManager{
 	@Autowired
 	private DatosCitasVO datosCitasVO;
 	
-	private UserKaltiaControlEntity userKaltiaControlEntity;
+	private UserKaltiaControlEntity userKaltiaControlEntity =null;
 	private EmpresaEntity empresaEntity;
 //	private StatusEmpresaEntity statusEmpresaEntity;
 	
@@ -53,12 +54,12 @@ public class UserManagerImpl implements UserManager{
 	@Override
 	public ResultDAOVO createUser(EmpresaEntity empresaEntity) {
 		
-		userKaltiaControlEntity.setIdUserKaltiaControlUser(empresaEntity.getIdAction());
-		userKaltiaControlEntity.setUserKaltiaControlUser(empresaEntity.getEmpresaIdPerfilE()+"@kaltia.site");
+		userKaltiaControlEntity.setIdUserKaltiaControlUser(BaseInfra.idLocalTime());
+		userKaltiaControlEntity.setUserKaltiaControlUser(empresaEntity.getEmpresaEmail());
 		userKaltiaControlEntity.setUserKaltiaControlPass(empresaEntity.getIdAction());
-		userKaltiaControlEntity.setUserKaltiaControlDescr("perfilE"+empresaEntity.getIdAction());
+		userKaltiaControlEntity.setUserKaltiaControlDescr(empresaEntity.getIdAction());
 		userKaltiaControlEntity.setUserKaltiaControlPerfil("perfilE");
-		userKaltiaControlEntity.setUserKaltiaControlNombre(empresaEntity.getIdEmpresa());
+		userKaltiaControlEntity.setUserKaltiaControlNombre(empresaEntity.getEmpresaContacto());
 		userKaltiaControlEntity.setUserKaltiaControlStatus("inicio");
 		userKaltiaControlEntity.setUserKaltiaControlDomicilio(empresaEntity.getEmpresaDireccion());
 		userKaltiaControlEntity.setUserKaltiaControlCorreo(empresaEntity.getEmpresaEmail());
@@ -71,68 +72,76 @@ public class UserManagerImpl implements UserManager{
 
 	@Override
 	public RequestLoginVO readUser(UserKaltiaControlVO userKaltiaControlVO) {
-		//HashMap<String,Object> userAtributo = new HashMap<String,Object>();
 		
 		/*
 		 * Informacion de perfil usuarioKaltiaControl
 		 */
 		userKaltiaControlEntity = userKaltiaControlDAO.readUserKaltiaControlDAO(userKaltiaControlVO);
-		requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 		
-		if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
-			if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
-				
-				/*
-				 * lectura de array Empresas perfil I
-				 */
-				
-				requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString()));  
-//				for(EmpresaEntity idEmpresa: empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString())) {
-//					
-//					empresaEntityList.add(empresaEntity);
-//				}
-//				userAtributo.put("eE", empresaEntity);
-			}
+		if(!userKaltiaControlEntity.getIdUserKaltiaControlUser().equals("vacio")) {
+			requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 			
-			else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
-				/*
-				 * Informacion Empresa de usuarioKaltiaControl
-				 */
-				empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
-				
-				/*
-				 * Informacion Empresa de userEmpresa -- MODULOS
-				 */		
-				if(!empresaEntity.getEmpresaCitas().equals("No Activo") || !empresaEntity.getEmpresaModulos().equals("No Activo")) {
-					List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
-					requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
-					if(!empresaEntity.getEmpresaCitas().equals("No Activo")) {
-						resultVO = clienteRest.readCitas(empresaEntity.getIdAction());
-//						logger.info(resultVO.getMensajeArray());
-						datosCitasVO.setCondiciones((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(0)));
-						datosCitasVO.setMesActual((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(1)));
-						datosCitasVO.setMesPost((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(2)));
-						requestLoginVO.setDatosCitasVO(datosCitasVO);
-					}
+			if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
+				if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
 					
+					/*
+					 * lectura de array Empresas perfil I
+					 */
+					
+					requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString()));  
+//					for(EmpresaEntity idEmpresa: empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString())) {
+//						
+//						empresaEntityList.add(empresaEntity);
+//					}
+//					userAtributo.put("eE", empresaEntity);
 				}
-		
-				requestLoginVO.setEmpresaEntity(empresaEntity);
-//				requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
-			}	
-			 String now = (new Date()).toString();   
-			userKaltiaControlEntity.setUserKaltiaControlActividad(now);
-			userKaltiaControlDAO.actividadUserKaltiaControlDAO(userKaltiaControlEntity);
+				
+				else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
+					/*
+					 * Informacion Empresa de usuarioKaltiaControl
+					 */
+					empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
+					
+					/*
+					 * Informacion Empresa de userEmpresa -- MODULOS
+					 */		
+//					if(!empresaEntity.getEmpresaCitas().equals("No Activo") || !empresaEntity.getEmpresaModulos().equals("No Activo")) {
+						List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
+						requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
+//						if(!empresaEntity.getEmpresaCitas().equals("No Activo")) {
+							resultVO = clienteRest.readCitas(empresaEntity.getIdAction());
+							logger.info(resultVO.getMensajeArray());
+							datosCitasVO.setCondiciones((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(0)));
+							datosCitasVO.setMesActual((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(1)));
+							datosCitasVO.setMesPost((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(2)));
+							requestLoginVO.setDatosCitasVO(datosCitasVO);
+//						}
+						
+//					}
 			
-		}else if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("inicio")){
-			userKaltiaControlEntity.setUserKaltiaControlPerfil("inicio");
-			requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);		
+					requestLoginVO.setEmpresaEntity(empresaEntity);
+//					requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
+				}	
+				 String now = (new Date()).toString();   
+				userKaltiaControlEntity.setUserKaltiaControlActividad(now);
+				userKaltiaControlDAO.actividadUserKaltiaControlDAO(userKaltiaControlEntity);
+				
+			}else if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("inicio")){
+				userKaltiaControlEntity.setUserKaltiaControlPerfil("inicio");
+				requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);		
+			}else {
+				//Exception
+				logger.info("EXCEPTION");
+				
+			}
+
 		}else {
-			//Exception
-			logger.info("EXCEPTION");
-			
+			requestLoginVO.setUserKaltiaControlEntity(new UserKaltiaControlEntity("errorLogin"));
+			return requestLoginVO;
 		}
 		
+		
+				
 		return requestLoginVO ;
 	}
 

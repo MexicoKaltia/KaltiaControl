@@ -8,12 +8,15 @@ import com.kaltia.kaltiaControl.bean.BodyEntity;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.FooterEntity;
 import com.kaltia.kaltiaControl.bean.HeaderEntity;
+import com.kaltia.kaltiaControl.bean.PaginaEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 
 public interface EmpresaDAO extends Serializable{
 	
 	public ResultDAOVO createEmpresaDAO(EmpresaEntity eE);
 	public EmpresaEntity readEmpresaDAO(String idEmpresa);
+	public EmpresaEntity readIdEmpresaDAO(String idEmpresaPagina);
+	
 	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI);
 	public ResultDAOVO updateEmpresaDAO();
 	public ResultDAOVO deleteEmpresaDAO();
@@ -28,5 +31,8 @@ public interface EmpresaDAO extends Serializable{
 	
 	public ResultDAOVO createFooterDAO(FooterEntity footerEntity);
 	public FooterEntity readFooterDAO(String idEmpresa);
+	
+	public ResultDAOVO createPagina(PaginaEntity paginaEntity);
+
 
 }

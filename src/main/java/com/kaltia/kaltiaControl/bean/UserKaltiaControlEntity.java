@@ -47,6 +47,13 @@ public class UserKaltiaControlEntity implements Serializable{
 
 
 	
+	public UserKaltiaControlEntity(String string) {
+		this.setUserKaltiaControlPerfil(string);
+	}
+
+
+
+
 	/*
 	 * getter y setter
 	 */

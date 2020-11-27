@@ -4,12 +4,15 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity(name="tc_empresa")
 @NamedQueries({
+	@NamedQuery(query ="Select a from tc_empresa a where a.idAction = :id", name = "find idAction by idAction"),
 	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilE = :id", name = "find empresa by idEmpresa"),
 	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilI = :id", name = "find empresa by idEmpresaArray")
 })
@@ -21,9 +24,12 @@ public class EmpresaEntity implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+//	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String idEmpresa;
 	@Column
 	private String idAction;
+	@Column
+	private String empresaNombreCorto;
 	@Column
 	private String empresaNombreCompleto;
 	@Column
@@ -41,8 +47,6 @@ public class EmpresaEntity implements Serializable{
 	@Column
 	private String empresaIdPerfilE;
 	@Column
-	private String empresaModelo;
-	@Column
 	private String empresaStatus;
 	@Column
 	private String empresaFechaCorte;
@@ -50,52 +54,42 @@ public class EmpresaEntity implements Serializable{
 	private String empresaModoPago;
 	@Column
 	private String empresaFactura;
-	@Column
-	private String empresaCitas;
-	@Column
-	private String empresaModulos;
-
-	
-	public EmpresaEntity() {
-	}
-
 	
 	
-	public String getEmpresaModelo() {
-		return empresaModelo;
+	
+	public EmpresaEntity() {}
+	
+	
+	@Override
+	public String toString() {
+		return "EmpresaEntity [idEmpresa=" + idEmpresa + ", idAction=" + idAction + ", empresaNombreCorto="
+				+ empresaNombreCorto + ", empresaNombreCompleto=" + empresaNombreCompleto + ", empresaRFC=" + empresaRFC
+				+ ", empresaDireccion=" + empresaDireccion + ", empresaEmail=" + empresaEmail + ", empresaContacto="
+				+ empresaContacto + ", empresaIdPerfilI=" + empresaIdPerfilI + ", empresaVarios=" + empresaVarios
+				+ ", empresaIdPerfilE=" + empresaIdPerfilE + ", empresaStatus=" + empresaStatus + ", empresaFechaCorte="
+				+ empresaFechaCorte + ", empresaModoPago=" + empresaModoPago + ", empresaFactura=" + empresaFactura
+				+ "]";
 	}
-	public void setEmpresaModelo(String empresaModelo) {
-		this.empresaModelo = empresaModelo;
-	}
-	public String getEmpresaStatus() {
-		return empresaStatus;
-	}
-	public void setEmpresaStatus(String empresaStatus) {
-		this.empresaStatus = empresaStatus;
-	}
-	public String getEmpresaFechaCorte() {
-		return empresaFechaCorte;
-	}
-	public void setEmpresaFechaCorte(String empresaFechaCorte) {
-		this.empresaFechaCorte = empresaFechaCorte;
-	}
-	public String getEmpresaModoPago() {
-		return empresaModoPago;
-	}
-	public void setEmpresaModoPago(String empresaModoPago) {
-		this.empresaModoPago = empresaModoPago;
-	}
-	public String getEmpresaFactura() {
-		return empresaFactura;
-	}
-	public void setEmpresaFactura(String empresaFactura) {
-		this.empresaFactura = empresaFactura;
-	}
-	public String getEmpresaIdPerfilI() {
-		return empresaIdPerfilI;
-	}
-	public void setEmpresaIdPerfilI(String empresaIdPerfilI) {
+	public EmpresaEntity(String idEmpresa, String idAction, String empresaNombreCorto, String empresaNombreCompleto,
+			String empresaRFC, String empresaDireccion, String empresaEmail, String empresaContacto,
+			String empresaIdPerfilI, String empresaVarios, String empresaIdPerfilE, String empresaStatus,
+			String empresaFechaCorte, String empresaModoPago, String empresaFactura) {
+		super();
+		this.idEmpresa = idEmpresa;
+		this.idAction = idAction;
+		this.empresaNombreCorto = empresaNombreCorto;
+		this.empresaNombreCompleto = empresaNombreCompleto;
+		this.empresaRFC = empresaRFC;
+		this.empresaDireccion = empresaDireccion;
+		this.empresaEmail = empresaEmail;
+		this.empresaContacto = empresaContacto;
 		this.empresaIdPerfilI = empresaIdPerfilI;
+		this.empresaVarios = empresaVarios;
+		this.empresaIdPerfilE = empresaIdPerfilE;
+		this.empresaStatus = empresaStatus;
+		this.empresaFechaCorte = empresaFechaCorte;
+		this.empresaModoPago = empresaModoPago;
+		this.empresaFactura = empresaFactura;
 	}
 	public String getIdEmpresa() {
 		return idEmpresa;
@@ -108,6 +102,12 @@ public class EmpresaEntity implements Serializable{
 	}
 	public void setIdAction(String idAction) {
 		this.idAction = idAction;
+	}
+	public String getEmpresaNombreCorto() {
+		return empresaNombreCorto;
+	}
+	public void setEmpresaNombreCorto(String empresaNombreCorto) {
+		this.empresaNombreCorto = empresaNombreCorto;
 	}
 	public String getEmpresaNombreCompleto() {
 		return empresaNombreCompleto;
@@ -139,11 +139,11 @@ public class EmpresaEntity implements Serializable{
 	public void setEmpresaContacto(String empresaContacto) {
 		this.empresaContacto = empresaContacto;
 	}
-	public String getEmpresaIdPerfilE() {
-		return empresaIdPerfilE;
+	public String getEmpresaIdPerfilI() {
+		return empresaIdPerfilI;
 	}
-	public void setEmpresaIdPerfilE(String empresaIdPerfilE) {
-		this.empresaIdPerfilE = empresaIdPerfilE;
+	public void setEmpresaIdPerfilI(String empresaIdPerfilI) {
+		this.empresaIdPerfilI = empresaIdPerfilI;
 	}
 	public String getEmpresaVarios() {
 		return empresaVarios;
@@ -151,20 +151,36 @@ public class EmpresaEntity implements Serializable{
 	public void setEmpresaVarios(String empresaVarios) {
 		this.empresaVarios = empresaVarios;
 	}
-	public String getEmpresaCitas() {
-		return empresaCitas;
+	public String getEmpresaIdPerfilE() {
+		return empresaIdPerfilE;
 	}
-	public void setEmpresaCitas(String empresaCitas) {
-		this.empresaCitas = empresaCitas;
+	public void setEmpresaIdPerfilE(String empresaIdPerfilE) {
+		this.empresaIdPerfilE = empresaIdPerfilE;
 	}
-	public String getEmpresaModulos() {
-		return empresaModulos;
+	public String getEmpresaStatus() {
+		return empresaStatus;
 	}
-	public void setEmpresaModulos(String empresaModulos) {
-		this.empresaModulos = empresaModulos;
+	public void setEmpresaStatus(String empresaStatus) {
+		this.empresaStatus = empresaStatus;
 	}
-	
-	
+	public String getEmpresaFechaCorte() {
+		return empresaFechaCorte;
+	}
+	public void setEmpresaFechaCorte(String empresaFechaCorte) {
+		this.empresaFechaCorte = empresaFechaCorte;
+	}
+	public String getEmpresaModoPago() {
+		return empresaModoPago;
+	}
+	public void setEmpresaModoPago(String empresaModoPago) {
+		this.empresaModoPago = empresaModoPago;
+	}
+	public String getEmpresaFactura() {
+		return empresaFactura;
+	}
+	public void setEmpresaFactura(String empresaFactura) {
+		this.empresaFactura = empresaFactura;
+	}
 	
 
 }

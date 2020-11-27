@@ -82,7 +82,7 @@
         	      <input id="textinput" name="nombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaNombreCompleto()}"/>">
 	              <input id="textinput" name="Nombre Corto" placeholder="Nombre Corto" class="form-control input-md" type="text"  readonly value="<c:out value="${empresaArrayEntity.getIdEmpresa()}"/>">
 	              <input id="textinput" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getIdAction()}"/>">
-	              <input id="textinput" name="modelo" placeholder="Modelo" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaModelo()}"/>">
+<%-- 	              <input id="textinput" name="modelo" placeholder="Modelo" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaModelo()}"/>"> --%>
 	              <input id="textinput" name="RFC" placeholder="RFC" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaRFC()}"/>">
 	              <input id="textinput" name="Direccion" placeholder="Direccion" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaDireccion()}"/>">
 	              <input id="textinput" name="email" placeholder="email" class="form-control input-md" type="text" readonly value="<c:out value="${empresaArrayEntity.getEmpresaEmail()}"/>">
