@@ -4,18 +4,18 @@ public class ProductosEntity {
 	
 	
 	
-	private String idProducto;
+	private String idEmpresa;
 	private PaginaEntity paginaEntity;
 	private QREstacionamiento qREstacionamiento;
 	private QRRestaurante qRREstaurante;
 	private PuntoVenta puntoVenta;
 	
 	
-	public String getIdProducto() {
-		return idProducto;
+	public String getIdEmpresa() {
+		return idEmpresa;
 	}
-	public void setIdProducto(String idProducto) {
-		this.idProducto = idProducto;
+	public void setIdEmpresa(String idEmpresa) {
+		this.idEmpresa = idEmpresa;
 	}
 	public PaginaEntity getPaginaEntity() {
 		return paginaEntity;

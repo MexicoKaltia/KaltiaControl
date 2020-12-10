@@ -109,27 +109,56 @@
 		                <option value="besloor">Besloor</option>
 		              </select>
 		            </div>
+		            	       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 					<div class="form-check">
-		            		<input class="form-check-input" type="checkbox" name="moduloEdicion" id ="moduloEdicionCheck" disabled>
-		                	<label class="form-check-label" for="moduloEdicion">Edición de Pagina</label>
-						  	<div id="moduloEdicion" class="collapse">
+		            		<input class="form-check-input moduloPagina" type="checkbox" name="moduloPagina"  disabled>
+		                	<label class="form-check-label" for="moduloPagina">Edición de Pagina</label>
+						  	<div id="moduloPagina" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Edicion de Pagina Activado</div>
 						  	</div>
 	       	        </div>
-	       	        
+	       	        	       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 	       	        <div class="form-check">
-							<input type="checkbox" class="form-check-input" id="moduloClienteCheck" disabled>
-		         	   		<label class="form-check-label" for="moduloClientes">Gestión Clientes</label>
+		            		<input class="form-check-input moduloQRR" type="checkbox" name="moduloQRR"  disabled>
+		                	<label class="form-check-label" for="moduloQRR">Activar QR Restaurante</label>
+						  	<div id="moduloQRR" class="collapse">
+							  	<div id="moduloQRRActivo" class="collapse">
+									<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo QR Restaurante Activado</div>
+							  	</div>
+								<div class="row">
+								    <div class="col">
+									  <label class="radio-inline">
+									  	<input  type="radio" name="radioQRR" id="radioQRREstatico"  disabled>
+									  	Formato Menú Estático
+									  	</label>
+								    </div>
+								    <div class="col" >
+										<label class="radio-inline">
+											<input  type="radio" name="radioQRR" id="radioQRRDinamico"  disabled>
+										Formato Menú Dinámico
+										</label>
+								    </div>
+								 </div>
+								 <button class="btn btn-lg btn-primary btn-block" type="button" id="guardarQRR" disabled>Guardar QR Restaurante</button>
+						  	</div>
+	       	        </div>
+	       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
+	       	        <div class="form-check">
+							<input type="checkbox" class="form-check-input moduloCliente" id="moduloClienteCheck" disabled>
+		         	   		<label class="form-check-label" for="moduloCliente">Gestión Clientes</label>
 		         	   		<div id="moduloCliente" class="collapse">
-								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Cliente Activado</div>
+								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Edicion de Pagina Activado</div>
 						  	</div>
 					</div>
+						       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 					<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloCita" id="moduloCitaCheck" disabled>
-	<!-- 				   <button type="button" class="btn btn-success" data-toggle="collapse" data-target="#moduloCita">Activar Modulo Citas</button> -->
+		         	   <input class="form-check-input moduloCita" type="checkbox" name="moduloCita" id="moduloCitaCheck"  disabled>
 		         	   <label class="form-check-label" for="moduloCita" id="moduloCitalabel">Gestión Citas</label>
 		         	   	  	<div id="moduloCita" class="collapse">
-	<!-- 							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Citas Activado</div> -->
 								<div class="row">
 								    <div class="col">
 								    <label class="form-check-label" for="cita11">Horario Inicial</label>
@@ -138,7 +167,6 @@
 						              </select>
 								    </div>
 								    <div class="col" >
-	<!-- 							      <input type="text" class="form-control" placeholder="Horario S (10:00-14:00)" id="horCitaS"> -->
 										<label class="form-check-label" for="cita12">Horario Matutino</label>
 										<select id="cita12" name="cita12" class="form-control"></select>
 								    </div>
@@ -164,72 +192,92 @@
 						             <div class="col">
 								    </div>
 								    <div class="col">
-								    </div>
-						              
+								    </div>			              
 								 </div>
 								 <label  id="saveCita" class="btn">Guardar Horario</label>
 						  	</div>
-		         	   
 					</div>
+						       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 					<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloCarpeta" id="moduloCarpetaCheck" disabled>
+		         	   <input class="form-check-input moduloCarpeta" type="checkbox" name="moduloCarpeta" id="moduloCarpetaCheck" disabled>
 		         	   <label class="form-check-label" for="moduloCarpeta" >Carpeta Clientes</label>
 		         	   	<div id="moduloCarpeta" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Carpeta Cliente Activado</div>
 						</div>
+							       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	</div>
 		         	<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloRetroAlimentacion" id="moduloRetroAlimentacionCheck" disabled>
+		         	   <input class="form-check-input moduloRetroAlimentacion" type="checkbox" name="moduloRetroAlimentacion" id="moduloRetroAlimentacionCheck" disabled>
 		         	   <label class="form-check-label" for="moduloRetroAlimentacion" >RetroAlimentacion</label>
 		         	   	<div id="moduloRetroAlimentacion" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo RetroAlimentacion Activado</div>
 						</div>
 		         	</div>
+		         		       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloChat" id="moduloChatCheck" disabled>
+		         	   <input class="form-check-input moduloNotificacion" type="checkbox" name="moduloNotificacion" id="moduloNotificacionCheck"  disabled>
+		         	   <label class="form-check-label" for="moduloNotificacion" >Notificaciones</label>
+		         	   	<div id="moduloNotificacion" class="collapse">
+								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Notificaciones Activado</div>
+						</div>
+		         	</div>
+		         		       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
+		         	<div class="form-check">
+		         	   <input class="form-check-input moduloChat" type="checkbox" name="moduloChat" id="moduloChatCheck" disabled>
 		         	   <label class="form-check-label" for="moduloChat" >Chat</label>
 		         	   	<div id="moduloChat" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Chat Activado</div>
 						</div>
 		         	</div>
+		         		       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloNotificaciones" id="moduloNotificacionesCheck" disabled>
-		         	   <label class="form-check-label" for="moduloNotificaciones" >Notificaciones</label>
-		         	   	<div id="moduloNotificaciones" class="collapse">
-								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Notificaciones Activado</div>
-						</div>
-		         	</div>
-		         	<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloVideos" id="moduloVideoCheck" disabled>
+		         	   <input class="form-check-input moduloVideo" type="checkbox" name="moduloVideos" id="moduloVideoCheck"  disabled>
 		         	   <label class="form-check-label" for="moduloVideo" >Videos</label>
 		         	   	<div id="moduloVideo" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Videos Activado</div>
 						</div>
 		         	</div>
+		         		       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input" type="checkbox" name="moduloTarjeta" id="moduloTarjetaCheck" disabled>
+		         	   <input class="form-check-input moduloTarjeta" type="checkbox" name="moduloTarjeta" id="moduloTarjetaCheck"  disabled>
 		         	   <label class="form-check-label" for="moduloTarjeta" >Tarjeta de Productos</label>
 		         	   	<div id="moduloTarjeta" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Tarjeta de Productos Activado</div>
 						</div>
 		         	</div>
-<!-- 		         	<label  id="guardarPagina" class="btn" disabled>Guardar Producto Pagina</label> -->
+		         		       	        <hr>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<button class="btn btn-lg btn-primary btn-block" type="button" id="guardarPagina" disabled>Guardar Producto Pagina</button>
 <!-- 			  ------------------------------------------------------------------------------------------------               -->		         	
 	         	</div>
+	         		       	        <br>
+	       	        <!-- ---------------------------------------------------------------------------------- -->	 
+	       	              	        <br>
+	       	        <!-- ---------------------------------------------------------------------------------- -->
 			  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="qrrestaurante-tab">
-				<div class="form-check">
-	         	   <input class="form-check-input" type="checkbox" name="moduloQRRestaurante" id="moduloQRRestauranteCheck">
-	         	   <label class="form-check-label" for="moduloQRRestaurante" >QR Restaurante</label>
-	         	   	<div id="moduloQRRestaurante" class="collapse">
-							<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo QR Restaurante Activado</div>
-					</div>
-	         	</div>
-	         	<!-- Trigger the modal with a button -->
-				<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalQRRestauranteEstatico">Configurar QR Estático</button>
-				<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#modalQRRestauranteDinamico">Configurar QR Dinámico</button>
+			  <label class=" control-label" for="selectbasic">Modelo QR Restaurante</label>
+				 <div class="">
+		              <select id="modeloQRR" name="paginaEntity.modeloPagina" class="form-control" >
+		                <option value="">Selecciona Modelo</option>
+		                <option value="bronea">Bronea</option>
+		                <option value="aerogem">Aerogem</option>
+		                <option value="algenius">Algenius</option>
+		                <option value="besloor">Besloor</option>
+		              </select>
+		            </div>
+					<div class="form-group row">
+	
+	       	        </div>
+	       	      
+	         	
 				<br>
-				<label  id="guardarQRRestaurante" class="btn">Guardar Producto QR Restaurante</label>
+				
 	         	</div>
 <!-- 			  ------------------------------------------------------------------------------------------------               -->
 			  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="qrestacionamiento-tab">
@@ -261,16 +309,16 @@
 	          <br>
 	          <hr>
 	          <div id="activoPagina" class="collapse">
-				<div id='limpiaAlerta' class='alert alert-success' role='alert'>Activo Producto Pagina Editable</div>
+				<div id='limpiaAlerta' class='alert alert-info' role='alert'>Activo Producto Pagina Editable</div>
 			  </div>
 			  <div id="activoQRR" class="collapse">
-				<div id='limpiaAlerta' class='alert alert-success' role='alert'>Activo Producto QR Restaurante</div>
+				<div id='limpiaAlerta' class='alert alert-info' role='alert'>Activo Producto QR Restaurante</div>
 			  </div>
 			  <div id="activoQRE" class="collapse">
-				<div id='limpiaAlerta' class='alert alert-success' role='alert'>Activo Producto QR Estacionamiento</div>
+				<div id='limpiaAlerta' class='alert alert-info' role='alert'>Activo Producto QR Estacionamiento</div>
 			  </div>
 			  <div id="activoPuntoVenta" class="collapse">
-				<div id='limpiaAlerta' class='alert alert-success' role='alert'>Activo Producto Punto de Venta</div>
+				<div id='limpiaAlerta' class='alert alert-info' role='alert'>Activo Producto Punto de Venta</div>
 			  </div>
 	          
 			  <div id="big-form" class="well auth-box"><fieldset>

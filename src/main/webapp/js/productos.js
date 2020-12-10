@@ -2,38 +2,85 @@ $(document).ready(function(){
 	
 	var idProducto = $('#idProducto').val();
 	var idAction = $('#idAction').val();
+	var modeloPagina;
+	$.modeloPagina;
 	
+	/*
+	 * Modelo Pagina
+	 */
 	$('#modeloPagina').change(function(){
-		 
-		 var modeloPagina = $('#modeloPagina').val();
+		modeloPagina = $('#modeloPagina').val();
 		 console.log(modeloPagina);
 		 console.log(idProducto);
 		 if(modeloPagina !== ""){
-			 $('#moduloEdicionCheck').attr('disabled', false);
-			 $('#moduloClienteCheck').attr('disabled', false);
-			 $('#moduloCitaCheck').attr('disabled', false);
-			 $('#moduloCarpetaCheck').attr('disabled', false);
-			 $('#moduloRetroAlimentacionCheck').attr('disabled', false);
-			 $('#moduloChatCheck').attr('disabled', false);
-			 $('#moduloNotificacionesCheck').attr('disabled', false);
-			 $('#moduloVideoCheck').attr('disabled', false);
-			 $('#moduloTarjetaCheck').attr('disabled', false);
+			 
+			 $('.moduloPagina').attr('disabled', false);
+			 $('.moduloQRR').attr('disabled', false);
+			 $('.moduloCliente').attr('disabled', false);
+			 $('.moduloCita').attr('disabled', false);
+			 $('.moduloCarpeta').attr('disabled', false);
+			 $('.moduloRetroAlimentacion').attr('disabled', false);
+			 $('.moduloChat').attr('disabled', false);
+			 $('.moduloNotificacion').attr('disabled', false);
+			 $('.moduloVideo').attr('disabled', false);
+			 $('.moduloTarjeta').attr('disabled', false);
 
 			 $('#moduloEdicionCheck').prop('checked', true);
-			if($('#moduloEdicionCheck').prop('checked')){
-			    $('#moduloEdicion').collapse('show');
-			    $('#empresaEdicion').val("activo");
-			    $('#empresaModulos').val("11");
-			    $('#idEmpresaPagina').val(idProducto);
-			    $('#idActionPagina').val(idAction);
-				 $('#guardarPagina').attr('disabled', false);
-	        }else{
-	        	$('#moduloEdicion').collapse('hide');
-	        	$('#empresaModulos').val("");
-	        	 $('#idEmpresaPagina').val("");
-	        	 $('#idActionPagina').val("");
-	        	}
+//			if($('#moduloEdicionCheck').prop('checked')){
+//			    $('#moduloEdicion').collapse('show');
+//			    $('#empresaEdicion').val("activo");
+//			    $('#empresaModulos').val("11");
+//			    $('#idEmpresaPagina').val(idProducto);
+//			    $('#idActionPagina').val(idAction);
+//				 $('#guardarPagina').attr('disabled', false);
+//				 
+//	        }else{
+//	        	$('#moduloEdicion').collapse('hide');
+//	        	$('#empresaModulos').val("");
+//	        	 $('#idEmpresaPagina').val("");
+//	        	 $('#idActionPagina').val("");
+//	        	}
 		 }else{
+			 $('.moduloPagina').attr('disabled', true);
+			 $('.moduloQRR').attr('disabled', true);
+			 $('.moduloCliente').attr('disabled', true);
+			 $('.moduloCita').attr('disabled', true);
+			 $('.moduloCarpeta').attr('disabled', true);
+			 $('.moduloRetroAlimentacion').attr('disabled', true);
+			 $('.moduloChat').attr('disabled', true);
+			 $('.moduloNotificacion').attr('disabled', true);
+			 $('.moduloVideo').attr('disabled', true);
+			 $('.moduloTarjeta').attr('disabled', true);
+			 
+			 $('.moduloPagina').prop('checked', false);
+			 $('.moduloQRR').prop('checked', false);
+			 $('.moduloCliente').prop('checked', false);
+			 $('.moduloCita').prop('checked', false);
+			 $('.moduloCarpeta').prop('checked', false);
+			 $('.moduloRetroAlimentacion').prop('checked', false);
+			 $('.moduloChat').prop('checked', false);
+			 $('.moduloNotificacion').prop('checked', false);
+			 $('.moduloVideo').prop('checked', false);
+			 $('.moduloTarjeta').prop('checked', false);
+			
+			 $('#moduloPagina').collapse('hide');
+			 $('#moduloQRR').collapse('hide');
+			 $('#moduloCliente').collapse('hide');
+			 $('#moduloCita').collapse('hide');
+			 $('#moduloCarpeta').collapse('hide');
+			 $('#moduloRetroAlimentacion').collapse('hide');
+			 $('#moduloChat').collapse('hide');
+			 $('#moduloNotificacion').collapse('hide');
+			 $('#moduloVideo').collapse('hide');
+			 $('#moduloTarjeta').collapse('hide');
+			 
+			 $('#guardarProducto').attr('disabled', true);
+			 $('#guardarPagina').attr('disabled', true);
+			 $('#guardarQRR').attr('disabled', true);
+		
+			 $('#activoPagina').collapse('hide');
+			 $('#activoQRR').collapse('hide');
+			 
 			 $('#moduloEdicionCheck').prop('checked', false);
 			 $('#moduloEdicionCheck').attr('disabled', true);
 			 $('#idEmpresaPagina').val("");
@@ -41,9 +88,88 @@ $(document).ready(function(){
 		 }
 	 });
 	
+		
+	$('#guardarPagina').click(function(){
+		console.log("guardar pagina");
+		$('#activoPagina').collapse('show');
+		$('#guardarProducto').attr('disabled', false);
+		 
+		$.modeloPagina = $("#modeloPagina option:selected").text();
+		console.log($.modeloPagina);
+		console.log(modeloPagina);
+//		$('#modeloQRR option[value="'+modeloPagina+'"]').attr("selected", "selected");
+		$('#modeloQRR').empty();
+		$('#modeloQRR').append('<option value="'+modeloPagina+'" selected >'+$.modeloPagina+'</option>');
+		$('#modeloQRR').prop("disabled", true);
+		
+		
+	});
+
+	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 *  ACTIVACION MODULOS
+	 */
 	
-	$('#moduloClienteCheck').change(function(){
-		if($('#moduloClienteCheck').prop('checked')){
+	/*
+	 * CHAT
+	 */
+	$('.moduloPagina').change(function(){
+		
+		if($('.moduloPagina').prop('checked')){
+			$('#moduloPagina').collapse('show');
+			 $('#guardarPagina').attr('disabled', false);
+			 $('#guardarProducto').attr('disabled', false);
+        }else{      	
+        	$('#moduloPagina').collapse('hide');
+        	$('#guardarPagina').attr('disabled', true);
+        	$('#guardarProducto').attr('disabled', true);
+        	}
+        });
+
+	/*
+	 * QR Restaurante
+	 */
+	$('.moduloQRR').change(function(){
+		if($('.moduloQRR').prop('checked')){
+            $('#moduloQRR').collapse('show');
+            $('#radioQRREstatico').prop("disabled", false);
+    		$('#radioQRRDinamico').prop("disabled", false);
+    		$('#guardarQRR').attr('disabled', false);
+    		 
+    		$('#radioQRRDinamico').change(function(){
+    			 $('#guardarQRR').attr('disabled', false);
+    		})
+    		$('#radioQRREstatico').change(function(){
+    			 $('#guardarQRR').attr('disabled', false);
+    		})
+    		
+    	}else{
+        	$('#moduloQRR').collapse('hide');
+        	$('#radioQRREstatico').prop("disabled", true);
+    		$('#radioQRRDinamico').prop("disabled", true);
+    		$('#guardarQRR').attr('disabled', true);
+    		$('#guardarPagina').attr('disabled', true);
+        }
+		
+		
+     });
+	
+	$('#guardarQRR').click(function(){
+		console.log("guardar QRR");
+		$('#activoQRR').collapse('show');
+		$('#moduloQRRActivo').collapse('show');
+		
+		$('#guardarProducto').attr('disabled', false);
+	});
+	
+	
+	
+	/*
+	 * Cliente Pagina
+	 */
+	$('.moduloCliente').change(function(){
+		if($('.moduloCliente').prop('checked')){
             $('#moduloCliente').collapse('show');
             $('#empresaClientes').val("activo");
             $('#empresaModulos').val("11,21,22");
@@ -54,11 +180,14 @@ $(document).ready(function(){
 //		console.log($('#empresaModulos').val())
         });
 	
-	$('#moduloCitaCheck').change(function(){
-		if($('#moduloCitaCheck').prop('checked')){	
-			$('#moduloClienteCheck').prop("checked", true);
+	/*
+	 * Cita Pagina
+	 */
+	$('.moduloCita').change(function(){
+		if($('.moduloCita').prop('checked')){	
+			$('.moduloCliente').prop("checked", true);
 			$('#moduloCliente').collapse('show');
-			$('#moduloClienteCheck').prop("disabled", true);
+			$('.moduloCliente').prop("disabled", true);
             $('#moduloCita').collapse('show');
             $('#empresaClientes').val("activo");
             for(i=0; i<24; i++){
@@ -90,69 +219,7 @@ $(document).ready(function(){
 				$('#empresaModulos').val("11");
 				}
         	}
-//		console.log($('#empresaModulos').val());
 	});
-	
-	
-	$('#moduloCarpetaCheck').change(function(){
-		if($('#moduloCarpetaCheck').prop('checked')){
-			$('#moduloClienteCheck').prop("checked", true);
-			$('#moduloCliente').collapse('show');
-			$('#moduloClienteCheck').prop("disabled", true);
-            $('#moduloCarpeta').collapse('show');
-            $('#empresaCarpetas').val("activo");
-            $('#empresaClientes').val("activo");
-            if($('#moduloCitaCheck').prop('checked')){
-            	$('#empresaModulos').val("11,21,22,31,41");
-            }else{
-            	$('#empresaModulos').val("11,21,22,41");
-            }
-        }else{
-        	$('#moduloCarpeta').collapse('hide');
-        	$('#empresaModulos').val("11");
-        	if($('#moduloCitaCheck').prop('checked')){
-				$('#moduloClienteCheck').prop("checked", true);
-				$('#moduloCliente').collapse('show');
-				$('#moduloClienteCheck').prop("disabled", true);
-				$('#empresaModulos').val("11,21,22,31");
-			}else{
-	        	$('#moduloCliente').collapse('hide');
-	        	$('#moduloClienteCheck').prop("checked", false);
-				$('#moduloClienteCheck').prop("disabled", false);
-				$('#empresaModulos').val("11");
-				}
-        }
-//		console.log($('#empresaModulos').val())
-	});
-	
-	$('#moduloQRRestauranteCheck').change(function(){
-		if($('#moduloQRRestauranteCheck').prop('checked')){
-            $('#moduloQRRestaurante').collapse('show');
-            $('#empresaQRRestaurante').val("activo");
-            $('#empresaModulos').val("51");
-        }else{
-        	$('#moduloQRRestaurante').collapse('hide');
-        	$('#empresaModulos').val("");
-        	}
-//		console.log($('#empresaModulos').val())
-        });
-	
-	$('#moduloQREstacionamientoCheck').change(function(){
-		if($('#moduloQREstacionamientoCheck').prop('checked')){
-            $('#moduloQREstacionamiento').collapse('show');
-            $('#empresaQREstacionamiento').val("activo");
-            $('#empresaModulos').val("61");
-        }else{
-        	$('#moduloQREstacionamiento').collapse('hide');
-        	$('#empresaModulos').val("");
-        	}
-//		console.log($('#empresaModulos').val())
-        });
-
-
-
-	
-	
 	
 	$('#cita11').change(function(){
 		$("#cita12").empty();
@@ -195,13 +262,99 @@ $(document).ready(function(){
 	});
 
 	
-	$('#guardarPagina').click(function(){
-		console.log("guardar pagina");
-		$('#activoPagina').collapse('show');
-		$('#guardarProducto').attr('disabled', false);
-	});
 	
+	/*
+	 * CARPETA
+	 */
+	$('.moduloCarpeta').change(function(){
+		
+		if($('.moduloCarpeta').prop('checked')){
+			$('#moduloCarpeta').collapse('show');
+			$('.moduloCliente').prop("checked", true);
+			$('#moduloCliente').collapse('show');
+			$('.moduloCliente').prop("disabled", true);
+        }else{
+        	$('#moduloCarpeta').collapse('hide');
+        	$('#moduloCliente').collapse('hide');
+        	$('.moduloCliente').prop("checked", false);
+        	$('.moduloCliente').prop("disabled", false);
+        	}
+        });
+
+	/*
+	 * RETROALIMENTACION
+	 */
+	$('.moduloRetroAlimentacion').change(function(){
+		console.log($('.moduloRetroAlimentacion').prop('checked'));
+		
+		if($('.moduloRetroAlimentacion').prop('checked')){
+			$('.moduloCliente').prop("checked", true);
+			$('#moduloCliente').collapse('show');
+			$('#qRRCliente').collapse('show');
+			$('.moduloCliente').prop("disabled", true);
+			$('#moduloRetroAlimentacion').collapse('show');
+        }else{
+        	$('#moduloRetroAlimentacion').collapse('hide');
+        	$('#moduloCliente').collapse('hide');
+        	$('.moduloCliente').prop("checked", false);
+        	$('.moduloCliente').prop("disabled", false);
+        	}
+        });
+	
+	/*
+	 * CHAT
+	 */
+	$('.moduloChat').change(function(){
+		
+		if($('.moduloChat').prop('checked')){
+			$('#moduloChat').collapse('show');
+        }else{      	
+        	$('#moduloChat').collapse('hide');
+        	}
+//		console.log($('#empresaModulos').val())
+        });
+		
+	/*
+	 * NOTIFICACIONES
+	 */
+	$('.moduloNotificacion').change(function(){
+		
+		if($('.moduloNotificacion').prop('checked')){
+			$('.moduloCliente').prop("checked", true);
+			$('#moduloCliente').collapse('show');
+			$('.moduloCliente').prop("disabled", true);
+			$('#moduloNotificacion').collapse('show');
+        }else{
+        	$('#moduloNotificacion').collapse('hide');
+        	$('#moduloCliente').collapse('hide');
+        	$('.moduloCliente').prop("checked", false);
+        	$('.moduloCliente').prop("disabled", false);
+        	}
+        });
 	 
+	/*
+	 * VIDEOS
+	 */
+	$('.moduloVideo').change(function(){
+		
+		if($('.moduloVideo').prop('checked')){
+			$('#moduloVideo').collapse('show');
+        }else{      	
+        	$('#moduloVideo').collapse('hide');
+        	}
+        });
+	
+	/*
+	 * Tarjeta
+	 */
+	$('.moduloTarjeta').change(function(){
+		
+		if($('.moduloTarjeta').prop('checked')){
+			$('#moduloTarjeta').collapse('show');
+        }else{      	
+        	$('#moduloTarjeta').collapse('hide');
+        	}
+        });
 })  // fin de documento
 
 
