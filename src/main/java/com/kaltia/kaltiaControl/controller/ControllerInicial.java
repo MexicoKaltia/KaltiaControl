@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.ProductosEntity;
+import com.kaltia.kaltiaControl.bean.ProductosVO;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
@@ -138,7 +139,7 @@ public class ControllerInicial extends HttpServlet {
 	}
 	
 	@RequestMapping (value = "/altaProductos.htm", method = RequestMethod.POST)
-	public ModelAndView altaProductos (@Valid @ModelAttribute("productosEntity") ProductosEntity productosEntity,		
+	public ModelAndView altaProductos (@Valid @ModelAttribute("productosVO") ProductosVO productosVO,		
 //										@RequestParam(name="empresaEntity", required=false) EmpresaEntity empresaEntity,
 									BindingResult result,
 									ModelMap model)
@@ -147,9 +148,7 @@ public class ControllerInicial extends HttpServlet {
 		String now = (new Date()).toString();
 		logger.info("----Inicio metodo altaProductos----"+now);
 		
-		resultDAOVO = empresaManager.createEmpresaProductos(productosEntity);
-//		model.addAttribute("productosEntity", productosEntity);
-//		model.addAttribute("requestLoginVO", requestLoginVO);
+		resultDAOVO = empresaManager.createEmpresaProductos(productosVO);
 		
 		ModelAndView mav = new ModelAndView();
 //		

@@ -8,12 +8,11 @@ $(document).ready(function(){
 	/*
 	 * Modelo Pagina
 	 */
-	$('#modeloPagina').change(function(){
-		modeloPagina = $('#modeloPagina').val();
+	$('#modeloProducto').change(function(){
+		modeloPagina = $('#modeloProducto').val();
 		 console.log(modeloPagina);
 		 console.log(idProducto);
 		 if(modeloPagina !== ""){
-			 
 			 $('.moduloPagina').attr('disabled', false);
 			 $('.moduloQRR').attr('disabled', false);
 			 $('.moduloCliente').attr('disabled', false);
@@ -24,22 +23,7 @@ $(document).ready(function(){
 			 $('.moduloNotificacion').attr('disabled', false);
 			 $('.moduloVideo').attr('disabled', false);
 			 $('.moduloTarjeta').attr('disabled', false);
-
 			 $('#moduloEdicionCheck').prop('checked', true);
-//			if($('#moduloEdicionCheck').prop('checked')){
-//			    $('#moduloEdicion').collapse('show');
-//			    $('#empresaEdicion').val("activo");
-//			    $('#empresaModulos').val("11");
-//			    $('#idEmpresaPagina').val(idProducto);
-//			    $('#idActionPagina').val(idAction);
-//				 $('#guardarPagina').attr('disabled', false);
-//				 
-//	        }else{
-//	        	$('#moduloEdicion').collapse('hide');
-//	        	$('#empresaModulos').val("");
-//	        	 $('#idEmpresaPagina').val("");
-//	        	 $('#idActionPagina').val("");
-//	        	}
 		 }else{
 			 $('.moduloPagina').attr('disabled', true);
 			 $('.moduloQRR').attr('disabled', true);
@@ -97,7 +81,6 @@ $(document).ready(function(){
 		$.modeloPagina = $("#modeloPagina option:selected").text();
 		console.log($.modeloPagina);
 		console.log(modeloPagina);
-//		$('#modeloQRR option[value="'+modeloPagina+'"]').attr("selected", "selected");
 		$('#modeloQRR').empty();
 		$('#modeloQRR').append('<option value="'+modeloPagina+'" selected >'+$.modeloPagina+'</option>');
 		$('#modeloQRR').prop("disabled", true);
@@ -112,18 +95,27 @@ $(document).ready(function(){
 	 */
 	
 	/*
-	 * CHAT
+	 * PAGINA Editable
 	 */
 	$('.moduloPagina').change(function(){
 		
 		if($('.moduloPagina').prop('checked')){
-			$('#moduloPagina').collapse('show');
+			 $('#moduloPagina').collapse('show');
 			 $('#guardarPagina').attr('disabled', false);
 			 $('#guardarProducto').attr('disabled', false);
+			 
+			 console.log($('#checkPagina').prop('checked'));
+			 
+			 $('#idEmpresaPagina').val($('#idEmpresa').val());
+			 $('#idActionPagina').val($('#idAction').val());
         }else{      	
+        	console.log($('#checkPagina').prop('checked'));
         	$('#moduloPagina').collapse('hide');
         	$('#guardarPagina').attr('disabled', true);
         	$('#guardarProducto').attr('disabled', true);
+        	
+        	$('#idEmpresa').val($('#idProducto').val(""));
+			$('#idActionPagina').val($('#idAction').val(""));
         	}
         });
 
@@ -132,26 +124,31 @@ $(document).ready(function(){
 	 */
 	$('.moduloQRR').change(function(){
 		if($('.moduloQRR').prop('checked')){
+			console.log($('#checkQRR').prop('checked'));
+    		
             $('#moduloQRR').collapse('show');
-            $('#radioQRREstatico').prop("disabled", false);
-    		$('#radioQRRDinamico').prop("disabled", false);
-    		$('#guardarQRR').attr('disabled', false);
+            $('#modeloEstaticoQRR').prop("disabled", false);
+    		$('#modeloDinamicoQRR').prop("disabled", false);
     		 
-    		$('#radioQRRDinamico').change(function(){
-    			 $('#guardarQRR').attr('disabled', false);
+    		$('#modeloEstaticoQRR').change(function(){
+    			$('#guardarQRR').attr('disabled', false);
     		})
-    		$('#radioQRREstatico').change(function(){
+    		$('#modeloDinamicoQRR').change(function(){
     			 $('#guardarQRR').attr('disabled', false);
     		})
     		
     	}else{
+    		console.log($('#checkQRR').prop('checked'));
         	$('#moduloQRR').collapse('hide');
-        	$('#radioQRREstatico').prop("disabled", true);
-    		$('#radioQRRDinamico').prop("disabled", true);
+        	$('#modeloEstaticoQRR').prop("disabled", true);
+    		$('#modeloDinamicoQRR').prop("disabled", true);
     		$('#guardarQRR').attr('disabled', true);
     		$('#guardarPagina').attr('disabled', true);
+    		$('#idEmpresaQRR').val($('#idEmpresa').val(""));
+			 $('#idActionQRR').val($('#idAction').val(""));
+			 $('#modeloQRR').val($('#modeloPagina').val(""));
+			 $('#tipoQRR').val("");
         }
-		
 		
      });
 	
@@ -159,6 +156,12 @@ $(document).ready(function(){
 		console.log("guardar QRR");
 		$('#activoQRR').collapse('show');
 		$('#moduloQRRActivo').collapse('show');
+		
+		$('#idEmpresaQRR').val($('#idEmpresa').val());
+		$('#idActionQRR').val($('#idAction').val());
+		$('#modeloQRR').val($('#modeloProducto').val());
+		var tipoQRR = $('input:radio[name=radioQRR]:checked').val();
+		$('#tipoQRR').val($('#modeloQRR').val()+tipoQRR);
 		
 		$('#guardarProducto').attr('disabled', false);
 	});

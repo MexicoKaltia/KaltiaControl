@@ -21,6 +21,8 @@ import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.FooterEntity;
 import com.kaltia.kaltiaControl.bean.HeaderEntity;
 import com.kaltia.kaltiaControl.bean.PaginaEntity;
+import com.kaltia.kaltiaControl.bean.ProductosEntity;
+import com.kaltia.kaltiaControl.bean.QRRestauranteEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 
 @Repository
@@ -48,29 +50,9 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	@Override
 	@Transactional(readOnly = false)
 	public ResultDAOVO createEmpresaDAO(EmpresaEntity eE) {
-		
-//		empresaEntity = new EmpresaEntity();
-//		empresaEntity.setIdEmpresa("idEmpresa2");
-//		empresaEntity.setIdAction("idAction");
-//		empresaEntity.setEmpresaNombreCompleto("empresaNombreCompleto");
-//		empresaEntity.setEmpresaRFC("empresaRFC");
-//		empresaEntity.setEmpresaDireccion("empresaDireccion");
-//		empresaEntity.setEmpresaEmail("empresaEmail");
-//		empresaEntity.setEmpresaContacto("empresaContacto");
-//		empresaEntity.setEmpresaIdPerfilE("empresaIdPerfilE");
-//		empresaEntity.setEmpresaVarios("empresaVarios");
-//		empresaEntity.setEmpresaIdPerfilI("empresaIdPerfilI");
-//		empresaEntity.setEmpresaModelo("empresaModelo");
-//		empresaEntity.setEmpresaStatus("empresaStatus");
-//		empresaEntity.setEmpresaFechaCorte("empresaFechaCorte");
-//		empresaEntity.setEmpresaModoPago("empresaModoPago");
-//		empresaEntity.setEmpresaFactura("empresaFactura");
-//		
+			
 		logger.info("-----------"+eE.getEmpresaNombreCompleto());
-		
-//		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
-//	      EntityManager entitymanager = emfactory.createEntityManager( );
-	      
+		     
 		try {
 //			em.getTransaction( ).begin( );
 		  em.merge(eE);
@@ -93,13 +75,36 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	
 	@Override
 	@Transactional(readOnly = false)
+	public ResultDAOVO createProductos(ProductosEntity productosEntity) {
+		try {
+//			em.getTransaction( ).begin( );
+		  em.merge(productosEntity);
+//			em.persist( eE );
+//		    em.getTransaction( ).commit( );
+		      
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("Productos exito guardada");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+		}finally {
+			em.close( );
+		      
+		}
+	      
+		return resultDAOVO;
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
 	public ResultDAOVO createPagina(PaginaEntity paginaEntity) {
-		logger.info("-----------"+paginaEntity.getIdActionPagina());
+		logger.info("-----------"+paginaEntity.getIdAction());
 	      
 		try {
 		  em.merge(paginaEntity);
 	      resultDAOVO.setCode("00");
-	      resultDAOVO.setMessage("Empresa con exito guardada");
+	      resultDAOVO.setMessage("Pagina con exito guardada");
 	      
 		}catch(Exception e) {
 			resultDAOVO.setCode("99");
@@ -111,6 +116,29 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		
 		return resultDAOVO;
 	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public ResultDAOVO createQRR(QRRestauranteEntity qrrEntity) {
+		logger.info("-----------"+qrrEntity.getIdAction());
+	      
+		try {
+		  em.merge(qrrEntity);
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("QRR con exito guardada");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+			logger.info(e);
+		}finally {
+			em.close( );
+		}
+		
+		return resultDAOVO;
+
+	}
+
 
 
 	@Override
@@ -337,6 +365,8 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	    	  //empresaEntity.setIdEmpresa("Exception");
 	    	  return null;
 	      }	}
+
+
 
 
 

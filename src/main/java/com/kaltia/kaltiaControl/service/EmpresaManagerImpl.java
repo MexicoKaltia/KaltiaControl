@@ -25,6 +25,8 @@ import com.kaltia.kaltiaControl.bean.FooterEntity;
 import com.kaltia.kaltiaControl.bean.HeaderEntity;
 import com.kaltia.kaltiaControl.bean.PaginaEntity;
 import com.kaltia.kaltiaControl.bean.ProductosEntity;
+import com.kaltia.kaltiaControl.bean.ProductosVO;
+import com.kaltia.kaltiaControl.bean.QRRestauranteEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.ResultVO;
 import com.kaltia.kaltiaControl.repository.EmpresaDAO;
@@ -96,140 +98,108 @@ public class EmpresaManagerImpl implements EmpresaManager{
 
 
 	@Override
-	public ResultDAOVO createEmpresaProductos(ProductosEntity productosEntity) {
+	public ResultDAOVO createEmpresaProductos(ProductosVO productosVO) {
 		
-		empresaEntity = empresaDAO.readIdEmpresaDAO(productosEntity.getIdProducto());
-		
-		String modeloPagina = productosEntity.getPaginaEntity().getModeloPagina();
+		empresaEntity = empresaDAO.readIdEmpresaDAO(productosVO.getIdEmpresa());
+		String modeloPagina = productosVO.getModeloProducto();
+		String codigo="";
 		boolean carpetaFileSystem = false;
-		if(productosEntity.getPaginaEntity() != null) {
-			
-			/*
-			 * Siguiente IF es para el producto de la Pagina
-			 */
-			if(resultDAOVO.getCode().equals("00")) {
-				ActionEntity actionEntity =new ActionEntity();
-				actionEntity.setIdAction(empresaEntity.getIdAction());
-				actionEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
-				actionEntity.setActionEstilo(modeloPagina);
-				actionEntity.setHeaderRequerido(1);
-				actionEntity.setBodyRequerido(1);
-				actionEntity.setFooterRequerido(1);
-				actionEntity.setActionPrincipal(2);
-				actionEntity.setAmbiente(PROPS.getProperty("ambiente"));
-//				actionEntity.setActionModulos(empresaEntity.getEmpresaModulos());
-				//createActionDAO
-				resultDAOVO = (ResultDAOVO) empresaDAO.createActionDAO(actionEntity);
-				logger.info(resultDAOVO.getCode());
-				logger.info("create action:"+resultDAOVO.getMessage());
-				
-				if(resultDAOVO.getCode().equals("00")) {
-					HeaderEntity headerEntity = new HeaderEntity();
-					headerEntity = (HeaderEntity) empresaDAO.readHeaderDAO(modeloPagina);
-					logger.info("Lectura de Header:"+headerEntity.getIdEmpresa());
-					headerEntity.setIdHeader(empresaEntity.getIdAction()+"-header");
-					headerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
-					headerEntity.setIdAction(empresaEntity.getIdAction());
-					logger.info("Actualizacion de Header:"+headerEntity.getIdEmpresa());
-					//createHeaderDAO
-					resultDAOVO = (ResultDAOVO) empresaDAO.createHeaderDAO(headerEntity);
-					logger.info(resultDAOVO.getCode());
-					logger.info("create header : "+resultDAOVO.getMessage());
-					if(resultDAOVO.getCode().equals("00")) {
-						BodyEntity bodyEntity = new BodyEntity();
-						bodyEntity = (BodyEntity) empresaDAO.readBodyDAO(modeloPagina);
-						bodyEntity.setIdBody(empresaEntity.getIdAction()+"-body");
-						bodyEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
-						bodyEntity.setIdAction(empresaEntity.getIdAction());
-						//createBodyDAO
-						resultDAOVO = (ResultDAOVO) empresaDAO.createBodyDAO(bodyEntity);	
-						logger.info(resultDAOVO.getCode());
-						logger.info("create body "+resultDAOVO.getMessage());
-						if(resultDAOVO.getCode().equals("00")) {
-							FooterEntity footerEntity = new FooterEntity();
-							footerEntity = (FooterEntity) empresaDAO.readFooterDAO(modeloPagina);
-							footerEntity.setIdFooter(empresaEntity.getIdAction()+"-footer");
-							footerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
-							footerEntity.setIdAction(empresaEntity.getIdAction());
-							//createFooterDAO
-							resultDAOVO = (ResultDAOVO) empresaDAO.createFooterDAO(footerEntity);
-							logger.info(resultDAOVO.getCode());
-							logger.info("create footer "+resultDAOVO.getMessage());
-							if(resultDAOVO.getCode().equals("00")) {
-								//createUserKaltiaControl perfil E
-								resultDAOVO = userManager.createUser(empresaEntity);
-								logger.info(resultDAOVO.getCode());
-								logger.info("create UserKaltiaControl "+resultDAOVO.getMessage());
-								if(resultDAOVO.getCode().equals("00")) {
-								resultDAOVO.setMessage("Alta Exitosa, Action, Header, Body , Footer, UserKaltiaControl");
-								logger.info(resultDAOVO.getMessage());
-								carpetaFileSystem = true;
-								}else {
-									//Create UserKaltiaControl
-									logger.info(resultDAOVO.getCode());
-									logger.info("Fail create UserKaltiaControl "+resultDAOVO.getMessage());
-								}
-							}else {
-								//Create Footer
-								logger.info(resultDAOVO.getCode());
-								logger.info("Fail create footer "+resultDAOVO.getMessage());
-							}
-						}else {
-							//Create Body
-							logger.info(resultDAOVO.getCode());
-							logger.info("Fail create Body "+resultDAOVO.getMessage());
-						}				
-					}else {
-						//Create Header
-						logger.info(resultDAOVO.getCode());
-						logger.info("Fail create Header "+resultDAOVO.getMessage());
-					}				
-				}else {
-					//Create Action
-					logger.info(resultDAOVO.getCode());
-					logger.info("Fail create Action "+resultDAOVO.getMessage());
-				}
-			}else {
-				//Create Empresa
-				logger.info(resultDAOVO.getCode());
-				logger.info("Fail create Empresa "+resultDAOVO.getMessage());
+		
+		/*
+		 * Productos
+		 */
+		ProductosEntity productosEntity = new ProductosEntity();
+		productosEntity.setIdEmpresa(productosVO.getIdEmpresa());
+		productosEntity.setCheckPagina(productosVO.isCheckPagina());
+		productosEntity.setCheckQRR(productosVO.isCheckQRR());
+		productosEntity.setCheckQRE(productosVO.isCheckQRE());
+		productosEntity.setCheckPuntoVenta(productosVO.isCheckPuntoVenta());
+		productosEntity.setClientePagina(productosVO.isClientePagina());
+		productosEntity.setCitaPagina(productosVO.isCitaPagina());
+		productosEntity.setCarpetaPagina(productosVO.isCarpetaPagina());
+		productosEntity.setRetroalimentacionPagina(productosVO.isRetroalimentacionPagina());
+		productosEntity.setChatPagina(productosVO.isChatPagina());
+		productosEntity.setNotificacionPagina(productosVO.isNotificacionPagina());
+		productosEntity.setVideoPagina(productosVO.isVideoPagina());
+		productosEntity.setTarjetaPagina(productosVO.isTarjetaPagina());
+		resultDAOVO = (ResultDAOVO) empresaDAO.createProductos(productosEntity);
+		
+		codigo = createAction(empresaEntity, modeloPagina);
+		if(!codigo.equals("00")) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage("Error createAction");
+			return resultDAOVO;
+		}
+		
+		/*
+		 * Producto Pagina
+		 */
+		if (productosVO.isCheckPagina()) {
+			resultDAOVO = createPagina(modeloPagina);
+			if (!resultDAOVO.getCode().equals("00")) {
+				return resultDAOVO;
 			}
-			// Inserta el IdPagina
+		}
+
+		// Inserta el IdPagina
+		if (productosVO.isCheckPagina()) {
+			PaginaEntity pE = productosVO.getPaginaEntity();
+			pE.setIdPagina(empresaEntity.getIdEmpresa());
+			pE.setIdAction(empresaEntity.getIdAction());
+			pE.setModeloPagina(modeloPagina);
+
+			resultDAOVO = empresaDAO.createPagina(pE);
 			if(resultDAOVO.getCode().equals("00")) {
-				PaginaEntity pE = productosEntity.getPaginaEntity();
-				pE.setIdActionPagina(empresaEntity.getIdAction());
-				pE.setIdPagina(BaseInfra.idLocalTime());
-				
-				resultDAOVO = empresaDAO.createPagina(pE);
-				logger.info("Exito create PaginaEntity"+resultDAOVO.getMessage());
+				logger.info("Exito create PaginaEntity" + resultDAOVO.getMessage());
 				carpetaFileSystem = true;
 			}else {
 					logger.info(resultDAOVO.getCode());
-					logger.info("Fail create PaginaEntity"+resultDAOVO.getMessage());
+					logger.info("Fail create PaginaEntity" + resultDAOVO.getMessage());
+					carpetaFileSystem = false;
+					return resultDAOVO;
 			}
 		}
 		
 		/*
-		 * 
+		 *  Producto QRR
 		 */
-		if( productosEntity.getqRREstaurante() != null) {
+		if( productosVO.isCheckQRR()) {
+			logger.info("QRR Activo:"+productosVO.getqRREstaurante().getTipoQRR());
+			resultDAOVO = createQRR(modeloPagina, productosVO, carpetaFileSystem);
+		}
+
+		/*
+		 * Producto QRE
+		 */
+		if(productosVO.getqREstacionamiento() != null) {
 			
 		}
 
 		/*
-		 * 
+		 * Producto Punto de Venta
 		 */
-		if(productosEntity.getqREstacionamiento() != null) {
-			
-		}
-
-		/*
-		 * 
-		 */
-		if(productosEntity.getPuntoVenta() != null) {
+		if(productosVO.getPuntoVenta() != null) {
 			
 		}
 		
+		/*
+		 *  user kaltiaControl
+		 */
+		if(resultDAOVO.getCode().equals("00")) {
+			//createUserKaltiaControl perfil E
+			resultDAOVO = userManager.createUser(empresaEntity);
+			logger.info(resultDAOVO.getCode());
+			logger.info("create UserKaltiaControl "+resultDAOVO.getMessage());
+			if(resultDAOVO.getCode().equals("00")) {
+			resultDAOVO.setMessage("Alta Exitosa, Action, Header, Body , Footer, UserKaltiaControl");
+			logger.info(resultDAOVO.getMessage());
+			carpetaFileSystem = true;
+			}else {
+				logger.info(resultDAOVO.getCode());
+				logger.info("Fail create UserKaltiaControl "+resultDAOVO.getMessage());
+			}
+		}
+			
 		/*
 		 *  CREA LAS CARPETAS FILE SYSTEM
 		 */
@@ -250,6 +220,138 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		}
 		
 		return resultDAOVO;
+
+	}
+
+	private ResultDAOVO createQRR(String modeloPagina, ProductosVO productosVO, boolean carpetaFileSystem) {
+		QRRestauranteEntity qrrEntity = new QRRestauranteEntity();
+		qrrEntity.setIdQRR(empresaEntity.getIdEmpresa());
+		qrrEntity.setIdAction(empresaEntity.getIdAction());
+		qrrEntity.setModeloQRR(modeloPagina);
+		qrrEntity.setTipoQRR(productosVO.getqRREstaurante().getTipoQRR());
+		
+		resultDAOVO = empresaDAO.createQRR(qrrEntity);
+		if(resultDAOVO.getCode().equals("00")) {
+			logger.info("Exito create QRR" + resultDAOVO.getMessage());
+			createPaginaQRR(modeloPagina);
+			carpetaFileSystem = true;
+		}else {
+				logger.info(resultDAOVO.getCode());
+				logger.info("Fail create QRR" + resultDAOVO.getMessage());
+				carpetaFileSystem = false;
+			}
+		return resultDAOVO;
+	}
+
+	private ResultDAOVO createPagina(String modeloPagina) {
+		if(resultDAOVO.getCode().equals("00")) {
+			HeaderEntity headerEntity = new HeaderEntity();
+			headerEntity = (HeaderEntity) empresaDAO.readHeaderDAO(modeloPagina);
+			logger.info("Lectura de Header:"+headerEntity.getIdEmpresa());
+			headerEntity.setIdHeader(empresaEntity.getIdAction()+"-header");
+			headerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+			headerEntity.setIdAction(empresaEntity.getIdAction());
+			logger.info("Actualizacion de Header:"+headerEntity.getIdEmpresa());
+			//createHeaderDAO
+			resultDAOVO = (ResultDAOVO) empresaDAO.createHeaderDAO(headerEntity);
+			logger.info(resultDAOVO.getCode());
+			logger.info("create header : "+resultDAOVO.getMessage());
+			if(resultDAOVO.getCode().equals("00")) {
+				BodyEntity bodyEntity = new BodyEntity();
+				bodyEntity = (BodyEntity) empresaDAO.readBodyDAO(modeloPagina);
+				bodyEntity.setIdBody(empresaEntity.getIdAction()+"-body");
+				bodyEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+				bodyEntity.setIdAction(empresaEntity.getIdAction());
+				//createBodyDAO
+				resultDAOVO = (ResultDAOVO) empresaDAO.createBodyDAO(bodyEntity);	
+				logger.info(resultDAOVO.getCode());
+				logger.info("create body "+resultDAOVO.getMessage());
+				if(resultDAOVO.getCode().equals("00")) {
+					FooterEntity footerEntity = new FooterEntity();
+					footerEntity = (FooterEntity) empresaDAO.readFooterDAO(modeloPagina);
+					footerEntity.setIdFooter(empresaEntity.getIdAction()+"-footer");
+					footerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+					footerEntity.setIdAction(empresaEntity.getIdAction());
+					//createFooterDAO
+					resultDAOVO = (ResultDAOVO) empresaDAO.createFooterDAO(footerEntity);
+					logger.info(resultDAOVO.getCode());
+					logger.info("create footer "+resultDAOVO.getMessage());
+					
+					}else {
+						//Create Footer
+						logger.info(resultDAOVO.getCode());
+						logger.info("Fail create footer "+resultDAOVO.getMessage());
+					}
+				}else {
+					//Create Body
+					logger.info(resultDAOVO.getCode());
+					logger.info("Fail create Body "+resultDAOVO.getMessage());
+				}				
+			}else {
+				//Create Header
+				logger.info(resultDAOVO.getCode());
+				logger.info("Fail create Header "+resultDAOVO.getMessage());
+			}	
+		return resultDAOVO;
+	}
+	
+	private ResultDAOVO createPaginaQRR(String modeloPagina) {
+		if(resultDAOVO.getCode().equals("00")) {
+			HeaderEntity headerEntity = new HeaderEntity();
+			headerEntity = (HeaderEntity) empresaDAO.readHeaderDAO(modeloPagina);
+			logger.info("Lectura de Header:"+headerEntity.getIdEmpresa());
+			headerEntity.setIdHeader(empresaEntity.getIdAction()+"-header");
+			headerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+			headerEntity.setIdAction(empresaEntity.getIdAction());
+			logger.info("Actualizacion de Header:"+headerEntity.getIdEmpresa());
+			//createHeaderDAO
+			resultDAOVO = (ResultDAOVO) empresaDAO.createHeaderDAO(headerEntity);
+			logger.info(resultDAOVO.getCode());
+			logger.info("create header : "+resultDAOVO.getMessage());
+				if(resultDAOVO.getCode().equals("00")) {
+					FooterEntity footerEntity = new FooterEntity();
+					footerEntity = (FooterEntity) empresaDAO.readFooterDAO(modeloPagina);
+					footerEntity.setIdFooter(empresaEntity.getIdAction()+"-footer");
+					footerEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+					footerEntity.setIdAction(empresaEntity.getIdAction());
+					//createFooterDAO
+					resultDAOVO = (ResultDAOVO) empresaDAO.createFooterDAO(footerEntity);
+					logger.info(resultDAOVO.getCode());
+					logger.info("create footer "+resultDAOVO.getMessage());
+					
+					}else {
+						//Create Footer
+						logger.info(resultDAOVO.getCode());
+						logger.info("Fail create footer "+resultDAOVO.getMessage());
+					}
+			}else {
+				//Create Header
+				logger.info(resultDAOVO.getCode());
+				logger.info("Fail create Header "+resultDAOVO.getMessage());
+			}	
+		return resultDAOVO;
+	}
+
+
+	private String createAction(EmpresaEntity empresaEntity, String modeloPagina) {
+		logger.info("Pagina Editable Activo:"+empresaEntity.getIdAction());
+		
+		ActionEntity actionEntity =new ActionEntity();
+		actionEntity.setIdAction(empresaEntity.getIdAction());
+		actionEntity.setIdEmpresa(empresaEntity.getIdEmpresa());
+		actionEntity.setActionEstilo(modeloPagina);
+		actionEntity.setHeaderRequerido(1);
+		actionEntity.setBodyRequerido(1);
+		actionEntity.setFooterRequerido(1);
+		actionEntity.setActionPrincipal(2);
+		actionEntity.setAmbiente(PROPS.getProperty("ambiente"));
+		resultDAOVO = (ResultDAOVO) empresaDAO.createActionDAO(actionEntity);
+		logger.info(resultDAOVO.getCode());
+		logger.info("create action:"+resultDAOVO.getMessage());
+		
+		return resultDAOVO.getCode();
+
+		
 	}
 	
 

@@ -62,9 +62,11 @@
             </fieldset></form></div>
             
             <!-- tabs Productos -->
-            <form  class="" action="altaProductos.htm" method="post" modelAttribute="productosEntity">
+            <form  class="" action="altaProductos.htm" method="post" modelAttribute="productosVO">
+         	
          	<a  id="productos"><input  name="empresaNombreCorto" type="text" value='<c:out value="${empresaEntity.getEmpresaNombreCorto()}"/>' placeholder ="Empresa" disabled/></a>
          	<input id="idProducto" name="idProducto" type="hidden" value='<c:out value="${empresaEntity.getIdEmpresa()}"/>'/>
+         	<input id="idEmpresa" name="idEmpresa" type="hidden" value='<c:out value="${empresaEntity.getIdEmpresa()}"/>'/>
          	<input id="idAction" name="idAction" type="hidden" value='<c:out value="${empresaEntity.getIdAction()}"/>'/>
          	
              <div id="big-form" class="well auth-box"><fieldset>
@@ -91,17 +93,22 @@
 		            <input id="moduloCitaValue" name="moduloCitaValue" type="hidden" value="31"/>
 		            <input id="moduloCarpetaValue" name="moduloCarpetaValue" type="hidden" value="41"/>
 		            
-		            <input id="idEmpresaPagina" name="paginaEntity.idEmpresaPagina" type="hidden" />
-		            <input id="idActionPagina" name="paginaEntity.idActionPagina" type="hidden" />
-		            
 		            <input id="empresaModulos" name="empresaModulos" type="hidden" />
 		            <input id="empresaClientes" name="empresaClientes" type="hidden" />
 		            <input id="empresaCitas" name="empresaCitas" type="hidden" />
 		            <input id="empresaCarpetas" name="empresaCarpetas" type="hidden" />
-		      
+		            
+		            
+		            <input id="idEmpresaPagina" name="paginaEntity.idEmpresa" type="hidden" />
+		            <input id="idActionPagina" name="paginaEntity.idAction" type="hidden" />
+		            <input id="idEmpresaQRR" name="qRREstaurante.idEmpresa" type="hidden" />
+		            <input id="idActionQRR" name="qRREstaurante.idAction" type="hidden" />
+		            <input id="modeloQRR" name="qRREstaurante.modeloQRR" type="hidden" />
+		            <input id="tipoQRR" name="qRREstaurante.tipoQRR" type="hidden" />
+		            
 			  		<label class=" control-label" for="selectbasic">Modelo</label>
 		            <div class="">
-		              <select id="modeloPagina" name="paginaEntity.modeloPagina" class="form-control" >
+		              <select id="modeloProducto" name="modeloProducto" class="form-control" >
 		                <option value="">Selecciona Modelo</option>
 		                <option value="bronea">Bronea</option>
 		                <option value="aerogem">Aerogem</option>
@@ -112,16 +119,16 @@
 		            	       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 					<div class="form-check">
-		            		<input class="form-check-input moduloPagina" type="checkbox" name="moduloPagina"  disabled>
-		                	<label class="form-check-label" for="moduloPagina">Edición de Pagina</label>
+		            		<input class="form-check-input moduloPagina" type="checkbox" name="checkPagina" id="checkPagina"  disabled>
+		                	<label class="form-check-label" for="paginaEntity.idPagina">Edición de Pagina</label>
 						  	<div id="moduloPagina" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Edicion de Pagina Activado</div>
 						  	</div>
 	       	        </div>
-	       	        	       	        <hr>
+	       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 	       	        <div class="form-check">
-		            		<input class="form-check-input moduloQRR" type="checkbox" name="moduloQRR"  disabled>
+		            		<input class="form-check-input moduloQRR" type="checkbox" name="checkQRR" id="checkQRR"  disabled>
 		                	<label class="form-check-label" for="moduloQRR">Activar QR Restaurante</label>
 						  	<div id="moduloQRR" class="collapse">
 							  	<div id="moduloQRRActivo" class="collapse">
@@ -130,13 +137,13 @@
 								<div class="row">
 								    <div class="col">
 									  <label class="radio-inline">
-									  	<input  type="radio" name="radioQRR" id="radioQRREstatico"  disabled>
+									  	<input  type="radio" name="radioQRR" id="modeloEstaticoQRR" value="QRE" disabled>
 									  	Formato Menú Estático
 									  	</label>
 								    </div>
 								    <div class="col" >
 										<label class="radio-inline">
-											<input  type="radio" name="radioQRR" id="radioQRRDinamico"  disabled>
+											<input  type="radio" name="radioQRR" id="modeloDinamicoQRR" value="QRD" disabled>
 										Formato Menú Dinámico
 										</label>
 								    </div>
@@ -147,7 +154,7 @@
 	       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 	       	        <div class="form-check">
-							<input type="checkbox" class="form-check-input moduloCliente" id="moduloClienteCheck" disabled>
+							<input type="checkbox" class="form-check-input moduloCliente" name ="clientePagina" id="clientePagina" disabled>
 		         	   		<label class="form-check-label" for="moduloCliente">Gestión Clientes</label>
 		         	   		<div id="moduloCliente" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Edicion de Pagina Activado</div>
@@ -156,7 +163,7 @@
 						       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 					<div class="form-check">
-		         	   <input class="form-check-input moduloCita" type="checkbox" name="moduloCita" id="moduloCitaCheck"  disabled>
+		         	   <input class="form-check-input moduloCita" type="checkbox" name="citaPagina" id="citaPagina"  disabled>
 		         	   <label class="form-check-label" for="moduloCita" id="moduloCitalabel">Gestión Citas</label>
 		         	   	  	<div id="moduloCita" class="collapse">
 								<div class="row">
@@ -200,7 +207,7 @@
 						       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 					<div class="form-check">
-		         	   <input class="form-check-input moduloCarpeta" type="checkbox" name="moduloCarpeta" id="moduloCarpetaCheck" disabled>
+		         	   <input class="form-check-input moduloCarpeta" type="checkbox" name="carpetaPagina" id="carpetaPagina" disabled>
 		         	   <label class="form-check-label" for="moduloCarpeta" >Carpeta Clientes</label>
 		         	   	<div id="moduloCarpeta" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Carpeta Cliente Activado</div>
@@ -209,7 +216,7 @@
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	</div>
 		         	<div class="form-check">
-		         	   <input class="form-check-input moduloRetroAlimentacion" type="checkbox" name="moduloRetroAlimentacion" id="moduloRetroAlimentacionCheck" disabled>
+		         	   <input class="form-check-input moduloRetroAlimentacion" type="checkbox" name="retroalimentacionPagina" id="retroalimentacionPagina" disabled>
 		         	   <label class="form-check-label" for="moduloRetroAlimentacion" >RetroAlimentacion</label>
 		         	   	<div id="moduloRetroAlimentacion" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo RetroAlimentacion Activado</div>
@@ -218,7 +225,7 @@
 		         		       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input moduloNotificacion" type="checkbox" name="moduloNotificacion" id="moduloNotificacionCheck"  disabled>
+		         	   <input class="form-check-input moduloNotificacion" type="checkbox" name="notificacionPagina" id="notificacionPagina"  disabled>
 		         	   <label class="form-check-label" for="moduloNotificacion" >Notificaciones</label>
 		         	   	<div id="moduloNotificacion" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Notificaciones Activado</div>
@@ -227,7 +234,7 @@
 		         		       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input moduloChat" type="checkbox" name="moduloChat" id="moduloChatCheck" disabled>
+		         	   <input class="form-check-input moduloChat" type="checkbox" name="chatPagina" id="chatPagina" disabled>
 		         	   <label class="form-check-label" for="moduloChat" >Chat</label>
 		         	   	<div id="moduloChat" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Chat Activado</div>
@@ -236,7 +243,7 @@
 		         		       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input moduloVideo" type="checkbox" name="moduloVideos" id="moduloVideoCheck"  disabled>
+		         	   <input class="form-check-input moduloVideo" type="checkbox" name="videoPagina" id="videoPagina"  disabled>
 		         	   <label class="form-check-label" for="moduloVideo" >Videos</label>
 		         	   	<div id="moduloVideo" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Videos Activado</div>
@@ -245,7 +252,7 @@
 		         		       	        <hr>
 	       	        <!-- ---------------------------------------------------------------------------------- -->
 		         	<div class="form-check">
-		         	   <input class="form-check-input moduloTarjeta" type="checkbox" name="moduloTarjeta" id="moduloTarjetaCheck"  disabled>
+		         	   <input class="form-check-input moduloTarjeta" type="checkbox" name="tarjetaPagina" id="tarjetaPagina"  disabled>
 		         	   <label class="form-check-label" for="moduloTarjeta" >Tarjeta de Productos</label>
 		         	   	<div id="moduloTarjeta" class="collapse">
 								<div id='limpiaAlerta' class='alert alert-success' role='alert'>Modulo Tarjeta de Productos Activado</div>

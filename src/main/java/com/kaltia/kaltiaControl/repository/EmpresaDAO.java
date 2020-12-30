@@ -9,6 +9,8 @@ import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.FooterEntity;
 import com.kaltia.kaltiaControl.bean.HeaderEntity;
 import com.kaltia.kaltiaControl.bean.PaginaEntity;
+import com.kaltia.kaltiaControl.bean.ProductosEntity;
+import com.kaltia.kaltiaControl.bean.QRRestauranteEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 
 public interface EmpresaDAO extends Serializable{
@@ -33,6 +35,8 @@ public interface EmpresaDAO extends Serializable{
 	public FooterEntity readFooterDAO(String idEmpresa);
 	
 	public ResultDAOVO createPagina(PaginaEntity paginaEntity);
+	public ResultDAOVO createProductos(ProductosEntity productosEntity);
+	public ResultDAOVO createQRR(QRRestauranteEntity qrrEntity);
 
 
 }

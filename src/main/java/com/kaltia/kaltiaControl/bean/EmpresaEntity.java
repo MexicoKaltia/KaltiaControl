@@ -41,6 +41,8 @@ public class EmpresaEntity implements Serializable{
 	@Column
 	private String empresaContacto;
 	@Column
+	private String empresaTelefono;
+	@Column
 	private String empresaIdPerfilI;
 	@Column
 	private String empresaVarios;
@@ -181,6 +183,15 @@ public class EmpresaEntity implements Serializable{
 	public void setEmpresaFactura(String empresaFactura) {
 		this.empresaFactura = empresaFactura;
 	}
+	public String getEmpresaTelefono() {
+		return empresaTelefono;
+	}
+
+
+	public void setEmpresaTelefono(String empresaTelefono) {
+		this.empresaTelefono = empresaTelefono;
+	}
+
 	
 
 }
