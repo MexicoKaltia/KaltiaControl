@@ -219,6 +219,15 @@ public class EmpresaManagerImpl implements EmpresaManager{
 			}
 		}
 		
+		if(resultVO.getCodigo()==0) {
+			empresaEntity.setEmpresaStatus("inicio");
+			resultDAOVO = (ResultDAOVO) empresaDAO.createEmpresaDAO(empresaEntity);
+		}else {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage("Error Actualiza Status Empresa");
+		}
+		
+		
 		return resultDAOVO;
 
 	}
@@ -233,7 +242,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		resultDAOVO = empresaDAO.createQRR(qrrEntity);
 		if(resultDAOVO.getCode().equals("00")) {
 			logger.info("Exito create QRR" + resultDAOVO.getMessage());
-			createPaginaQRR(modeloPagina);
+			resultDAOVO = createPagina(modeloPagina);
 			carpetaFileSystem = true;
 		}else {
 				logger.info(resultDAOVO.getCode());
