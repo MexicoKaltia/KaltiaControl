@@ -241,12 +241,12 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		
 		resultDAOVO = empresaDAO.createQRR(qrrEntity);
 		if(resultDAOVO.getCode().equals("00")) {
-			logger.info("Exito create QRR" + resultDAOVO.getMessage());
+			logger.info("Exito create QR" + resultDAOVO.getMessage());
 			resultDAOVO = createPagina(modeloPagina);
 			carpetaFileSystem = true;
 		}else {
 				logger.info(resultDAOVO.getCode());
-				logger.info("Fail create QRR" + resultDAOVO.getMessage());
+				logger.info("Fail create QR" + resultDAOVO.getMessage());
 				carpetaFileSystem = false;
 			}
 		return resultDAOVO;
