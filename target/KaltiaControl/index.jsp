@@ -43,8 +43,8 @@
       	</span>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-      <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltia.site">Kaltia Mexico&copy; 2020</a></p>
-      <hiden class="version">23012020</hiden>
+      <p class="mt-5 mb-3 text-muted"><a href="http://www.kaltiaservicios.com">Kaltia Servicios Informatica - Mexico&copy; 2021</a></p>
+      <hiden class="version">01012021</hiden>
     </form:form>
 
 

@@ -20,7 +20,7 @@ public interface EmpresaDAO extends Serializable{
 	public EmpresaEntity readIdEmpresaDAO(String idEmpresaPagina);
 	
 	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI);
-	public ResultDAOVO updateEmpresaDAO();
+	public ResultDAOVO updateEmpresaDAO(EmpresaEntity eE);
 	public ResultDAOVO deleteEmpresaDAO();
 	
 	public ResultDAOVO createActionDAO(ActionEntity actionEntity);

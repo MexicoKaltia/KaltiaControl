@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,9 +22,20 @@ public class RequestLoginVO implements Serializable{
 	private List<UserEmpresaEntity> userEmpresaEntity;
 	private StatusEmpresaEntity statusEmpresaEntity;
 	private DatosCitasVO datosCitasVO;
+	private JSONObject jsonArray;
 	
 	
 	
+	
+	
+	
+	
+	public JSONObject getJsonArray() {
+		return jsonArray;
+	}
+	public void setJsonArray(JSONObject jsonArray) {
+		this.jsonArray = jsonArray;
+	}
 	public DatosCitasVO getDatosCitasVO() {
 		return datosCitasVO;
 	}

@@ -28,7 +28,7 @@
 	              <input id="userUser" name="userUser" placeholder="Usuario Kaltia Control" class="form-control input-md" readonly type="text" value="<c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlUser()}"/>">
 	              <input id="userKaltiaControlPass" name="passUser" placeholder="Password" class="form-control input-md" type="password">
 	              <input id="userKaltiaControlPass1" name="passUser1" placeholder="Confirma Password" class="form-control input-md" type="password">
-	              
+	              <input type="hidden" name ="idUser" value='<c:out value="${model.requestLoginVO.userKaltiaControlEntity.getIdUserKaltiaControlUser()}"/>'>
 	              <br>
 
               <br>

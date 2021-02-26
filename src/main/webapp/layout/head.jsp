@@ -28,8 +28,8 @@
     <div id="topbar" class="hoc clear"> 
       <div class="fl_left"> 
         <ul class="nospace">
-          <li><i class="fa fa-phone"></i>+521 557879 4446</li>
-          <li><i class="fa fa-envelope-o"></i>kaltia@gmail.com</li>
+          <li><i class="fa fa-phone"></i>55 1030 2411</li>
+          <li><i class="fa fa-envelope-o"></i>bienvenido@kaltiaservicios.com</li>
         </ul>
       </div>
       <div class="fl_right"> 

@@ -46,6 +46,11 @@ public class UserKaltiaControlVO {
 	public void setPerfilUser(String perfilUser) {
 		this.perfilUser = perfilUser;
 	}
+	@Override
+	public String toString() {
+		return "UserKaltiaControlVO [idUser=" + idUser + ", userUser=" + userUser + ", passUser=" + passUser
+				+ ", nombreUser=" + nombreUser + ", empresaUser=" + empresaUser + ", perfilUser=" + perfilUser + "]";
+	}
 	
 	
 

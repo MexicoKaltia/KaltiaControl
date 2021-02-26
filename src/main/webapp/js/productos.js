@@ -115,7 +115,7 @@ $(document).ready(function(){
         	$('#guardarProducto').attr('disabled', true);
         	
         	$('#idEmpresa').val($('#idProducto').val(""));
-			$('#idActionPagina').val($('#idAction').val(""));
+			$('#idActionPagina').val("");
         	}
         });
 
@@ -136,6 +136,7 @@ $(document).ready(function(){
     		$('#modeloDinamicoQRR').change(function(){
     			 $('#guardarQRR').attr('disabled', false);
     		})
+    		
     		
     	}else{
     		console.log($('#checkQRR').prop('checked'));
@@ -162,6 +163,7 @@ $(document).ready(function(){
 		$('#modeloQRR').val($('#modeloProducto').val());
 		var tipoQRR = $('input:radio[name=radioQRR]:checked').val();
 		$('#tipoQRR').val($('#modeloQRR').val()+tipoQRR);
+		$('#idActionPagina').val($('#idAction').val());
 		
 		$('#guardarProducto').attr('disabled', false);
 	});

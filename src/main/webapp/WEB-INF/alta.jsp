@@ -73,11 +73,8 @@
               <input id="empresaTelefono" name="empresaTelefono" placeholder="Telefono Contacto" class="form-control input-md" type="text"  >
 <%--               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="text" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlDescr().toString()}"/>"> --%>
               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="hidden" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>">
-<!--                -->
-              
               <br>
-              </fieldset></div>
-              
+              </fieldset></div>              
               <div id="big-form" class="well auth-box"><fieldset>
               <a id="status"></a>
              	<label class=" control-label" for="textinput">Status</label>
@@ -85,8 +82,6 @@
               	<div id="big-form" class="well auth-box"><fieldset>
               <input id="empresaStatus" name="empresaStatus" placeholder="Status" class="form-control input-md" type="text" readonly value="prospecto" >
               <input id="empresaFechaCorte" name="empresaFechaCorte" placeholder="Fecha de Corte" class="form-control input-md" type="text"  readonly> 
-<%--               readonly value="<c:out value="${modelAlta.requestLoginVO.empresaEntity.getEmpresaFechaCorte()}"/>"> --%>
-<!--               <input id="empresaModoPago" name="empresaModoPago" placeholder="Modo de Pago" class="form-control input-md" type="text"  > -->
               <label class=" control-label" for="selectbasic">Modo de Pago</label>
 	            <div class="">
 	              <select id="empresaModoPago" name="empresaModoPago" class="form-control">
@@ -95,7 +90,6 @@
 	              </select>
 	            </div>
               <input id="empresaFactura" name="empresaFactura" placeholder="Factura" class="form-control input-md" type="text"  readonly>
-<!--               <input id="empresaVarios" name="empresaVarios" placeholder="Varios" class="form-control input-md" type="text"  > -->
                <label class=" control-label" for="textarea">Varios</label>
 	            <div class="">                     
 	              <textarea class="form-control" id="empresaVarios" rows="4" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
@@ -103,14 +97,7 @@
               <br>
 	             <label class=" control-label" for="textinput">Usuario</label>
 	              <input id="empresaIdPerfilE" name="empresaIdPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text" readonly>
-<!-- 	              <input id="userKaltiaControlPass" name="userKaltiaControlPass" placeholder="Password" class="form-control input-md" type="password"> -->
-<!-- 	              <input id="userKaltiaControlPass1" name="userKaltiaControlPass1" placeholder="Confirma Password" class="form-control input-md" type="password"> -->
 	          </fieldset></div>
-	          
-	                      
-            
-            	
-	          
 	          <br>
 	          <hr>
 			  <div id="big-form" class="well auth-box"><fieldset>

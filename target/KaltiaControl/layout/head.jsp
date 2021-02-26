@@ -1,9 +1,15 @@
+<!DOCTYPE html>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"    pageEncoding="UTF-8"%>
 <%@ page session="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix ="fn" uri = "http://java.sun.com/jsp/jstl/functions"  %>
-<!DOCTYPE html>
+<%-- <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%> --%>
+<%-- <%@ taglib prefix="s" uri="/struts-tags"%> --%>
+
+
+
 <html>
 <head>
 <title>KaltiaControl</title>
@@ -22,8 +28,8 @@
     <div id="topbar" class="hoc clear"> 
       <div class="fl_left"> 
         <ul class="nospace">
-          <li><i class="fa fa-phone"></i>+521 557879 4446</li>
-          <li><i class="fa fa-envelope-o"></i>kaltia@gmail.com</li>
+          <li><i class="fa fa-phone"></i>55 1030 2411</li>
+          <li><i class="fa fa-envelope-o"></i>bienvenido@kaltiaservicios.com</li>
         </ul>
       </div>
       <div class="fl_right"> 

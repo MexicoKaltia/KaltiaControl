@@ -70,7 +70,9 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		
 	@Override
 	public EmpresaEntity readEmpresa(String idUserKaltiaControl) {
-		empresaEntity = empresaDAO.readEmpresaDAO(idUserKaltiaControl);
+//		empresaEntity = empresaDAO.readEmpresaDAO(idUserKaltiaControl);
+		empresaEntity = empresaDAO.readIdEmpresaDAO(idUserKaltiaControl);
+		
 		return empresaEntity;
 	}
 
@@ -84,8 +86,12 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		return empresaEntityArray;
 	}
 	@Override
-	public void updateEmpresa() {
-		
+	public ResultDAOVO updateEmpresa(EmpresaEntity empresaEntity) {
+		// validacion de un idAction dublicado !!
+				logger.info(empresaEntity.toString());
+				empresaDAO.updateEmpresaDAO(empresaEntity);
+					return resultDAOVO;	
+
 	}
 	@Override
 	public void deleteEmpresa() {

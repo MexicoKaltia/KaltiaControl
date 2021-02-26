@@ -200,9 +200,27 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	}
 
 	@Override
-	public ResultDAOVO updateEmpresaDAO() {
-		return null;
-		// TODO Auto-generated method stub
+	@Transactional(readOnly = false)
+	public ResultDAOVO updateEmpresaDAO(EmpresaEntity eE) {
+		
+		try {
+//			em.getTransaction( ).begin( );
+		  em.merge(eE);
+//			em.persist( eE );
+//		    em.getTransaction( ).commit( );
+		      
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("Empresa Actualizada con Exito");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+		}finally {
+			em.close( );
+		      
+		}
+		return resultDAOVO;
+
 		
 	}
 

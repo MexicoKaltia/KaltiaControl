@@ -29,8 +29,8 @@
 </head>
 		<!-- ################################################################################################ -->
 		<div>
-							<iframe src="http://www.kaltia.site/<c:out value="${modelEdicion.requestLoginVO.getEmpresaEntity().getIdAction()}"/>?tipo=AAA"
-								onload="autofitIframe(this);"></iframe>
+<%-- 							<iframe src="http://www.kaltia.xyz/<c:out value="${modelEdicion.requestLoginVO.getEmpresaEntity().getIdAction()}"/>?tipo=AAA"  onload="autofitIframe(this);"></iframe> --%>
+							<iframe src="http://www.kaltia.xyz/<c:out value="${modelEdicion.contexto}"/>?tipo=AAA"  onload="autofitIframe(this);"></iframe>
 		</div>
 		<!-- ################################################################################################ -->
 	<div class="nospace inline pushright">

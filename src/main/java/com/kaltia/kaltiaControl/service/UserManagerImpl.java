@@ -1,11 +1,15 @@
 package com.kaltia.kaltiaControl.service;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 //import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +58,7 @@ public class UserManagerImpl implements UserManager{
 	@Override
 	public ResultDAOVO createUser(EmpresaEntity empresaEntity) {
 		
-		userKaltiaControlEntity.setIdUserKaltiaControlUser(BaseInfra.idLocalTime());
+		userKaltiaControlEntity.setIdUserKaltiaControlUser(empresaEntity.getIdEmpresa());//BaseInfra.idLocalTime());
 		userKaltiaControlEntity.setUserKaltiaControlUser(empresaEntity.getEmpresaEmail());
 		userKaltiaControlEntity.setUserKaltiaControlPass(empresaEntity.getIdAction());
 		userKaltiaControlEntity.setUserKaltiaControlDescr(empresaEntity.getIdAction());
@@ -88,12 +92,38 @@ public class UserManagerImpl implements UserManager{
 					 * lectura de array Empresas perfil I
 					 */
 					
-					requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString()));  
-//					for(EmpresaEntity idEmpresa: empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString())) {
-//						
-//						empresaEntityList.add(empresaEntity);
-//					}
-//					userAtributo.put("eE", empresaEntity);
+					requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString()));
+					List<JSONObject> listEmpresa = new ArrayList();
+					JSONArray jsonArrayEmpresas = new JSONArray();
+					JSONObject jsonArray = new JSONObject();
+					Map<String, Object> response = new HashMap();
+					for(EmpresaEntity empresa: requestLoginVO.getEmpresaArrayEntity()) {
+						JSONObject jsonEmpresa = new JSONObject();
+						jsonEmpresa.put("idEmpresa", empresa.getIdEmpresa());
+						jsonEmpresa.put("idAction", empresa.getIdAction());
+						jsonEmpresa.put("empresaNombreCorto", empresa.getEmpresaNombreCorto());
+						jsonEmpresa.put("empresaNombreCompleto", empresa.getEmpresaNombreCompleto());
+						jsonEmpresa.put("empresaRFC", empresa.getEmpresaRFC());
+						jsonEmpresa.put("empresaDireccion", empresa.getEmpresaDireccion());
+						jsonEmpresa.put("empresaEmail", empresa.getEmpresaEmail());
+						jsonEmpresa.put("empresaContacto", empresa.getEmpresaContacto());
+						jsonEmpresa.put("empresaTelefono", empresa.getEmpresaTelefono());
+						jsonEmpresa.put("empresaIdPerfilI", empresa.getEmpresaIdPerfilI());
+						jsonEmpresa.put("empresaIdPerfilE", empresa.getEmpresaIdPerfilE());
+						jsonEmpresa.put("empresaVarios", empresa.getEmpresaVarios());
+						jsonEmpresa.put("empresaStatus", empresa.getEmpresaStatus());
+						jsonEmpresa.put("empresaFechaCorte", empresa.getEmpresaFechaCorte());
+						jsonEmpresa.put("empresaModoPago", empresa.getEmpresaModoPago());
+						jsonEmpresa.put("empresaFactura", empresa.getEmpresaFactura());
+						
+						listEmpresa.add(jsonEmpresa);
+						jsonArrayEmpresas.add(jsonEmpresa);
+					}
+					response.put("clientes", listEmpresa);
+//					jsonArray.put("clientes", listEmpresa);
+					jsonArray.put("clientes", response.get("clientes"));
+					requestLoginVO.setJsonArray(jsonArray);
+					logger.info(jsonArray);
 				}
 				
 				else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
@@ -101,7 +131,7 @@ public class UserManagerImpl implements UserManager{
 					 * Informacion Empresa de usuarioKaltiaControl
 					 */
 					empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
-					
+					logger.info(empresaEntity.toString());
 					/*
 					 * Informacion Empresa de userEmpresa -- MODULOS
 					 */		
@@ -109,12 +139,12 @@ public class UserManagerImpl implements UserManager{
 						List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
 						requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
 //						if(!empresaEntity.getEmpresaCitas().equals("No Activo")) {
-							resultVO = clienteRest.readCitas(empresaEntity.getIdAction());
+//							resultVO = clienteRest.readCitas(empresaEntity.getIdAction());
 							logger.info(resultVO.getMensajeArray());
-							datosCitasVO.setCondiciones((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(0)));
-							datosCitasVO.setMesActual((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(1)));
-							datosCitasVO.setMesPost((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(2)));
-							requestLoginVO.setDatosCitasVO(datosCitasVO);
+//							datosCitasVO.setCondiciones((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(0)));
+//							datosCitasVO.setMesActual((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(1)));
+//							datosCitasVO.setMesPost((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(2)));
+//							requestLoginVO.setDatosCitasVO(datosCitasVO);
 //						}
 						
 //					}
@@ -148,11 +178,11 @@ public class UserManagerImpl implements UserManager{
 	@Override
 	public RequestLoginVO updateUser(UserKaltiaControlVO userKaltiaControl) {
 			
-		logger.info(userKaltiaControl.getUserUser());
+		logger.info(userKaltiaControl.toString());
 		
 		try {
 			String[] user = userKaltiaControl.getUserUser().toString().split("@");
-			userKaltiaControlEntity.setIdUserKaltiaControlUser(user[0].toString());
+//			userKaltiaControlEntity.setIdUserKaltiaControlUser(user[0].toString());
 			userKaltiaControlEntity.setUserKaltiaControlPass(userKaltiaControl.getPassUser());
 			userKaltiaControlEntity.setUserKaltiaControlStatus("activo");
 			

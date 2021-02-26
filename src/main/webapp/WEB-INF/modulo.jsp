@@ -143,7 +143,7 @@
 		</div>
 		<h3>Section 2</h3>
 		<div>
-			<p><iframe src="http://www.kaltia.site/seguros" onload="autofitIframe(this);"></iframe></p>
+			<p><iframe src="http://www.kaltia.xyz/seguros" onload="autofitIframe(this);"></iframe></p>
 		</div>
 		<h3>Section 3</h3>
 		<div>

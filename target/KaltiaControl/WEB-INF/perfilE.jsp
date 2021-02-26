@@ -8,8 +8,9 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li class="active"><a href="inicio.htm">Inicio</a></li>
-          <li><a  href="<c:url value="modulo.htm"/>">Modulos</a>
-          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.getEmpresaEntity().getIdAction()}"/>">Edicion</a>
+<%--           <li><a  href="<c:url value="modulo.htm"/>">Modulos</a> --%>
+		  <li><a  href="<c:url value="#"/>">Modulos</a>
+          <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.getEmpresaEntity().getIdAction()}"/>">Edicion Sitio Web</a>
 <%--           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li> --%>
            <%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
 <!--           <li  class="active"><a href="../index.html">Inicio</a></li> -->
@@ -23,9 +24,9 @@
   <div id="breadcrumb" class="hoc clear"> 
     <ul>
     		    <li><a href="#">KaltiaControl</a></li>
-    		    <li><a href="#"><c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/></a></li>
+    		    <li><a href="#"><c:out value="${model.requestLoginVO.empresaEntity.getEmpresaNombreCorto()}"/></a></li>
 				<li><a href="#"><c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}"/></a></li>
-    		    <li><a href="#">Inicio</a></li>
+				<li><a href="#">Inicio</a></li>
     </ul>
   </div>
 
@@ -55,7 +56,7 @@
             
             <div id="big-form" class="well auth-box"><form><fieldset>
               <input id="empresaNombreCompleto" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaNombreCompleto()}"/>" readonly>
-              <input id="idEmpresa" name="idEmpresa" placeholder="Nombre Corto" class="form-control input-md" type="text"    value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}"/>" readonly>
+              <input id="idEmpresa" name="idEmpresa" placeholder="Nombre Corto" class="form-control input-md" type="text"    value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaNombreCorto()}"/>" readonly>
               <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdAction()}"/>" readonly>
               <input id="empresaRFC" name="empresaRFC" placeholder="RFC" class="form-control input-md" type="text" readonly value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaRFC()}"/>" readonly>
               <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaDireccion()}"/>" readonly>
@@ -63,13 +64,13 @@
               <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaContacto()}"/>" readonly>
               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Representante Kaltia" class="form-control input-md" type="text"  value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>" readonly>
 <!--               <input id="empresaModelo" name="empresaModelo" placeholder="Modelo" class="form-control input-md" type="text"  > -->
-              <label class=" control-label" for="selectbasic">Modelo</label>
-	            <div class="">
-	              <select id="empresaModelo" name="empresaModelo" class="form-control" default="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaModelo()}"/>" disabled>
-	                <option value="bronea">Bronea</option>
-	                <option value="pendiente">Pendiente</option>
-	              </select>
-	            </div>
+<!--               <label class=" control-label" for="selectbasic">Modelo</label> -->
+<!-- 	            <div class=""> -->
+<%-- 	              <select id="empresaModelo" name="empresaModelo" class="form-control" default="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaModelo()}"/>" disabled> --%>
+<!-- 	                <option value="bronea">Bronea</option> -->
+<!-- 	                <option value="pendiente">Pendiente</option> -->
+<!-- 	              </select> -->
+<!-- 	            </div> -->
               <br>
               </form></fieldset>
               </div>
@@ -99,7 +100,7 @@
               <br>
               <a id="usuario"></a>
 	             <label class=" control-label" for="textinput">Usuario</label>
-	              <input id="empresaIdPerfilE" name="empresaIdPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaIdPerfilE()}"/>@kaltia.site" readonly>
+	              <input id="empresaIdPerfilE" name="empresaIdPerfilE" placeholder="Usuario Kaltia Control" class="form-control input-md" type="text" value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaIdPerfilE()}"/>" readonly>
 <!-- 	              <input id="userKaltiaControlPass" name="userKaltiaControlPass" placeholder="Password" class="form-control input-md" type="password"> -->
 <!-- 	              <input id="userKaltiaControlPass1" name="userKaltiaControlPass1" placeholder="Confirma Password" class="form-control input-md" type="password"> -->
 	          </form></fieldset></div>	
