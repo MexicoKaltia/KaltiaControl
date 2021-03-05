@@ -34,9 +34,9 @@
 		</div>
 		<!-- ################################################################################################ -->
 	<div class="nospace inline pushright">
-            <a href="inicio.htm" class="btn btn-default">Salir de Edicion</a>
+            <a href="<c:url value="inicio.htm"/>" class="btn btn-default">Salir de Edicion</a>
             <a href="" class=""> </a>
-            <a href="inicio.htm" class="btn btn-default">Salir de Sesion</a>
+            <a href="<c:url value="inicio.htm"/>" class="btn btn-default">Salir de Sesion</a>
             </div>
 	<!-- JAVASCRIPTS -->
 	<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>

@@ -86,51 +86,20 @@ public class UserManagerImpl implements UserManager{
 			requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);
 			
 			if(userKaltiaControlEntity.getUserKaltiaControlStatus().equals("activo")) {
-				if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilI")) {
-					
-					/*
-					 * lectura de array Empresas perfil I
-					 */
-					
-					requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString()));
-					List<JSONObject> listEmpresa = new ArrayList();
-					JSONArray jsonArrayEmpresas = new JSONArray();
-					JSONObject jsonArray = new JSONObject();
-					Map<String, Object> response = new HashMap();
-					for(EmpresaEntity empresa: requestLoginVO.getEmpresaArrayEntity()) {
-						JSONObject jsonEmpresa = new JSONObject();
-						jsonEmpresa.put("idEmpresa", empresa.getIdEmpresa());
-						jsonEmpresa.put("idAction", empresa.getIdAction());
-						jsonEmpresa.put("empresaNombreCorto", empresa.getEmpresaNombreCorto());
-						jsonEmpresa.put("empresaNombreCompleto", empresa.getEmpresaNombreCompleto());
-						jsonEmpresa.put("empresaRFC", empresa.getEmpresaRFC());
-						jsonEmpresa.put("empresaDireccion", empresa.getEmpresaDireccion());
-						jsonEmpresa.put("empresaEmail", empresa.getEmpresaEmail());
-						jsonEmpresa.put("empresaContacto", empresa.getEmpresaContacto());
-						jsonEmpresa.put("empresaTelefono", empresa.getEmpresaTelefono());
-						jsonEmpresa.put("empresaIdPerfilI", empresa.getEmpresaIdPerfilI());
-						jsonEmpresa.put("empresaIdPerfilE", empresa.getEmpresaIdPerfilE());
-						jsonEmpresa.put("empresaVarios", empresa.getEmpresaVarios());
-						jsonEmpresa.put("empresaStatus", empresa.getEmpresaStatus());
-						jsonEmpresa.put("empresaFechaCorte", empresa.getEmpresaFechaCorte());
-						jsonEmpresa.put("empresaModoPago", empresa.getEmpresaModoPago());
-						jsonEmpresa.put("empresaFactura", empresa.getEmpresaFactura());
-						
-						listEmpresa.add(jsonEmpresa);
-						jsonArrayEmpresas.add(jsonEmpresa);
-					}
-					response.put("clientes", listEmpresa);
-//					jsonArray.put("clientes", listEmpresa);
-					jsonArray.put("clientes", response.get("clientes"));
-					requestLoginVO.setJsonArray(jsonArray);
-					logger.info(jsonArray);
-				}
+				  //lectura de array Empresas perfil A
+				String perfil = userKaltiaControlEntity.getUserKaltiaControlPerfil();
+				String idUser = userKaltiaControlEntity.getIdUserKaltiaControlUser().toString();
+				if(perfil.equals("perfilA") || perfil.equals("perfilI")) {
 				
-				else if(userKaltiaControlEntity.getUserKaltiaControlPerfil().equals("perfilE")) {	
+					requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(idUser, perfil ));
+					requestLoginVO.setJsonArray(arrayEmpresa(requestLoginVO)); 
+				}
+				//lectura de array Empresas perfil E
+				else if(perfil.equals("perfilE")) {	
 					/*
 					 * Informacion Empresa de usuarioKaltiaControl
 					 */
-					empresaEntity = empresaManager.readEmpresa(userKaltiaControlEntity.getIdUserKaltiaControlUser().toString());
+					empresaEntity = empresaManager.readEmpresa(idUser);
 					logger.info(empresaEntity.toString());
 					/*
 					 * Informacion Empresa de userEmpresa -- MODULOS
@@ -151,7 +120,7 @@ public class UserManagerImpl implements UserManager{
 			
 					requestLoginVO.setEmpresaEntity(empresaEntity);
 //					requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
-				}	
+				}
 				 String now = (new Date()).toString();   
 				userKaltiaControlEntity.setUserKaltiaControlActividad(now);
 				userKaltiaControlDAO.actividadUserKaltiaControlDAO(userKaltiaControlEntity);
@@ -160,9 +129,9 @@ public class UserManagerImpl implements UserManager{
 				userKaltiaControlEntity.setUserKaltiaControlPerfil("inicio");
 				requestLoginVO.setUserKaltiaControlEntity(userKaltiaControlEntity);		
 			}else {
-				//Exception
-				logger.info("EXCEPTION");
-				
+//				Usuario suspendido 
+				requestLoginVO.setUserKaltiaControlEntity(new UserKaltiaControlEntity("Usuario Suspendido"));
+				return requestLoginVO;	
 			}
 
 		}else {
@@ -208,12 +177,40 @@ public class UserManagerImpl implements UserManager{
 	}
 	
 	
-//	private ArrayList<EmpresaEntity> empresaPerfilI(String userPerfilI) {
-//		
-//		ArrayList<EmpresaEntity> empresaEntityArray = new ArrayList();
-//		
-//		
-//		return userKaltiaControlEntity;
-//	}
+	private JSONObject arrayEmpresa(RequestLoginVO request) {
+		
+		List<JSONObject> listEmpresa = new ArrayList();
+		JSONArray jsonArrayEmpresas = new JSONArray();
+		JSONObject jsonArray = new JSONObject();
+		Map<String, Object> response = new HashMap();
+		for(EmpresaEntity empresa: request.getEmpresaArrayEntity()) {
+			JSONObject jsonEmpresa = new JSONObject();
+			jsonEmpresa.put("idEmpresa", empresa.getIdEmpresa());
+			jsonEmpresa.put("idAction", empresa.getIdAction());
+			jsonEmpresa.put("empresaNombreCorto", empresa.getEmpresaNombreCorto());
+			jsonEmpresa.put("empresaNombreCompleto", empresa.getEmpresaNombreCompleto());
+			jsonEmpresa.put("empresaRFC", empresa.getEmpresaRFC());
+			jsonEmpresa.put("empresaDireccion", empresa.getEmpresaDireccion());
+			jsonEmpresa.put("empresaEmail", empresa.getEmpresaEmail());
+			jsonEmpresa.put("empresaContacto", empresa.getEmpresaContacto());
+			jsonEmpresa.put("empresaTelefono", empresa.getEmpresaTelefono());
+			jsonEmpresa.put("empresaIdPerfilI", empresa.getEmpresaIdPerfilI());
+			jsonEmpresa.put("empresaIdPerfilE", empresa.getEmpresaIdPerfilE());
+			jsonEmpresa.put("empresaVarios", empresa.getEmpresaVarios());
+			jsonEmpresa.put("empresaStatus", empresa.getEmpresaStatus());
+			jsonEmpresa.put("empresaFechaCorte", empresa.getEmpresaFechaCorte());
+			jsonEmpresa.put("empresaModoPago", empresa.getEmpresaModoPago());
+			jsonEmpresa.put("empresaFactura", empresa.getEmpresaFactura());
+			
+			listEmpresa.add(jsonEmpresa);
+			jsonArrayEmpresas.add(jsonEmpresa);
+		}
+		response.put("clientes", listEmpresa);
+//		jsonArray.put("clientes", listEmpresa);
+		jsonArray.put("clientes", response.get("clientes"));
+		request.setJsonArray(jsonArray);
+		logger.info(jsonArray);	
+		return jsonArray;
+	}
 
 }

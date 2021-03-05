@@ -76,20 +76,29 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		return empresaEntity;
 	}
 
+//	@Override
+//	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI) {
+////	
+//	}
+	
 	@Override
-	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI) {
-//		logger.info("readEmpresaArray:"+idUserPerfilI);
-		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI);
-//		for(EmpresaEntity idEmpresa: empresaEntityArray) {
-//			empresaEntity = validaEmpresa(idUserPerfilI);
-//		}
+	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI, String userPerfil) {
+		logger.info("readEmpresaArray:"+idUserPerfilI);
+		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI, userPerfil);
+////		for(EmpresaEntity idEmpresa: empresaEntityArray) {
+////			empresaEntity = validaEmpresa(idUserPerfilI);
+////		}
 		return empresaEntityArray;
 	}
+	
 	@Override
 	public ResultDAOVO updateEmpresa(EmpresaEntity empresaEntity) {
-		// validacion de un idAction dublicado !!
 				logger.info(empresaEntity.toString());
 				empresaDAO.updateEmpresaDAO(empresaEntity);
+				if(empresaEntity.getEmpresaStatus().equals("borrar")) {
+					resultDAOVO = empresaDAO.deleteEmpresaDAO(empresaEntity.getIdEmpresa());
+					logger.info(resultDAOVO.getMessage());
+				}
 					return resultDAOVO;	
 
 	}
@@ -368,6 +377,8 @@ public class EmpresaManagerImpl implements EmpresaManager{
 
 		
 	}
+
+	
 	
 
 }

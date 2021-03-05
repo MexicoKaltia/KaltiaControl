@@ -12,6 +12,7 @@ com\kaltia\kaltiaControl\repository\UserKaltiaControlDAO.class
 com\kaltia\kaltiaControl\aop\UserAOP.class
 com\kaltia\kaltiaControl\repository\UserEmpresaDAO.class
 com\kaltia\kaltiaControl\bean\ResultVO.class
+com\kaltia\kaltiaControl\service\UserManagerImpl.class
 com\kaltia\kaltiaControl\repository\UserEmpresaDAOImpl.class
 com\kaltia\kaltiaControl\bean\QRRestauranteEntity.class
 com\kaltia\kaltiaControl\bean\UserKaltiaControlEntity.class

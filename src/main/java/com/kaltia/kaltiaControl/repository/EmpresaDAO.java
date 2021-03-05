@@ -19,9 +19,10 @@ public interface EmpresaDAO extends Serializable{
 	public EmpresaEntity readEmpresaDAO(String idEmpresa);
 	public EmpresaEntity readIdEmpresaDAO(String idEmpresaPagina);
 	
-	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI);
+	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI, String userPerfilI);
 	public ResultDAOVO updateEmpresaDAO(EmpresaEntity eE);
-	public ResultDAOVO deleteEmpresaDAO();
+	
+	public ResultDAOVO deleteEmpresaDAO(String idEmpresa);
 	
 	public ResultDAOVO createActionDAO(ActionEntity actionEntity);
 	

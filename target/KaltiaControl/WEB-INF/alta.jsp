@@ -64,13 +64,13 @@
             <form  class="" action="altaGenerales.htm" method="post" modelAttribute="empresaEntity">
             <div id="big-form" class="well auth-box"><fieldset>
               <input id="empresaNombreCompleto" name="empresaNombreCompleto" placeholder="Nombre de Empresa Completo" class="form-control input-md" type="text" required maxlength="200">
-              <input id="empresaNombreCorto" name="empresaNombreCorto" placeholder="Nombre Corto" class="form-control input-md" type="text"   required maxlength="50">
-              <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text"  required maxlength="20">
+              <input id="empresaNombreCorto" name="empresaNombreCorto" placeholder="Nombre Corto" class="form-control input-md" type="text"   required maxlength="20">
+              <input id="IdAction" name="IdAction" placeholder="IdAction" class="form-control input-md" type="text"  required maxlength="10">
               <input id="empresaRFC" name="empresaRFC" placeholder="RFC" class="form-control input-md" type="text"  required maxlength="13">
               <input id="empresaDireccion" name="empresaDireccion" placeholder="Direccion" class="form-control input-md" type="text"  required maxlength="900">
               <input id="empresaEmail" name="empresaEmail" placeholder="Email" class="form-control input-md" type="email"  required maxlength="50">
               <input id="empresaContacto" name="empresaContacto" placeholder="Contacto" class="form-control input-md" type="text"  required maxlength="200">
-              <input id="empresaTelefono" name="empresaTelefono" placeholder="Telefono Contacto" class="form-control input-md" type="text"  >
+              <input id="empresaTelefono" name="empresaTelefono" placeholder="Telefono Contacto" class="form-control input-md" type="number"  minlength="10" maxlength="10">
 <%--               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="text" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlDescr().toString()}"/>"> --%>
               <input id="empresaIdPerfilI" name="empresaIdPerfilI" placeholder="Integrador Kaltia" class="form-control input-md" type="hidden" readonly value="<c:out value="${modelAlta.requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString()}"/>">
               <br>
@@ -115,12 +115,15 @@
    
 <!--    </div> -->
 <!-- JAVASCRIPTS -->
+
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/generales.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.backtotop.js"></script>
 <script src="<%=request.getContextPath()%>/js/jquery.mobilemenu.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap.min.js"></script>
+
 <script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
-<script src="<%=request.getContextPath()%>/js/generales.js"></script>
+
 
 </body>
 </html>

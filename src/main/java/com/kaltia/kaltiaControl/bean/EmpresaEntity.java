@@ -14,7 +14,8 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
 	@NamedQuery(query ="Select a from tc_empresa a where a.idAction = :id", name = "find idAction by idAction"),
 	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilE = :id", name = "find empresa by idEmpresa"),
-	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilI = :id", name = "find empresa by idEmpresaArray")
+	@NamedQuery(query ="Select a from tc_empresa a where a.empresaIdPerfilI = :id", name = "find empresa by idEmpresaArray"),
+	@NamedQuery(query ="Select a from tc_empresa a where a.empresaStatus in('propuesta', 'inicio')", name = "find empresa by All")
 })
 public class EmpresaEntity implements Serializable{
 

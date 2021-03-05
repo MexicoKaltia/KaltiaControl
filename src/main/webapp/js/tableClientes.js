@@ -31,7 +31,7 @@
 	  function operateFormatterDelete(value, row, index) {
 		    return [
 		      '<a class="remove" href="javascript:void(0)" title="Eliminar">',
-		      '<i class="fa fa-2x fa-address-book">',
+		      '<i class="fa fa-2x fa-edit">',
 		      '</a>'
 		    ].join('')
 		  }

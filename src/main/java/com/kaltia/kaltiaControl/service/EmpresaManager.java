@@ -12,7 +12,8 @@ public interface EmpresaManager extends Serializable{
 	
 	public ResultDAOVO createEmpresa(EmpresaEntity eE);
 	public EmpresaEntity readEmpresa(String idEmpresa);
-	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI);
+//	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI);
+	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI, String userPerfil);
 	public ResultDAOVO updateEmpresa(EmpresaEntity eE);
 	public void deleteEmpresa();
 	public ResultDAOVO createEmpresaProductos(ProductosVO productosVO);

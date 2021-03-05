@@ -181,13 +181,18 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 
 	
 	@Override
-	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI) {
+	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfil, String userPerfil) {
 		
 		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
 	     // EntityManager entitymanager = emfactory.createEntityManager();
-		
-	      Query query = em.createNamedQuery("find empresa by idEmpresaArray");
-	      query.setParameter("id", idUserPerfilI);
+		Query query=null;
+		if(userPerfil.equals("perfilI")) {
+			query = em.createNamedQuery("find empresa by idEmpresaArray");
+		      query.setParameter("id", idUserPerfil);
+		}else {
+			query = em.createNamedQuery("find empresa by All");
+		}
+	      
 	      
 	      ArrayList<EmpresaEntity> empresaEntityArrayDAO = new ArrayList<EmpresaEntity>();
 	      try {
@@ -224,14 +229,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		
 	}
 
-	@Override
-	public ResultDAOVO deleteEmpresaDAO() {
-		return null;
-		// TODO Auto-generated method stub
-		
-	}
-
-
+	
 
 	@Override
 	@Transactional(readOnly = false)
@@ -383,6 +381,41 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	    	  //empresaEntity.setIdEmpresa("Exception");
 	    	  return null;
 	      }	}
+
+
+
+	@Override
+	@Transactional
+	public ResultDAOVO deleteEmpresaDAO(String idEmpresa) {
+		
+		  //Delete Action
+		try {
+			String qry = "delete from tc_action p where p.idEmpresa=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tc_userkaltiacontrol p where p.idUserKaltiaControlUser=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tc_pagina p where p.idPagina=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tc_productos p where p.idEmpresa=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tc_qrr p where p.idQRR=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tw_body p where p.idEmpresa=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tw_header p where p.idEmpresa=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tw_footer p where p.idEmpresa=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			resultDAOVO.setCode("00");
+			resultDAOVO.setMessage("EXITO delete :"+idEmpresa);
+		} catch (Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage("error delete :"+idEmpresa);
+			e.printStackTrace();
+		}
+		return resultDAOVO;
+		
+	}
 
 
 
