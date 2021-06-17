@@ -2,8 +2,10 @@ package com.kaltia.kaltiaControl.service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
+import com.kaltia.kaltiaControl.bean.ProductosEntity;
 import com.kaltia.kaltiaControl.bean.ProductosVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 
@@ -15,8 +17,12 @@ public interface EmpresaManager extends Serializable{
 //	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI);
 	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI, String userPerfil);
 	public ResultDAOVO updateEmpresa(EmpresaEntity eE);
-	public void deleteEmpresa();
+	public ResultDAOVO deleteEmpresa(String idAction);
+	
 	public ResultDAOVO createEmpresaProductos(ProductosVO productosVO);
+	public ResultDAOVO updateEmpresaProductos(ProductosVO productosVO);
+	public List<ProductosEntity>  readEmpresaProductos();
+	
 	
 	
 

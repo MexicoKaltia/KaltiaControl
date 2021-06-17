@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,7 +36,7 @@ import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
 import com.kaltia.kaltiaControl.service.EmpresaManager;
 import com.kaltia.kaltiaControl.service.UserManager;
 
-
+//@CrossOrigin(origins = {"http://kaltia.xyz", "http://localhost:8081"})
 @Controller
 @ControllerAdvice
 @SessionAttributes ("model")
@@ -82,13 +83,15 @@ public class ControllerInicial extends HttpServlet {
      }
 	
 	@RequestMapping (value= "/inicio.htm" , method = RequestMethod.GET)
-	public ModelAndView inicio(ModelMap model 
+	public ModelAndView inicio(ModelMap model,
+			@RequestParam(name="delete", required=false) boolean delete
 							) throws ServletException, IOException  {
 		logger.info("----De nuevo Inicio----");
 		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
-		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
-	    	
-		return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
+//		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+		ModelAndView mav = new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
+		mav.addObject("delete", delete);
+		return mav; 
 	}
 	
 	
@@ -186,6 +189,34 @@ public class ControllerInicial extends HttpServlet {
 		return mav;
 	}
 	
+	@CrossOrigin(origins = "http://localhost:8081")
+	@RequestMapping (value= "/eliminarEmpresa.htm" , params = {"idAction"} , method = RequestMethod.POST)
+	public ModelAndView eliminarEmpresa(ModelMap model,
+//								@Valid @ModelAttribute("jsonRequest") Object object,
+								@RequestParam(value = "idAction") String idAction) throws ServletException, IOException  {
+		
+		String contexto = idAction;
+		
+		model.addAttribute("contexto", contexto);
+		logger.info("----Inicio metodo eliminarEmpresa----" + idAction);
+		resultDAOVO = empresaManager.deleteEmpresa(idAction);
+		ModelAndView mav = new ModelAndView();
+		logger.info(resultDAOVO.getCode());
+		if(resultDAOVO.getCode().equals("00")) {
+			logger.info("----resultDAOVO.getCode().equals(\"00\")----");
+			requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+			model.addAttribute("requestLoginVO", requestLoginVO);
+			mav.addObject("delete", true);
+			mav.setViewName("redirect:/inicio.htm");
+//			mav.setViewName("windows.location.reload()");
+		}
+
+		return mav;		
+	}
+									
+	
+
+	
 	/*
 	 *  Verificar los siguientes metodos, no estan en uso 19 nov 2020
 	 */
@@ -244,10 +275,6 @@ public class ControllerInicial extends HttpServlet {
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 //         return new ModelAndView("prueba", "model", myModel);
      }
-
-
-									
-	
 
      
 }

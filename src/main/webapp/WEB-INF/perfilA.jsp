@@ -45,6 +45,16 @@
 		</div>
 	</span>
 	</c:if>
+	<c:if test='${delete}'>
+    <span> 
+		<div class="alert alert-success" role="alert" id="dataError">
+		<b>Revisión : </b><u>Clientes Actualizados con Exito</u>
+		</div>
+		<script>
+		windows.location.reload();
+		</script>
+	</span>
+	</c:if>
 
 <!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
@@ -107,10 +117,10 @@
 								<div class="card-body">
 									<h5 class="card-title">Kaltia Control - CLIENTES </h5>
 
-									<table id='clientesTable' class="mb-0 table table-striped table-sm"
+									<table id='clientesTable' class="mb-0 table table-striped table-sm bg-blue"
 										data-locale="es-MX" 
 										data-toggle='table' 
-										data-sort-name='empresaNombreCorto'
+										data-sort-name='empresaStatus'
 										data-search='true' 
 										data-sort-order='asc'
 										data-pagination='true'
@@ -119,14 +129,15 @@
   										data-detail-formatter="detailFormatter">
 										<thead class='thead-dark'>
 											<tr>
-												<th data-width="40" data-width-unit="%" data-halign="center" data-align="center" data-field='empresaNombreCorto' data-sortable='true'>Nombre Corto</th>
-												<th data-width="20" data-width-unit="%" data-halign="center" data-align="center" data-field='idAction' data-sortable='true'>Id Action</th>
+												<th data-width="30" data-width-unit="%" data-halign="center" data-align="center" data-field='empresaNombreCorto' data-sortable='true'>Nombre Corto</th>
+												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field='idAction' data-sortable='true'>Id Action</th>
+												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field='empresaIdPerfilI' data-sortable='true'>Integrador</th>
 												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field='empresaStatus' data-sortable='true'>Status</th>
-												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field='empresaIdPerfilI' data-sortable='true'>Status</th>
 												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field="operateUpdateCliente" data-formatter="operateFormatterUpdateCliente" data-events="window.operateEventsUpdateCliente"> Cliente</th>
+												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field="operateUpdateModulos" data-formatter="operateFormatterUpdateModulos" data-events="window.operateEventsUpdateModulos"> Modulos</th>
 												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field="operateUpdateSitioWeb" data-formatter="operateFormatterUpdateSitioWeb" data-events="window.operateEventsUpdateSitioWeb"> Sitio Web</th>
 												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field="operateUpdateMenuQR" data-formatter="operateFormatterUpdateMenuQR" data-events="window.operateEventsUpdateMenuQR"> Menu QR</th>
-<!-- 												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field="operateDelete" data-formatter="operateFormatterDelete" data-events="window.operateEventsDelete">Eliminar</th> -->
+												<th data-width="10" data-width-unit="%" data-halign="center" data-align="center" data-field="operateDelete" data-formatter="operateFormatterDelete" data-events="window.operateEventsDelete">Eliminar</th>
 <!-- 												<th data-width="20" data-width-unit="%" data-halign="center" data-align="center" data-field="operateDelete" data-formatter="operateFormatterDelete" data-events="window.operateEventsDelete">Eliminar</th> -->
 											</tr>
 										</thead>					
@@ -156,8 +167,10 @@
    </div>
 <!--  </div> -->
 <input id="empresas" name="empresas"  type="hidden"  value="<c:out value="${model.requestLoginVO.jsonArray.clientes}"/>">
+<input id="productos" name="productos"  type="hidden"  value="<c:out value="${model.requestLoginVO.jsonArray.productos}"/>">
 <script >
-// 	 $data = '<c:out value="${model.requestLoginVO.jsonArray.clientes}"/>';
+var productos = document.getElementById("productos").value; 
+	productos = JSON.parse(productos);
 var $data = document.getElementById("empresas").value;
  	$data = JSON.parse($data);
 </script>
@@ -185,7 +198,10 @@ var $data = document.getElementById("empresas").value;
 </body>
 </html>
 
-<!-- Modal -->
+
+
+<!-- --------------------------------------------------------------------------------------------------------------- -->
+  <!-- Modal EMPRESA-->
   <div class="modal fade" id="modalEdicionCliente" role="dialog">
     <div class="modal-dialog modal-lg">
     
@@ -293,15 +309,17 @@ var $data = document.getElementById("empresas").value;
 										<textarea class="form-control" id="empresaVarios" rows="4" name="empresaVarios">Separar los campos con el caracter '|' .</textarea>
 									</div>
 								</div>
-	            	
-	              <br>
-	              </fieldset>
+	              		<br>
+	              	</fieldset>
+	              </div>
 		          <br>
 		          <hr>
-				  <div id="big-form" class="well auth-box"><fieldset>
-		            <label class=" control-label" for="singlebutton">Datos Correctos</label>
-		              <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
-					</fieldset></div>	
+				  <div id="big-form" class="well auth-box">
+				  		<fieldset>
+				            <label class=" control-label" for="singlebutton">Datos Correctos</label>
+				              <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+						</fieldset>
+				  </div>	
 				</form>
 	        </div>
 	    </div>
@@ -313,3 +331,120 @@ var $data = document.getElementById("empresas").value;
       
     </div>
   </div> 
+  <!-- --------------------------------------------------------------------------------------------------------------- -->
+    <!-- Modal PRODUCTOS-->
+  <div class="modal fade" id="modalEdicionProductos" role="dialog">
+    <div class="modal-dialog modal-lg">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #F1FFFE">
+          <div class="logo-src2" ><img width="90%"  alt=""></div>
+          <h4 position: center">Edicion Cliente</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4><span class="glyphicon glyphicon-lock"></span></h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px; ">	
+	        	<form  class="" action="actualizaCliente.htm" method="post" modelAttribute="empresaEntity" >
+	            	<input id="idEmpresaProducto"  type="hidden" name="idEmpresa">Hellow
+	            				<div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="checkPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        checkPagina
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="checkQRR">
+								      <label class="form-check-label" for="gridCheck">
+								        checkQRR
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="checkQRE">
+								      <label class="form-check-label" for="gridCheck">
+								        checkQRE
+								      </label>
+								    </div>
+								  </div>
+								  
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="checkPuntoVenta">
+								      <label class="form-check-label" for="gridCheck">
+								        checkPuntoVenta
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="clientePagina">
+								      <label class="form-check-label" for="gridCheck">
+								        clientePagina
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="carpetaPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        carpetaPagina
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="retroalimentacionPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        retroalimentacionPagina
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="notificacionPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        notificacionPagina
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="videoPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        videoPagina
+								      </label>
+								    </div>
+								  </div>
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="tarjetaPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        tarjetaPagina
+								      </label>
+								    </div>
+								  </div>
+								  
+		          <br>
+		          <hr>
+				  <div id="big-form" class="well auth-box"><fieldset>
+		            <label class=" control-label" for="singlebutton">Datos Correctos</label>
+		              <button class="btn btn-lg btn-primary btn-block" type="submit">Guardar</button>
+					</fieldset>
+					</div>	
+				</form>
+	        
+	    </div>
+        <div class="modal-footer" style=" background-color: #F1FFFE">
+          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+          
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+  <!-- --------------------------------------------------------------------------------------------------------------- -->

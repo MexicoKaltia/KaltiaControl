@@ -2,6 +2,7 @@ package com.kaltia.kaltiaControl.repository;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kaltia.kaltiaControl.bean.ActionEntity;
 import com.kaltia.kaltiaControl.bean.BodyEntity;
@@ -18,10 +19,9 @@ public interface EmpresaDAO extends Serializable{
 	public ResultDAOVO createEmpresaDAO(EmpresaEntity eE);
 	public EmpresaEntity readEmpresaDAO(String idEmpresa);
 	public EmpresaEntity readIdEmpresaDAO(String idEmpresaPagina);
-	
+//	public EmpresaEntity readEmpresaIdAction(String idAction);
 	public ArrayList<EmpresaEntity> readEmpresaArrayDAO(String idUserPerfilI, String userPerfilI);
 	public ResultDAOVO updateEmpresaDAO(EmpresaEntity eE);
-	
 	public ResultDAOVO deleteEmpresaDAO(String idEmpresa);
 	
 	public ResultDAOVO createActionDAO(ActionEntity actionEntity);
@@ -36,8 +36,11 @@ public interface EmpresaDAO extends Serializable{
 	public FooterEntity readFooterDAO(String idEmpresa);
 	
 	public ResultDAOVO createPagina(PaginaEntity paginaEntity);
-	public ResultDAOVO createProductos(ProductosEntity productosEntity);
 	public ResultDAOVO createQRR(QRRestauranteEntity qrrEntity);
+	
+	public ResultDAOVO createProductos(ProductosEntity productosEntity);
+	public ResultDAOVO updateProductos(ProductosEntity productosEntity);
+	public List<ProductosEntity> readProductos();
 
 
 }

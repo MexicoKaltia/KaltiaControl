@@ -20,6 +20,7 @@ public class RequestLoginVO implements Serializable{
 	private ArrayList<EmpresaEntity> empresaArrayEntity;
 	private EmpresaEntity empresaEntity;
 	private List<UserEmpresaEntity> userEmpresaEntity;
+	private List<ProductosEntity> productosEntity;
 	private StatusEmpresaEntity statusEmpresaEntity;
 	private DatosCitasVO datosCitasVO;
 	private JSONObject jsonArray;
@@ -72,6 +73,12 @@ public class RequestLoginVO implements Serializable{
 	}
 	public void setEmpresaArrayEntity(ArrayList<EmpresaEntity> empresaArrayEntity) {
 		this.empresaArrayEntity = empresaArrayEntity;
+	}
+	public List<ProductosEntity> getProductosEntity() {
+		return productosEntity;
+	}
+	public void setProductosEntity(List<ProductosEntity> productosEntity) {
+		this.productosEntity = productosEntity;
 	}
 	
 	

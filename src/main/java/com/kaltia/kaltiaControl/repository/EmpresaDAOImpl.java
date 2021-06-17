@@ -2,6 +2,7 @@ package com.kaltia.kaltiaControl.repository;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 //import javax.persistence.EntityManagerFactory;
@@ -73,15 +74,15 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		return resultDAOVO;
 	}
 	
+	/*
+	 * PRODUCTOS
+	 */
+	
 	@Override
 	@Transactional(readOnly = false)
 	public ResultDAOVO createProductos(ProductosEntity productosEntity) {
 		try {
-//			em.getTransaction( ).begin( );
 		  em.merge(productosEntity);
-//			em.persist( eE );
-//		    em.getTransaction( ).commit( );
-		      
 	      resultDAOVO.setCode("00");
 	      resultDAOVO.setMessage("Productos exito guardada");
 	      
@@ -89,12 +90,46 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 			resultDAOVO.setCode("99");
 			resultDAOVO.setMessage(e.toString());
 		}finally {
-			em.close( );
-		      
+			em.close( );	      
 		}
-	      
 		return resultDAOVO;
 	}
+	
+	@Override
+	public ResultDAOVO updateProductos(ProductosEntity productosEntity) {
+		try {
+		  em.merge(productosEntity);
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("Productos Empresa Actualizada con Exito");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+		}finally {
+			em.close( );
+		}
+		return resultDAOVO;
+
+	}
+
+
+
+	@Override
+	public List<ProductosEntity> readProductos() {
+		Query query=null;
+			query = em.createNamedQuery("find Productos All");
+	      ArrayList<ProductosEntity> productosEntityArray = new ArrayList<ProductosEntity>();
+	      try {
+	    	  productosEntityArray = (ArrayList<ProductosEntity>) query.getResultList();
+	    	  return productosEntityArray; 
+	      }catch(Exception e){
+	    	  logger.info(e);
+	    	  return productosEntityArray;
+	      }
+	}
+
+
+	//
 	
 	@Override
 	@Transactional(readOnly = false)
@@ -142,14 +177,14 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 
 
 	@Override
-	public EmpresaEntity readEmpresaDAO(String idUserKaltiaControl) {
+	public EmpresaEntity readEmpresaDAO(String idAction) {
 		
 		//EntityManagerFactory emfactory = Persistence.createEntityManagerFactory( "kaltiaControlPU" );
 	     // EntityManager entitymanager = emfactory.createEntityManager();
 		 empresaEntity = new EmpresaEntity();
 		
 	      Query query = em.createNamedQuery("find idAction by idAction");
-	      query.setParameter("id", idUserKaltiaControl);
+	      query.setParameter("id", idAction);
 	      try {
 	    	  empresaEntity = (EmpresaEntity) query.getSingleResult();
 	    	  
@@ -406,6 +441,8 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
 			qry = "delete from tw_footer p where p.idEmpresa=:idEmpresa";
 			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
+			qry = "delete from tc_empresa p where p.idEmpresa=:idEmpresa";
+			em.createQuery(qry).setParameter("idEmpresa", idEmpresa).executeUpdate();
 			resultDAOVO.setCode("00");
 			resultDAOVO.setMessage("EXITO delete :"+idEmpresa);
 		} catch (Exception e) {
@@ -419,6 +456,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 
 
 
+	
 
 
 

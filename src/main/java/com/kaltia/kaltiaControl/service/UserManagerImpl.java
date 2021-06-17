@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import com.kaltia.kaltiaControl.Util.BaseInfra;
 import com.kaltia.kaltiaControl.bean.DatosCitasVO;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
+import com.kaltia.kaltiaControl.bean.ProductosEntity;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.ResultVO;
@@ -92,6 +93,7 @@ public class UserManagerImpl implements UserManager{
 				if(perfil.equals("perfilA") || perfil.equals("perfilI")) {
 				
 					requestLoginVO.setEmpresaArrayEntity(empresaManager.readEmpresaArray(idUser, perfil ));
+					requestLoginVO.setProductosEntity(empresaManager.readEmpresaProductos());
 					requestLoginVO.setJsonArray(arrayEmpresa(requestLoginVO)); 
 				}
 				//lectura de array Empresas perfil E
@@ -180,6 +182,7 @@ public class UserManagerImpl implements UserManager{
 	private JSONObject arrayEmpresa(RequestLoginVO request) {
 		
 		List<JSONObject> listEmpresa = new ArrayList();
+		List<JSONObject> listProductos = new ArrayList();
 		JSONArray jsonArrayEmpresas = new JSONArray();
 		JSONObject jsonArray = new JSONObject();
 		Map<String, Object> response = new HashMap();
@@ -205,11 +208,35 @@ public class UserManagerImpl implements UserManager{
 			listEmpresa.add(jsonEmpresa);
 			jsonArrayEmpresas.add(jsonEmpresa);
 		}
+		
+		for(ProductosEntity productos: request.getProductosEntity()) {
+			JSONObject jsonProductos = new JSONObject();
+			jsonProductos.put("idEmpresa", productos.getIdEmpresa());
+			jsonProductos.put("checkPagina", productos.isCheckPagina());
+			jsonProductos.put("checkQRR", productos.isCheckQRR());
+			jsonProductos.put("checkQRE", productos.isCheckQRE());
+			jsonProductos.put("checkPuntoVenta", productos.isCheckPuntoVenta());
+			jsonProductos.put("clientePagina", productos.isClientePagina());
+			jsonProductos.put("citaPagina", productos.isCitaPagina());
+			jsonProductos.put("carpetaPagina", productos.isCarpetaPagina());
+			jsonProductos.put("retroalimentacionPagina", productos.isRetroalimentacionPagina());
+			jsonProductos.put("chatPagina", productos.isChatPagina());
+			jsonProductos.put("notificacionPagina", productos.isNotificacionPagina());
+			jsonProductos.put("videoPagina", productos.isVideoPagina());
+			jsonProductos.put("tarjetaPagina", productos.isCitaPagina());
+			
+			listProductos.add(jsonProductos);
+			jsonArrayEmpresas.add(jsonProductos);
+		}
+		
 		response.put("clientes", listEmpresa);
-//		jsonArray.put("clientes", listEmpresa);
 		jsonArray.put("clientes", response.get("clientes"));
+		
+		response.put("productos", listProductos);
+		jsonArray.put("productos", response.get("productos"));
+
 		request.setJsonArray(jsonArray);
-		logger.info(jsonArray);	
+	
 		return jsonArray;
 	}
 

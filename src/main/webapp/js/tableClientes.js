@@ -13,6 +13,13 @@
 	      '</a>'
 	    ].join('')
 	  }
+ function operateFormatterUpdateModulos(value, row, index) {
+	    return [
+	      '<a class="like" href="javascript:void(0)" data-toggle="modal" data-target="#modalEdicionProductos">',
+	      '<i class="fa fa-3x fa-window-restore" aria-hidden="true"></i>',
+	      '</a>'
+	    ].join('')
+	  }
  function operateFormatterUpdateSitioWeb(value, row, index) {
 	    return [
 	      '<a class="like" href="javascript:void(0)" >',
@@ -44,11 +51,13 @@
 	  
 	
 $(document).ready(function(){
-		
 	
+	console.log($data);
+	console.log(productos);
+		
 	window.operateEventsUpdateCliente = {
 		    'click .like': function (e, value, row, index) {
-		    	console.log(row);
+//		    	console.log(row);
 		    	$('#empresaNombreCompleto').val(row.empresaNombreCompleto);
 		    	$('#idAction').val(row.idAction);
 		    	$('#empresaEmail').val(row.empresaEmail);
@@ -64,8 +73,38 @@ $(document).ready(function(){
 		    	$('#empresaTelefono').val(row.empresaTelefono);
 		    	$('#idEmpresa').val(row.idEmpresa);
 		    	$('#empresaIdPerfilI').val(row.empresaIdPerfilI);
+		    	$('#empresaVarios').val(row.empresaVarios);
 		    }
 		   }
+	
+	window.operateEventsUpdateModulos = {
+		    'click .like': function (e, value, row, index) {
+		    	var idEmpresa = row.idEmpresa;
+		    	$('.form-check-input').attr('checked', false);
+		    	for(a in productos){
+		    		var idEmpresaProductos = productos[a].idEmpresa;
+		    		if(idEmpresaProductos === idEmpresa){
+		    			var productosEmpresa = productos[a];
+//		    			console.log(productosEmpresa);
+		    			$('#checkPagina').attr('checked', productosEmpresa.checkPagina);
+//		    			if(productosEmpresa.checkPagina){}
+				    	$('#checkQRR').attr('checked', productosEmpresa.checkQRR);
+				    	$('#checkQRE').attr('checked', productosEmpresa.checkQRE);
+				    	$('#checkPuntoVenta').attr('checked', productosEmpresa.checkPuntoVenta);
+				    	$('#clientePagina').attr('checked', productosEmpresa.clientePagina);
+				    	$('#carpetaPagina').attr('checked', productosEmpresa.carpetaPagina);
+				    	$('#retroalimentacionPagina').attr('checked', productosEmpresa.retroalimentacionPagina);
+				    	$('#chatPagina').attr('checked', productosEmpresa.chatPagina);
+				    	$('#notificacionPagina').attr('checked', productosEmpresa.notificacionPagina);
+				    	$('#videoPagina').attr('checked', productosEmpresa.videoPagina);
+				    	$('#tarjetaPagina').attr('checked', productosEmpresa.tarjetaPagina);
+				    	$('#idEmpresaProducto').attr('checked', productosEmpresa.idEmpresa);
+		    		}
+		    	}
+		    	
+		    }
+		   }
+	
 	window.operateEventsUpdateSitioWeb = {
 		    'click .like': function (e, value, row, index) {
 		    	console.log(row.idAction);
@@ -83,13 +122,13 @@ $(document).ready(function(){
 	
 	window.operateEventsDelete = {
 	    'click .remove': function (e, value, row, index) {
-	    	confirm("Estás seguro de Eliminar el Registro : "+row.nombreRegistro);
+	    	confirm("Estás seguro de Eliminar el Registro : "+row.idAction);
 	    	$('#clientesTable').bootstrapTable('remove', {
-	        field: 'idCliente',
+	        field: 'idAction',
 	        values: [row.idCliente]
 	      });
 	      console.log(row);
-	      deleteUserEmpresa(row.idUserEmpresa);
+	      deleteEmpresa(row.idAction);
 	    }
 	  }
 	
@@ -106,6 +145,25 @@ $(document).ready(function(){
 }); // Fin documento
 
 function getEdicionSitioWeb(idAction){
+	
+}
+
+function deleteEmpresa(idAction){
+	console.log("4"+idAction);
+	var jsonRequest = {
+			'idAction' : idAction
+	}
+	var url = 'eliminarEmpresa.htm?idAction='+idAction;
+	$.ajax({
+	   	  url: url,
+	      dataType: 'json',
+		  type: 'POST',
+		  contentType: "application/json",
+		  data: JSON.stringify(jsonRequest),
+		  headers: {  'Access-Control-Allow-Origin': url, 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS', 'Access-Control-Allow-Headers': 'X-PINGOTHER' },
+		  crossDomain: true,
+		 
+		});
 	
 }
 

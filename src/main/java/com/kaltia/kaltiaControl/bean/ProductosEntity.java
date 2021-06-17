@@ -3,11 +3,18 @@ package com.kaltia.kaltiaControl.bean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
 
 @Entity(name="tc_productos")
+@NamedQueries({
+	@NamedQuery(query ="Select a from tc_productos a", name = "find Productos All")
+	
+})
 public class ProductosEntity {
 	
-	
+		
 	@Id
 	private String idEmpresa;
 	@Column

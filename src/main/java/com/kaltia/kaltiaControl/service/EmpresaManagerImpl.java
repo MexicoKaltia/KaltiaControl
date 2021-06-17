@@ -9,6 +9,7 @@ import java.time.LocalTime;
 //import java.io.IOException;
 //import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.logging.Log;
@@ -76,20 +77,6 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		return empresaEntity;
 	}
 
-//	@Override
-//	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI) {
-////	
-//	}
-	
-	@Override
-	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI, String userPerfil) {
-		logger.info("readEmpresaArray:"+idUserPerfilI);
-		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI, userPerfil);
-////		for(EmpresaEntity idEmpresa: empresaEntityArray) {
-////			empresaEntity = validaEmpresa(idUserPerfilI);
-////		}
-		return empresaEntityArray;
-	}
 	
 	@Override
 	public ResultDAOVO updateEmpresa(EmpresaEntity empresaEntity) {
@@ -103,13 +90,41 @@ public class EmpresaManagerImpl implements EmpresaManager{
 
 	}
 	@Override
-	public void deleteEmpresa() {
+	public ResultDAOVO deleteEmpresa(String idAction) {
 		
+		logger.info(idAction);
+		empresaEntity = empresaDAO.readEmpresaDAO(idAction);
+		if(empresaEntity != null) {
+			resultDAOVO = empresaDAO.deleteEmpresaDAO(empresaEntity.getIdEmpresa().toString());
+		}else {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage("error delete :"+idAction);
+		}
+		
+		return resultDAOVO;
 	}
 	
-	public EmpresaEntity validaEmpresa(String idEmpresa) {
-		return empresaEntity;
+	@Override
+	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI, String userPerfil) {
+		logger.info("readEmpresaArray:"+idUserPerfilI);
+		ArrayList<EmpresaEntity> empresaEntityArray =  empresaDAO.readEmpresaArrayDAO(idUserPerfilI, userPerfil);
+		return empresaEntityArray;
 	}
+	
+	@Override
+	public ResultDAOVO updateEmpresaProductos(ProductosVO productosVO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ProductosEntity> readEmpresaProductos() {
+		List<ProductosEntity> productosEntity = empresaDAO.readProductos(); 
+		return productosEntity ;
+	}
+
+	
+
 
 
 	@Override
@@ -246,6 +261,10 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		return resultDAOVO;
 
 	}
+	
+	/*
+	 * PRIVATE
+	 */
 
 	private ResultDAOVO createQRR(String modeloPagina, ProductosVO productosVO, boolean carpetaFileSystem) {
 		QRRestauranteEntity qrrEntity = new QRRestauranteEntity();
@@ -378,7 +397,6 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		
 	}
 
-	
 	
 
 }
