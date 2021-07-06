@@ -258,10 +258,9 @@ public class ControllerInicial extends HttpServlet {
 	 */
 	private List<JSONObject> getJSONUserEmpresa(List<UserEmpresaEntity> userEmpresaEntity) {
 		
-		JSONObject json = new JSONObject();
 		List<JSONObject> arrayJson = new ArrayList();
-		
 		for(UserEmpresaEntity a : userEmpresaEntity) {
+			JSONObject json = new JSONObject();
 			json.put("idUserEmpresa", a.getIdUserEmpresa());
 			json.put("actionRegistro", a.getActionRegistro());
 			json.put("nombreRegistro", a.getNombreRegistro());
@@ -273,7 +272,6 @@ public class ControllerInicial extends HttpServlet {
 			json.put("monitorRegistro", a.getMonitorRegistro());
 			json.put("statusRegistro", a.getStatusRegistro());
 			arrayJson.add(json);
-
 		}
 		
 		return arrayJson;
