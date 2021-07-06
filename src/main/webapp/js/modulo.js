@@ -45,24 +45,7 @@ $(document).ready(function(){
 	var $userEmpresa = $(function(){
 		readIdUserEmpresa("0");
 	});
-	
-	/*
-	 * Carga la Tabla inicial
-	 */
-	$( function() {
-//		var $table = $('#userEmpresaTable');
-//		//$('#userEmpresaTable').bootstrapTable('load', $.userEmpresa);
-//		$table.bootstrapTable({data : JSON.stringify(readIdUserEmpresa("0"))})
-//		console.log("function load data option");
-//		$('#userEmpresaTable').bootstrapTable('load', $userEmpresa);
-//		console.log("function load data metodo");
-//		$('#userEmpresaTable').bootstrapTable('refresh');
-//		console.log("function refresh data");
-		
-	} );       
-
-	 
-	 
+		 
 	window.operateEventsUpdate = {
 		    'click .like': function (e, value, row, index) {
 //		      alert('You click like action, row: ' + row.idUserEmpresa);//JSON.stringify(row))
@@ -106,7 +89,6 @@ $(document).ready(function(){
 //				 seccion : "bodySeccionArray1",
 				 valoresFinales : valoresRegistro}
 			console.log(registroJson);
-
 		$.ajax({
 		   	  url: url +"createUserEmpresa/",//+ context,//+finalJson.action+"/"+finalJson[1],
 		      dataType: 'json',
@@ -126,16 +108,13 @@ $(document).ready(function(){
 				  errorAlerta();
 			  }
 			});
-		}else{
-			
+		}else{		
 			valoresRegistro = $('#idUserEmpresa').val()+"++"+$('#nombreRegistro').val()+"++"+$('#apellidoRegistro').val()+"++"+$('#emailRegistro').val()+"++"+$('#telefonoRegistro').val()+"++"+$('#usuarioRegistro').val()+"++"+$('#passRegistro1').val()+"++"+$('#messageRegistro').val();
-			 
 			registroJson = { action : $.action,
 				 idEmpresa : $.idEmpresa,	
 //				 seccion : "bodySeccionArray1",
 				 valoresFinales : valoresRegistro}
 			console.log(registroJson);
-
 		$.ajax({
 		   	  url: url +"updateUserEmpresa/",//+ context,//+finalJson.action+"/"+finalJson[1],
 		      dataType: 'json',
@@ -155,8 +134,6 @@ $(document).ready(function(){
 				  errorAlerta();
 			  }
 			});
-
-			
 		}
 	});
 	
@@ -238,9 +215,6 @@ $(document).ready(function(){
 					  errorAlerta();
 				  }
 				});
-
-			
-			
 		}
 	
 	
@@ -281,6 +255,7 @@ $(document).ready(function(){
 		function errorAlerta(){
 			alerta="<div id='limpiaAlerta' class='alert alert-danger' role='alert'>Error de Enlace</div>";
 			$(alerta).insertAfter($('.alerta_in'));
+			  $('.alerta').fadeOut( 4000);
 		}
 		
 		function modalClose(){
@@ -300,16 +275,7 @@ $(document).ready(function(){
 			  $('.alerta').fadeOut( 4000);
 //				 $('.alerta').hide( "drop", { direction: "down" }, "slow" );
 		}
-		
-		
-		function avisaAlertaImagen(data){
-			
-		}
-		function errorAlertaImagen(){
-			
-		}
-
-				
+						
 
 		
 }); // Fin documento

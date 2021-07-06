@@ -24,13 +24,19 @@ public class RequestLoginVO implements Serializable{
 	private StatusEmpresaEntity statusEmpresaEntity;
 	private DatosCitasVO datosCitasVO;
 	private JSONObject jsonArray;
+	private JSONObject productos;
 	
 	
 	
 	
 	
 	
-	
+	public JSONObject getProductos() {
+		return productos;
+	}
+	public void setProductos(JSONObject productos) {
+		this.productos = productos;
+	}
 	public JSONObject getJsonArray() {
 		return jsonArray;
 	}

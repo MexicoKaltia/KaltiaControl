@@ -33,6 +33,7 @@ com\kaltia\kaltiaControl\bean\ResultDAOVO.class
 com\kaltia\kaltiaControl\bean\UserEmpresaEntity.class
 com\kaltia\kaltiaControl\bean\UserKaltiaControlVO.class
 com\kaltia\kaltiaControl\service\EmpresaManagerImpl.class
+com\kaltia\kaltiaControl\controller\ControllerUtil.class
 com\kaltia\kaltiaControl\bean\FooterEntity.class
 com\kaltia\kaltiaControl\bean\HeaderEntity.class
 com\kaltia\kaltiaControl\bean\DatosCitasVO.class

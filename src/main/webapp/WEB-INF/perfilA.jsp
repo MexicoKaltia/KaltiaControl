@@ -14,7 +14,7 @@
       <nav id="mainav" class="fl_right">
         <ul class="clear">
           <li  class="active"><a href="#">Inicio</a></li>  
-          <li><a href="<c:url value="alta.htm"/>">Empresas</a></li>
+          <li><a href="<c:url value="alta.htm"/>">Alta Empresa</a></li>
           <li><a href="<c:url value="usuarios.htm"/>">Usuarios</a></li>
 <%--           <li><a  href="<c:url value="edicion.htm?action=${model.requestLoginVO.empresaEntity.getIdAction()}"/>">Consulta</a> --%>
 <%--           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li> --%>
@@ -340,94 +340,117 @@ var $data = document.getElementById("empresas").value;
       <div class="modal-content">
         <div class="modal-header" style="background-color: #F1FFFE">
           <div class="logo-src2" ><img width="90%"  alt=""></div>
-          <h4 position: center">Edicion Cliente</h4>
+          <h4 position: center">Edicion Productos</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4><span class="glyphicon glyphicon-lock"></span></h4>
         </div>
         <div class="modal-body" style="padding:40px 50px; ">	
-	        	<form  class="" action="actualizaCliente.htm" method="post" modelAttribute="empresaEntity" >
-	            	<input id="idEmpresaProducto"  type="hidden" name="idEmpresa">Hellow
-	            				<div class="form-group">
+			<h2><strong>Check de productos habilitados</strong></h2>
+	            	<hr>
+	            	<form  class="" action="actualizaModulos.htm" method="post" modelAttribute="ProductosEntity" >
+	            	<input id="idEmpresaProducto"  type="hidden" name="idEmpresa">
+	            			<div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="checkPagina">
+								      <input class="form-check-input" type="checkbox" id="checkPagina" name="checkPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        checkPagina
+								        Producto Pagina Editable
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="checkQRR">
+								      <input class="form-check-input" type="checkbox" id="checkQRR" name="checkQRR">
 								      <label class="form-check-label" for="gridCheck">
-								        checkQRR
+								        Producto Codigo QR Restaurante 
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="checkQRE">
+								      <input class="form-check-input" type="checkbox" id="checkQRE" name="checkQRE">
 								      <label class="form-check-label" for="gridCheck">
-								        checkQRE
+								        Producto Codigo QR Estacionamiento
 								      </label>
 								    </div>
 								  </div>
 								  
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="checkPuntoVenta">
+								      <input class="form-check-input" type="checkbox" id="checkPuntoVenta" name="checkPuntoVenta">
 								      <label class="form-check-label" for="gridCheck">
-								        checkPuntoVenta
+								        Producto Sistema PuntoVenta
+								      </label>
+								    </div>
+								  </div>
+								  <hr>
+								  
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="clientePagina" name="clientePagina">
+								      <label class="form-check-label" for="gridCheck">
+								        Modulo Registro de Clientes
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="clientePagina">
+								      <input class="form-check-input" type="checkbox" id="clienteChat" name="chatPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        clientePagina
+								        Modulo Chat WhatsApp
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="carpetaPagina">
+								      <input class="form-check-input" type="checkbox" id="videoPagina" name="videoPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        carpetaPagina
+								        Modulo Video en pagina
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="retroalimentacionPagina">
+								      <input class="form-check-input" type="checkbox" id="tarjetaPagina" name="tarjetaPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        retroalimentacionPagina
+								        Modulo Presentacion de Productos
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="notificacionPagina">
+								      <input class="form-check-input" type="checkbox" id="retroalimentacionPagina" name="retroalimentacionPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        notificacionPagina
+								        Modulo Retroalimentacion Encuesta 
+								      </label>
+								    </div>
+								  </div>
+								  <hr>
+								  
+								  <div class="form-group">
+								    <div class="form-check">
+								      <input class="form-check-input" type="checkbox" id="citaPagina" name="citaPagina">
+								      <label class="form-check-label" for="gridCheck">
+								        Modulo Cita Clientes 
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="videoPagina">
+								      <input class="form-check-input" type="checkbox" id="carpetaPagina" name="carpetaPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        videoPagina
+								        Modulo Documentos Compartidos 
 								      </label>
 								    </div>
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="tarjetaPagina">
+								      <input class="form-check-input" type="checkbox" id="notificacionPagina" name="notificacionPagina">
 								      <label class="form-check-label" for="gridCheck">
-								        tarjetaPagina
+								        Modulo Notificacion Clientes
 								      </label>
 								    </div>
 								  </div>
+								  
 								  
 		          <br>
 		          <hr>

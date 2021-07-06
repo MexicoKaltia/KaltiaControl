@@ -9,8 +9,8 @@
         <ul class="clear">
           <li class="active"><a href="inicio.htm">Inicio</a></li>
 <%--           <li><a  href="<c:url value="modulo.htm"/>">Modulos</a> --%>
-		  <li><a  href="<c:url value="#"/>">Modulos</a>
-          <li><a  href="<c:url value="edicion.htm?idAction=${model.requestLoginVO.getEmpresaEntity().getIdAction()}&tipo="/>">Edicion Sitio Web</a>
+		  <li><a  href="<c:url value="modulo.htm"/>">Modulos</a>
+<%--           <li><a  href="<c:url value="edicion.htm?idAction=${model.requestLoginVO.getEmpresaEntity().getIdAction()}&tipo="/>">Edicion Sitio Web</a> --%>
 <%--           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li> --%>
            <%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
 <!--           <li  class="active"><a href="../index.html">Inicio</a></li> -->

@@ -14,14 +14,15 @@ public interface EmpresaManager extends Serializable{
 	
 	public ResultDAOVO createEmpresa(EmpresaEntity eE);
 	public EmpresaEntity readEmpresa(String idEmpresa);
-//	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI);
 	public ArrayList<EmpresaEntity> readEmpresaArray(String idUserPerfilI, String userPerfil);
 	public ResultDAOVO updateEmpresa(EmpresaEntity eE);
 	public ResultDAOVO deleteEmpresa(String idAction);
 	
 	public ResultDAOVO createEmpresaProductos(ProductosVO productosVO);
 	public ResultDAOVO updateEmpresaProductos(ProductosVO productosVO);
+	public ResultDAOVO updateProductos(ProductosEntity productosEntity );
 	public List<ProductosEntity>  readEmpresaProductos();
+	public ProductosEntity readProductos(String idEmpresa);
 	
 	
 	

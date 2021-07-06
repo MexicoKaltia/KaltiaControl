@@ -89,6 +89,15 @@ public class EmpresaManagerImpl implements EmpresaManager{
 					return resultDAOVO;	
 
 	}
+	
+	@Override
+	public ResultDAOVO updateProductos(ProductosEntity productosEntity) {
+//				logger.info(productosEntity.toString());
+				empresaDAO.updateProductosDAO(productosEntity);
+				return resultDAOVO;	
+
+	}
+
 	@Override
 	public ResultDAOVO deleteEmpresa(String idAction) {
 		
@@ -123,6 +132,12 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		return productosEntity ;
 	}
 
+	
+	@Override
+	public ProductosEntity readProductos(String idEmpresa) {
+		ProductosEntity productosEntity = empresaDAO.readProductos(idEmpresa); 
+		return productosEntity;
+	}
 	
 
 

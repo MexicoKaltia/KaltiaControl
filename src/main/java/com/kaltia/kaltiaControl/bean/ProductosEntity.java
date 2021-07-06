@@ -9,7 +9,8 @@ import javax.persistence.NamedQuery;
 
 @Entity(name="tc_productos")
 @NamedQueries({
-	@NamedQuery(query ="Select a from tc_productos a", name = "find Productos All")
+	@NamedQuery(query ="Select a from tc_productos a", name = "find Productos All"),
+	@NamedQuery(query ="Select a from tc_productos a where a.idEmpresa= :id", name = "find Productos Id")
 	
 })
 public class ProductosEntity {
@@ -25,22 +26,25 @@ public class ProductosEntity {
 	private boolean checkQRE;
 	@Column
 	private boolean checkPuntoVenta;
+	
 	@Column
 	private boolean clientePagina;
+	@Column
+	private boolean chatPagina;
+	@Column
+	private boolean videoPagina;
+	@Column
+	private boolean tarjetaPagina;
+	@Column
+	private boolean retroalimentacionPagina;
+	
 	@Column
 	private boolean citaPagina;
 	@Column
 	private boolean carpetaPagina;
 	@Column
-	private boolean retroalimentacionPagina;
-	@Column
-	private boolean chatPagina;
-	@Column
 	private boolean notificacionPagina;
-	@Column
-	private boolean videoPagina;
-	@Column
-	private boolean tarjetaPagina;
+	
 	
 	public ProductosEntity() {}
 
@@ -167,6 +171,15 @@ public class ProductosEntity {
 
 	public void setTarjetaPagina(boolean tarjetaPagina) {
 		this.tarjetaPagina = tarjetaPagina;
+	}
+
+	@Override
+	public String toString() {
+		return "ProductosEntity [idEmpresa=" + idEmpresa + ", checkPagina=" + checkPagina + ", checkQRR=" + checkQRR
+				+ ", checkQRE=" + checkQRE + ", checkPuntoVenta=" + checkPuntoVenta + ", clientePagina=" + clientePagina
+				+ ", citaPagina=" + citaPagina + ", carpetaPagina=" + carpetaPagina + ", retroalimentacionPagina="
+				+ retroalimentacionPagina + ", chatPagina=" + chatPagina + ", notificacionPagina=" + notificacionPagina
+				+ ", videoPagina=" + videoPagina + ", tarjetaPagina=" + tarjetaPagina + "]";
 	}
 	
 	

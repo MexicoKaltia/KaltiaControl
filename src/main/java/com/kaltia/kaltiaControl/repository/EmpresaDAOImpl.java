@@ -95,22 +95,7 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 		return resultDAOVO;
 	}
 	
-	@Override
-	public ResultDAOVO updateProductos(ProductosEntity productosEntity) {
-		try {
-		  em.merge(productosEntity);
-	      resultDAOVO.setCode("00");
-	      resultDAOVO.setMessage("Productos Empresa Actualizada con Exito");
-	      
-		}catch(Exception e) {
-			resultDAOVO.setCode("99");
-			resultDAOVO.setMessage(e.toString());
-		}finally {
-			em.close( );
-		}
-		return resultDAOVO;
-
-	}
+	
 
 
 
@@ -126,6 +111,44 @@ public class EmpresaDAOImpl implements EmpresaDAO{
 	    	  logger.info(e);
 	    	  return productosEntityArray;
 	      }
+	}
+	
+	@Override
+	public ProductosEntity readProductos(String idEmpresa) {
+		Query query=null;
+			query = em.createNamedQuery("find Productos Id");
+			query.setParameter("id", idEmpresa);
+	      ProductosEntity productosEntity = new ProductosEntity();
+	      try {
+	    	  productosEntity = (ProductosEntity) query.getSingleResult();
+	    	  return productosEntity; 
+	      }catch(Exception e){
+	    	  logger.info(e);
+	    	  return productosEntity;
+	      }
+	}
+	
+	@Override
+	@Transactional(readOnly = false)
+	public ResultDAOVO updateProductosDAO(ProductosEntity productosEntity) {
+		
+		try {
+		  em.merge(productosEntity);
+		      
+	      resultDAOVO.setCode("00");
+	      resultDAOVO.setMessage("Empresa Productos Actualizada con Exito");
+	      
+		}catch(Exception e) {
+			resultDAOVO.setCode("99");
+			resultDAOVO.setMessage(e.toString());
+			e.printStackTrace();
+		}finally {
+			em.close( );
+		      
+		}
+		return resultDAOVO;
+
+
 	}
 
 

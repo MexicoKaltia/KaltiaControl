@@ -39,8 +39,9 @@ public interface EmpresaDAO extends Serializable{
 	public ResultDAOVO createQRR(QRRestauranteEntity qrrEntity);
 	
 	public ResultDAOVO createProductos(ProductosEntity productosEntity);
-	public ResultDAOVO updateProductos(ProductosEntity productosEntity);
+	public ResultDAOVO updateProductosDAO(ProductosEntity productosEntity);
 	public List<ProductosEntity> readProductos();
+	public ProductosEntity readProductos(String idEmpresa);
 
 
 }

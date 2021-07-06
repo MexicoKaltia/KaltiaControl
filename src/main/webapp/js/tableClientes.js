@@ -85,9 +85,8 @@ $(document).ready(function(){
 		    		var idEmpresaProductos = productos[a].idEmpresa;
 		    		if(idEmpresaProductos === idEmpresa){
 		    			var productosEmpresa = productos[a];
-//		    			console.log(productosEmpresa);
+		    			console.log(productosEmpresa);
 		    			$('#checkPagina').attr('checked', productosEmpresa.checkPagina);
-//		    			if(productosEmpresa.checkPagina){}
 				    	$('#checkQRR').attr('checked', productosEmpresa.checkQRR);
 				    	$('#checkQRE').attr('checked', productosEmpresa.checkQRE);
 				    	$('#checkPuntoVenta').attr('checked', productosEmpresa.checkPuntoVenta);
@@ -98,12 +97,13 @@ $(document).ready(function(){
 				    	$('#notificacionPagina').attr('checked', productosEmpresa.notificacionPagina);
 				    	$('#videoPagina').attr('checked', productosEmpresa.videoPagina);
 				    	$('#tarjetaPagina').attr('checked', productosEmpresa.tarjetaPagina);
-				    	$('#idEmpresaProducto').attr('checked', productosEmpresa.idEmpresa);
+				    	$('#idEmpresaProducto').val(productosEmpresa.idEmpresa);
+				    	break;
 		    		}
 		    	}
 		    	
 		    }
-		   }
+		 }
 	
 	window.operateEventsUpdateSitioWeb = {
 		    'click .like': function (e, value, row, index) {

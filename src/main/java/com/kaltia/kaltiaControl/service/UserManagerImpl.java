@@ -106,22 +106,15 @@ public class UserManagerImpl implements UserManager{
 					/*
 					 * Informacion Empresa de userEmpresa -- MODULOS
 					 */		
-//					if(!empresaEntity.getEmpresaCitas().equals("No Activo") || !empresaEntity.getEmpresaModulos().equals("No Activo")) {
-						List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
-						requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
-//						if(!empresaEntity.getEmpresaCitas().equals("No Activo")) {
-//							resultVO = clienteRest.readCitas(empresaEntity.getIdAction());
-							logger.info(resultVO.getMensajeArray());
-//							datosCitasVO.setCondiciones((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(0)));
-//							datosCitasVO.setMesActual((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(1)));
-//							datosCitasVO.setMesPost((JSONObject) JSONValue.parse(resultVO.getMensajeArray().get(2)));
-//							requestLoginVO.setDatosCitasVO(datosCitasVO);
-//						}
-						
-//					}
+					List<UserEmpresaEntity> userEmpresaEntity  = userEmpresaManager.readUserEmpresa(empresaEntity.getIdAction());
+					requestLoginVO.setUserEmpresaEntity(userEmpresaEntity);
+					logger.info(resultVO.getMensajeArray());
 			
 					requestLoginVO.setEmpresaEntity(empresaEntity);
-//					requestLoginVO.setStatusEmpresaEntity(statusEmpresaEntity);
+					
+					ProductosEntity productos = empresaManager.readProductos(empresaEntity.getIdEmpresa());
+					requestLoginVO.setProductos(productosToJSON(productos));
+					
 				}
 				 String now = (new Date()).toString();   
 				userKaltiaControlEntity.setUserKaltiaControlActividad(now);
@@ -145,6 +138,8 @@ public class UserManagerImpl implements UserManager{
 				
 		return requestLoginVO ;
 	}
+
+	
 
 	@Override
 	public RequestLoginVO updateUser(UserKaltiaControlVO userKaltiaControl) {
@@ -177,7 +172,11 @@ public class UserManagerImpl implements UserManager{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 	
+	/*
+	 *  PRIVATES
+	 */
 	
 	private JSONObject arrayEmpresa(RequestLoginVO request) {
 		
@@ -239,5 +238,48 @@ public class UserManagerImpl implements UserManager{
 	
 		return jsonArray;
 	}
+	
 
-}
+	private JSONObject productosToJSON(ProductosEntity productos) {
+		
+		JSONObject json = new JSONObject();
+		//Productos
+		if(productos.isCheckPagina()) {
+			json.put("checkPagina", true);
+		}if(productos.isCheckQRR()) {
+			json.put("checkQRR", true);
+		}if(productos.isCheckQRE()) {
+			json.put("checkQRE", true);
+		}if(productos.isCheckPuntoVenta()) {
+			json.put("checkPuntoVenta", true);
+		}
+		//modulos sencillos
+		if(productos.isClientePagina()) {
+			json.put("checkClientePagina", true);
+		}if(productos.isChatPagina()) {
+			json.put("checkChatPagina", true);
+		}if(productos.isVideoPagina()) {
+			json.put("checkVideoPagina", true);
+		}if(productos.isTarjetaPagina()) {
+			json.put("checkTarjetaPagina", true);
+		}if(productos.isRetroalimentacionPagina()) {
+			json.put("checkRetroalimentacionPagina", true);
+		}
+		//modulos compuestos
+		if(productos.isCitaPagina()) {
+			json.put("checkCitaPagina", true);
+		}if(productos.isCarpetaPagina()) {
+			json.put("checkCarpetaPagina", true);
+		}if(productos.isNotificacionPagina()) {
+			json.put("checkNotificacionPagina", true);
+		}
+		
+		json.put("idEmpresa", productos.getIdEmpresa());
+		
+		return json;
+	}
+	
+
+}//end class
+
+

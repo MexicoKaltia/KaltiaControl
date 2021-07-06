@@ -1,8 +1,10 @@
 package com.kaltia.kaltiaControl.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,6 +15,7 @@ import javax.validation.Valid;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,6 +35,7 @@ import com.kaltia.kaltiaControl.bean.ProductosEntity;
 import com.kaltia.kaltiaControl.bean.ProductosVO;
 import com.kaltia.kaltiaControl.bean.RequestLoginVO;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
+import com.kaltia.kaltiaControl.bean.UserEmpresaEntity;
 import com.kaltia.kaltiaControl.bean.UserKaltiaControlVO;
 import com.kaltia.kaltiaControl.service.EmpresaManager;
 import com.kaltia.kaltiaControl.service.UserManager;
@@ -66,17 +70,10 @@ public class ControllerInicial extends HttpServlet {
 	@RequestMapping(value="/login.htm" , method = RequestMethod.POST)
     public ModelAndView handleRequest(@Valid @ModelAttribute("userKaltiaControl") UserKaltiaControlVO userKaltiaControlFront, 
     									BindingResult result,
-    									ModelMap model,
-    									HttpServletRequest request,
-    									HttpServletResponse response)
-            throws ServletException, IOException {
+    									ModelMap model){
 
-//    	 String now = (new Date()).toString();       
          requestLoginVO = this.userManager.readUser(userKaltiaControlFront);
-         
          model.addAttribute("requestLoginVO", requestLoginVO);
-         request.getSession().setAttribute("requestLoginVO", requestLoginVO);
-//         logger.info("Login:" + now+ "-- User:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
          logger.info("____________________________________________________________________");
 
          return new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
@@ -88,7 +85,6 @@ public class ControllerInicial extends HttpServlet {
 							) throws ServletException, IOException  {
 		logger.info("----De nuevo Inicio----");
 		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
-//		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
 		ModelAndView mav = new ModelAndView(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString(), "model", model);
 		mav.addObject("delete", delete);
 		return mav; 
@@ -97,14 +93,13 @@ public class ControllerInicial extends HttpServlet {
 	
 	@RequestMapping (value= "/alta.htm" , method = RequestMethod.GET)
 	public ModelAndView formularioAlta(ModelMap model, 
-							@RequestParam(name="error", required=false) boolean error,
-							HttpServletRequest request,
-							HttpServletResponse response) throws ServletException, IOException  {
+							@RequestParam(name="error", required=false) boolean error){
 		logger.info("----Inicio metodo alta----");
 		ModelAndView mav = new ModelAndView("alta","modelAlta", model );
 		mav.addObject("error", error);
-		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
-		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+//		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
+//		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
 			
 		return mav; 
 	}
@@ -189,6 +184,31 @@ public class ControllerInicial extends HttpServlet {
 		return mav;
 	}
 	
+	@RequestMapping (value = "/actualizaModulos.htm", method = RequestMethod.POST)
+	public ModelAndView actualizaCliente (@Valid @ModelAttribute("productosEntity") ProductosEntity productosEntity,		
+									BindingResult result,
+									ModelMap model)
+									throws ServletException, IOException {
+		logger.info(productosEntity.toString());
+		
+		String now = (new Date()).toString();
+		logger.info("----Inicio metodo actualizaCliente----"+now);
+//		requestLoginVO.setProductosEntity(productosEntity);
+		
+		resultDAOVO = empresaManager.updateProductos(productosEntity);
+		
+		logger.info("idUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString());
+		if(!resultDAOVO.getCode().equals("99")) {
+			mav.addObject("actualiza", true);
+		}else {
+			mav.addObject("errorActualiza", true);
+		}
+		return mav;
+	}
+	
 	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping (value= "/eliminarEmpresa.htm" , params = {"idAction"} , method = RequestMethod.POST)
 	public ModelAndView eliminarEmpresa(ModelMap model,
@@ -213,14 +233,58 @@ public class ControllerInicial extends HttpServlet {
 
 		return mav;		
 	}
-									
+			
 	
+	@RequestMapping (value= "/modulo.htm" , method = RequestMethod.GET)
+	public ModelAndView modulo(ModelMap model) {
+		logger.info("----Inicio metodo modulo----");
+		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
+		List<JSONObject> jsonUserEmpresa = getJSONUserEmpresa(requestLoginVO.getUserEmpresaEntity());
+		model.addAttribute("usuariosEmpresa", jsonUserEmpresa);
+		ModelAndView mav = new ModelAndView("modulo","model", model );
+		
+		return mav;
+	}
+	
+//	@RequestMapping (value= "/userEmpresa.htm" , method = RequestMethod.GET)
+//	public JSONObject consultaUserEmpresa(@RequestParam(value = "idAction") String idAction) {
+//		JSONObject jsonUserEmpresa =  
+//		return jsonUserEmpresa;
+//	}
+	
+	/*
+	 * private
+	 */
+	private List<JSONObject> getJSONUserEmpresa(List<UserEmpresaEntity> userEmpresaEntity) {
+		
+		JSONObject json = new JSONObject();
+		List<JSONObject> arrayJson = new ArrayList();
+		
+		for(UserEmpresaEntity a : userEmpresaEntity) {
+			json.put("idUserEmpresa", a.getIdUserEmpresa());
+			json.put("actionRegistro", a.getActionRegistro());
+			json.put("nombreRegistro", a.getNombreRegistro());
+			json.put("emailRegistro", a.getEmailRegistro());
+			json.put("telefonoRegistro", a.getTelefonoRegistro());
+			json.put("usuarioRegistro", a.getUsuarioRegistro());
+			json.put("passRegistro", a.getPassRegistro());
+			json.put("messageRegistro", a.getMessageRegistro());
+			json.put("monitorRegistro", a.getMonitorRegistro());
+			json.put("statusRegistro", a.getStatusRegistro());
+			arrayJson.add(json);
 
+		}
+		
+		return arrayJson;
+	}
 	
 	/*
 	 *  Verificar los siguientes metodos, no estan en uso 19 nov 2020
 	 */
 	
+	
+
 	@RequestMapping (value= "/edicion.htm" , params = {"tipo","idAction"} , method = RequestMethod.GET)
 	public ModelAndView edicion(ModelMap model,
 								HttpServletRequest request,
@@ -244,16 +308,7 @@ public class ControllerInicial extends HttpServlet {
 	
 	
 	
-	@RequestMapping (value= "/modulo.htm" , method = RequestMethod.GET)
-	public ModelAndView modulo(ModelMap model, HttpServletRequest request,
-							HttpServletResponse response) throws ServletException, IOException  {
-		logger.info("----Inicio metodo modulo----");
-//		requestLoginVO = (RequestLoginVO) request.getSession().getAttribute("requestLoginVO");
-		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
-		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
-			
-		return new ModelAndView("modulo","model", model );
-	}
+	
 	
 	@RequestMapping (value= "/estadistica.htm" , method = RequestMethod.GET)
 	public ModelAndView estadistica(HttpServletRequest request,
