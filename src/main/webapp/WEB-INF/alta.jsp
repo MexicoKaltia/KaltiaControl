@@ -11,7 +11,7 @@
           <li><a href="inicio.htm">Inicio</a></li>
           <li class="active"><a  href="#">Alta Empresa</a></li>
 <%--           <li><a  href="${pageContext.request.contextPath}/estadistica.htm">Estadistica</a></li> --%>
-           <%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
+<%--           <li><a  href="<c:url value="edicion.htm?action=${model.get(requestLoginVO.getEmpresaEntity().getIdAction())}"/>">Edicion</a> --%>
 <!--           <li  class="active"><a href="../index.html">Inicio</a></li> -->
 <%--           <li><a class="drop" href="<c:url value="edicion.htm"/>">Edicion</a> --%>
 <%--           <li><a class="drop" href="${pageContext.request.contextPath}/edicion.htm">Estadistica</a></li> --%>

@@ -1,6 +1,8 @@
 $(document).ready(function(){
 	
-//	console.log("A");
+	
+	
+	
 	//productos
 	if(productos["checkPagina"]){
 //		console.log("checkPagina");
@@ -62,7 +64,8 @@ $(document).ready(function(){
 //	}
 		
 }); // Fin documento
-
+$idEmpresa=$(idEmpresa).val();
+//console.log($idEmpresa);
 
 var checkPaginaEdicion = '<div class="card">\
 						    <div class="card-header" id="headingOne">\
@@ -141,7 +144,7 @@ var userTable = '<div class="card">\
 					<div id="collapseUsuarios" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">\
 						<div class="card-body">\
 						  <div class="table-responsive">\
-							<table id="usuariosEmpresaTable" data-locale="es-MX" data-toggle="table" data-height="460" data-sort-name="statusRegistro" data-sort-order="asc" data-pagination="true" data-page-list="[10, 25, 50, 100, 200, Todos]" data-search="true" data-click-to-select="true" data-checkbox-header="false" >\
+							<table id="usuariosEmpresaTable" data-row-style="rowStyle" class="table-dark" data-locale="es-MX" data-toggle="table"  data-sort-name="statusRegistro" data-sort-order="asc" data-pagination="true" data-page-list="[10, 25, 50, 100, 200, Todos]" data-search="true" data-click-to-select="true" data-checkbox-header="false" >\
 								<thead class="thead-dark">\
 									<tr>\
 										<th data-width="40" data-width-unit="%" data-halign="center" data-align="left" data-field="nombreRegistro" data-sortable="true">Nombre</th>\
@@ -152,6 +155,16 @@ var userTable = '<div class="card">\
 									</tr>\
 								</thead>\
 							</table>\
+							<script>\
+						    function rowStyle(row, index){\
+						        return {\
+						            css : {\
+						                 color: "cyan",\
+						                 background: "rgba(1,50,105, 0.8)!important"\
+						             }\
+						        }\
+							}\
+						</script>\
 						</div>\
 					</div>\
 					<div class="report-footer">\
@@ -161,7 +174,9 @@ var userTable = '<div class="card">\
 					</div>\
 				<div>\
 			</div>';
-
+var urlVideos = 'http://129.146.252.2:8010/consultaVideos?idEmpresa='+$idEmpresa;
+//var urlVideos = 'http://localhost:8010/consultaVideos?idEmpresa='+$idEmpresa;
+//console.log(urlVideos);
 var checkVideoEdicion ='<div class="card">\
 						    <div class="card-header" id="headingOne">\
 								<h5 class="mb-0">\
@@ -171,11 +186,54 @@ var checkVideoEdicion ='<div class="card">\
 								</h5>\
 							</div>\
 							<div id="collapseVideo" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">\
-								<div class="card-body">\
-								  TEXT BODY\
-								</div>\
+								<div class="card-body" >\
+								   <form id="formAddVideo" action="addVideo.htm" method="post" modelAttribute="videoEntity"><div class="well auth-box"><fieldset>\
+								    <div class="form-row">\
+								      <div class="form-group col-md-3">\
+								         <label class="form-label" for="name">Titulo Video</label>\
+								         <input type="text" class="form-control input-md" id="videoTitulo" name="videoTitulo" placeholder="titulo Video" maxlength="40"  required>\
+								      </div>\
+								     <div class="form-group col-md-8">\
+								       <label class="form-label" for="name">URL Video</label>\
+								       <input type="url" class="form-control" id="videoURL" name="videoURL" placeholder="URL Video"  required>\
+								     </div>\
+								     <div class="col-md-1">\
+								       <button class="btn btn-primary" id="addVideo"  >\
+										   <i class="fa-3x fa fa-plus-square"></i>\
+										</button>\
+								     </div>\
+								  </div>\
+								</fieldset></div></form>\
+								<br>\
+								<div id="divVideos>\
+								<form><div class="well auth-box"><fieldset>\
+	<div class="table-responsive">\
+									<table  id="videosTable" data-row-style="rowStyleVideosTable" data-toggle="table" data-url="'+urlVideos+'">\
+									  <thead>\
+									    <tr>\
+									      <th data-width="20" data-width-unit="%" data-halign="center" data-align="left" data-field="videoTitulo">Titulo Video</th>\
+									      <th data-width="60" data-width-unit="%" data-halign="center" data-align="left" data-field="videoURL" >URL</th>\
+									      <th data-width="10" data-width-unit="%" data-halign="center" data-align="left" data-field="operateAcceso" data-formatter="operateFormatterAccesoVideo" data-events="window.operateEventsAccesoVideo">Acceso</th>\
+									      <th data-width="10" data-width-unit="%" data-halign="center" data-align="left" data-field="operateDelete" data-formatter="operateFormatterDeleteVideo" data-events="window.operateEventsDeleteVideo">Eliminar</th>\
+									    </tr>\
+									  </thead>\
+									  </table>\
+									  <script>\
+									    function rowStyleVideosTable(row, index){\
+									        return {\
+									            css : {\
+									                 color: "cyan",\
+									                 background: "rgba(1,50,105, 0.8)!important"\
+									             }\
+									        }\
+										}\
+									</script>\
+									</div>\
+								</fieldset></div></form>\
 							</div>\
-						</div>';
+						</div>\
+					</div>\
+				</div>';
 
 var checkChatEdicion = '<div class="card">\
     <div class="card-header" id="headingOne">\

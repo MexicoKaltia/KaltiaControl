@@ -156,59 +156,7 @@ public class ControllerInicial extends HttpServlet {
 		return mav;
 	}
 	
-	@RequestMapping (value = "/altaProductos.htm", method = RequestMethod.POST)
-	public ModelAndView altaProductos (@Valid @ModelAttribute("productosVO") ProductosVO productosVO,		
-//										@RequestParam(name="empresaEntity", required=false) EmpresaEntity empresaEntity,
-									BindingResult result,
-									ModelMap model)
-								throws ServletException, IOException {
 		
-		String now = (new Date()).toString();
-		logger.info("----Inicio metodo altaProductos----"+now);
-		
-		resultDAOVO = empresaManager.createEmpresaProductos(productosVO);
-		
-		ModelAndView mav = new ModelAndView();
-//		
-		if(!resultDAOVO.getCode().equals("99")) {
-			if(productosVO.getqRREstaurante().getTipoQRR().contains("QR")) {
-				mav.setViewName("redirect:/edicion.htm?idAction="+productosVO.getqRREstaurante().getIdAction()+"&tipo=qr" );
-			}else {
-				mav.setViewName("redirect:/edicion.htm?idAction="+productosVO.getPaginaEntity().getIdAction());
-			}
-
-		}else {
-			mav.setViewName("redirect:/alta.htm");
-			mav.addObject("error", true);
-		}
-		return mav;
-	}
-	
-	@RequestMapping (value = "/actualizaModulos.htm", method = RequestMethod.POST)
-	public ModelAndView actualizaCliente (@Valid @ModelAttribute("productosEntity") ProductosEntity productosEntity,		
-									BindingResult result,
-									ModelMap model)
-									throws ServletException, IOException {
-		logger.info(productosEntity.toString());
-		
-		String now = (new Date()).toString();
-		logger.info("----Inicio metodo actualizaCliente----"+now);
-//		requestLoginVO.setProductosEntity(productosEntity);
-		
-		resultDAOVO = empresaManager.updateProductos(productosEntity);
-		
-		logger.info("idUser:"+requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser());
-		
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName(requestLoginVO.getUserKaltiaControlEntity().getUserKaltiaControlPerfil().toString());
-		if(!resultDAOVO.getCode().equals("99")) {
-			mav.addObject("actualiza", true);
-		}else {
-			mav.addObject("errorActualiza", true);
-		}
-		return mav;
-	}
-	
 	@CrossOrigin(origins = "http://localhost:8081")
 	@RequestMapping (value= "/eliminarEmpresa.htm" , params = {"idAction"} , method = RequestMethod.POST)
 	public ModelAndView eliminarEmpresa(ModelMap model,
@@ -235,23 +183,23 @@ public class ControllerInicial extends HttpServlet {
 	}
 			
 	
-	@RequestMapping (value= "/modulo.htm" , method = RequestMethod.GET)
-	public ModelAndView modulo(ModelMap model) {
+	@RequestMapping (value= "/modulos.htm" , method = RequestMethod.GET)
+	public ModelAndView modulo(ModelMap model,
+			@RequestParam(name="error", required=false) boolean error,
+			@RequestParam(name="exito", required=false) boolean exito) {
 		logger.info("----Inicio metodo modulo----");
 		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
 		logger.info(requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser().toString());
 		List<JSONObject> jsonUserEmpresa = getJSONUserEmpresa(requestLoginVO.getUserEmpresaEntity());
 		model.addAttribute("usuariosEmpresa", jsonUserEmpresa);
-		ModelAndView mav = new ModelAndView("modulo","model", model );
+		ModelAndView mav = new ModelAndView("modulos","model", model );
+		mav.addObject("error", error);
+		mav.addObject("exito", exito);
 		
 		return mav;
 	}
 	
-//	@RequestMapping (value= "/userEmpresa.htm" , method = RequestMethod.GET)
-//	public JSONObject consultaUserEmpresa(@RequestParam(value = "idAction") String idAction) {
-//		JSONObject jsonUserEmpresa =  
-//		return jsonUserEmpresa;
-//	}
+
 	
 	/*
 	 * private

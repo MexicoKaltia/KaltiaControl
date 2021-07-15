@@ -117,7 +117,7 @@
 								<div class="card-body">
 									<h5 class="card-title">Kaltia Control - CLIENTES </h5>
 
-									<table id='clientesTable' class="mb-0 table table-striped table-sm bg-blue"
+									<table id='clientesTable' class="mb-0 table  table-sm bg-blue" data-row-style="rowStyle"
 										data-locale="es-MX" 
 										data-toggle='table' 
 										data-sort-name='empresaStatus'
@@ -150,6 +150,16 @@
 									    })
 									    return html.join('')
 									  }
+									</script>
+									<script>
+									    function rowStyle(row, index){
+									        return {
+									            css : {
+									                 color: "cyan",
+									                 background: "rgba(1,50,105, 0.8)!important"
+									             }
+									        }
+										}
 									</script>
 								
 								</div>
@@ -394,7 +404,7 @@ var $data = document.getElementById("empresas").value;
 								  </div>
 								  <div class="form-group">
 								    <div class="form-check">
-								      <input class="form-check-input" type="checkbox" id="clienteChat" name="chatPagina">
+								      <input class="form-check-input" type="checkbox" id="chatPagina" name="chatPagina">
 								      <label class="form-check-label" for="gridCheck">
 								        Modulo Chat WhatsApp
 								      </label>

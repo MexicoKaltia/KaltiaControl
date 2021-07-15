@@ -17,7 +17,7 @@
 	  function operateFormatterDelete(value, row, index) {
 		    return [
 		      '<a class="remove" href="javascript:void(0)" title="Eliminar">',
-		      '<i class="fa fa-2x fa-edit">',
+		      '<i class="fa fa-3x fa-edit">',
 		      '</a>'
 		    ].join('')
 		  }
@@ -31,7 +31,7 @@
 	
 $(document).ready(function(){
 	
-	console.log(usuariosEmpresa);
+//	console.log(usuariosEmpresa);
 	
 		
 	window.operateEventsUpdateUsuariosEmpresa = {

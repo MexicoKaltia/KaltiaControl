@@ -215,14 +215,17 @@ public class UserManagerImpl implements UserManager{
 			jsonProductos.put("checkQRR", productos.isCheckQRR());
 			jsonProductos.put("checkQRE", productos.isCheckQRE());
 			jsonProductos.put("checkPuntoVenta", productos.isCheckPuntoVenta());
+			
 			jsonProductos.put("clientePagina", productos.isClientePagina());
+			jsonProductos.put("chatPagina", productos.isChatPagina());
+			jsonProductos.put("videoPagina", productos.isVideoPagina());
+			jsonProductos.put("tarjetaPagina", productos.isTarjetaPagina());
+			jsonProductos.put("notificacionPagina", productos.isNotificacionPagina());
+			
 			jsonProductos.put("citaPagina", productos.isCitaPagina());
 			jsonProductos.put("carpetaPagina", productos.isCarpetaPagina());
 			jsonProductos.put("retroalimentacionPagina", productos.isRetroalimentacionPagina());
-			jsonProductos.put("chatPagina", productos.isChatPagina());
-			jsonProductos.put("notificacionPagina", productos.isNotificacionPagina());
-			jsonProductos.put("videoPagina", productos.isVideoPagina());
-			jsonProductos.put("tarjetaPagina", productos.isCitaPagina());
+			
 			
 			listProductos.add(jsonProductos);
 			jsonArrayEmpresas.add(jsonProductos);

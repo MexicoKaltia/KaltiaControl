@@ -52,7 +52,9 @@
 	
 $(document).ready(function(){
 	
+	console.log("empresa");
 	console.log($data);
+	console.log("productos");
 	console.log(productos);
 		
 	window.operateEventsUpdateCliente = {
@@ -90,13 +92,18 @@ $(document).ready(function(){
 				    	$('#checkQRR').attr('checked', productosEmpresa.checkQRR);
 				    	$('#checkQRE').attr('checked', productosEmpresa.checkQRE);
 				    	$('#checkPuntoVenta').attr('checked', productosEmpresa.checkPuntoVenta);
+				    	
 				    	$('#clientePagina').attr('checked', productosEmpresa.clientePagina);
-				    	$('#carpetaPagina').attr('checked', productosEmpresa.carpetaPagina);
-				    	$('#retroalimentacionPagina').attr('checked', productosEmpresa.retroalimentacionPagina);
 				    	$('#chatPagina').attr('checked', productosEmpresa.chatPagina);
-				    	$('#notificacionPagina').attr('checked', productosEmpresa.notificacionPagina);
 				    	$('#videoPagina').attr('checked', productosEmpresa.videoPagina);
 				    	$('#tarjetaPagina').attr('checked', productosEmpresa.tarjetaPagina);
+				    	$('#retroalimentacionPagina').attr('checked', productosEmpresa.retroalimentacionPagina);
+				    	
+				    	$('#citaPagina').attr('checked', productosEmpresa.citaPagina);
+				    	$('#carpetaPagina').attr('checked', productosEmpresa.carpetaPagina);
+				    	$('#notificacionPagina').attr('checked', productosEmpresa.notificacionPagina);
+				    	
+				    	
 				    	$('#idEmpresaProducto').val(productosEmpresa.idEmpresa);
 				    	break;
 		    		}

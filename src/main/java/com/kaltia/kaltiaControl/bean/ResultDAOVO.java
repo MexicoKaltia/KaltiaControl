@@ -1,7 +1,9 @@
 package com.kaltia.kaltiaControl.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,6 +20,8 @@ public class ResultDAOVO implements Serializable{
 	private String properties;
 	private boolean logic;
 	private int num;
+	private JSONObject json;
+	private List<JSONObject> arrayJson;
 	
 	
 	public String getMessage() {
@@ -49,6 +53,18 @@ public class ResultDAOVO implements Serializable{
 	}
 	public void setNum(int num) {
 		this.num = num;
+	}
+	public JSONObject getJson() {
+		return json;
+	}
+	public void setJson(JSONObject json) {
+		this.json = json;
+	}
+	public List<JSONObject> getArrayJson() {
+		return arrayJson;
+	}
+	public void setArrayJson(List<JSONObject> arrayJson) {
+		this.arrayJson = arrayJson;
 	}
 	
 	

@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-table.css">
 <!-- <link href="https://unpkg.com/bootstrap-table@1.15.4/dist/bootstrap-table.min.css" rel="stylesheet"> -->
 
-
+<body>
 <!-- ################################################################################################ -->
 <div class="wrapper row1">
 <div class="alerta"><hiden class="alerta_in"></hiden></div>
@@ -56,27 +56,34 @@
 <!-- 			</fieldset> -->
 <!-- 		</form> -->
 <!-- 	</div> -->
-
-	<!-- UserEmpresa -->
-	<div class="animated rollIn slow">
-	</div>
-	<div class="animated slideInLeft slow">
-	</div>
-	<!-- fin de animated -->
-
-
+ <c:if test='${error}'>
+    <span> 
+		<div class="alert alert-danger" role="alert" id="dataError">
+		<b>Revisión : </b><u>Error al Actualizar Modulo</u>
+		</div>
+	</span>
+	</c:if>
+	 <c:if test='${exito}'>
+    <span> 
+		<div class="alert alert-success" role="alert" id="dataExito">
+		<b>Exito : </b><u>Modulos Actualizados </u>
+		</div>
+	</span>
+	</c:if>
 	<!-- ################################################################################################ -->
+			<div id="accordionProductos" class="animated rollIn slow">
+				<h1>Productos</h1>
+		   	</div> <!-- fin de div accordion -->
+		   	<hr>
+		   	<div id="accordionModulosS" class="animated slideInLeft slow">
+		   		<h1>Modulos Sencillo</h1>
+		   	</div> <!-- fin de div accordion -->
+		   	<hr>
+		   	<div id="accordionModulosC" class="animated slideInRight slow">
+		   		<h1>Modulo Compuesto</h1>
+		   	</div> <!-- fin de div accordion -->
+		   	<hr>
 	<!-- ################################################################################################ -->
-	<hr>
-	<div id="accordionProductos" class="transparente animated rollIn slow"><h2>Productos</h2>
-   	</div> <!-- fin de div accordion -->
-   	<hr>
-   	<div id="accordionModulosS" class="transparente animated slideInLeft slow"><h2>Modulos Sencillo</h2>
-   	</div> <!-- fin de div accordion -->
-   	<hr>
-   	<div id="accordionModulosC" class="transparente animated slideInRight slow"><h2>Modulo Compuesto</h2>
-   	</div> <!-- fin de div accordion -->
-   	<hr>
    	<!-- ################################################################################################ -->
 	
 </div><!-- fin de div body -->
@@ -204,12 +211,13 @@ var usuariosEmpresa = document.getElementById("usuariosEmpresa").value;
 <script src="<%=request.getContextPath()%>/js/complementoBody2.js"></script>
 <script src="<%=request.getContextPath()%>/js/moduloOperacion.js"></script>
 <script src="<%=request.getContextPath()%>/js/tableUsuariosEmpresa.js"></script>
+<script src="<%=request.getContextPath()%>/js/moduloVideoOperacion.js"></script>
 
-
-
-<script type="text/javascript">
-</script>
-
+<!-- ValidateForm -->
+<script src="<%=request.getContextPath()%>/js/validateForm/jquery.validate.js"></script>
+<script src="<%=request.getContextPath()%>/js/validateForm/messages_es.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/additional-methods.min.js"></script>
 
 <script>
     $( function() {
@@ -221,4 +229,29 @@ var usuariosEmpresa = document.getElementById("usuariosEmpresa").value;
 
 
 </body>
+<!--**********************************************************************************-->
+<!-- modalVideo -->
+<div class="modal fade" id="modalVerVideo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content"
+			style="background-image:url('http://kaltiaservicios.com/store/kaltia/modelo/modal/imagen.jpg?v=1');">
+			
+			<!--**********************************************************************************-->
+			<div class="modal-body">
+				<div>
+					<div class="embed-responsive embed-responsive-16by9">
+<!-- 					  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/v64KOxKVLVg" allowfullscreen></iframe> -->
+<!-- 						<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/watch?v=4jZBwyG7HPs&list=RD7qFfFVSerQo&index=9" allowfullscreen></iframe> -->
+						<iframe id="modalEnlaceVideo" class="embed-responsive-item" src="https://www.youtube.com/embed/4jZBwyG7HPs" allowfullscreen></iframe>
+					</div>
+				</div>		    
+		      </div>
+		      <!--**********************************************************************************-->
+			
+		</div>
+	</div>
+</div>
+<!-- FIN modalVideo -->
+<!--**********************************************************************************-->
+
 </html>

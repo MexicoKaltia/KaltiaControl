@@ -19,6 +19,7 @@
 <link href="<%=request.getContextPath()%>/css/layout.css" rel="stylesheet" type="text/css" media="all">
 <link href="<%=request.getContextPath()%>/css/complementoBody2.css" rel="stylesheet" type="text/css" media="all">
 <link href="<%=request.getContextPath()%>/css/animate.css" rel="stylesheet" type="text/css" media="all">
+<%-- <link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet" type="text/css" media="all"> --%>
 </head>
 <body id="top" style="background-image:url('<%=request.getContextPath()%>/images/imagen.jpg');">
 <!-- ################################################################################################ -->

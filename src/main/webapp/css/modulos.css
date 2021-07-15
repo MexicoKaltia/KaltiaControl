@@ -56,10 +56,10 @@ report-footer{
 }
 
 .transparente{
-  opacity: 0.9;
-  -moz-opacity: 0.9;
-  filter: alpha(opacity=90);
-  -khtml-opacity: 0.9;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter: alpha(opacity=50);
+  -khtml-opacity: 0.5;
   }
 
 h3{
@@ -68,4 +68,9 @@ h3{
 .marco{
 /* 	border: 0px solid; */
 /* 	width:50%; */
+}
+
+#collapseVideo{
+	background: rgba(255, 255, 255, 0)!important;
+	color:cyan!important;
 }
