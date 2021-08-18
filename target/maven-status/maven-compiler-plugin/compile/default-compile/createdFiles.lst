@@ -1,3 +1,4 @@
+com\kaltia\kaltiaControl\bean\ChatEntity.class
 com\kaltia\kaltiaControl\bean\ProductosVO.class
 com\kaltia\kaltiaControl\controller\ControllerInicial.class
 com\kaltia\kaltiaControl\repository\EmpresaDAOImpl.class
@@ -29,6 +30,7 @@ com\kaltia\kaltiaControl\Util\BaseInfra.class
 com\kaltia\kaltiaControl\aop\EmpresaAOP.class
 com\kaltia\kaltiaControl\repository\ProductosDAOImpl.class
 com\kaltia\kaltiaControl\repository\UserKaltiaControlDAO.class
+com\kaltia\kaltiaControl\bean\TarjetaProductosEntity.class
 com\kaltia\kaltiaControl\repository\IProductosDAO.class
 com\kaltia\kaltiaControl\bean\ResultVO.class
 com\kaltia\kaltiaControl\repository\UserEmpresaDAOImpl.class

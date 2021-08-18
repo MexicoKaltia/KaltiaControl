@@ -64,7 +64,7 @@ $(document).ready(function(){
 //	}
 		
 }); // Fin documento
-$idEmpresa=$(idEmpresa).val();
+//idEmpresa=$('#idEmpresa').val();
 //console.log($idEmpresa);
 
 var checkPaginaEdicion = '<div class="card">\
@@ -130,6 +130,10 @@ var checkPuntoVenta = '<div class="card">\
 							</div>\
 							</div>\
 						</div>'; 
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	/*
 	 * modulos sencillos
 	 */
@@ -174,8 +178,8 @@ var userTable = '<div class="card">\
 					</div>\
 				<div>\
 			</div>';
-var urlVideos = 'http://129.146.252.2:8010/consultaVideos?idEmpresa='+$idEmpresa;
-//var urlVideos = 'http://localhost:8010/consultaVideos?idEmpresa='+$idEmpresa;
+var urlVideos = 'http://129.146.252.2:8010/consultaVideos?idEmpresa='+idEmpresa;
+//var urlVideos = 'http://localhost:8010/consultaVideos?idEmpresa='+idEmpresa;
 //console.log(urlVideos);
 var checkVideoEdicion ='<div class="card">\
 						    <div class="card-header" id="headingOne">\
@@ -207,7 +211,7 @@ var checkVideoEdicion ='<div class="card">\
 								<br>\
 								<div id="divVideos>\
 								<form><div class="well auth-box"><fieldset>\
-	<div class="table-responsive">\
+									<div class="table-responsive">\
 									<table  id="videosTable" data-row-style="rowStyleVideosTable" data-toggle="table" data-url="'+urlVideos+'">\
 									  <thead>\
 									    <tr>\
@@ -245,8 +249,25 @@ var checkChatEdicion = '<div class="card">\
 </div>\
 <div id="collapseChat" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">\
 	<div class="card-body">\
-	  TEXT BODY\
-	</div>\
+	<form id="formAddNumeroChat" action="addNumeroChat.htm" method="post" modelAttribute="chatEntity">\
+		<div class="well auth-box">\
+			<fieldset>\
+		    	<div class="form-row">\
+		      		<div class="form-group col-8">\
+		         		<label class="form-label" for="name">Agrega num de Whats App</label>\
+		         		<input type="hidden" id="idActionChat" name="idAction">\
+				 		<input type="text" class="form-control input-md" id="numeroChat" name="numeroChat" placeholder="Numero Chat" maxlength="10"  required>\
+		      		</div>\
+		     		<div class="col-1">\
+		       			<button class="btn btn-primary" id="btnAddNumeroChat"  >\
+				   			<i class="fa-3x fa fa-plus-square"></i>\
+						</button>\
+		     		</div>\
+		  		</div>\
+			</fieldset>\
+		</div>\
+	</form>\
+</div>\
 </div>\
 </div>';
 
@@ -260,8 +281,35 @@ var checkTarjetaEdicion = '<div class="card">\
 </div>\
 <div id="collapseTarjeta" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">\
 	<div class="card-body">\
-	  TEXT BODY\
+	<div class="well auth-box">\
+		<fieldset>\
+		    <div class="form-row container">\
+		        <div class="col-md-6" id="divCategorias">\
+					<label class="form-label" for="selectCategorias">Seleccione Categoria</label>\
+		            <select class="form-control" id="selectCategorias">\
+		                <option value="nuevenueve" selected>Seleccione Categoria</option>\
+		                <option value="cero">Nueva Categoria</option>\
+		                <option id="uno" value="uno">1</option>\
+		                <option id="dos" value="dos">2</option>\
+		                <option id="tres" value="tres">3</option>\
+		                <option id="cuatro" value="cuatro">4</option>\
+		            </select>\
+		        </div>\
+		        <div class="col-md-6" id="formNuevaCategoria"></div>\
+		    </div>\
+			<div class="container" id="divBotonesEdicion" >\
+			</div>\
+			<div class="form-row container">\
+				<div class="col-md-12" id="divCarouselTajetaProductos">\
+				</div>\
+			</div>\
+			<div class="form-row container">\
+				<div class="col-md-12" id="divbtnActualizarProductos">\
+				</div>\
+			</div>\
+		</fieldset>\
 	</div>\
+</div>\
 </div>\
 </div>';
 
@@ -279,6 +327,11 @@ var checkRetroalimentacionEdicion = '<div class="card">\
 	</div>\
 </div>\
 </div>';
+
+
+
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 /*
  * modulos compuestos
  */

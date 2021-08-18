@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.kaltia.kaltiaControl.Util.BaseInfra;
+import com.kaltia.kaltiaControl.bean.ChatEntity;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.ProductosEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
@@ -103,9 +105,56 @@ public class ProductosDAOImpl implements IProductosDAO {
 			e.printStackTrace();
 		}
 		return resultDAOVO;
-		
-
 	}
+	
+	@SuppressWarnings("unused")
+	@Override
+	@Transactional
+	public ResultDAOVO addChatDAO(ChatEntity chatEntity) {
+		logger.info("-----------"+chatEntity.getNumeroChat());
+	     
+		try {
+			Query query=null;
+			query = em.createNamedQuery("find chat by idEmpresa");
+			query.setParameter("id", chatEntity.getIdEmpresa());
+			ChatEntity chatEntityNew = (ChatEntity) query.getSingleResult();
+			
+			 chatEntity.setIdChat(chatEntityNew.getIdChat());
+			 chatEntity.setStatus("actualizado");
+			 try {
+				  em.merge(chatEntity);
+			      resultDAOVO.setCode("00");
+			      resultDAOVO.setMessage("Numero Chat actualizado con exito ");
+				}catch(Exception e) {
+					resultDAOVO.setCode("99");
+					resultDAOVO.setMessage(e.toString());
+					e.printStackTrace();
+				}finally {
+					em.close( );
+				}
+
+	      }catch(Exception e){
+	    	  try {
+	    	  chatEntity.setIdChat(BaseInfra.idLocalTime());
+	    	  em.merge(chatEntity);
+		      resultDAOVO.setCode("00");
+		      resultDAOVO.setMessage("Numero Chat guardado con exito ");
+		      
+			}catch(Exception e1) {
+				resultDAOVO.setCode("99");
+				resultDAOVO.setMessage(e.toString());
+				e1.printStackTrace();
+			}finally {
+				em.close( );
+			}
+	      }
+		
+		
+		
+		return resultDAOVO;
+	}
+
+	
 	
 	/*
 	 * privates
@@ -123,6 +172,7 @@ public class ProductosDAOImpl implements IProductosDAO {
 		}
 		return arrayJson;
 	}
+
 
 
 	

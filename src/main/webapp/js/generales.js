@@ -3,16 +3,18 @@ $(document).ready(function(){
 		$('#empresaFechaCorte').ready(function(){
 		
 			var d = new Date();
+			var dias = new Date(d);
+			dias.setDate(d.getDate() + 15);
+			
 			var mesD = d.getMonth()+1;
 			var anio = d.getFullYear();
 			var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
-			if(d.getMonth === 11){
+			if(dias.getMonth === 11){
 				 mesD = 0;
 				 anio = d.getFullYear() + 1;
 			}
-	//			console.log("Periodo : " + d.getDate() + "/" + meses[d.getMonth()] + "/" + d.getFullYear() +"---"+  d.getDate() + "/" + meses[mesD] + "/" + anio);
-	//		$('#empresaFechaCorte').val("Periodo : " + d.getDate()+15 + "/" + meses[d.getMonth()] + "/" + d.getFullYear() +" hasta "+  d.getDate() + "/" + meses[mesD] + "/" + anio);
-			$('#empresaFechaCorte').val("Fecha de Corte : " + (d.getDate()+15) + "/" + meses[d.getMonth()] );
+			
+			$('#empresaFechaCorte').val("Fecha de Corte : " + dias.getDate() + "/" + meses[dias.getMonth()] );
 		
 		});
 		

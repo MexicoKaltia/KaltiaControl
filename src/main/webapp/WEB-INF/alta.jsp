@@ -49,7 +49,7 @@
           <div class="btn-group">
             <a href="#general" class="btn btn-default">General</a>
             <a href="#status" class="btn btn-default">Status</a>
-            <a href="#productos" class="btn btn-default">Productos</a>
+<!--             <a href="#productos" class="btn btn-default">Productos</a> -->
           </div>
            </fieldset>
         </form>

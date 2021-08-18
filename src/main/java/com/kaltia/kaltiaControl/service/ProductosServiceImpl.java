@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kaltia.kaltiaControl.Util.BaseInfra;
+import com.kaltia.kaltiaControl.bean.ChatEntity;
 import com.kaltia.kaltiaControl.bean.ResultDAOVO;
 import com.kaltia.kaltiaControl.bean.VideoEntity;
 import com.kaltia.kaltiaControl.repository.IProductosDAO;
@@ -39,6 +40,23 @@ public class ProductosServiceImpl implements IProductosService {
 		
 		return resultDAOVO;
 	}
+	
+	@Override
+	public ResultDAOVO addChatService(ChatEntity chatEntity) {
+		logger.info(chatEntity.toString());
+		String now = (new Date()).toString();
+		
+		chatEntity.setChatContexto("Whats App");
+		chatEntity.setTimestamp(now);
+		chatEntity.setStatus("create");
+		
+		
+		resultDAOVO = productosDAO.addChatDAO(chatEntity);
+		
+		return resultDAOVO;
+	}
+
+
 
 
 	private String videoContexto(String videoURL) {
@@ -57,6 +75,7 @@ public class ProductosServiceImpl implements IProductosService {
 	}
 
 
+	
 	
 	
 

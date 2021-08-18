@@ -31,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kaltia.kaltiaControl.bean.ChatEntity;
 import com.kaltia.kaltiaControl.bean.EmpresaEntity;
 import com.kaltia.kaltiaControl.bean.ProductosEntity;
 import com.kaltia.kaltiaControl.bean.ProductosVO;
@@ -168,6 +169,34 @@ public class ControllerModulos extends HttpServlet {
 
 		return mav;		
 	}
+	
+	@RequestMapping(value="/addNumeroChat.htm" , method = RequestMethod.POST)
+    public ModelAndView addVideo(@Valid @ModelAttribute("chatEntity") ChatEntity chatEntity, 
+    									BindingResult result,
+    									ModelMap model){
+		logger.info("----Inicio metodo add Numero Chat----");
+		
+		ModelAndView mav = new ModelAndView();
+		
+		requestLoginVO = (RequestLoginVO) model.get("requestLoginVO");
+		String idUser = requestLoginVO.getUserKaltiaControlEntity().getIdUserKaltiaControlUser();
+		String idEmpresa = requestLoginVO.getEmpresaEntity().getIdEmpresa();
+		String idAction = requestLoginVO.getEmpresaEntity().getIdAction();
+		logger.info("idUser:"+idUser);
+		chatEntity.setUserCreate(idUser);
+		chatEntity.setIdEmpresa(idEmpresa);
+		chatEntity.setIdAction(idAction);
+		resultDAOVO = productosService.addChatService(chatEntity);
+		
+		if(!resultDAOVO.getCode().equals("99")) {
+			mav.addObject("exito", true);
+		}else {
+			mav.addObject("error", true);
+		}
+		mav.setViewName("redirect:/modulos.htm");
+		return mav;
+     }
+	
 	
      
 }

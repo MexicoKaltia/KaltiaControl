@@ -183,15 +183,22 @@
 	<input type="hidden" id="idEmpresa" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdEmpresa()}" />" />
 	<input type="hidden" id="idAction" value="<c:out value="${model.requestLoginVO.empresaEntity.getIdAction()}" />" />
 	<input id="productos" name="productos"  type="hidden"  value="<c:out value="${model.requestLoginVO.getProductos()}"/>">
-<%-- 	<input id="usuariosEmpresa" name="usuariosEmpresa"  type="hidden"  value="<c:out value="${model.requestLoginVO.getUserEmpresaEntity()}"/>"> --%>
+	<input id="categorias" name="categorias"  type="hidden"  value="<c:out value="${model.categorias}"/>">
 	<input id="usuariosEmpresa" name="usuariosEmpresa"  type="hidden"  value="<c:out value="${model.usuariosEmpresa}"/>">
+	<input id="usuarioKC" name="usuarioKC"  type="hidden"  value="<c:out value="${model.requestLoginVO.userKaltiaControlEntity.getUserKaltiaControlNombre()}" />">
+	<input id="nombreCorto" name="nombreCorto"  type="hidden"  value="<c:out value="${model.requestLoginVO.empresaEntity.getEmpresaNombreCorto()}" />">
+	
 </div>
 <script >
 var idAction = document.getElementById("idAction").value;
+var idEmpresa = document.getElementById("idEmpresa").value;
 var productos = document.getElementById("productos").value; 
 	productos = JSON.parse(productos);
 var usuariosEmpresa = document.getElementById("usuariosEmpresa").value;
 	usuariosEmpresa = JSON.parse(usuariosEmpresa);
+var usuarioKC = document.getElementById("usuarioKC").value;
+var nombreCorto = document.getElementById("nombreCorto").value;
+
 </script>
 
 
@@ -212,6 +219,8 @@ var usuariosEmpresa = document.getElementById("usuariosEmpresa").value;
 <script src="<%=request.getContextPath()%>/js/moduloOperacion.js"></script>
 <script src="<%=request.getContextPath()%>/js/tableUsuariosEmpresa.js"></script>
 <script src="<%=request.getContextPath()%>/js/moduloVideoOperacion.js"></script>
+<script src="<%=request.getContextPath()%>/js/moduloChat.js"></script>
+<script src="<%=request.getContextPath()%>/js/moduloTarjetaProducto.js"></script>
 
 <!-- ValidateForm -->
 <script src="<%=request.getContextPath()%>/js/validateForm/jquery.validate.js"></script>
@@ -253,5 +262,71 @@ var usuariosEmpresa = document.getElementById("usuariosEmpresa").value;
 </div>
 <!-- FIN modalVideo -->
 <!--**********************************************************************************-->
+    <!-- modalRegistroTarjetaProducto -->
+<div class="modal fade" id="modalRegistroTarjetaProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content" style="background-image:url('http://kaltiaservicios.com/store/kaltia/modelo/modal/imagen.jpg?v=1');">
+			<div class="modal-header">
+				<label class="sizeEtiqueta colorLabel"><span id="spanCategoria"></span> - Elemento -</label>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close" id="modal_btnClose">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="alerta">
+						<hiden class="alerta_in"></hiden>
+				</div>
+			</div>
+			<!--**********************************************************************************-->
+			<div class="modal-body">
+			<div class="container auth" class="clear">
+<!-- 		                <form id="formAddTarjetaProducto" action="addVideo.htm" method="post" modelAttribute="tarjetaProductoEntity"> -->
+							<form id="imagenObjetoQRDForm" class="imagenArrayForm">
+		                	<fieldset>
+							<div class="form-group row">
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
+		                      <div class="col-7">
+		                        <input id="elementoNombre"  name="elementoNombre" type="text" placeholder="Nombre Producto" class="form-control" maxlength="100">
+		                      </div>
+		                    </div>
+		                    <div class="form-group row">
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-envelope bigicon"></i></span>
+		                      <div class="col-7">
+		                        <textarea class="form-control" id="elementoDescripcion" name="message" placeholder="Descripcion Producto" rows="4"></textarea>
+		                      </div>
+		                    </div>
+		                    <div class="form-group row">
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
+		                      <div class="col-7">
+		                        <input id="elementoCosto" name="elementoCosto" type="text" placeholder="Costo Producto" class="form-control" maxlength="20">
+		                      </div>
+		                    </div>
+                            <div class="form-group row">
+                                <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
+                                <div class="col-7">
+                                    <img class="inspace-10 borderedbox" src="" >
+                                    <div class="alerta"><hiden class="alerta_in"></hiden></div>
+                                    
+                                        <hiden class="imagenObjetoQRDForm"></hiden>
+                                        <label for="imagenObjetoQRD" class="nombre">Actualiza imagen:</label>
+                                        <input id="imagenObjetoQRD" type="file" name="uploadfile" accept="image/jpeg" />
+<!--                                     </form> -->
+                                    <small class="form-text bienvenido">Adjuntar imagen formato *.jpg ,  *.png  *.gif  *.bmp  no mayor a un 1MB.</small>
+                                </div>
+                            </div>
+                            <div class="container" style="text-align: right;">
+								<button class="btn btn-success btnAddElemento" type="button" id="btnAddElemento">Agregar</button>
+							</div>
+        	              </fieldset>
+		              </form>
+		           </div>
+		      </div>
+		      <!--**********************************************************************************-->
+			<div class="modal-footer">
+				<a href="#" data-dismiss="modal" class="btn" id="modal_btnClose">Cerrar</a>
+				<!-- <a  class="btn btn-primary" id="btnSaveRegistro">Guardar</a>-->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- FIN modalRegistroTarjetaProducto -->
 
 </html>

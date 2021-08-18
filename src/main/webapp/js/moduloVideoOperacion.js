@@ -23,7 +23,7 @@ $(document).ready(function(){
 
 	window.operateEventsAccesoVideo = {
 		    'click .like': function (e, value, row, index) {
-		    	console.log(row);
+//		    	console.log(row);
 		    	$('#modalEnlaceVideo').attr('src', 'https://www.youtube.com/embed/'+row.videoContexto);
 		    }
 	};
