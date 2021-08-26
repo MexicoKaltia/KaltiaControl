@@ -289,10 +289,6 @@ var checkTarjetaEdicion = '<div class="card">\
 		            <select class="form-control" id="selectCategorias">\
 		                <option value="nuevenueve" selected>Seleccione Categoria</option>\
 		                <option value="cero">Nueva Categoria</option>\
-		                <option id="uno" value="uno">1</option>\
-		                <option id="dos" value="dos">2</option>\
-		                <option id="tres" value="tres">3</option>\
-		                <option id="cuatro" value="cuatro">4</option>\
 		            </select>\
 		        </div>\
 		        <div class="col-md-6" id="formNuevaCategoria"></div>\

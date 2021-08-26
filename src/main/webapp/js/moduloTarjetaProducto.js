@@ -20,7 +20,7 @@ $(document).ready(function(){
 	/*
 	 * Variables Iniciales
 	 */
-	$.categorias="";
+	$.categorias=null;
 	$.categoria="";
 	var valoresFinales="";
 	$.tarjetaProducto="";
@@ -33,7 +33,6 @@ $(document).ready(function(){
     var contenido = 'http://129.146.252.2:8010/consultaTarjetaProductos?idEmpresa='+idEmpresa;
 //    var contenido = 'http://localhost:8010/consultaTarjetaProductos?idEmpresa='+idEmpresa;
     $.getJSON(contenido, function(result){
-//    	console.log(result);
     	$.categorias = result.tarjetaProductos; 
 //    	console.log($.categorias);
     	$('#selectCategorias').empty()
@@ -45,7 +44,7 @@ $(document).ready(function(){
     	    	$('#selectCategorias').append(optionCategorias);
     	}
     });
-	
+    
 	
 	$('#divBotonesEdicion').empty();
     $('#formNuevaCategoria').empty();
@@ -315,11 +314,16 @@ function arrayValoresFinales(categoria){
 	}
 	
 	if(flagNuevaCategoria){
-		var categorias = JSON.stringify($.categorias);
 		var nuevaCategoria = JSON.stringify(categoria);
-		nuevaCategoria = nuevaCategoria.slice(1,nuevaCategoria.length-1);
-		categorias = categorias.slice(0, categorias.length-1) + "," + nuevaCategoria + "}";
-		$.categorias = JSON.parse(categorias);
+		if($.categorias !== null ){
+			var categorias = JSON.stringify($.categorias);
+			nuevaCategoria = nuevaCategoria.slice(1,nuevaCategoria.length-1);
+			categorias = categorias.slice(0, categorias.length-1) + "," + nuevaCategoria + "}";
+			$.categorias = JSON.parse(categorias);
+		}else{
+			$.categorias = JSON.parse(nuevaCategoria);
+		}
+		
 		
 	}else{
 		for(var e in $.categorias){

@@ -282,25 +282,25 @@ var nombreCorto = document.getElementById("nombreCorto").value;
 							<form id="imagenObjetoQRDForm" class="imagenArrayForm">
 		                	<fieldset>
 							<div class="form-group row">
-		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-user bigicon"></i></span>
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-key bigicon"></i></span>
 		                      <div class="col-7">
 		                        <input id="elementoNombre"  name="elementoNombre" type="text" placeholder="Nombre Producto" class="form-control" maxlength="100">
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
-		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-envelope bigicon"></i></span>
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-pencil bigicon"></i></span>
 		                      <div class="col-7">
 		                        <textarea class="form-control" id="elementoDescripcion" name="message" placeholder="Descripcion Producto" rows="4"></textarea>
 		                      </div>
 		                    </div>
 		                    <div class="form-group row">
-		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
+		                      <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-usd bigicon"></i></span>
 		                      <div class="col-7">
 		                        <input id="elementoCosto" name="elementoCosto" type="text" placeholder="Costo Producto" class="form-control" maxlength="20">
 		                      </div>
 		                    </div>
                             <div class="form-group row">
-                                <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-phone-square bigicon"></i></span>
+                                <span class="col-3 col-form-label text-right colorLabel"><i class="fa fa-2x fa-image bigicon"></i></span>
                                 <div class="col-7">
                                     <img class="inspace-10 borderedbox" src="" >
                                     <div class="alerta"><hiden class="alerta_in"></hiden></div>
