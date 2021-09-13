@@ -93,7 +93,7 @@ var checkQRREdicion = '<div class="card">\
 						</div>\
 						<div id="collapseQRR" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">\
 							<div class="card-body">\
-								Acceso al modulo de Edicion Menu Web\
+								Acceso al modulo de Edicion Menu QR\
 								<a href="edicion.htm?idAction='+idAction+'&tipo=qr" class="btn btn-default addUserEmpresaBtn"><i class="fa fa-4x fa-bullseye" aria-hidden="true"></i><h1>Edicion Menu</h1></a>\
 							</div>\
 						</div>\

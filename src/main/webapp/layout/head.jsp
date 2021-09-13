@@ -10,10 +10,10 @@
 
 
 
-<html>
+<html lang="es">
 <head>
 <title>KaltiaControl</title>
-<meta charset="utf-8">
+<meta charset="UTF-8" http-equiv="Content-Type" content="text/html">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="<%=request.getContextPath()%>/css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="<%=request.getContextPath()%>/css/layout.css" rel="stylesheet" type="text/css" media="all">

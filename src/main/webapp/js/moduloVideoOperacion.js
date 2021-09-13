@@ -59,7 +59,7 @@ $(document).ready(function(){
 				required: "Favor captura Titulo de Video",
 				minlength: "Favor captura Titulo de Video completo"
 			},
-			emailRegistro: "Favor captura URL correcto",
+			videoURL: "Favor captura URL correcto",
 		}
 	});
 	
