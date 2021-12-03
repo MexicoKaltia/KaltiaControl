@@ -176,7 +176,7 @@ var userTable = '<div class="card">\
 							<a id="addUser" data-toggle="modal" data-target="#modalRegistro"class="btn btn-default addUserEmpresaBtn"><i class="fa fa-2x fa-user-plus" aria-hidden="true"></i></a>\
 						</span>\
 					</div>\
-				<div>\
+				</div>\
 			</div>';
 var urlVideos = 'http://129.146.252.2:8010/consultaVideos?idEmpresa='+idEmpresa;
 //var urlVideos = 'http://localhost:8010/consultaVideos?idEmpresa='+idEmpresa;

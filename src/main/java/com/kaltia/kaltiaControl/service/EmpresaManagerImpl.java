@@ -167,6 +167,7 @@ public class EmpresaManagerImpl implements EmpresaManager{
 		productosEntity.setNotificacionPagina(productosVO.isNotificacionPagina());
 		productosEntity.setVideoPagina(productosVO.isVideoPagina());
 		productosEntity.setTarjetaPagina(productosVO.isTarjetaPagina());
+		productosEntity.setUbicacion(true);
 		resultDAOVO = (ResultDAOVO) empresaDAO.createProductos(productosEntity);
 		
 		codigo = createAction(empresaEntity, modeloPagina);

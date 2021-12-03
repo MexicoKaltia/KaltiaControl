@@ -28,6 +28,8 @@ public class ProductosEntity {
 	private boolean checkPuntoVenta;
 	
 	@Column
+	private boolean ubicacion;
+		@Column
 	private boolean clientePagina;
 	@Column
 	private boolean chatPagina;
@@ -172,6 +174,16 @@ public class ProductosEntity {
 	public void setTarjetaPagina(boolean tarjetaPagina) {
 		this.tarjetaPagina = tarjetaPagina;
 	}
+	
+	public boolean isUbicacion() {
+		return ubicacion;
+	}
+
+	public void setUbicacion(boolean ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+
 
 	@Override
 	public String toString() {

@@ -3,8 +3,6 @@
 	  
 $(document).ready(function(){
 	
-	idActionChat
-	
 	$("#formAddNumeroChat").validate({
 		rules: {
 			numeroChat: {
@@ -15,7 +13,7 @@ $(document).ready(function(){
 			},
 		},
 		messages: {
-			videoTitulo: {
+			numeroChat: {
 				required: "Favor captura Numero Telefono válido",
 				minlength: "Favor captura Numero Telefono  completo"
 			}
