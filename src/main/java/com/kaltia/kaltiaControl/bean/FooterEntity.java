@@ -42,6 +42,14 @@ public class FooterEntity implements Serializable{
 	private String footerAux2; 
 	@Column
 	private String footerVarios;
+	@Column
+	private String footerSecciones;
+	@Column
+	private String footerSeccionRedes;
+	@Column
+	private String footerSeccionFoot;
+	@Column
+	private String footerSeccionUbicacion;
 
 	public FooterEntity() {
 		// TODO Auto-generated constructor stub
@@ -55,21 +63,20 @@ public class FooterEntity implements Serializable{
 		this.idFooter = idFooter;
 	}
 
-	public String getIdAction() {
-		return idAction;
-	}
-
-	public void setIdAction(String idAction) {
-		this.idAction = idAction;
-	}
-
-
 	public String getIdEmpresa() {
 		return idEmpresa;
 	}
 
 	public void setIdEmpresa(String idEmpresa) {
 		this.idEmpresa = idEmpresa;
+	}
+
+	public String getIdAction() {
+		return idAction;
+	}
+
+	public void setIdAction(String idAction) {
+		this.idAction = idAction;
 	}
 
 	public String getFooterSeccion1() {
@@ -151,7 +158,40 @@ public class FooterEntity implements Serializable{
 	public void setFooterVarios(String footerVarios) {
 		this.footerVarios = footerVarios;
 	}
-	
+
+	public String getFooterSecciones() {
+		return footerSecciones;
+	}
+
+	public void setFooterSecciones(String footerSecciones) {
+		this.footerSecciones = footerSecciones;
+	}
+
+	public String getFooterSeccionRedes() {
+		return footerSeccionRedes;
+	}
+
+	public void setFooterSeccionRedes(String footerSeccionRedes) {
+		this.footerSeccionRedes = footerSeccionRedes;
+	}
+
+	public String getFooterSeccionFoot() {
+		return footerSeccionFoot;
+	}
+
+	public void setFooterSeccionFoot(String footerSeccionFoot) {
+		this.footerSeccionFoot = footerSeccionFoot;
+	}
+
+	public String getFooterSeccionUbicacion() {
+		return footerSeccionUbicacion;
+	}
+
+	public void setFooterSeccionUbicacion(String footerSeccionUbicacion) {
+		this.footerSeccionUbicacion = footerSeccionUbicacion;
+	}
+
+		
 	
 
 }
